@@ -1,5 +1,13 @@
+* {
+  height:100%;
+  width: 100%;
+}
+
 .App {
   text-align: center;
+
+  height:100%;
+  width: 100%;
 }
 
 .App-logo {
@@ -24,15 +32,15 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
+/*.App-link {*/
+/*  color: #61dafb;*/
+/*}*/
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/*@keyframes App-logo-spin {*/
+/*  from {*/
+/*    transform: rotate(0deg);*/
+/*  }*/
+/*  to {*/
+/*    transform: rotate(360deg);*/
+/*  }*/
+/*}*/
