@@ -1,16 +1,16 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import logo from './logo.svg';
+import "bootswatch/dist/pulse/bootstrap.min.css";
 import './App.css';
 import PoemDisplay from "./PoemDisplay";
+import Structure from "./Structure";
 
 function App() {
   return (
     <div className="App">
-      {/*<header className="App-header">*/}
-      {/*  <PoemDisplay />*/}
-      {/*</header>*/}
-      <PoemDisplay />
+      <Structure>
+        <PoemDisplay />
+      </Structure>
     </div>
   );
 }
