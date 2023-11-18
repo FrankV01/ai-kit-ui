@@ -1,7 +1,5 @@
 import {ReactNode} from "react";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col, Container, Navbar, ModalFooter } from 'react-bootstrap';
 
 
 interface StructureProps {
@@ -10,11 +8,21 @@ interface StructureProps {
 
 const Structure: React.FC<StructureProps> = ({ children }: StructureProps)  => {
   return (
-    <Container>
-      <Row>
-        <Col>{children}</Col>
-      </Row>
-    </Container>
+    <>
+      <Navbar bg={'primary'} variant={'dark'}>
+        <Navbar.Brand href="#home">Poems</Navbar.Brand>
+      </Navbar>
+      
+      <Container style={{ marginTop: '20px' }}>
+        <Row>
+          <Col>{children}</Col>
+        </Row>
+      </Container>
+      
+      <ModalFooter style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: '#f8f9fa', textAlign: 'center', padding: '10px 0' }}>
+        © 2023 Frank Villasenor
+      </ModalFooter>
+    </>
   );
 }
 
