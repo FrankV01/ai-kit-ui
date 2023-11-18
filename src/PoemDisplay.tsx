@@ -6,13 +6,16 @@ interface PoemsCarouselProps {
   poems: string[]
 }
 
+// This component is just getting in the way. For now, lets simplfiy.
 const PoemsCarousel: React.FC<PoemsCarouselProps> = ({ poems }: PoemsCarouselProps) => {
   return (
-    <Carousel>
+    <Carousel data-bs-theme="dark" fade>
       {poems.map((poem, idx) => (
         <Carousel.Item key={idx}>
-          <div className="d-flex justify-content-center align-items-center" style={{height: '100%'}}>
-            <h3>{poem}</h3>
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{height: '100%'}}>
+            <p>{poem}</p>
           </div>
         </Carousel.Item>
       ))}
