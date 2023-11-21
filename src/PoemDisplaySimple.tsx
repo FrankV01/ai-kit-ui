@@ -1,8 +1,9 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
+import { PoemResponse } from "./util/types";
 
 interface PoemDisplaySimpleProps {
-  entries: string[];
+  entries: PoemResponse[];
 }
 
 const PoemDisplaySimple: React.FC<PoemDisplaySimpleProps> = ({ entries }) => {
@@ -11,7 +12,8 @@ const PoemDisplaySimple: React.FC<PoemDisplaySimpleProps> = ({ entries }) => {
       {entries.map((entry, index) => (
         <Row>
           <Col key={index} className="mb-3">
-            <div className="p-3 border rounded">{entry}</div>
+            <h3>{entry.title}</h3>
+            <div className="p-3 border rounded">{entry.poem}</div>
           </Col>
         </Row>
       ))}
