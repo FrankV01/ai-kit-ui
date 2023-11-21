@@ -1,35 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/pulse/bootstrap.css";
-import "./App.css";
+import "./css/App.css";
+import "./css/index.css";
 import PoemDisplaySimple from "./components/PoemDisplaySimple";
 import Structure from "./Structure";
 import { PoemLoadingState, PoemResponse } from "./util/types";
 import { ERROR_POEM } from "./util/constants";
+import { Menu } from "./components/Menu";
+import { Chats } from "./components/Chats";
 
 function App() {
-  const [data, setData] = React.useState<PoemResponse[]>([]);
+  const [poems, setPoems] = React.useState<PoemResponse[]>([]);
   const [loadingState, setLoadingState] = React.useState<PoemLoadingState>(
     PoemLoadingState.LOADING,
   );
-  const fetchData = async () => {
-    const response = await axios.get("http://localhost:3000/poems");
-    const data = (await response.data) as PoemResponse[];
-    setData(data);
-    setLoadingState(PoemLoadingState.LOADED);
-  };
+
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("http://localhost:3000/poems");
+      const data = (await response.data) as PoemResponse[];
+      setPoems(data);
+      setLoadingState(PoemLoadingState.LOADED);
+    };
     fetchData().catch((err) => {
       console.log(err);
       setLoadingState(PoemLoadingState.ERROR);
-      setData([{ title: "Error", poem: ERROR_POEM }]);
+      setPoems([{ title: "Error", poem: ERROR_POEM }]);
     });
-  });
+  }, []);
+
+  const MemoMenu = useCallback(() => <Menu />, []);
+  const MemoChats = useCallback(() => <Chats />, []);
 
   return (
     <div className="App">
-      <Structure>
+      <Structure menu={<MemoMenu />} userChats={<MemoChats />}>
         {loadingState === PoemLoadingState.LOADING ? (
           <div>Loading...</div>
         ) : (
@@ -41,7 +48,7 @@ function App() {
           <></>
         )}
         {loadingState === PoemLoadingState.LOADED ? (
-          <PoemDisplaySimple entries={data} />
+          <PoemDisplaySimple entries={poems} />
         ) : (
           <></>
         )}

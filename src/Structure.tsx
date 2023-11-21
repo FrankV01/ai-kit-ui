@@ -2,19 +2,36 @@ import { ReactNode } from "react";
 import { Row, Col, Container, Navbar, ModalFooter } from "react-bootstrap";
 
 interface StructureProps {
+  menu: ReactNode;
+  userChats: ReactNode;
   children: ReactNode;
 }
+const styleDebug = {
+  border: "red 1px solid",
+};
 
-const Structure: React.FC<StructureProps> = ({ children }: StructureProps) => {
+const Structure: React.FC<StructureProps> = ({
+  menu,
+  userChats,
+  children,
+}: StructureProps) => {
   return (
     <>
       <Navbar bg={"primary"} variant={"dark"}>
         <Navbar.Brand href="#home">Poems</Navbar.Brand>
       </Navbar>
 
-      <Container style={{ marginTop: "20px" }}>
+      <Container style={{ marginTop: "20px", border: "red 1px solid" }}>
         <Row>
-          <Col>{children}</Col>
+          <Col style={styleDebug} md={1}>
+            {menu}
+          </Col>
+          <Col style={styleDebug} md={3}>
+            {userChats}
+          </Col>
+          <Col style={styleDebug} md={8}>
+            {children}
+          </Col>
         </Row>
       </Container>
 
