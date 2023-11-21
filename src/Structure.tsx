@@ -7,7 +7,7 @@ interface StructureProps {
   children: ReactNode;
 }
 const styleDebug = {
-  border: "red 1px solid",
+  border: "",
 };
 
 const Structure: React.FC<StructureProps> = ({
@@ -17,11 +17,7 @@ const Structure: React.FC<StructureProps> = ({
 }: StructureProps) => {
   return (
     <>
-      <Navbar bg={"primary"} variant={"dark"}>
-        <Navbar.Brand href="#home">Poems</Navbar.Brand>
-      </Navbar>
-
-      <Container style={{ marginTop: "20px", border: "red 1px solid" }}>
+      <Container style={{ marginTop: "20px" }}>
         <Row>
           <Col style={styleDebug} md={1}>
             {menu}

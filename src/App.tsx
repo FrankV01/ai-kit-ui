@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootswatch/dist/pulse/bootstrap.css";
+import "bootswatch/dist/litera/bootstrap.css";
 import "./css/App.css";
 import "./css/index.css";
 import PoemDisplaySimple from "./components/PoemDisplaySimple";
@@ -32,7 +32,7 @@ function App() {
   }, []);
 
   const MemoMenu = useCallback(() => <Menu />, []);
-  const MemoChats = useCallback(() => <Chats />, []);
+  const MemoChats = useCallback(() => <Chats />, []); //The "chats" could be the different poems. Althouhg, that isn't how chats work. It could jsut be the poem bot.
 
   return (
     <div className="App">
