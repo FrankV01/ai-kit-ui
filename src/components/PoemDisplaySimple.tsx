@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import { PoemResponse } from "./util/types";
+import { PoemResponse } from "../util/types";
 
 interface PoemDisplaySimpleProps {
   entries: PoemResponse[];

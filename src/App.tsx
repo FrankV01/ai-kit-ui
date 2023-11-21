@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootswatch/dist/pulse/bootstrap.min.css";
+import "bootswatch/dist/pulse/bootstrap.css";
 import "./App.css";
-import PoemDisplaySimple from "./PoemDisplaySimple";
+import PoemDisplaySimple from "./components/PoemDisplaySimple";
 import Structure from "./Structure";
 import { PoemLoadingState, PoemResponse } from "./util/types";
 import { ERROR_POEM } from "./util/constants";
