@@ -1,19 +1,11 @@
 import { ReactNode } from "react";
-import { Row, Col, Container, Nav, Card } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import styled from "styled-components";
 
 interface StructureProps {
   menu: ReactNode;
-  //userChats: ReactNode;
   children: ReactNode;
 }
-const styleDebug = {
-  border: "1px solid grey",
-};
-
-const BigRow = styled(Row)`
-  min-height: 20rem;
-`;
 
 const Structure2: React.FC<StructureProps> = ({
   menu,
@@ -21,11 +13,11 @@ const Structure2: React.FC<StructureProps> = ({
 }: StructureProps) => {
   return (
     <Container fluid>
-      <BigRow>
-        <Col>{menu}</Col>
-      </BigRow>
       <Row>
-        <Col sm={11}>{children}</Col>
+        <Col>{menu}</Col>
+      </Row>
+      <Row>
+        <Col>{children}</Col>
       </Row>
     </Container>
   );

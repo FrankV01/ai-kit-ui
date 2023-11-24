@@ -1,43 +1,26 @@
-import {
-  Navbar,
-  Nav,
-  Button,
-  ButtonGroup,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Navbar, Nav, Row, Col } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
-import styled from "styled-components";
-
-const StyledNav = styled(Nav)`
-  display: flex;
-  flex-direction: column;
-  //justify-content: space-between;
-  justify-content: center;
-  height: 100%;
-  align-items: center;
-`;
 
 const HeaderItem = () => (
   <h3>
     <div className={"text-secondary"}>Alina's</div> Poems
   </h3>
 );
-
+const sizeOfIcons = "2rem";
 const MainMenuNavPill = () => (
-  <Navbar fixed="top">
-    <Container fluid>
-      <Navbar.Brand>
-        <HeaderItem />
-      </Navbar.Brand>
-      <Navbar.Toggle>
-        <Icons.HouseHeartFill size={25} title={"Poems"} />
-      </Navbar.Toggle>
-      <Navbar.Toggle>
-        <Icons.Building title={"About"} />
-      </Navbar.Toggle>
-    </Container>
+  <Navbar>
+    <Navbar.Brand>
+      <HeaderItem />
+    </Navbar.Brand>
+
+    <Nav className="me-auto m-auto h-auto">
+      <Nav.Link href="/">
+        <Icons.HouseHeartFill size={sizeOfIcons} title={"Poems"} />
+      </Nav.Link>
+      <Nav.Link href="/about-us">
+        <Icons.Building size={sizeOfIcons} title={"About"} />
+      </Nav.Link>
+    </Nav>
   </Navbar>
 );
 
@@ -46,12 +29,8 @@ const MainMenuNavPill = () => (
 // central location.
 export const Menu = () => {
   return (
-    <Container fluid>
-      <Row>
-        <Col>
-          <MainMenuNavPill />
-        </Col>
-      </Row>
-    </Container>
+    <div>
+      <MainMenuNavPill />
+    </div>
   );
 };

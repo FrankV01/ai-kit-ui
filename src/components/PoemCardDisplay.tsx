@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Stack } from "react-bootstrap";
 import { PoemResponse } from "../util/types";
 import styled from "styled-components";
 
@@ -8,31 +8,31 @@ interface PoemDisplaySimpleProps {
 }
 
 const PoemCard = styled(Card)`
-  max-width: 25rem;
+  //max-width: 25rem;
   margin: 1rem;
 `;
 
 const PoemCardDisplay: React.FC<PoemDisplaySimpleProps> = ({ entries }) => {
   return (
-    <>
-      {entries.map((entry, idx) => (
-        <PoemCard
-          fluid
-          bg={"light"}
-          text={"dark"}
-          border={"dark"}
-          className={"flex-column"}
-          key={`PoemCardDisplay-${idx}`}
-        >
-          <Card.Body>
-            <Card.Title>{entry.title}</Card.Title>
-            <Card.Text>
-              <div className="p-3 border rounded">{entry.poem}</div>
-            </Card.Text>
-          </Card.Body>
-        </PoemCard>
-      ))}
-    </>
+    <div className={"d-flex flex-wrap"}>
+      <Stack gap={3}>
+        {entries.map((entry, idx) => (
+          <PoemCard
+            bg={"light"}
+            text={"dark"}
+            border={"dark"}
+            key={`PoemCardDisplay-${idx}`}
+          >
+            <Card.Body>
+              <Card.Title>{entry.title}</Card.Title>
+              <div className="p-2 border rounded">
+                <Card.Text>{entry.poem}</Card.Text>
+              </div>
+            </Card.Body>
+          </PoemCard>
+        ))}
+      </Stack>
+    </div>
   );
 };
 
