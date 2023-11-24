@@ -10,8 +10,8 @@ import PoemCardDisplay from "./components/PoemCardDisplay";
 import { PoemLoadingState, PoemResponse } from "./util/types";
 import { ERROR_POEM } from "./util/constants";
 import { Menu } from "./components/Menu";
-//import { Chats } from "./components/Chats";
 import Structure2 from "./Structure2";
+import { IApi, PoemsApi } from "./util/RestProvider";
 
 function App() {
   const [poems, setPoems] = React.useState<PoemResponse[]>([]);
@@ -21,22 +21,22 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3000/poems");
-      const data = (await response.data) as PoemResponse[];
-      setPoems(data);
-      setLoadingState(PoemLoadingState.LOADED);
+      const api: IApi = new PoemsApi();
+      try {
+        const data = await api.getPoemsFromApi();
+        setPoems(data);
+        setLoadingState(PoemLoadingState.LOADED);
+      } catch (err) {
+        console.log(err);
+        setLoadingState(PoemLoadingState.ERROR);
+        setPoems([{ title: "Error", poem: ERROR_POEM }]);
+      }
     };
-    fetchData().catch((err) => {
-      console.log(err);
-      setLoadingState(PoemLoadingState.ERROR);
-      setPoems([{ title: "Error", poem: ERROR_POEM }]);
-    });
+    void fetchData();
   }, []);
 
   const MemoMenu = useCallback(() => <Menu />, []);
-  //const MemoChats = useCallback(() => <Chats />, []); //The "chats" could be the different poems. Althouhg, that isn't how chats work. It could jsut be the poem bot.
 
-  // userChats={<MemoChats />}
   return (
     <div className="App">
       <Structure2 menu={<MemoMenu />}>
