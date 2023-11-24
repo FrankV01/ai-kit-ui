@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import styled from "styled-components";
 
 interface StructureProps {
   menu: ReactNode;
