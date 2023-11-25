@@ -8,10 +8,11 @@ import "./css/App.css";
 //import "./css/index.css";
 import PoemCardDisplay from "./components/PoemCardDisplay";
 import { PoemLoadingState, PoemResponse } from "./util/types";
-import { ERROR_POEM } from "./util/constants";
 import { Menu } from "./components/Menu";
 import Structure2 from "./Structure2";
-import { IApi, PoemsApi } from "./util/RestProvider";
+import { IApi, PoemsApi } from "./util/PoemsApi";
+
+const poemsApi: IApi = new PoemsApi();
 
 function App() {
   const [poems, setPoems] = React.useState<PoemResponse[]>([]);
@@ -20,19 +21,7 @@ function App() {
   );
 
   useEffect(() => {
-    const fetchData = async () => {
-      const api: IApi = new PoemsApi();
-      try {
-        const data = await api.getPoemsFromApi();
-        setPoems(data);
-        setLoadingState(PoemLoadingState.LOADED);
-      } catch (err) {
-        console.log(err);
-        setLoadingState(PoemLoadingState.ERROR);
-        setPoems([{ title: "Error", poem: ERROR_POEM }]);
-      }
-    };
-    void fetchData();
+    void poemsApi.getPoemsFromApi(setPoems, setLoadingState);
   }, []);
 
   const MemoMenu = useCallback(() => <Menu />, []);
