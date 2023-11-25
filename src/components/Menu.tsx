@@ -1,4 +1,4 @@
-import { Navbar, Nav, Row, Col } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
 
 const HeaderItem = () => (

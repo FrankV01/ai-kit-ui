@@ -7,8 +7,6 @@ interface PoemDisplaySimpleProps {
   entries: PoemResponse[];
 }
 
-const PoemCard = styled(Card)``;
-
 const PoemCardDisplay: React.FC<PoemDisplaySimpleProps> = ({ entries }) => {
   return (
     <div className={"d-flex flex-wrap"}>

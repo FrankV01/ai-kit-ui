@@ -1,11 +1,7 @@
 import React, { useEffect, useCallback } from "react";
-import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import "bootswatch/dist/litera/bootstrap.css";
-import "bootswatch/dist/litera/bootstrap.min.css"; // Added this :boom:
-//import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootswatch/dist/litera/bootstrap.min.css";
 import "./css/App.css";
-//import "./css/index.css";
 import PoemCardDisplay from "./components/PoemCardDisplay";
 import { PoemLoadingState, PoemResponse } from "./util/types";
 import { Menu } from "./components/Menu";
