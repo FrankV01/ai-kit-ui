@@ -8,7 +8,7 @@ const HeaderItem = () => (
 );
 const sizeOfIcons = "2rem";
 const MainMenuNavPill = () => (
-  <Navbar bg={"primary rounded"}>
+  <Navbar bg={"primary"} className={"rounded m-0  App-header"}>
     <Navbar.Brand className={"ml-2 p-2"}>
       <HeaderItem />
     </Navbar.Brand>

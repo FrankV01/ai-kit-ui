@@ -11,7 +11,7 @@ const Structure2: React.FC<StructureProps> = ({
   children,
 }: StructureProps) => {
   return (
-    <Container fluid>
+    <Container>
       <Row>
         <Col>{menu}</Col>
       </Row>

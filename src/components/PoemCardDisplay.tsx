@@ -7,21 +7,19 @@ interface PoemDisplaySimpleProps {
   entries: PoemResponse[];
 }
 
-const PoemCard = styled(Card)`
-  //max-width: 25rem;
-  margin: 1rem;
-`;
+const PoemCard = styled(Card)``;
 
 const PoemCardDisplay: React.FC<PoemDisplaySimpleProps> = ({ entries }) => {
   return (
     <div className={"d-flex flex-wrap"}>
-      <Stack gap={3}>
+      <Stack>
         {entries.map((entry, idx) => (
-          <PoemCard
+          <Card
             bg={"light"}
             text={"dark"}
             border={"dark"}
             key={`PoemCardDisplay-${idx}`}
+            className={"mt-3"}
           >
             <Card.Body>
               <Card.Title>{entry.title}</Card.Title>
@@ -29,7 +27,7 @@ const PoemCardDisplay: React.FC<PoemDisplaySimpleProps> = ({ entries }) => {
                 <Card.Text>{entry.poem}</Card.Text>
               </div>
             </Card.Body>
-          </PoemCard>
+          </Card>
         ))}
       </Stack>
     </div>
