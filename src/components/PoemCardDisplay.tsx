@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Stack } from "react-bootstrap";
 import { PoemResponse } from "../util/types";
-import styled from "styled-components";
 
 interface PoemDisplaySimpleProps {
   entries: PoemResponse[];
