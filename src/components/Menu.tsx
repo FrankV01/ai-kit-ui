@@ -1,9 +1,10 @@
 import { Navbar, Nav } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
+import { EnvMgr } from "../util/EnvMgr";
 
 const HeaderItem = () => (
   <h3>
-    <div className={"text-secondary"}>Alina's</div> Poems
+    <div className={"text-secondary"}>{EnvMgr.topic}</div> Poems
   </h3>
 );
 const sizeOfIcons = "2rem";

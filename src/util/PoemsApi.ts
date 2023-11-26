@@ -1,6 +1,7 @@
 import axios from "axios";
 import { PoemLoadingState, PoemResponse } from "./types";
 import { ERROR_POEM } from "./constants";
+import { EnvMgr } from "./EnvMgr";
 
 export interface IApi {
   getPoemsFromApi(
@@ -10,7 +11,8 @@ export interface IApi {
 }
 
 export class PoemsApi implements IApi {
-  private baseUrl = "http://localhost:3000";
+  private baseUrl = EnvMgr.apiUrl;
+  private apiKey = EnvMgr.apiKey;
 
   async getPoemsFromApi(
     setList: (setData: PoemResponse[]) => void,
@@ -18,7 +20,9 @@ export class PoemsApi implements IApi {
   ) {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${this.baseUrl}/poems`);
+        const response = await axios.get(`${this.baseUrl}/poems`, {
+          headers: { Authorization: `Bearer ${this.apiKey}` },
+        });
         const data = (await response.data) as PoemResponse[];
         setList(data);
         setStatus(PoemLoadingState.LOADED);
