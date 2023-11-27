@@ -18,10 +18,13 @@ export class PoemsApi implements IApi {
     setList: (setData: PoemResponse[]) => void,
     setStatus: (setStatus: PoemLoadingState) => void,
   ) {
+    const baseUrl = this.baseUrl;
+    const apiKey = this.apiKey;
+    console.log("baseUrl", baseUrl, "apiKey", apiKey);
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${this.baseUrl}/poems`, {
-          headers: { Authorization: `Bearer ${this.apiKey}` },
+        const response = await axios.get(`${baseUrl}/poems`, {
+          headers: { Authorization: `Bearer ${apiKey}` },
         });
         const data = (await response.data) as PoemResponse[];
         setList(data);
