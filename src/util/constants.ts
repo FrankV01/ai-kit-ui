@@ -18,3 +18,5 @@ So embrace these errors, though they may enthrall,
 For within their midst, opportunities call.
 A chance to grow, to rewrite, reform,
 An error, a lesson, life's continuous norm.`;
+
+export default ERROR_POEM; //was troubleshooting.

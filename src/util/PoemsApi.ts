@@ -1,41 +1,25 @@
-import axios from "axios";
-import { PoemLoadingState, PoemResponse } from "./types";
-import { ERROR_POEM } from "./constants";
-import { EnvMgr } from "./EnvMgr";
+import * as types from "./types";
+import { PoemResponse } from "./types";
+import ERROR_POEM from "./constants";
+import EnvMgr from "./EnvMgr";
+
+const { PoemLoadingState } = types;
 
 export interface IApi {
-  getPoemsFromApi(
-    setList: (setData: PoemResponse[]) => void,
-    setStatus: (setStatus: PoemLoadingState) => void,
-  ): Promise<void>;
+  getPoemsFromApi(): Promise<PoemResponse[]>;
 }
 
 export class PoemsApi implements IApi {
   private baseUrl = EnvMgr.apiUrl;
   private apiKey = EnvMgr.apiKey;
 
-  async getPoemsFromApi(
-    setList: (setData: PoemResponse[]) => void,
-    setStatus: (setStatus: PoemLoadingState) => void,
-  ) {
-    const baseUrl = this.baseUrl;
-    const apiKey = this.apiKey;
-    console.log("baseUrl", baseUrl, "apiKey", apiKey);
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}/poems`, {
-          headers: { Authorization: `Bearer ${apiKey}` },
-        });
-        const data = (await response.data) as PoemResponse[];
-        setList(data);
-        setStatus(PoemLoadingState.LOADED);
-      } catch (err) {
-        console.log(err);
-        setStatus(PoemLoadingState.ERROR);
-        const errorPlaceholder = [{ title: "Error", poem: ERROR_POEM }];
-        setList(errorPlaceholder);
-      }
-    };
-    await fetchData();
+  async getPoemsFromApi() {
+    const res = await fetch(`${this.baseUrl}/poems`, {});
+    if (!res.ok) {
+      const errorPlaceholder = [{ title: "Error", poem: ERROR_POEM }];
+      return errorPlaceholder;
+    }
+    return (await res.json()) as PoemResponse[];
   }
 }
+export default PoemsApi;

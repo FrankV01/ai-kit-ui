@@ -12,17 +12,18 @@ const defaultOrError = (theDefault: string) => {
 //TODO: Fix or improve.
 const EnvMgr = {
   nodeEnv: process.env.NODE_ENV || defaultOrError("development"),
-  port: Number.parseInt(
-    process.env.REACT_APP_PORT || process.env.PORT || defaultOrError("8180"),
-  ),
+  port: Number.parseInt(process.env.PORT || defaultOrError("8180")),
   topic: process.env.REACT_APP_TOPIC || defaultOrError("Debug"),
   apiKey:
-    process.env.REACT_APP_API_KEY ||
+    process.env.API_KEY ||
     defaultOrError(
       "$2b$15$TmCfGtr5rb1gQJm9HIO8BOftwPdp.3M4nF/mwymha0VSCmatC2Uni",
     ),
   apiUrl:
-    process.env.REACT_APP_API_URL || defaultOrError("http://localhost:3000"),
+    process.env.NEXT_PUBLIC_API_URL || defaultOrError("http://localhost:3000"),
 };
 
+console.log("EnvMgr", EnvMgr, process.env);
+
 export { EnvMgr };
+export default EnvMgr;

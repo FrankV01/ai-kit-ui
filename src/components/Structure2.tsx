@@ -1,15 +1,12 @@
 import { ReactNode } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 
-interface StructureProps {
+export interface StructureProps {
   menu: ReactNode;
   children: ReactNode;
 }
 
-const Structure2: React.FC<StructureProps> = ({
-  menu,
-  children,
-}: StructureProps) => {
+function Structure2({ menu, children }: StructureProps) {
   return (
     <Container>
       <Row>
@@ -20,6 +17,6 @@ const Structure2: React.FC<StructureProps> = ({
       </Row>
     </Container>
   );
-};
+}
 
 export default Structure2;

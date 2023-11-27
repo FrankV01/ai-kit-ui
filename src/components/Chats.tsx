@@ -1,6 +1,6 @@
 import { ListGroup } from "react-bootstrap";
 
-export const Chats = () => {
+function Chats() {
   return (
     <ListGroup>
       <ListGroup.Item variant={"light"}>Cras justo odio</ListGroup.Item>
@@ -10,4 +10,5 @@ export const Chats = () => {
       <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
     </ListGroup>
   );
-};
+}
+export default Chats;

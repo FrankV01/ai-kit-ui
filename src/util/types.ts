@@ -7,3 +7,4 @@ export enum PoemLoadingState {
   LOADED,
   ERROR,
 }
+export default { PoemLoadingState };
