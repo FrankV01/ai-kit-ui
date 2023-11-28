@@ -1,8 +1,8 @@
 import React from "react";
 import { Card, Stack } from "react-bootstrap";
-import { PoemResponse } from "../util/types";
+import PoemResponse from "../types/PoemResponse";
 
-interface PoemDisplaySimpleProps {
+export interface PoemDisplaySimpleProps {
   entries: PoemResponse[];
 }
 
