@@ -12,14 +12,17 @@ import MainMenuNavPill from "../components/MainMenuNavPill";
 //  If this is the case, where do client components go when
 //  creating client side components.
 
-const url = "http://localhost:3001/poems";
+const url = `${process.env.API_URL}/poems`; //"http://localhost:3001/poems";
+const topic = process.env.TOPIC || "unset";
 
 async function getData(): Promise<PoemResponse[]> {
+  if (!url) {
+    throw new Error("Invalid environment configs");
+  }
   const res = await fetch(url);
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-    //throw new Error('Failed to fetch data'); //Stupid fucking error boundry.
-    console.log("res.ok is not", JSON.stringify(res));
+    throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
   }
   return await res.json();
 }
@@ -31,12 +34,11 @@ export default async function Home() {
       <Container>
         <Row>
           <Col>
-            <MainMenuNavPill />
+            <MainMenuNavPill topic={topic} />
           </Col>
         </Row>
         <Row>
           <Col>
-            {" "}
             <div className={styles.outline}>
               <PoemCardDisplay entries={poemData} />
             </div>

@@ -2,17 +2,14 @@
 import { Nav, Navbar } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
 
-const HeaderItem = () => (
-  <h3>
-    <div className={"text-secondary"}>{"Topic from Env goes here"}</div> Poems
-  </h3>
-);
 const sizeOfIcons = "2rem";
-function MainMenuNavPill() {
+function MainMenuNavPill({ topic }: { topic: string }) {
   return (
     <Navbar bg={"primary"} className={"rounded m-0  App-header"}>
       <Navbar.Brand className={"ml-2 p-2"}>
-        <HeaderItem />
+        <h3>
+          <div className={"text-secondary"}>{topic}</div> Poems
+        </h3>
       </Navbar.Brand>
 
       <Nav className="me-auto m-auto h-auto">
