@@ -51,7 +51,4 @@ ENV API_URL=$API_URL
 COPY --from=development /usr/src/app /usr/src/app
 WORKDIR /usr/src/app
 
-RUN npm install
-RUN npm run build
-
 CMD [ "npm", "run", "start" ]
