@@ -20,9 +20,9 @@ export default function Error({
         <em>Poem</em>: Something went wrong.
       </h2>
       <p>
-        Oh, something went wrong, a twist in fate's song, A stumble, a glitch,
-        where did we belong? The plans laid out, in steps clear and strong, Now
-        scattered like whispers, lost in the throng.
+        Oh, something went wrong, a twist in fate&apos;s song, A stumble, a
+        glitch, where did we belong? The plans laid out, in steps clear and
+        strong, Now scattered like whispers, lost in the throng.
       </p>
 
       <p>
@@ -45,8 +45,8 @@ export default function Error({
 
       <p>
         Oh, something went wrong, a curious tale, Yet within its grasp, new
-        stories prevail. Through twists and turns, we chart our sail, In life's
-        grand journey, where fates regale.
+        stories prevail. Through twists and turns, we chart our sail, In
+        life&apos;s grand journey, where fates regale.
       </p>
       <button
         onClick={
