@@ -12,14 +12,20 @@ import MainMenuNavPill from "../components/MainMenuNavPill";
 //  If this is the case, where do client components go when
 //  creating client side components.
 
-const url = `${process.env.API_URL}/poems`; //"http://localhost:3001/poems";
+const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http://localhost:3001/poems";
 const topic = process.env.TOPIC || "unset";
+
+export const dynamic = "force-dynamic";
 
 async function getData(): Promise<PoemResponse[]> {
   if (!url) {
     throw new Error("Invalid environment configs");
   }
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    //cache: "no-cache",
+    cache: "no-store",
+    //next: { revalidate: 3600 / 2 },
+  });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
