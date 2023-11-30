@@ -15,3 +15,5 @@ node_modules/
 
 # Ignore all files in the .DS_Store directory
 .DS_Store/
+
+.next/
