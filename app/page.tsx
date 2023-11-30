@@ -21,6 +21,7 @@ async function getData(): Promise<PoemResponse[]> {
   if (!url) {
     throw new Error("Invalid environment configs");
   }
+  console.log(`Fetching data from ${url}`);
   const res = await fetch(url, {
     //cache: "no-cache",
     cache: "no-store",
@@ -28,6 +29,7 @@ async function getData(): Promise<PoemResponse[]> {
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
+    console.log(`Failed to fetch data from ${url}`);
     throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
   }
   return await res.json();
