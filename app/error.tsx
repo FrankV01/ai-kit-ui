@@ -56,6 +56,9 @@ export default function Error({
       >
         Try again
       </button>
+      <div>
+        <pre>{JSON.stringify(error)}</pre>
+      </div>
     </div>
   );
 }
