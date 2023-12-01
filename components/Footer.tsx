@@ -1,6 +1,7 @@
 import { Container, Row, Col, Stack } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
 import Author from "./Author";
+import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "./Icons";
 
 export default function Footer() {
   return (
@@ -15,16 +16,9 @@ export default function Footer() {
         </Col>
         <Col className={"fs-3 text-center m-auto p-auto pe-0"}>
           <div className={"m-auto text-center"}>
-            <a
-              className={"mx-2"}
-              href={"https://www.linkedin.com/in/frankvillasenor/"}
-            >
-              <Icons.Linkedin />
-            </a>
-
-            <a className={"mx-2"} href={"http://www.theOpenSourceU.org"}>
-              <Icons.Projector />
-            </a>
+            <IconLinkedIn className={"mx-2"} />
+            <IconGitHub className={"mx-2"} />
+            <IconTheOpenSourceUorg className={"mx-2"} />
           </div>
         </Col>
         <Col
