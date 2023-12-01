@@ -1,5 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Author from "./Author";
+import Image from "react-bootstrap/Image";
 
 const space: string = " ";
 
@@ -7,7 +8,7 @@ function LandingBanner() {
   return (
     <Container>
       <Row>
-        <Col>
+        <Col className={"m-auto"}>
           <h1>
             Artificial Intelligence
             <span className={"text-secondary"}>(AI)</span>, Machine Learning
@@ -20,7 +21,14 @@ function LandingBanner() {
             <Author />
           </p>
         </Col>
-        <Col>Vertical Image goes here</Col>
+        <Col className={"mx-auto me-0 pe-0"}>
+          <Image
+            className={"shadow p-1 pe-0 rounded float-end"}
+            rounded
+            fluid
+            src={"http://placekitten.com/500/400"}
+          />
+        </Col>
       </Row>
     </Container>
   );
