@@ -48,7 +48,7 @@ export default async function Home() {
       <Container>
         <Row>
           <Col>
-            <HeaderMenu topic={"topic"} />
+            <HeaderMenu topic={topic} />
           </Col>
         </Row>
         <Row>
