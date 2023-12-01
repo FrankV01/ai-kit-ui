@@ -5,6 +5,7 @@ import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 
 import HeaderMenu from "../components/HeaderMenu";
 import LandingBanner from "../components/LandingBanner";
+import Footer from "../components/Footer";
 
 // Ok, so why does / go to page.tsx and not index.tsx?
 //  It's because it's at the root of app and page.tsx is "index.tsx" in next.js
@@ -59,6 +60,11 @@ export default async function Home() {
             <div className={styles.outline}>
               <PoemCardDisplay entries={poemData} />
             </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Footer />
           </Col>
         </Row>
       </Container>
