@@ -5,7 +5,7 @@ ARG API_KEY=bcrypt_hased_api_key_from_api_server__not_used_yet
 ARG API_URL=http://localhost:3000/api/v1
 
 ARG lblName="poems-ui"
-ARG lblVersion="1.0.20232911"
+ARG lblVersion="1.1.20232911"
 ARG lblDescription="API for the Poems App"
 ARG lblAuthor="Frank Villasenor"
 
