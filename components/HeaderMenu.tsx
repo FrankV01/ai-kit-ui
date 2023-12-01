@@ -12,7 +12,8 @@ function HeaderMenu({ topic }: { topic: string }) {
       <Container>
         <Navbar.Brand href="/">
           <h3>
-            <div className={"text-secondary"}>{topic}</div> Poems
+            <div className={"text-capitalize text-secondary"}>{topic}</div>{" "}
+            Poems
           </h3>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
