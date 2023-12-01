@@ -3,7 +3,8 @@ import PoemResponse from "../types/PoemResponse";
 import PoemCardDisplay from "../components/PoemCardDisplay";
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 
-import MainMenuNavPill from "../components/MainMenuNavPill";
+import HeaderMenu from "../components/HeaderMenu";
+import LandingBanner from "../components/LandingBanner";
 
 // Ok, so why does / go to page.tsx and not index.tsx?
 //  It's because it's at the root of app and page.tsx is "index.tsx" in next.js
@@ -15,6 +16,9 @@ import MainMenuNavPill from "../components/MainMenuNavPill";
 const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http://localhost:3001/poems";
 const topic = process.env.TOPIC || "unset";
 
+/**
+ * This is an indicator for Next.js
+ */
 export const dynamic = "force-dynamic";
 
 async function getData(): Promise<PoemResponse[]> {
@@ -42,7 +46,12 @@ export default async function Home() {
       <Container>
         <Row>
           <Col>
-            <MainMenuNavPill topic={topic} />
+            <HeaderMenu topic={"topic"} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <LandingBanner />
           </Col>
         </Row>
         <Row>
