@@ -27,7 +27,7 @@ export function IconGitHub({ className, size }: IconProps) {
     <a
       title={"GitHub"}
       className={`${className || ""}`}
-      href={"http://github.com/"}
+      href={"https://github.com/FrankV01"}
       target={"_blank"}
     >
       <Icons.Github size={size || undefined} />
