@@ -1,7 +1,7 @@
 FROM node:lts-slim as development
 
 LABEL name="poems-ui"
-LABEL version="1.1.20232911"
+LABEL version="1.2.20231201"
 LABEL description="API for the Poems App"
 LABEL author="Frank Villasenor"
 
@@ -25,7 +25,7 @@ CMD [ "npm", "run", "start" ]
 FROM --platform=linux/amd64 node:lts-slim as production
 
 LABEL name="poems-ui"
-LABEL version="1.1.20232911"
+LABEL version="1.2.20231201"
 LABEL description="API for the Poems App"
 LABEL author="Frank Villasenor"
 
