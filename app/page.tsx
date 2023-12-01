@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
 import PoemResponse from "../types/PoemResponse";
 import PoemCardDisplay from "../components/PoemCardDisplay";
-import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import HeaderMenu from "../components/HeaderMenu";
 import LandingBanner from "../components/LandingBanner";
@@ -42,6 +42,7 @@ async function getData(): Promise<PoemResponse[]> {
 
 export default async function Home() {
   const poemData: PoemResponse[] = await getData();
+
   return (
     <main className={styles.main}>
       <Container>
