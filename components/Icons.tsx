@@ -5,12 +5,17 @@ export type IconProps = {
   size?: string;
 };
 
+//
+// If we create any more of these, we should create a private component that
+// to handle the common logic.
+//
 export function IconLinkedIn({ className, size }: IconProps) {
   return (
     <a
       title={"LinkedIn"}
       className={`${className || ""}`}
       href={"https://www.linkedin.com/in/frankvillasenor/"}
+      target={"_blank"}
     >
       <Icons.Linkedin size={size || undefined} />
     </a>
@@ -23,6 +28,7 @@ export function IconGitHub({ className, size }: IconProps) {
       title={"GitHub"}
       className={`${className || ""}`}
       href={"http://github.com/"}
+      target={"_blank"}
     >
       <Icons.Github size={size || undefined} />
     </a>
@@ -35,6 +41,7 @@ export function IconTheOpenSourceUorg({ className, size }: IconProps) {
       title={"The Open Source U - Frank Villasenor"}
       className={`${className || ""}`}
       href={"http://www.theOpenSourceU.org"}
+      target={"_blank"}
     >
       <Icons.Projector size={size || undefined} />
     </a>
