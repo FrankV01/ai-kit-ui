@@ -8,7 +8,12 @@ import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "./Icons";
 const sizeOfIcons = "2rem";
 function HeaderMenu({ topic }: { topic: string }) {
   return (
-    <Navbar expand="lg" bg={"primary"} variant={"light"}>
+    <Navbar
+      expand="lg"
+      bg={"primary"}
+      variant={"light"}
+      className={"shadow rounded-bottom"}
+    >
       <Container>
         <Navbar.Brand href="/">
           <h3>
