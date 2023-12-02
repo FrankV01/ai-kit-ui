@@ -17,6 +17,42 @@ import Footer from "../components/Footer";
 const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http://localhost:3001/poems";
 const topic = process.env.TOPIC || "unset";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "AI generated Poems for the 'Hack' of it",
+  description: "AI generated Poems for the 'Hack' of it",
+  applicationName: "poems-ui",
+  keywords: [
+    "AI",
+    "poems",
+    "hack",
+    "Portfolio",
+    "GPT-3",
+    "ChatGPT",
+    "AI",
+    "Frank Villasenor",
+  ],
+  authors: [
+    { name: "Frank Villasenor", url: "http://www.theOpenSourceU.org/" },
+  ],
+  creator: "Frank Villasenor",
+  publisher: "Frank Villasenor",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
 /**
  * This is an indicator for Next.js
  */
