@@ -7,6 +7,8 @@ import HeaderMenu from "../components/HeaderMenu";
 import LandingBanner from "../components/LandingBanner";
 import Footer from "../components/Footer";
 
+import "bootswatch/dist/litera/bootstrap.min.css";
+
 // Ok, so why does / go to page.tsx and not index.tsx?
 //  It's because it's at the root of app and page.tsx is "index.tsx" in next.js
 

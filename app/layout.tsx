@@ -1,7 +1,6 @@
 import React from "react";
 import { Inter } from "next/font/google";
 
-import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/litera/bootstrap.min.css";
 import StyledComponentsRegistry from "../lib/StyledComponentsRegistry";
 
