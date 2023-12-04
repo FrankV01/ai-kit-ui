@@ -1,7 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Author from "./Author";
-import Image from "react-bootstrap/Image";
-
+import Image from "next/image";
 const space: string = " ";
 
 function LandingBanner() {
@@ -24,10 +23,11 @@ function LandingBanner() {
         </Col>
         <Col className={"mx-auto me-0 pe-0"}>
           <Image
-            className={"shadow p-1 pe-0 rounded float-end"}
-            rounded
-            fluid
-            src={"http://placekitten.com/500/400"}
+            alt={"AI Poems by Frank Villasenor"}
+            className={"shadow p-1 pe-0 rounded float-end rounded fluid"}
+            src={"/logo_2023-12-04T18-59-05.png"}
+            width={400}
+            height={400}
           />
         </Col>
       </Row>
