@@ -4,6 +4,12 @@ import Image from "next/image";
 const space: string = " ";
 
 function LandingBanner() {
+  const logos = [
+    "/logo_2023-12-04T18-59-05.png",
+    "/logo_2023-12-04T19-11-38.png",
+    "/logo_2023-12-04T19-14-19.png",
+  ];
+
   return (
     <Container>
       <Row>
@@ -25,7 +31,12 @@ function LandingBanner() {
           <Image
             alt={"AI Poems by Frank Villasenor"}
             className={"shadow p-1 pe-0 rounded float-end rounded fluid"}
-            src={"/logo_2023-12-04T18-59-05.png"}
+            src={
+              logos.find(
+                (logo, indx) =>
+                  indx === Math.floor(Math.random() * logos.length),
+              ) || logos[0]
+            }
             width={400}
             height={400}
           />
