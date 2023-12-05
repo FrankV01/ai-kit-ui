@@ -2,6 +2,7 @@ import styles from "../../page.module.css";
 import { Container } from "react-bootstrap";
 import PoemResponse from "../../../types/PoemResponse";
 import SafeMarkdownToHtml from "../../../lib/SafeMarkdownToHtml";
+import BasicPoemBreadcrub from "../../../components/BasicPoemBreadcrub";
 
 export const dynamic = "force-dynamic";
 const url = process.env.API_URL ? `${process.env.API_URL}/poem` : ""; //"http://localhost:3001/poems";
@@ -15,8 +16,6 @@ async function getData(id: number): Promise<PoemResponse> {
   }
   console.log(`Fetching data from ${url}/${id}`);
   const res = await fetch(`${url}/${id}`, {
-    //cache: "no-cache",
-    //cache: "no-store",
     next: { revalidate: 3600 / 2 },
   });
   if (!res.ok) {
@@ -48,6 +47,7 @@ export default async function Page({
   return (
     <main className={`${styles.main} mt-3`}>
       <Container className={""}>
+        <BasicPoemBreadcrub poemTitle={poemData.title} />
         <h2 className={""}>{poemData.title}</h2>
         <div
           className={"body p-2 my-3"}
