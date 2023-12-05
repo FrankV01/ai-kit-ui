@@ -1,6 +1,6 @@
 {
   "name": "poems-ui",
-  "version": "1.3.20231202",
+  "version": "1.4.20231205",
   "private": true,
   "scripts": {
     "dev": "next dev",
