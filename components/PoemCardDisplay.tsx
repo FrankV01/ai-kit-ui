@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Card, Stack, Col, Row, Container } from "react-bootstrap";
+import { Card, Stack, Col, Row, Container, Badge } from "react-bootstrap";
+import Link from "next/link";
 import PoemResponse from "../types/PoemResponse";
 import SafeMarkdownToHtml from "../lib/SafeMarkdownToHtml";
+import * as Icons from "react-bootstrap-icons";
 
 export interface PoemDisplaySimpleProps {
   entries: PoemResponse[];
@@ -50,18 +52,39 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
                       text={"dark"}
                       border={"dark"}
                       key={`PoemCardDisplay-${idx}`}
-                      className={"mt-3 p-1 shadow-sm overflow-hidden h-100"}
+                      className={"mt-3 p-1 shadow-sm h-100"}
                     >
-                      <Card.Body>
-                        <Card.Title>{itm?.title || "loading"}</Card.Title>
-                        <div className="p-2 border rounded">
-                          <Card.Text
-                            dangerouslySetInnerHTML={{
-                              __html: itm?.poem || "loading",
-                            }}
-                          />
-                        </div>
+                      <Card.Title>
+                        <Link className={"link-dark"} href={`/poem/${itm.id}`}>
+                          {itm?.title || "loading"}
+                        </Link>
+                        <Link
+                          className={"link-primary float-end pe-2"}
+                          href={`/poem/${itm.id}`}
+                          target={"_blank"}
+                        >
+                          <Icons.Link45deg />
+                        </Link>
+                      </Card.Title>
+                      <Card.Body className={"overflow-hidden"}>
+                        <Card.Text
+                          dangerouslySetInnerHTML={{
+                            __html: itm?.poem || "loading",
+                          }}
+                          className={"overflow-hidden"}
+                        />
                       </Card.Body>
+                      <Card.Footer
+                        className={"bottom small text-muted text-end"}
+                      >
+                        <Link
+                          className={"link-secondary me-0"}
+                          href={`/poem/${itm.id}`}
+                          target={"_blank"}
+                        >
+                          View...
+                        </Link>
+                      </Card.Footer>
                     </Card>
                   }
                 </Col>
