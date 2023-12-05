@@ -32,9 +32,8 @@ export default async function Page({
 }: {
   params: { id: string };
 }) {
-  console.log(id);
   const poemData = await getData(parseInt(id));
-  console.log("poemData", poemData);
+
   if (!poemData) {
     // or is loading?
     return (
