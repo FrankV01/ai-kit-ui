@@ -2,6 +2,7 @@ import { Container, Row, Col, Stack } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
 import Author from "./Author";
 import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "./Icons";
+import CCLicense from "./CCLicense";
 
 export default function Footer() {
   return (
@@ -23,10 +24,19 @@ export default function Footer() {
         </Col>
         <Col
           className={
-            "m-auto p-auto pe-0 text-secondary position-relative bottom-0 end-0 text-end"
+            "m-auto p-auto pe-0 text-secondary small position-relative bottom-0 end-0 text-end"
           }
         >
-          2023-2024 &copy; Frank Villasenor
+          <div>
+            Made with <Icons.HeartFill /> by Frank Villasenor
+          </div>
+          <div>
+            Dedicated with <Icons.HeartPulseFill /> to my Wife, Alina
+          </div>
+          <div>2023-2024 &copy; Frank Villasenor</div>
+          <div>
+            <CCLicense />
+          </div>
         </Col>
       </Row>
     </Container>
