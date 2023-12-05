@@ -13,7 +13,7 @@ function LandingBanner() {
   return (
     <Container>
       <Row>
-        <Col className={"m-auto"}>
+        <Col xl={8} lg={7} md={5}>
           <h1>
             Artificial Intelligence
             <span className={"text-secondary"}>(AI)</span>, Machine Learning
@@ -27,7 +27,7 @@ function LandingBanner() {
             <Author />
           </p>
         </Col>
-        <Col className={"mx-auto me-0 pe-0"}>
+        <Col xl={4} lg={5} md={7} className={"me-0 pe-0"}>
           <Image
             alt={"AI Poems by Frank Villasenor"}
             className={"shadow p-1 pe-0 rounded float-end rounded fluid"}

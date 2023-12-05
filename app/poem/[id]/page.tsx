@@ -46,15 +46,16 @@ export default async function Page({
   }
 
   return (
-    <main className={styles.main}>
-      <Container>
-        <h2>{poemData.title}</h2>
+    <main className={`${styles.main} mt-3`}>
+      <Container className={""}>
+        <h2 className={""}>{poemData.title}</h2>
         <div
+          className={"body p-2 my-3"}
           dangerouslySetInnerHTML={{
             __html: SafeMarkdownToHtml(poemData.poem),
           }}
         />
-        <div className={"small text-secondary"}>
+        <div className={"small text-secondary float-end"}>
           {poemData.id} | {new Date(poemData.createdDate).toUTCString()}
         </div>
       </Container>
