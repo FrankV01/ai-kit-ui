@@ -17,43 +17,8 @@ import "bootswatch/dist/litera/bootstrap.min.css";
 //  creating client side components.
 
 const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http://localhost:3001/poems";
-const topic = process.env.TOPIC || "unset";
 
 import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "AI generated Poems for the 'Hack' of it",
-  description: "AI generated Poems for the 'Hack' of it",
-  applicationName: "poems-ui",
-  keywords: [
-    "AI",
-    "poems",
-    "hack",
-    "Portfolio",
-    "GPT-3",
-    "ChatGPT",
-    "AI",
-    "Frank Villasenor",
-  ],
-  authors: [
-    { name: "Frank Villasenor", url: "http://www.theOpenSourceU.org/" },
-  ],
-  creator: "Frank Villasenor",
-  publisher: "Frank Villasenor",
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-};
 
 /**
  * This is an indicator for Next.js
@@ -81,32 +46,11 @@ async function getData(): Promise<PoemResponse[]> {
 export default async function Home() {
   const poemData: PoemResponse[] = await getData();
 
+  // TODO: We should move this to the layout and just leave the div / poemcard display.
+  // That gives us the important parts being reusable.
   return (
-    <main className={styles.main}>
-      <Container>
-        <Row>
-          <Col>
-            <HeaderMenu topic={topic} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <LandingBanner />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <div className={styles.outline}>
-              <PoemCardDisplay entries={poemData} />
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Footer />
-          </Col>
-        </Row>
-      </Container>
-    </main>
+    <div className={styles.outline}>
+      <PoemCardDisplay entries={poemData} />
+    </div>
   );
 }

@@ -14,6 +14,8 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
     const _poemDataMd: PoemResponse[] = entries.map((itm: PoemResponse) => ({
       poem: SafeMarkdownToHtml(itm.poem),
       title: itm.title,
+      id: itm.id,
+      createdDate: itm.createdDate,
     }));
 
     const _poemDataMdGrouped = _poemDataMd.reduce((acc, curr, i) => {
