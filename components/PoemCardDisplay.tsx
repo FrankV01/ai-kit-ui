@@ -95,31 +95,6 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
       })}
     </Container>
   );
-
-  // return (
-  //   <div className={"d-flex flex-wrap g-2"}>
-  //     <Stack>
-  //       {poemDataMd.map((entry, idx) => (
-  //         <Card
-  //           bg={"light"}
-  //           text={"dark"}
-  //           border={"dark"}
-  //           key={`PoemCardDisplay-${idx}`}
-  //           className={"mt-3 p-1 shadow-sm"}
-  //         >
-  //           <Card.Body>
-  //             <Card.Title>{entry?.title || "loading"}</Card.Title>
-  //             <div className="p-2 border rounded">
-  //               <Card.Text
-  //                 dangerouslySetInnerHTML={{ __html: entry?.poem || "loading" }}
-  //               />
-  //             </div>
-  //           </Card.Body>
-  //         </Card>
-  //       ))}
-  //     </Stack>
-  //   </div>
-  // );
 };
 
 export default PoemCardDisplay;
