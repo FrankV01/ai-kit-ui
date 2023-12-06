@@ -9,12 +9,12 @@ export type BasicPoemBreadcrubProps = {
 export default function BasicPoemBreadcrub(props: BasicPoemBreadcrubProps) {
   const poemTitle = props.poemTitle || "Viewing Poem";
   return (
-    <Breadcrumb className={"text-center"}>
-      <Breadcrumb.Item href="/">
-        <Icons.ArrowReturnLeft /> Home
+    <Breadcrumb className={"text-center fw-bold"}>
+      <Breadcrumb.Item title={"Go to Home Page"} href="/">
+        <Icons.ArrowLeftCircleFill /> Home
       </Breadcrumb.Item>
-      <Breadcrumb.Item href="#" active>
-        Viewing Poem: {poemTitle}
+      <Breadcrumb.Item href="#" title={"Go to Home Page"} active>
+        <Icons.EnvelopeOpenHeart />: {poemTitle}
       </Breadcrumb.Item>
     </Breadcrumb>
   );

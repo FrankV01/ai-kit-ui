@@ -59,11 +59,10 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
                           {itm?.title || "loading"}
                         </Link>
                         <Link
-                          className={"link-primary float-end pe-2"}
+                          className={"link-secondary float-end pe-2"}
                           href={`/poem/${itm.id}`}
-                          target={"_blank"}
                         >
-                          <Icons.Link45deg />
+                          <Icons.ArrowRightCircleFill size={"1.1rem"} />
                         </Link>
                       </Card.Title>
                       <Card.Body className={"overflow-hidden"}>
@@ -80,7 +79,6 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
                         <Link
                           className={"link-secondary me-0"}
                           href={`/poem/${itm.id}`}
-                          target={"_blank"}
                         >
                           View...
                         </Link>
