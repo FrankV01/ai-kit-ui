@@ -22,8 +22,8 @@ function HeaderMenu({ topic }: { topic: string }) {
           </h3>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto m-auto">
+        <Navbar.Collapse className={"float-sm-end"} id="basic-navbar-nav">
+          <Nav className="me-auto m-auto float-sm-end">
             <Nav.Link href="/">
               <Icons.HouseHeartFill size={sizeOfIcons} title={"Poems"} />
             </Nav.Link>
