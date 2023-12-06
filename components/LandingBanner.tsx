@@ -15,7 +15,7 @@ function LandingBanner() {
       <Row>
         <Col xl={8} lg={7} md={5}>
           <h1>
-            Artificial Intelligence
+            Artificial Intelligence{" "}
             <span className={"text-secondary"}>(AI)</span>, Machine Learning
             {space}
             <span className={"text-secondary"}>(ML)</span> based Poems.
