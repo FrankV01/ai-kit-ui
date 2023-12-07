@@ -1,6 +1,7 @@
 "use client"; // Error components must be Client Components
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import Placeholder from "react-bootstrap/Placeholder";
 
 export default function Error({
   error,
@@ -13,6 +14,22 @@ export default function Error({
     // Log the error to an error reporting service
     console.error(error);
   }, [error]);
+
+  const JokeComponent = () => {
+    const [displayNow, setDisplayNow] = React.useState<boolean>(false);
+    useEffect(() => {
+      const fourSeconds = 4000;
+      const timer = setTimeout(() => {
+        setDisplayNow(true);
+      }, fourSeconds);
+      return () => clearTimeout(timer);
+    }, []);
+    return displayNow ? (
+      <div className={"bold"}>Oh god. Ok, panic now!!</div>
+    ) : (
+      <Placeholder xs={6} />
+    );
+  };
 
   return (
     <div>
@@ -58,6 +75,10 @@ export default function Error({
       </button>
       <div>
         <pre>{JSON.stringify(error)}</pre>
+      </div>
+      <div>
+        <h2>No worries. Please... don&apos;t panic!</h2>
+        <JokeComponent />
       </div>
     </div>
   );
