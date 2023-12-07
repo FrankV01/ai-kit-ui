@@ -1,7 +1,7 @@
 FROM node:lts-slim as development
 
 LABEL name="poems-ui"
-LABEL version="1.4.20231205"
+LABEL version="1.5.20231207"
 LABEL description="API for the Poems App"
 LABEL author="Frank Villasenor"
 
