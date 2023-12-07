@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Author from "./Author";
-import Image from "next/image";
+//import Image from "next/image";
+import Image from "react-bootstrap/Image";
 const space: string = " ";
 
 function LandingBanner() {
@@ -41,6 +42,7 @@ function LandingBanner() {
             }
             width={400}
             height={400}
+            roundedCircle={true}
           />
         </Col>
       </Row>

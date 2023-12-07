@@ -5,8 +5,10 @@ import Image from "next/image";
 export default function CCLicense() {
   const style = {
     height: "22px!important",
-    "margin-left": "3px",
-    "vertical-align": "text-bottom",
+    //"margin-left": "3px",
+    //"vertical-align": "text-bottom",
+    marginLeft: "3px",
+    verticalAlign: "middle",
   };
   const iconSize = 16;
   return (
@@ -29,7 +31,7 @@ export default function CCLicense() {
         target="_blank"
         className={"link-secondary"}
         rel="license noopener noreferrer"
-        style={{ display: "inline-block;" }}
+        style={{ display: "inline-block" }}
       >
         CC BY-NC 4.0
         <Image
