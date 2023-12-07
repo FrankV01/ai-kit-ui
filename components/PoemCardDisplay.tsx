@@ -44,10 +44,7 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
           >
             {entry.map((itm, idx) => {
               return (
-                <Col
-                  key={`PoemCardDisplay-${idx}`}
-                  // className={"h-100 w-50"}
-                >
+                <Col key={`PoemCardDisplay-${idx}`} xs={12} md={4} lg={4}>
                   {
                     <Card
                       bg={"light"}
