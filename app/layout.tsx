@@ -52,12 +52,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  //#E0E7EE #BBC7D4 #CAD5DF
   return (
     <html lang="en">
       <body className={inter.className}>
         <React.StrictMode>
           <StyledComponentsRegistry>
-            <main className={styles.main}>
+            <main style={{ background: "#E0E7EE" }} className={styles.main}>
               <Container>
                 <Row>
                   <Col>
