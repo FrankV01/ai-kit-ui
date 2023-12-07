@@ -35,35 +35,45 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
   }, [entries]);
 
   return (
-    <Container className={"d-flexbox"}>
+    <Container
+    // className={"d-flexbox w-100"}
+    >
       {poemDataMd.map((entry, idx) => {
         return (
           <Row
             key={`PoemCardDisplay-${idx}`}
-            className={"d-inline-flex w-100 m-2"}
-            style={{ height: "400px" }}
+            // className={"d-inline-flex w-100 m-2"}
           >
             {entry.map((itm, idx) => {
               return (
-                <Col key={`PoemCardDisplay-${idx}`} className={"h-100 w-50"}>
+                <Col
+                  key={`PoemCardDisplay-${idx}`}
+                  // className={"h-100 w-50"}
+                >
                   {
                     <Card
                       bg={"light"}
                       text={"dark"}
                       border={"dark"}
                       key={`PoemCardDisplay-${idx}`}
-                      className={"mt-3 p-1 shadow-sm h-100"}
+                      style={{ height: "400px" }}
+                      className={"my-1 mt-2 p-1 shadow"}
                     >
                       <Card.Title>
-                        <Link className={"link-dark"} href={`/poem/${itm.id}`}>
-                          {itm?.title || "loading"}
-                        </Link>
-                        <Link
-                          className={"link-secondary float-end pe-2"}
-                          href={`/poem/${itm.id}`}
-                        >
-                          <Icons.ArrowRightCircleFill size={"1.1rem"} />
-                        </Link>
+                        <div className={"p-1"}>
+                          <Link
+                            className={"link-dark"}
+                            href={`/poem/${itm.id}`}
+                          >
+                            {itm?.title || "loading"}
+                          </Link>
+                          <Link
+                            className={"link-secondary float-end pe-2"}
+                            href={`/poem/${itm.id}`}
+                          >
+                            <Icons.ArrowRightCircleFill size={"1.1rem"} />
+                          </Link>
+                        </div>
                       </Card.Title>
                       <Card.Body className={"overflow-hidden"}>
                         <Card.Text
