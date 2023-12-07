@@ -35,9 +35,7 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
   }, [entries]);
 
   return (
-    <Container
-    // className={"d-flexbox w-100"}
-    >
+    <Container>
       {poemDataMd.map((entry, idx) => {
         return (
           <Row

@@ -11,7 +11,7 @@ function LandingBanner() {
   ];
 
   return (
-    <Container>
+    <Container className={"mb-3"}>
       <Row>
         <Col xl={7} lg={7} md={5}>
           <div className={"mt-5 pt-5"}>
