@@ -1,18 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Author from "./Author";
-import Image from "react-bootstrap/Image";
+import ImageRotate from "../components/ImageRotate";
 const space: string = " ";
 
 function LandingBanner() {
-  const logos = [
-    "/logo_2023-12-04T18-59-05.png",
-    "/logo_2023-12-04T19-11-38.png",
-    "/logo_2023-12-04T19-14-19.png",
-    "/logo_2023-12-08T03-11-37.png",
-    "/logo_2023-12-08T03-15-42.png",
-    "/logo_2023-12-08T03-20-43.png",
-  ];
-
   return (
     <Container className={"mb-3"}>
       <Row>
@@ -33,19 +24,7 @@ function LandingBanner() {
           </div>
         </Col>
         <Col xl={5} lg={5} md={7} className={"me-0 pe-0"}>
-          <Image
-            alt={"AI Generated Poems by Frank Villasenor"}
-            className={"shadow p-1 pe-0 rounded float-end rounded fluid"}
-            src={
-              logos.find(
-                (logo, indx) =>
-                  indx === Math.floor(Math.random() * logos.length),
-              ) || logos[0]
-            }
-            width={400}
-            height={400}
-            roundedCircle={true}
-          />
+          <ImageRotate />
         </Col>
       </Row>
     </Container>
