@@ -1,6 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Author from "./Author";
-//import Image from "next/image";
 import Image from "react-bootstrap/Image";
 const space: string = " ";
 
@@ -9,6 +8,9 @@ function LandingBanner() {
     "/logo_2023-12-04T18-59-05.png",
     "/logo_2023-12-04T19-11-38.png",
     "/logo_2023-12-04T19-14-19.png",
+    "/logo_2023-12-08T03-11-37.png",
+    "/logo_2023-12-08T03-15-42.png",
+    "/logo_2023-12-08T03-20-43.png",
   ];
 
   return (
