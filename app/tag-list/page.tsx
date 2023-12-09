@@ -19,7 +19,6 @@ async function getData(): Promise<TagsResponse[]> {
     throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
   }
   const s1 = (await res.json()) as TagsResponse[];
-  console.log(s1);
   return s1;
 }
 
