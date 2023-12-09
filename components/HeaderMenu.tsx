@@ -27,8 +27,8 @@ function HeaderMenu({ topic }: { topic: string }) {
             <Nav.Link href="/">
               <Icons.HouseHeartFill size={sizeOfIcons} title={"Poems"} />
             </Nav.Link>
-            <Nav.Link href="/">
-              <Icons.Building size={sizeOfIcons} title={"About"} />
+            <Nav.Link href="/tag-list">
+              <Icons.TagsFill size={sizeOfIcons} title={"Tag List"} />
             </Nav.Link>
             <IconLinkedIn className={"nav-link"} size={sizeOfIcons} />
             <IconGitHub className={"nav-link"} size={sizeOfIcons} />
