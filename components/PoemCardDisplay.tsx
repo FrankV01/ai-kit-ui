@@ -34,6 +34,20 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
     setPoemDataMd(_poemDataMdGrouped);
   }, [entries]);
 
+  if (!entries || entries.length === 0) {
+    return (
+      <Container>
+        <Row>
+          <Col md={5} />
+          <Col md={5}>
+            <div className={"h3 text-dark"}>No poems found</div>
+          </Col>
+          <Col md={4} />
+        </Row>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       {poemDataMd.map((entry, idx) => {

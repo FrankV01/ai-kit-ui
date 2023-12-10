@@ -10,9 +10,7 @@ async function getData(tag: string): Promise<PoemResponse[]> {
   const _url = `${url}/${tag}`;
   console.log(`Fetching data from ${_url}`);
   const res = await fetch(_url, {
-    //cache: "no-store",
-    //cache: "no-cache",
-    next: { revalidate: 3600 / 4 },
+    cache: "no-cache",
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
