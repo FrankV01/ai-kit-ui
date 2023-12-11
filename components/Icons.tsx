@@ -47,4 +47,6 @@ export function IconTheOpenSourceUorg({ className, size }: IconProps) {
     </a>
   );
 }
-export default { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg };
+
+const IconSet = { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg };
+export default IconSet;
