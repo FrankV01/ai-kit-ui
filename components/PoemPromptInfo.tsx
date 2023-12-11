@@ -11,8 +11,8 @@ export function PoemPromptInfo() {
       </h5>
       <p>
         The prompt should be in plain, written english. Using too many acronyms
-        (I.E. "AI" or "USA") or out-of-context terms can cause unexpected
-        results.
+        (I.E. &quot;AI&quot; or &quot;USA&quot;) or out-of-context terms can
+        cause unexpected results.
       </p>
       <p>
         Provide a detailed, clear prompt. The more details you include, the
