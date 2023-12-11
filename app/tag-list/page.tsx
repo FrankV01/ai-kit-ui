@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 const url = process.env.API_URL ? `${process.env.API_URL}/tags` : ""; //"http://localhost:3001/poems";
 
 type TagsResponse = { id: number; tag: string };
@@ -26,17 +27,30 @@ export default async function Page() {
   const results = await getData();
   return (
     <div key={`tag-list-div`}>
-      <h3>Tags List</h3>
-      {results.map((itm) => (
-        <div key={`tag-list-div-${itm.id}`}>
-          <Link
-            href={`/poem/tag/${encodeURIComponent(itm.tag)}`}
-            key={`tag-list-${itm.id}`}
-          >
-            {itm.tag}
-          </Link>
-        </div>
-      ))}
+      <Container>
+        <Row>
+          <Col md={12} className={""}>
+            <h3>Tags List</h3>
+            <ListGroup className={"flex-wrap flex-fill m-0"} horizontal={"lg"}>
+              {results.map((itm) => (
+                <ListGroupItem
+                  key={`tag-list-div-${itm.id}`}
+                  className={"m-0"}
+                  variant={"primary"}
+                >
+                  <Link
+                    href={`/poem/tag/${encodeURIComponent(itm.tag)}`}
+                    key={`tag-list-${itm.id}`}
+                    className={"m-0"}
+                  >
+                    {itm.tag}
+                  </Link>
+                </ListGroupItem>
+              ))}
+            </ListGroup>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
