@@ -27,11 +27,12 @@ export default async function Page({
 }) {
   if (!tag) return <>error</>;
   const data = await getData(tag);
-
+  const tagForDisplay = decodeURIComponent(tag);
   return (
     <div>
       <h3>
-        Poem tagged &quot;<span className={"text-info-emphasis"}>{tag}</span>
+        Poem tagged &quot;
+        <span className={"text-info-emphasis"}>{tagForDisplay}</span>
         &quot;
       </h3>
       <PoemCardDisplay entries={data} />
