@@ -4,15 +4,15 @@ const url = process.env.API_URL ? `${process.env.API_URL}/tags` : ""; //"http://
 
 type TagsResponse = { id: number; tag: string };
 
+export const dynamic = "force-dynamic";
+
 async function getData(): Promise<TagsResponse[]> {
   if (!url) {
     throw new Error("Invalid environment configs");
   }
   console.log(`Fetching data from ${url}`);
   const res = await fetch(url, {
-    cache: "no-store",
-    //cache: "no-cache",
-    //next: { revalidate: 3600 / 2 },
+    cache: "no-cache",
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
