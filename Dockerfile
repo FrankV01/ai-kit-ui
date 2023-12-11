@@ -18,6 +18,7 @@ COPY . .
 
 # Build the TypeScript project
 RUN npm install
+RUN npm run lint
 RUN npm run build
 
 CMD [ "npm", "run", "start" ]
