@@ -16,7 +16,8 @@ export function PoemPromptInfo() {
       </p>
       <p>
         Provide a detailed, clear prompt. The more details you include, the
-        closer the poem will be to your prompt. But, try to
+        closer the poem will be to your prompt. But, try to leave room for the
+        AI to given a creative poem in response.
       </p>
       <p className={"text-danger-emphasis"}>
         This page <strong>does not save</strong> your writing{" "}
