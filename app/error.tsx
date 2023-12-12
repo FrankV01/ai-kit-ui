@@ -25,7 +25,7 @@ export default function Error({
       return () => clearTimeout(timer);
     }, []);
     return displayNow ? (
-      <div className={"bold"}>Oh god. Ok, panic now!!</div>
+      <div className={"bold fs-1 text fw-bold"}>Oh god. PANIC now!!</div>
     ) : (
       <Placeholder xs={6} />
     );
