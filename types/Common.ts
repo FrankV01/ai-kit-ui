@@ -3,3 +3,8 @@ export enum eLoadingState {
   loaded,
   loadedWithError,
 }
+
+export type QueuePoemForm = {
+  email: string;
+  prompt: string;
+};

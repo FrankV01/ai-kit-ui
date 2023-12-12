@@ -2,9 +2,15 @@
 import { Form, Placeholder, FloatingLabel, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { eLoadingState } from "../types/Common";
+import IntrinsicAttributes = React.JSX.IntrinsicAttributes;
 
-export default function PoemPromptForm() {
+type PoemPromptFormProps = {
+  action: (fd: FormData) => Promise<void>;
+} & IntrinsicAttributes;
+
+export default function PoemPromptForm(props: PoemPromptFormProps) {
   const [state, setState] = useState<eLoadingState>(eLoadingState.loading);
+  const [validated, setValidated] = useState<boolean>(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -13,17 +19,13 @@ export default function PoemPromptForm() {
   }, []);
 
   return (
-    <Form className={""}>
-      <Form.Group className="mb-3" controlId="createPoemForm.Email">
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Email Address"
-          className="mb-3"
-        >
+    <Form action={props.action} noValidate className={""} validated={validated}>
+      <Form.Group className="mb-3" controlId="email">
+        <FloatingLabel label="Email Address" className="mb-3">
           <Form.Control type="email" placeholder="" />
         </FloatingLabel>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="createPoemForm.prompt">
+      <Form.Group className="mb-3" controlId="prompt">
         <Form.Label>Poem Prompt</Form.Label>
         <Form.Control
           as="textarea"
@@ -33,7 +35,7 @@ export default function PoemPromptForm() {
           }
         />
       </Form.Group>
-      <Form.Group>
+      <Form.Group className={"text-end"}>
         {state === eLoadingState.loading ? (
           <Placeholder.Button variant="primary" md={6} />
         ) : (

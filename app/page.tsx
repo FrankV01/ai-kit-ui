@@ -31,9 +31,7 @@ async function getData(): Promise<PoemResponse[]> {
   }
   console.log(`Fetching data from ${url}`);
   const res = await fetch(url, {
-    //cache: "no-cache",
     cache: "no-store",
-    //next: { revalidate: 3600 / 2 },
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
