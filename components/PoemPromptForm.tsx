@@ -8,8 +8,9 @@ type PoemPromptFormProps = {};
 
 export default function PoemPromptForm(props: PoemPromptFormProps) {
   const [state, setState] = useState<eLoadingState>(eLoadingState.loading);
-  const [validatedEmail, setValidatedEmail] = useState<boolean>(true);
-  const [validatedPrompt, setValidatedPrompt] = useState<boolean>(true);
+  const [validatedEmail, setValidatedEmail] = useState<boolean>(false);
+  const [validatedPrompt, setValidatedPrompt] = useState<boolean>(false);
+  const [promptLength, setPromptLength] = useState<number>(0);
   const validated = validatedEmail && validatedPrompt;
   //const formRef = useRef<HTMLFormElement | null>(null);
 
@@ -36,13 +37,15 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
             name="email"
             isValid={validatedEmail}
             isInvalid={!validatedEmail}
-            onBlur={(evt) => {
+            onChange={(evt) => {
+              console.log("onChange:evt", evt.currentTarget.value);
               const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-              if (regex.test(evt.currentTarget.value)) setValidatedEmail(true);
-              else setValidatedEmail(false);
+              setValidatedEmail(regex.test(evt.currentTarget.value));
             }}
           />
+          <Form.Control.Feedback type="invalid">
+            Please enter a validate email address.
+          </Form.Control.Feedback>
         </FloatingLabel>
       </Form.Group>
       <Form.Group className="mb-3" controlId="prompt">
@@ -55,16 +58,21 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
           aria-required
           isValid={validatedPrompt}
           isInvalid={!validatedPrompt}
-          onBlur={(evt) => {
-            const val = evt.currentTarget.value || "-";
-            console.log("blur", val);
-            if (val.length > 10) setValidatedPrompt(true);
-            else setValidatedPrompt(false);
+          onChange={(evt) => {
+            console.log("onChange:evt", evt.currentTarget.value);
+            const val = evt.currentTarget.value || "";
+            setPromptLength(val.length || 0);
+            setValidatedPrompt(val.length >= 10);
           }}
           placeholder={
             "Example Prompt: Create a poem in the style of the band Blue October's; the topic of the poem is the struggle of life as a musician on the road while missing family."
           }
         />
+        <Form.Control.Feedback type="invalid">
+          {!validatedPrompt
+            ? `At least ${10 - promptLength} more characters needed`
+            : ""}
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className={"text-end"}>
         {state === eLoadingState.loading ? (
