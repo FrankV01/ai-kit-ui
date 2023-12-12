@@ -1,11 +1,7 @@
 import styles from "./page.module.css";
 import PoemResponse from "../types/PoemResponse";
 import PoemCardDisplay from "../components/PoemCardDisplay";
-import { Container, Row, Col } from "react-bootstrap";
-
-import HeaderMenu from "../components/HeaderMenu";
-import LandingBanner from "../components/LandingBanner";
-import Footer from "../components/Footer";
+import EvtMgr from "../lib/EnvMgr";
 
 import "bootswatch/dist/litera/bootstrap.min.css";
 
@@ -16,16 +12,14 @@ import "bootswatch/dist/litera/bootstrap.min.css";
 //  If this is the case, where do client components go when
 //  creating client side components.
 
-const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http://localhost:3001/poems";
-
-import type { Metadata } from "next";
-
 /**
  * This is an indicator for Next.js
  */
 export const dynamic = "force-dynamic";
 
 async function getData(): Promise<PoemResponse[]> {
+  const base = (await EvtMgr()).BASE_URL;
+  const url = `${base}/poems`;
   if (!url) {
     throw new Error("Invalid environment configs");
   }

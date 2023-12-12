@@ -30,7 +30,13 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
     >
       <Form.Group className="mb-3" controlId="email">
         <FloatingLabel label="Email Address" className="mb-3">
-          <Form.Control type="email" placeholder="" name="email" />
+          <Form.Control
+            type="email"
+            required
+            aria-required
+            placeholder=""
+            name="email"
+          />
         </FloatingLabel>
       </Form.Group>
       <Form.Group className="mb-3" controlId="prompt">
@@ -39,8 +45,10 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
           as="textarea"
           name={"prompt"}
           rows={10}
+          required
+          aria-required
           placeholder={
-            "Example: Create a poem in the style of the band Blue October's; the topic of the poem is the struggle of life as a musician on the road while missing family."
+            "Example Prompt: Create a poem in the style of the band Blue October's; the topic of the poem is the struggle of life as a musician on the road while missing family."
           }
         />
       </Form.Group>
