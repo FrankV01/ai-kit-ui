@@ -9,12 +9,12 @@ type ICreatePageProps = { params: {} };
 export default async function Page({ params }: ICreatePageProps) {
   async function queueRequest(formData: FormData) {
     "use server";
-
+    console.log("queueRequest", formData);
     const rawFormData = {
       email: formData.get("email"),
       prompt: formData.get("prompt"),
     };
-    console.log(rawFormData);
+    console.log("queueRequest", rawFormData);
   }
 
   return (
