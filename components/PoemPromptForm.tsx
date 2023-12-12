@@ -6,31 +6,12 @@ import IntrinsicAttributes = React.JSX.IntrinsicAttributes;
 
 type PoemPromptFormProps = {
   action: (fd: FormData) => Promise<void>;
-} & IntrinsicAttributes;
+};
 
 export default function PoemPromptForm(props: PoemPromptFormProps) {
   const [state, setState] = useState<eLoadingState>(eLoadingState.loading);
-  const [validated, setValidated] = useState<boolean>(true);
-  const formRef = useRef<HTMLFormElement | null>(null);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    setValidated(false);
-    const form = event.currentTarget;
-    event.preventDefault();
-
-    if (form.checkValidity() === false) {
-      event.stopPropagation();
-    } else {
-      if (formRef && formRef.current) {
-        const data = new FormData(formRef.current);
-        // now you can use 'data' as FormData, for example, let's get 'email' input value
-        console.log("email", data.get("email"));
-        console.log("prompt", data.get("prompt"));
-      }
-    }
-
-    setValidated(true);
-  };
+  //const [validated, setValidated] = useState<boolean>(true);
+  //const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,12 +21,12 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
 
   return (
     <Form
-      ref={formRef}
-      //action={props.action}
+      //ref={formRef}
+      action={props.action} //Allows handling/invokcation of server methods.
       noValidate
-      onSubmit={handleSubmit}
+      //onSubmit={handleSubmit}
       className={""}
-      validated={validated}
+      //validated={validated}
     >
       <Form.Group className="mb-3" controlId="email">
         <FloatingLabel label="Email Address" className="mb-3">
