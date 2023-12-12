@@ -1,6 +1,7 @@
 import { Container, Form, Placeholder, Row, Col } from "react-bootstrap";
 import PoemPromptForm from "../../../components/PoemPromptForm";
 import { PoemPromptInfo } from "../../../components/PoemPromptInfo";
+import Notice from "../../../components/Notice";
 
 type ICreatePageProps = { params: {} };
 
@@ -13,6 +14,7 @@ export default async function Page({ params }: ICreatePageProps) {
           <h3>Request a Poem via Prompt</h3>
           <div>
             <PoemPromptInfo />
+            <Notice />
           </div>
           <div>
             <PoemPromptForm />
