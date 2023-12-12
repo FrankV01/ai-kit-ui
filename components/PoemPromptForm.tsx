@@ -1,7 +1,17 @@
 "use client";
-import { Form, Placeholder, FloatingLabel } from "react-bootstrap";
+import { Form, Placeholder, FloatingLabel, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { eLoadingState } from "../types/Common";
 
 export default function PoemPromptForm() {
+  const [state, setState] = useState<eLoadingState>(eLoadingState.loading);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setState(eLoadingState.loaded);
+    }, 500);
+  }, []);
+
   return (
     <Form className={""}>
       <Form.Group className="mb-3" controlId="createPoemForm.Email">
@@ -24,7 +34,11 @@ export default function PoemPromptForm() {
         />
       </Form.Group>
       <Form.Group>
-        <Placeholder.Button variant="primary" md={6} />
+        {state === eLoadingState.loading ? (
+          <Placeholder.Button variant="primary" md={6} />
+        ) : (
+          <Button className={""}>Send to Queue</Button>
+        )}
       </Form.Group>
     </Form>
   );
