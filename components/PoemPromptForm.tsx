@@ -2,15 +2,15 @@
 import { Form, Placeholder, FloatingLabel, Button } from "react-bootstrap";
 import { useEffect, useRef, useState } from "react";
 import { eLoadingState } from "../types/Common";
-import IntrinsicAttributes = React.JSX.IntrinsicAttributes;
+import { queueRequest } from "../lib/ApiActions";
 
-type PoemPromptFormProps = {
-  action: (fd: FormData) => Promise<void>;
-};
+type PoemPromptFormProps = {};
 
 export default function PoemPromptForm(props: PoemPromptFormProps) {
   const [state, setState] = useState<eLoadingState>(eLoadingState.loading);
-  //const [validated, setValidated] = useState<boolean>(true);
+  const [validatedEmail, setValidatedEmail] = useState<boolean>(true);
+  const [validatedPrompt, setValidatedPrompt] = useState<boolean>(true);
+  const validated = validatedEmail && validatedPrompt;
   //const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
@@ -21,12 +21,10 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
 
   return (
     <Form
-      //ref={formRef}
-      action={props.action} //Allows handling/invokcation of server methods.
+      action={queueRequest} //Allows handling/invokcation of server methods.
       noValidate
-      //onSubmit={handleSubmit}
       className={""}
-      //validated={validated}
+      validated={validated}
     >
       <Form.Group className="mb-3" controlId="email">
         <FloatingLabel label="Email Address" className="mb-3">
@@ -36,6 +34,14 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
             aria-required
             placeholder=""
             name="email"
+            isValid={validatedEmail}
+            isInvalid={!validatedEmail}
+            onBlur={(evt) => {
+              const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+              if (regex.test(evt.currentTarget.value)) setValidatedEmail(true);
+              else setValidatedEmail(false);
+            }}
           />
         </FloatingLabel>
       </Form.Group>
@@ -47,6 +53,14 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
           rows={10}
           required
           aria-required
+          isValid={validatedPrompt}
+          isInvalid={!validatedPrompt}
+          onBlur={(evt) => {
+            const val = evt.currentTarget.value || "-";
+            console.log("blur", val);
+            if (val.length > 10) setValidatedPrompt(true);
+            else setValidatedPrompt(false);
+          }}
           placeholder={
             "Example Prompt: Create a poem in the style of the band Blue October's; the topic of the poem is the struggle of life as a musician on the road while missing family."
           }
@@ -56,7 +70,7 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
         {state === eLoadingState.loading ? (
           <Placeholder.Button variant="primary" md={6} />
         ) : (
-          <Button type={"submit"} className={""}>
+          <Button type={"submit"} className={""} disabled={!validated}>
             Send to Queue
           </Button>
         )}
