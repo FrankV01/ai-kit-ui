@@ -1,8 +1,9 @@
 "use client";
 import { Form, Placeholder, FloatingLabel, Button } from "react-bootstrap";
-import { useEffect, useRef, useState } from "react";
+import { createRef, useEffect, useRef, useState } from "react";
 import { eLoadingState } from "../types/Common";
 import { queueRequest } from "../lib/ApiActions";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 type PoemPromptFormProps = {};
 
@@ -12,7 +13,8 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
   const [validatedPrompt, setValidatedPrompt] = useState<boolean>(false);
   const [promptLength, setPromptLength] = useState<number>(0);
   const validated = validatedEmail && validatedPrompt;
-  //const formRef = useRef<HTMLFormElement | null>(null);
+  // //const recaptchaRef = createRef();
+  // const recaptchaRef = useRef();
 
   useEffect(() => {
     setTimeout(() => {
@@ -83,6 +85,10 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
           </Button>
         )}
       </Form.Group>
+      {/*<ReCAPTCHA*/}
+      {/*  ref={recaptchaRef}*/}
+      {/*  sitekey={"6LedbS8pAAAAALpU3kujsA70R-k0VeYntgDRWtsO"}*/}
+      {/*/>*/}
     </Form>
   );
 }
