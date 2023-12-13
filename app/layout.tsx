@@ -1,4 +1,3 @@
-"use server";
 import React from "react";
 import { Inter } from "next/font/google";
 
@@ -58,15 +57,15 @@ export default async function RootLayout({
 }) {
   const myAnalyticsInstance =
     (await myAnalytics()) as unknown as AnalyticsInstance;
-
-  await myAnalyticsInstance.page({
-    name: "AI-Poems",
-    path: "/",
-    url: "https://poems.theOpenSourceU.org/",
-    title: "AI generated Poems for the 'Hack' of it",
-    description: "AI generated Poems for the 'Hack' of it",
-    topic: topic,
-  } as PageData);
+  console.log(JSON.stringify(myAnalyticsInstance, null, 2));
+  // await myAnalyticsInstance.page({
+  //   name: "AI-Poems",
+  //   path: "/",
+  //   url: "https://poems.theOpenSourceU.org/",
+  //   title: "AI generated Poems for the 'Hack' of it",
+  //   description: "AI generated Poems for the 'Hack' of it",
+  //   topic: topic,
+  // } as PageData);
 
   //#E0E7EE #BBC7D4 #CAD5DF
   return (
