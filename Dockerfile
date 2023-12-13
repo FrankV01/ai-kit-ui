@@ -13,6 +13,8 @@ ENV TOPIC=Debug
 ENV API_KEY=bcrypt_hased_api_key_from_api_server__not_used_yet
 ENV API_URL=http://localhost:3000
 
+ENV NEXT_PUBLIC_GA_MEASUREMENT_ID=G-BWCTMTSQR4
+
 WORKDIR /usr/src/app
 COPY . .
 
@@ -39,7 +41,7 @@ ENV API_KEY=bcrypt_hased_api_key_from_api_server__not_used_yet
 ENV API_URL=http://localhost:3000
 
 # Production env vars
-ENV GOOGLE_ANALYTICS_ID=G-BWCTMTSQR4
+ENV NEXT_PUBLIC_GA_MEASUREMENT_ID=G-BWCTMTSQR4
 
 COPY --from=development /usr/src/app /usr/src/app
 WORKDIR /usr/src/app

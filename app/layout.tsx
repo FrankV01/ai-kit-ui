@@ -10,11 +10,8 @@ import HeaderMenu from "../components/HeaderMenu";
 import LandingBanner from "../components/LandingBanner";
 import Footer from "../components/Footer";
 import { Metadata } from "next";
-import myAnalytics from "../lib/myAnalytics";
 
-import Analytics, { AnalyticsInstance } from "analytics";
-// @ts-ignore //TODO: fix or imrpove this
-import googleAnalytics from "@analytics/google-analytics";
+import MyAnalytics from "../components/MyAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 const topic = process.env.TOPIC || "unset";
@@ -58,28 +55,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const envMgr = await EnvMgr();
-  const settings = {
-    app: "ai-poems",
-    // version: 100,
-    plugins: [
-      googleAnalytics({
-        //trackingId: envMgr.GOOGLE_ANALYTICS_ID,
-        measurementIds: "G-BWCTMTSQR4",
-      }),
-      // customerIo({
-      //   siteId: "123-xyz",
-      // }),
-    ],
-  };
-  const analytics = Analytics(settings);
-  await analytics.page();
-
   //#E0E7EE #BBC7D4 #CAD5DF
   return (
     <html lang="en">
       <body className={inter.className}>
         <React.StrictMode>
+          <MyAnalytics />
           <StyledComponentsRegistry>
             <main style={{ background: "#E0E7EE" }} className={styles.main}>
               <Container>
