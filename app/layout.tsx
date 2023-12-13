@@ -1,6 +1,7 @@
 import React from "react";
 import { Inter } from "next/font/google";
 
+import EnvMgr from "../lib/EnvMgr";
 import "bootswatch/dist/litera/bootstrap.min.css";
 import StyledComponentsRegistry from "../lib/StyledComponentsRegistry";
 import styles from "./page.module.css";
@@ -10,8 +11,10 @@ import LandingBanner from "../components/LandingBanner";
 import Footer from "../components/Footer";
 import { Metadata } from "next";
 import myAnalytics from "../lib/myAnalytics";
-import { AnalyticsInstance } from "analytics";
-import { PageData } from "analytics";
+
+import Analytics, { AnalyticsInstance } from "analytics";
+// @ts-ignore //TODO: fix or imrpove this
+import googleAnalytics from "@analytics/google-analytics";
 
 const inter = Inter({ subsets: ["latin"] });
 const topic = process.env.TOPIC || "unset";
@@ -55,17 +58,22 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const myAnalyticsInstance =
-    (await myAnalytics()) as unknown as AnalyticsInstance;
-  console.log(JSON.stringify(myAnalyticsInstance, null, 2));
-  // await myAnalyticsInstance.page({
-  //   name: "AI-Poems",
-  //   path: "/",
-  //   url: "https://poems.theOpenSourceU.org/",
-  //   title: "AI generated Poems for the 'Hack' of it",
-  //   description: "AI generated Poems for the 'Hack' of it",
-  //   topic: topic,
-  // } as PageData);
+  const envMgr = await EnvMgr();
+  const settings = {
+    app: "ai-poems",
+    // version: 100,
+    plugins: [
+      googleAnalytics({
+        trackingId: envMgr.GOOGLE_ANALYTICS_ID,
+        measurementIds: envMgr.GOOGLE_ANALYTICS_ID,
+      }),
+      // customerIo({
+      //   siteId: "123-xyz",
+      // }),
+    ],
+  };
+  const analytics = Analytics(settings);
+  await analytics.page();
 
   //#E0E7EE #BBC7D4 #CAD5DF
   return (
