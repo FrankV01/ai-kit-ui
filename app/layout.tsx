@@ -64,8 +64,8 @@ export default async function RootLayout({
     // version: 100,
     plugins: [
       googleAnalytics({
-        trackingId: envMgr.GOOGLE_ANALYTICS_ID,
-        measurementIds: envMgr.GOOGLE_ANALYTICS_ID,
+        //trackingId: envMgr.GOOGLE_ANALYTICS_ID,
+        measurementIds: "G-BWCTMTSQR4",
       }),
       // customerIo({
       //   siteId: "123-xyz",
