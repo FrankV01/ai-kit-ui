@@ -1,10 +1,12 @@
-import { Container, Row, Col, Stack } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
 import Author from "./Author";
 import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "./Icons";
 import CCLicense from "./CCLicense";
+//import CookieAlert from "./CookieAlert";
 
 export default function Footer() {
+  //<CookieAlert />
   return (
     <Container className={"m-auto p-auto py-5 mx-0"}>
       <Row>
