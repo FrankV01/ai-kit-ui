@@ -3,5 +3,8 @@ export interface PoemResponse {
   poem: string;
   id: number;
   createdDate: string;
+  poemRaw: string;
+  prompt: string;
+  useForTraining: number;
 }
 export default PoemResponse;

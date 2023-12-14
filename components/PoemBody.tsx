@@ -7,6 +7,9 @@ type PoemBodyPropsType = {
   poemData: PoemResponse;
 };
 
+const promptTitle =
+  "This is the request made of the AI system that lead to the poem above";
+
 const PoemBody = ({ poemData }: PoemBodyPropsType) => {
   return (
     <Container>
@@ -21,8 +24,17 @@ const PoemBody = ({ poemData }: PoemBodyPropsType) => {
               __html: SafeMarkdownToHtml(poemData.poem),
             }}
           />
-          <div className={"small text-secondary float-end"}>
-            {poemData.id} | {new Date(poemData.createdDate).toUTCString()}
+          <h4 className={"text-body-secondary"} title={promptTitle}>
+            Prompt sent to the Poembot AI
+          </h4>
+          <div title={promptTitle} className={"small text-body-secondary"}>
+            {poemData.prompt}
+          </div>
+          <div className={"mt-3 small text-secondary float-end"}>
+            <span title={"ID"}>{poemData.id}</span> |{" "}
+            <span title={"Created Date"}>
+              {new Date(poemData.createdDate).toUTCString()}
+            </span>
           </div>
         </Col>
         <Col lg={2} md={1} sm={0}></Col>
