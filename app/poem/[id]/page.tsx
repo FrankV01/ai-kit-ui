@@ -44,6 +44,7 @@ export default async function Page({
     );
   }
 
+  // TODO: Consider wrapping this to reduce the whitespace on the right. Center it a bit more for larger screens anyqway
   return (
     <main className={`${styles.main} mt-3`}>
       <Container className={""}>
