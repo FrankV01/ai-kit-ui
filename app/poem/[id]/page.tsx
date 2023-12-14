@@ -1,8 +1,8 @@
 import styles from "../../page.module.css";
 import { Container } from "react-bootstrap";
 import PoemResponse from "../../../types/PoemResponse";
-import SafeMarkdownToHtml from "../../../lib/SafeMarkdownToHtml";
 import BasicPoemBreadcrub from "../../../components/BasicPoemBreadcrub";
+import PoemBody from "../../../components/PoemBody";
 
 export const dynamic = "force-dynamic";
 const url = process.env.API_URL ? `${process.env.API_URL}/poem` : ""; //"http://localhost:3001/poems";
@@ -47,18 +47,8 @@ export default async function Page({
   // TODO: Consider wrapping this to reduce the whitespace on the right. Center it a bit more for larger screens anyqway
   return (
     <main className={`${styles.main} mt-3`}>
-      <Container className={""}>
-        <BasicPoemBreadcrub poemTitle={poemData.title} />
-        <h2 className={""}>{poemData.title}</h2>
-        <div
-          className={"body p-2 my-3"}
-          dangerouslySetInnerHTML={{
-            __html: SafeMarkdownToHtml(poemData.poem),
-          }}
-        />
-        <div className={"small text-secondary float-end"}>
-          {poemData.id} | {new Date(poemData.createdDate).toUTCString()}
-        </div>
+      <Container>
+        <PoemBody poemData={poemData} />
       </Container>
     </main>
   );
