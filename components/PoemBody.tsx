@@ -11,6 +11,17 @@ const promptTitle =
   "This is the request made of the AI system that lead to the poem above";
 
 const PoemBody = ({ poemData }: PoemBodyPropsType) => {
+  const { prompt } = poemData;
+  const PromptWidget = () => {
+    return prompt ? (
+      <span>{prompt}</span>
+    ) : (
+      <span className={"fst-italic"}>
+        Sorry, the prompt wasn&apos;t captured.
+      </span>
+    );
+  };
+
   return (
     <Container>
       <Row>
@@ -28,7 +39,7 @@ const PoemBody = ({ poemData }: PoemBodyPropsType) => {
             Prompt sent to the Poembot AI
           </h4>
           <div title={promptTitle} className={"small text-body-secondary"}>
-            {poemData.prompt}
+            <PromptWidget />
           </div>
           <div className={"mt-3 small text-secondary float-end"}>
             <span title={"ID"}>{poemData.id}</span> |{" "}
