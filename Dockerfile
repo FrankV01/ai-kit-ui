@@ -13,7 +13,14 @@ ENV TOPIC=Debug
 ENV API_KEY=bcrypt_hased_api_key_from_api_server__not_used_yet
 ENV API_URL=http://localhost:3000
 
+ENV NEXTAUTH_URL=http://localhost:3001
+
 ENV NEXT_PUBLIC_GA_MEASUREMENT_ID=G-BWCTMTSQR4
+
+ENV GOOGLE_CLIENT_ID=887064451860-r1fak9nplopl5cqteo946k1ihk3e5ph1.apps.googleusercontent.com
+ENV GOOGLE_CLIENT_SECRET=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
+
+ENV NEXTAUTH_SECRET=HDAwavDaVM2mtdEQ7NAXFH98Kio2dGKKBsWNnHnuAGHQTeVAemtar86gwLRAHCCbDe7qivE2zj39AfrYu4NMesFEFEcpg2CqjFmv
 
 WORKDIR /usr/src/app
 COPY . .
