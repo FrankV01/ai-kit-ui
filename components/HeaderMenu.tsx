@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import * as Icons from "react-bootstrap-icons";
 import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "./Icons";
+import LoginButton from "./LoginButton";
 
 const sizeOfIcons = "2rem";
 function HeaderMenu({ topic }: { topic: string }) {
@@ -33,6 +34,7 @@ function HeaderMenu({ topic }: { topic: string }) {
             <IconLinkedIn className={"nav-link"} size={sizeOfIcons} />
             <IconGitHub className={"nav-link"} size={sizeOfIcons} />
             <IconTheOpenSourceUorg className={"nav-link"} size={sizeOfIcons} />
+            <LoginButton />
           </Nav>
         </Navbar.Collapse>
       </Container>

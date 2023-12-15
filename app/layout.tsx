@@ -1,17 +1,11 @@
 import React from "react";
 import { Inter } from "next/font/google";
-
-import EnvMgr from "../lib/EnvMgr";
 import "bootswatch/dist/litera/bootstrap.min.css";
 import StyledComponentsRegistry from "../lib/StyledComponentsRegistry";
 import styles from "./page.module.css";
-import { Container, Row, Col } from "react-bootstrap";
-import HeaderMenu from "../components/HeaderMenu";
-import LandingBanner from "../components/LandingBanner";
-import Footer from "../components/Footer";
 import { Metadata } from "next";
-
 import MyAnalytics from "../components/MyAnalytics";
+import { LayoutComponent } from "../components/LayoutComponent";
 
 const inter = Inter({ subsets: ["latin"] });
 const topic = process.env.TOPIC || "unset";
@@ -28,6 +22,7 @@ export const metadata: Metadata = {
     "GPT-3",
     "ChatGPT",
     "AI",
+    "ML",
     "Frank Villasenor",
   ],
   authors: [
@@ -63,26 +58,7 @@ export default async function RootLayout({
           <MyAnalytics />
           <StyledComponentsRegistry>
             <main style={{ background: "#E0E7EE" }} className={styles.main}>
-              <Container>
-                <Row>
-                  <Col>
-                    <HeaderMenu topic={topic} />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <LandingBanner />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>{children}</Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Footer />
-                  </Col>
-                </Row>
-              </Container>
+              <LayoutComponent>{children}</LayoutComponent>
             </main>
           </StyledComponentsRegistry>
         </React.StrictMode>

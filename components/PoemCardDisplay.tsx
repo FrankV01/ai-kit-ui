@@ -18,6 +18,9 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
       title: itm.title,
       id: itm.id,
       createdDate: itm.createdDate,
+      prompt: itm.prompt || "",
+      poemRaw: itm.poemRaw || "",
+      useForTraining: itm.useForTraining,
     }));
 
     const _poemDataMdGrouped = _poemDataMd.reduce((acc, curr, i) => {
