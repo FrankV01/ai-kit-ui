@@ -34,9 +34,11 @@ function HeaderMenu({ topic }: { topic: string }) {
             <IconLinkedIn className={"nav-link"} size={sizeOfIcons} />
             <IconGitHub className={"nav-link"} size={sizeOfIcons} />
             <IconTheOpenSourceUorg className={"nav-link"} size={sizeOfIcons} />
-            <LoginButton />
           </Nav>
         </Navbar.Collapse>
+        <Navbar.Text>
+          <LoginButton />
+        </Navbar.Text>
       </Container>
     </Navbar>
   );
