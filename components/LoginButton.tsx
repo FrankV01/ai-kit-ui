@@ -1,9 +1,30 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Button } from "react-bootstrap";
+import { useEffect } from "react";
 
 export default function LoginButton() {
   const { data: session } = useSession();
-  console.log(session);
+
+  useEffect(() => {
+    if (session && session.user) {
+      console.log(session);
+
+      if (!session || !session.user) return;
+      const response = fetch("/api/routes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(session),
+      }).then((response) => {
+        if (response.ok) {
+          console.log("Data recorded successfully");
+        } else {
+          console.error("Failed to record data");
+        }
+      });
+    }
+  }, [session]);
 
   if (session && session.user) {
     return (

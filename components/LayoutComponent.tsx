@@ -6,8 +6,8 @@ import LandingBanner from "./LandingBanner";
 import Footer from "./Footer";
 import React from "react";
 import { SessionProvider } from "next-auth/react";
-import { EvnMgrSync } from "../lib/EnvMgr";
-const topic = EvnMgrSync().TOPIC;
+//import { EvnMgrSync } from "../lib/EnvMgr";
+//const topic = EvnMgrSync().TOPIC;
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
   return (
@@ -15,7 +15,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
       <Container>
         <Row>
           <Col>
-            <HeaderMenu topic={topic} />
+            <HeaderMenu topic={"AI Poems"} />
           </Col>
         </Row>
         <Row>
