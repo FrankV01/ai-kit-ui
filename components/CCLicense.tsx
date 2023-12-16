@@ -4,6 +4,7 @@ import Image from "next/image";
 
 export default function CCLicense() {
   const style = {
+    width: "auto",
     height: "22px!important",
     //"margin-left": "3px",
     //"vertical-align": "text-bottom",

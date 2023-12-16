@@ -1,6 +1,12 @@
 "use client";
 import Image from "react-bootstrap/Image";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 function shuffleArray(array: string[]): string[] {
   // Might be overkill.
@@ -21,38 +27,29 @@ function shuffleArray(array: string[]): string[] {
 
 const currentFav = "/logo_2023-12-08T03-20-43.png";
 
-const refList = Object.freeze([
-  "/logo_2023-12-04T18-59-05.png",
-  "/logo_2023-12-04T19-11-38.png",
-  "/logo_2023-12-04T19-14-19.png",
-  "/logo_2023-12-08T03-11-37.png",
-  "/logo_2023-12-08T03-15-42.png",
-  currentFav,
-]);
-
 export default function ImageRotate() {
-  //const [currentImage, setCurrentImage] = useState<string>(currentFav);
+  const [currentImage, setCurrentImage] = useState<string>(currentFav);
   //const [imageStack, setImageStack] = useState<string[]>([...refList]);
 
-  // //TODO, if empty reset.
-  //
-  // let id: MutableRefObject<NodeJS.Timeout> = useRef();
-  // useEffect(() => {
-  //   clearTimeout(id);
-  //   id = setTimeout(() => {
-  //     if (imageStack.length === 0) {
-  //       setImageStack([...refList]);
-  //     }
-  //     setCurrentImage(imageStack.shift()!);
-  //     setImageStack(imageStack);
-  //   }, 5000);
-  // }, [imageStack]);
+  useEffect(() => {
+    const refList = Object.freeze([
+      "/logo_2023-12-04T18-59-05.png",
+      "/logo_2023-12-04T19-11-38.png",
+      "/logo_2023-12-04T19-14-19.png",
+      "/logo_2023-12-08T03-11-37.png",
+      "/logo_2023-12-08T03-15-42.png",
+      currentFav,
+    ]);
+    const selected =
+      refList.at(Math.floor(Math.random() * refList.length)) || currentFav;
+    setCurrentImage(selected);
+  }, []);
 
   return (
     <Image
       alt={"AI Generated Poems by Frank Villasenor"}
       className={"shadow p-1 pe-0 rounded float-end rounded fluid"}
-      src={refList.at(Math.floor(Math.random() * refList.length))}
+      src={currentImage}
       width={400}
       height={400}
       roundedCircle={true}
