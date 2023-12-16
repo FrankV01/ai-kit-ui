@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Button } from "react-bootstrap";
 
-export default function Component() {
+export default function LoginButton() {
   const { data: session } = useSession();
   console.log(session);
 
