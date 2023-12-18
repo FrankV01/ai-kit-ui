@@ -4,6 +4,7 @@ import { eLoadingState } from "../types/Common";
 import { Button, FloatingLabel, Form, Placeholder } from "react-bootstrap";
 import { queueRequest } from "../lib/ApiActions";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 type PoemPromptFormProps = {};
 
@@ -11,8 +12,10 @@ const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const CHARACTERS_NEEDED: number = 10;
 export default function PoemPromptForm(props: PoemPromptFormProps) {
   const { data: session } = useSession();
-
+  const router = useRouter();
   const [state, setState] = useState<eLoadingState>(eLoadingState.loading);
+  const [submittingInProcess, setSubmittingInProcess] =
+    useState<boolean>(false);
   const [validatedEmail, setValidatedEmail] = useState<boolean>(false);
   const [validatedPrompt, setValidatedPrompt] = useState<boolean>(false);
   const [promptLength, setPromptLength] = useState<number>(0);
@@ -42,7 +45,12 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
 
   return (
     <Form
-      action={queueRequest} //Allows handling/invokcation of server methods.
+      action={(fd) => {
+        setSubmittingInProcess(true);
+        queueRequest(fd).then(() => {
+          router.push("/");
+        });
+      }} //Allows handling/invocation of server methods.
       noValidate
       className={""}
       validated={validated}
@@ -75,6 +83,7 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
           rows={10}
           required
           aria-required
+          readOnly={submittingInProcess}
           isValid={validatedPrompt}
           isInvalid={!validatedPrompt}
           onChange={(evt) => {
@@ -96,8 +105,12 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className={"text-end"}>
-        <Button type={"submit"} className={""} disabled={!validated}>
-          Send to Queue
+        <Button
+          type={"submit"}
+          className={""}
+          disabled={!validated || submittingInProcess}
+        >
+          {submittingInProcess ? "Submitting..." : "Send to Queue"}
         </Button>
       </Form.Group>
     </Form>
