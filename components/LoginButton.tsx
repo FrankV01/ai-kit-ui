@@ -4,43 +4,16 @@ import { RecordLogin } from "../lib/ServerActions";
 import { useEffect } from "react";
 
 export default function LoginButton() {
-  //   {
-  //   recordLogin,
-  // }: {
-  //   recordLogin: () => Promise<void>;
-  // }
   const { data: session } = useSession();
   useEffect(() => {
     console.log("use effect");
+    // Under_dev: We need to move this. I think.
+    //  It should be when the user is created. Not (1) every time
+    //  and (2) when we're actually creating the user.
     RecordLogin().then(() => {
       console.log("recordData:then");
     });
   }, []);
-  // recordLogin().then(() => {
-  //   console.log("recordData:then");
-  // });
-
-  // useEffect(() => {
-  //   if (session && session.user) {
-  //     console.log("LoginButton:making request", session);
-  //
-  //     if (!session || !session.user) return;
-  //     const response = fetch("/api/poemapi/", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(session),
-  //     }).then((response) => {
-  //       console.log("LoginButton:route call:then", response);
-  //       if (response.ok) {
-  //         console.log("Data recorded successfully");
-  //       } else {
-  //         console.error("Failed to record data");
-  //       }
-  //     });
-  //   }
-  // }, [session]);
 
   if (session && session.user) {
     return (
