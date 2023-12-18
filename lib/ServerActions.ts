@@ -2,18 +2,14 @@
 
 // TODO: combine w/ ApiActions.
 import { getServerSession } from "next-auth/next";
-
-//import { getSession } from "next-auth/react";
 import EvtMgr from "./EnvMgr";
 
-const msg = "RecordLogin::PUT::";
+const msg = "RecordLogin::PUT";
 
 export async function RecordLogin() {
   "use server";
   const session = await getServerSession();
-  console.log(`${msg} session`, session);
   if (session && session.user) {
-    console.log(`${msg} session.user`, session.user);
     const baseUrl = (await EvtMgr()).BASE_URL;
     const result = await fetch(`${baseUrl}/user/create`, {
       method: "PUT",
@@ -23,9 +19,9 @@ export async function RecordLogin() {
 
     if (result.ok) {
       const json = await result.json();
-      console.log(`${msg} ok`, result, json);
+      console.log(`${msg}::ok`);
     } else {
-      console.log(`${msg} not ok`, JSON.stringify(result));
+      console.warn(`${msg}::not ok`, JSON.stringify(result));
     }
   } else {
     console.log(`${msg}::No session found.`);
