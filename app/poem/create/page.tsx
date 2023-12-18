@@ -1,12 +1,11 @@
 "use server";
 
-import PoemPromptForm from "../../../components/PoemPromptForm";
-
 type ICreatePageProps = { params: {} };
 
 import { Col, Container, Row } from "react-bootstrap";
 import { PoemPromptInfo } from "../../../components/PoemPromptInfo";
 import Notice from "../../../components/Notice";
+import PoemPromptForm from "../../../sessionAwareComponents/PoemPromptForm";
 
 export default async function Page({ params }: ICreatePageProps) {
   return (

@@ -1,26 +1,44 @@
 "use client";
-import { Form, Placeholder, FloatingLabel, Button } from "react-bootstrap";
-import { createRef, useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { eLoadingState } from "../types/Common";
+import { Button, FloatingLabel, Form, Placeholder } from "react-bootstrap";
 import { queueRequest } from "../lib/ApiActions";
-// import ReCAPTCHA from "react-google-recaptcha";
+import { useSession } from "next-auth/react";
 
 type PoemPromptFormProps = {};
 
+const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
 export default function PoemPromptForm(props: PoemPromptFormProps) {
+  const { data: session } = useSession();
+
   const [state, setState] = useState<eLoadingState>(eLoadingState.loading);
   const [validatedEmail, setValidatedEmail] = useState<boolean>(false);
   const [validatedPrompt, setValidatedPrompt] = useState<boolean>(false);
   const [promptLength, setPromptLength] = useState<number>(0);
-  const validated = validatedEmail && validatedPrompt;
-  // //const recaptchaRef = createRef();
-  // const recaptchaRef = useRef();
+  const validated = useMemo(
+    () => validatedEmail && validatedPrompt,
+    [validatedEmail, validatedPrompt],
+  );
 
   useEffect(() => {
     setTimeout(() => {
-      setState(eLoadingState.loaded);
+      if (session && session.user) {
+        setValidatedEmail(regex.test(session.user.email!));
+        setState(eLoadingState.loaded);
+      }
     }, 500);
-  }, []);
+  }, [session]);
+
+  if (!session || !session.user || state === eLoadingState.loading) {
+    return (
+      <div className={"text-center"}>
+        <p className={"text-danger"}>
+          You must be signed in to submit a poem prompt.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <Form
@@ -30,25 +48,24 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
       validated={validated}
     >
       <Form.Group className="mb-3" controlId="email">
-        <FloatingLabel label="Email Address" className="mb-3">
-          <Form.Control
-            type="email"
-            required
-            aria-required
-            placeholder=""
-            name="email"
-            isValid={validatedEmail}
-            isInvalid={!validatedEmail}
-            onChange={(evt) => {
-              console.log("onChange:evt", evt.currentTarget.value);
-              const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-              setValidatedEmail(regex.test(evt.currentTarget.value));
-            }}
-          />
-          <Form.Control.Feedback type="invalid">
-            Please enter a validate email address.
-          </Form.Control.Feedback>
-        </FloatingLabel>
+        <Form.Label>Logged in as</Form.Label>
+        <Form.Control
+          type="email"
+          required
+          plaintext
+          readOnly
+          defaultValue={session && session.user && session.user.email!}
+          aria-required
+          name="email"
+          isValid={validatedEmail}
+          isInvalid={!validatedEmail}
+          onChange={(evt) => {
+            setValidatedEmail(regex.test(evt.currentTarget.value));
+          }}
+        />
+        <Form.Control.Feedback type="invalid">
+          Please enter a validate email address.
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="prompt">
         <Form.Label>Poem Prompt</Form.Label>
@@ -67,7 +84,7 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
             setValidatedPrompt(val.length >= 10);
           }}
           placeholder={
-            "Example Prompt: Create a poem in the style of the band Blue October's; the topic of the poem is the struggle of life as a musician on the road while missing family."
+            "Example Prompt: Create a poem in the style of the band 'Blue October'; the topic of the poem is the struggle of life as a musician on the road while missing family."
           }
         />
         <Form.Control.Feedback type="invalid">
@@ -77,18 +94,10 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className={"text-end"}>
-        {state === eLoadingState.loading ? (
-          <Placeholder.Button variant="primary" md={6} />
-        ) : (
-          <Button type={"submit"} className={""} disabled={!validated}>
-            Send to Queue
-          </Button>
-        )}
+        <Button type={"submit"} className={""} disabled={!validated}>
+          Send to Queue
+        </Button>
       </Form.Group>
-      {/*<ReCAPTCHA*/}
-      {/*  ref={recaptchaRef}*/}
-      {/*  sitekey={"6LedbS8pAAAAALpU3kujsA70R-k0VeYntgDRWtsO"}*/}
-      {/*/>*/}
     </Form>
   );
 }

@@ -3,6 +3,14 @@ import EvtMgr from "./EnvMgr";
 import { getServerSession } from "next-auth/next";
 
 export async function queueRequest(formData: FormData) {
+  // TODO Does this work?
+  // Under_dev: Ensure this is completed.
+  const session = await getServerSession();
+  if (!session || !session.user) {
+    console.warn("queueRequest::No session found.");
+    return;
+  }
+
   const baseUrl = (await EvtMgr()).BASE_URL; // process.env.API_URL ? `${process.env.API_URL}` : ""; //"http://localhost:3001/poems";
 
   const url = `${baseUrl}/queue_prompt`;
