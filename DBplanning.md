@@ -86,7 +86,6 @@ PRIMARY KEY (`poem_id`,`user_id`)
 ### `users`
 
 - id
-- expires
 - user.email
 - user.image
 - user.name
@@ -102,8 +101,7 @@ CREATE TABLE `users` (
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_uindex` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-
+)
 ```
 
 ### `votes`
@@ -124,7 +122,7 @@ CREATE TABLE `votes` (
 `user_id` int NOT NULL,
 `value` smallint NOT NULL DEFAULT '0',
 PRIMARY KEY (`poem_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) 
 ```
 
 
