@@ -1,5 +1,6 @@
 "use server";
 import EvtMgr from "./EnvMgr";
+import { getServerSession } from "next-auth/next";
 
 export async function queueRequest(formData: FormData) {
   const baseUrl = (await EvtMgr()).BASE_URL; // process.env.API_URL ? `${process.env.API_URL}` : ""; //"http://localhost:3001/poems";
@@ -25,5 +26,28 @@ export async function queueRequest(formData: FormData) {
   } catch (er) {
     console.warn("QueueRequest error", er);
     return false;
+  }
+}
+
+export async function RecordLogin() {
+  const RecordLoginMsg = "RecordLogin::PUT";
+  ("use server");
+  const session = await getServerSession();
+  if (session && session.user) {
+    const baseUrl = (await EvtMgr()).BASE_URL;
+    const result = await fetch(`${baseUrl}/user/create`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(session.user),
+    });
+
+    if (result.ok) {
+      const json = await result.json();
+      console.log(`${RecordLoginMsg}::ok`);
+    } else {
+      console.warn(`${RecordLoginMsg}::not ok`, JSON.stringify(result));
+    }
+  } else {
+    console.log(`${RecordLoginMsg}::No session found.`);
   }
 }

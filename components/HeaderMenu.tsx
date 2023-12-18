@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import * as Icons from "react-bootstrap-icons";
 import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "./Icons";
-import LoginButton from "./LoginButton";
+import LoginButton from "../sessionAwareComponents/LoginButton";
 
 const sizeOfIcons = "2rem";
 function HeaderMenu({ topic }: { topic: string }) {

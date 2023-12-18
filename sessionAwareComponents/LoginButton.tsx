@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Button } from "react-bootstrap";
-import { RecordLogin } from "../lib/ServerActions";
 import { useEffect } from "react";
+import { RecordLogin } from "../lib/ApiActions";
 
 export default function LoginButton() {
   const { data: session } = useSession();
