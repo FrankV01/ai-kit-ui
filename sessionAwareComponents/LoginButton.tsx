@@ -43,7 +43,7 @@ export default function LoginButton() {
             title={"Click to signout"}
             onClick={() => signOut()}
           >
-            Signed In
+            Hi {(session.user.name || "Name-Unknown LastName")?.split(" ")[0]}!{" "}
           </Button>
         </OverlayTrigger>
       </div>

@@ -70,11 +70,10 @@ const handler = NextAuth({
         }
        */
 
-      // TODO: Record login.
-      const r = await RecordLogin(user);
+      await RecordLogin(user);
       console.log(
         "callbacks.signIn",
-        JSON.stringify({ user, account, profile, r }),
+        JSON.stringify({ user, account, profile }),
       );
       return true;
     },

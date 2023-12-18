@@ -55,7 +55,6 @@ export async function RecordLogin(user: User | AdapterUser) {
   });
 
   if (result.ok) {
-    const json = await result.json();
     console.log(`${RecordLoginMsg}::ok`);
   } else {
     console.warn(`${RecordLoginMsg}::not ok`, JSON.stringify(result));
