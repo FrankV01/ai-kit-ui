@@ -21,8 +21,10 @@ export function PoemPromptInfo() {
       </p>
       <p className={"text-danger-emphasis"}>
         This page <strong>does not save</strong> your writing{" "}
-        <strong>until</strong> the submit/save button is clicked. As a
-        suggestion, use Google Docs or MS Word to draft your prompt to help
+        <strong>until</strong> the &quot;Send To Queue&quot; button is invoked.
+      </p>
+      <p className={"text-danger-emphasis"}>
+        As a suggestion, use Google Docs or MS Word to draft your prompt to help
         avoid data loss. Then use copy-and-paste to move the writing over.
       </p>
       <Stack>
