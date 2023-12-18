@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 type PoemPromptFormProps = {};
 
 const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
+const CHARACTERS_NEEDED: number = 10;
 export default function PoemPromptForm(props: PoemPromptFormProps) {
   const { data: session } = useSession();
 
@@ -81,7 +81,7 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
             console.log("onChange:evt", evt.currentTarget.value);
             const val = evt.currentTarget.value || "";
             setPromptLength(val.length || 0);
-            setValidatedPrompt(val.length >= 10);
+            setValidatedPrompt(val.length >= CHARACTERS_NEEDED);
           }}
           placeholder={
             "Example Prompt: Create a poem in the style of the band 'Blue October'; the topic of the poem is the struggle of life as a musician on the road while missing family."
@@ -89,7 +89,9 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
         />
         <Form.Control.Feedback type="invalid">
           {!validatedPrompt
-            ? `At least ${10 - promptLength} more characters needed`
+            ? `At least ${
+                CHARACTERS_NEEDED - promptLength
+              } more characters needed`
             : ""}
         </Form.Control.Feedback>
       </Form.Group>
