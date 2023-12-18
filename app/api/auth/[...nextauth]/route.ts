@@ -33,7 +33,7 @@ import { RecordLogin } from "../../../../lib/ApiActions";
 // });
 //
 // export { handler as GET, handler as POST };
-
+//frank.6580c9fd  //6580c9fd
 const handler = NextAuth({
   callbacks: {
     signIn: async ({ user, account, profile }) => {
