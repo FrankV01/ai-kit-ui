@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { eLoadingState } from "../types/Common";
-import { Button, FloatingLabel, Form, Placeholder } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import { queueRequest } from "../lib/ApiActions";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type PoemPromptFormProps = {};
 
@@ -19,6 +20,9 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
   const [validatedEmail, setValidatedEmail] = useState<boolean>(false);
   const [validatedPrompt, setValidatedPrompt] = useState<boolean>(false);
   const [promptLength, setPromptLength] = useState<number>(0);
+  const [submissionCompleted, setSubmissionCompleted] =
+    useState<boolean>(false);
+
   const validated = useMemo(
     () => validatedEmail && validatedPrompt,
     [validatedEmail, validatedPrompt],
@@ -43,14 +47,30 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
     );
   }
 
+  if (submissionCompleted) {
+    return (
+      <div className={"text-center"}>
+        <Alert variant={"success"}>
+          <p>Thank you for your submission!</p>
+          <p>
+            It will be reviewed as soon as possible. Once approved, it will be
+            displayed on the site.
+          </p>
+          <Link href={"/"}>More Poems</Link> |{" "}
+          <Link href={"/tag-list"}>Explore the tag List</Link>
+        </Alert>
+      </div>
+    );
+  }
+
   return (
     <Form
       action={(fd) => {
         setSubmittingInProcess(true);
         queueRequest(fd).then(() => {
-          router.push("/");
+          setSubmissionCompleted(true);
         });
-      }} //Allows handling/invocation of server methods.
+      }}
       noValidate
       className={""}
       validated={validated}
