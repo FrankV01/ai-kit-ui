@@ -1,7 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Button, Overlay, OverlayTrigger } from "react-bootstrap";
-import { useEffect, useRef, useState } from "react";
-import { RecordLogin } from "../lib/ApiActions";
 import { useRouter } from "next/navigation";
 import * as Icons from "react-bootstrap-icons";
 
@@ -11,14 +9,6 @@ const overlayStyles = "bg-warning-subtle p-1 small text-dark";
 export default function LoginButton() {
   const { data: session } = useSession();
   const router = useRouter();
-  const [show, setShow] = useState<boolean>(false);
-  const target = useRef(null);
-
-  useEffect(() => {
-    if (session && session.user) {
-      RecordLogin();
-    }
-  }, [session]);
 
   if (session && session.user) {
     return (
@@ -31,7 +21,6 @@ export default function LoginButton() {
           <Button
             className={"text-dark small"}
             title={"Submit Prompt"}
-            ref={target}
             onClick={() => {
               router.push("/poem/create");
             }}
