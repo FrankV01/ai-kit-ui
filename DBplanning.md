@@ -95,11 +95,11 @@ PRIMARY KEY (`poem_id`,`user_id`)
 ```sql
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `expires` datetime NOT NULL,
   `email` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `user_name` varchar(1000) NOT NULL,
   `image_url` varchar(1000) DEFAULT NULL,
   `permission` enum('admin','registered_user','banned','disabled') NOT NULL DEFAULT 'registered_user',
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_uindex` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
