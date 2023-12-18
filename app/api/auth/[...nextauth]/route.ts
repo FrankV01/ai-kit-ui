@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-
+import { RecordLogin } from "../../../../lib/ApiActions";
 // import NextAuth from "next-auth";
 // import GoogleProvider from "next-auth/providers/google";
 //
@@ -71,8 +71,11 @@ const handler = NextAuth({
        */
 
       // TODO: Record login.
-
-      console.log("callbacks.signIn", user, account, profile);
+      const r = await RecordLogin(user);
+      console.log(
+        "callbacks.signIn",
+        JSON.stringify({ user, account, profile, r }),
+      );
       return true;
     },
   },

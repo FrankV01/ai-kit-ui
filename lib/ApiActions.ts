@@ -1,10 +1,10 @@
 "use server";
 import EvtMgr from "./EnvMgr";
 import { getServerSession } from "next-auth/next";
+import { AdapterUser } from "next-auth/adapters";
+import { User } from "next-auth";
 
 export async function queueRequest(formData: FormData) {
-  // TODO Does this work?
-  // Under_dev: Ensure this is completed.
   const session = await getServerSession();
   if (!session || !session.user) {
     console.warn("queueRequest::No session found.");
@@ -37,25 +37,27 @@ export async function queueRequest(formData: FormData) {
   }
 }
 
-export async function RecordLogin() {
+export async function RecordLogin(user: User | AdapterUser) {
   const RecordLoginMsg = "RecordLogin::PUT";
-  ("use server");
-  const session = await getServerSession();
-  if (session && session.user) {
-    const baseUrl = (await EvtMgr()).BASE_URL;
-    const result = await fetch(`${baseUrl}/user/create`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(session.user),
-    });
 
-    if (result.ok) {
-      const json = await result.json();
-      console.log(`${RecordLoginMsg}::ok`);
-    } else {
-      console.warn(`${RecordLoginMsg}::not ok`, JSON.stringify(result));
-    }
+  const baseUrl = (await EvtMgr()).BASE_URL;
+  const data = {
+    email: user.email,
+    name: user.name,
+    image: user.image,
+    googleId: user.id,
+  };
+
+  const result = await fetch(`${baseUrl}/user/create`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (result.ok) {
+    const json = await result.json();
+    console.log(`${RecordLoginMsg}::ok`);
   } else {
-    console.log(`${RecordLoginMsg}::No session found.`);
+    console.warn(`${RecordLoginMsg}::not ok`, JSON.stringify(result));
   }
 }
