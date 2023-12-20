@@ -10,7 +10,11 @@ export default function Footer() {
   return (
     <Container className={"m-auto p-auto py-5 mx-0"}>
       <Row>
-        <Col className={"ps-0 m-auto p-auto text-secondary fw-light"}>
+        <Col
+          md={12}
+          lg={4}
+          className={"ps-0 m-auto p-auto text-secondary fw-light"}
+        >
           <p>
             Artificial Intelligence (AI) / Machine Learning (ML) created Poems.
           </p>
@@ -20,7 +24,7 @@ export default function Footer() {
             <Author className={"link-secondary"} />
           </p>
         </Col>
-        <Col className={"fs-3 text-center m-auto p-auto pe-0"}>
+        <Col md={12} lg={4} className={"fs-3 text-center m-auto p-auto pe-0"}>
           <div className={"m-auto text-center"}>
             <IconLinkedIn className={"mx-2"} />
             <IconGitHub className={"mx-2"} />
@@ -28,8 +32,10 @@ export default function Footer() {
           </div>
         </Col>
         <Col
+          md={12}
+          lg={4}
           className={
-            "m-auto p-auto pe-0 text-secondary small position-relative bottom-0 end-0 text-end"
+            "m-auto-md mt-3 p-auto text-secondary small position-relative bottom-0 end-0 text-lg-end"
           }
         >
           <div>
