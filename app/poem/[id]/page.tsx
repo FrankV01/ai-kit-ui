@@ -1,7 +1,6 @@
 import styles from "../../page.module.css";
 import { Container } from "react-bootstrap";
 import PoemResponse from "../../../types/PoemResponse";
-import BasicPoemBreadcrub from "../../../components/BasicPoemBreadcrub";
 import PoemBody from "../../../components/PoemBody";
 
 export const dynamic = "force-dynamic";
