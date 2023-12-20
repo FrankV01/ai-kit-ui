@@ -69,7 +69,7 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
                       border={"dark"}
                       key={`PoemCardDisplay-${idx}`}
                       style={{ height: "400px" }}
-                      className={"my-lg-3 my-md-2 p-0 shadow"}
+                      className={"my-2 my-lg-3 my-md-2 p-0 shadow"}
                     >
                       <Card.Title>
                         <div className={"p-1"}>
