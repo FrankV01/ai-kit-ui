@@ -9,14 +9,19 @@ export default function PoemDemandOutput(Prop: { content: string }) {
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
   useEffect(() => {
+    if (content.trim().length === 0) {
+      setTypedPoem("");
+      setIsTyping(false);
+      return;
+    }
     let charCounter = 0;
     setIsTyping(true);
     const id = setInterval(() => {
       setTypedPoem(content.slice(0, (charCounter += 1)));
-      if (typedPoem === content) {
+      if (charCounter >= content.length) {
         setIsTyping(false);
+        setTypedPoem(content);
         clearInterval(id);
-        return;
       }
     }, 100);
   }, [content]);
@@ -31,10 +36,14 @@ export default function PoemDemandOutput(Prop: { content: string }) {
         value={typedPoem}
         rows={5}
       ></Form.Control>
-      <Spinner
-        variant="primary"
-        className={"position-absolute bottom-0 end-0 mb-1 me-1 z-index-1"}
-      />
+      {isTyping && (
+        <Spinner
+          role="status"
+          aria-hidden="true"
+          variant="primary"
+          className={"position-absolute bottom-0 end-0 mb-1 me-1 z-index-1"}
+        />
+      )}
     </Form.Group>
   );
 }
