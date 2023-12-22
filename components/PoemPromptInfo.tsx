@@ -1,9 +1,9 @@
-"use client";
+"use server";
 import Link from "next/link";
 import * as Icons from "react-bootstrap-icons";
 import { Container, Stack } from "react-bootstrap";
 
-export function PoemPromptInfo() {
+export async function PoemPromptInfo() {
   return (
     <div className={"mb-3"}>
       <h5 className={"text-body-secondary"}>
