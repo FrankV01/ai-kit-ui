@@ -1,12 +1,40 @@
 "use client";
 
-import { Form } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
-export default function PoemDemandOutput() {
+export default function PoemDemandOutput(Prop: { content: string }) {
+  const { content } = Prop;
+  const [typedPoem, setTypedPoem] = useState<string>("");
+  const [isTyping, setIsTyping] = useState<boolean>(false);
+
+  useEffect(() => {
+    let charCounter = 0;
+    setIsTyping(true);
+    const id = setInterval(() => {
+      setTypedPoem(content.slice(0, (charCounter += 1)));
+      if (typedPoem === content) {
+        setIsTyping(false);
+        clearInterval(id);
+        return;
+      }
+    }, 100);
+  }, [content]);
+
   return (
-    <Form.Group className="mb-3" controlId="poemtextarea">
+    <Form.Group className="mb-3 position-relative" controlId="poemtextarea">
       <Form.Label>Poem</Form.Label>
-      <Form.Control as="textarea" rows={5} />
+      <Form.Control
+        readOnly
+        aria-readonly
+        as="textarea"
+        value={typedPoem}
+        rows={5}
+      ></Form.Control>
+      <Spinner
+        variant="primary"
+        className={"position-absolute bottom-0 end-0 mb-1 me-1 z-index-1"}
+      />
     </Form.Group>
   );
 }

@@ -1,13 +1,25 @@
-"use server";
+"use client";
 import { Button, Form } from "react-bootstrap";
 import PoemDemandOutput from "./PoemDemandOutput";
+import { demandPoem } from "../lib/ApiActions";
+import { useState } from "react";
 
-export async function PoemDemandForm() {
+export function PoemDemandForm() {
+  const [poem, setPoem] = useState<string>("");
   return (
     <div>
       <Form>
-        <PoemDemandOutput />
-        <Button className={"btn w-100"}>Demand Poem from Poembot</Button>
+        <PoemDemandOutput content={poem} />
+        <Button
+          onClick={() => {
+            demandPoem().then((poem) => {
+              setPoem(poem);
+            });
+          }}
+          className={"btn w-100"}
+        >
+          Demand Poem from Poembot
+        </Button>
       </Form>
     </div>
   );

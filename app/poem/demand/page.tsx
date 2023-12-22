@@ -7,10 +7,10 @@ type IDemandPageParams = { params: {} };
 
 export default async function Page({ params }: IDemandPageParams) {
   return (
-    <Container className={"w-50"}>
-      <Col lg={3} />
-      <Col>
-        <Row>
+    <Container>
+      <Row>
+        <Col lg={3} md={1} sm={0}></Col>
+        <Col lg={12 - 3 - 3} md={12 - 2} sm={12}>
           <h3>Poem upon Request</h3>
           <div>
             <PoemDemandInfo />
@@ -18,8 +18,9 @@ export default async function Page({ params }: IDemandPageParams) {
           <div>
             <PoemDemandForm />
           </div>
-        </Row>
-      </Col>
+        </Col>
+        <Col lg={3} md={1} sm={0}></Col>
+      </Row>
     </Container>
   );
 }

@@ -4,6 +4,10 @@ import { getServerSession } from "next-auth/next";
 import { AdapterUser } from "next-auth/adapters";
 import { User } from "next-auth";
 
+export async function demandPoem(): Promise<string> {
+  return Promise.resolve("Demand example; ".repeat(20));
+}
+
 export async function queueRequest(formData: FormData) {
   const session = await getServerSession();
   if (!session || !session.user) {
