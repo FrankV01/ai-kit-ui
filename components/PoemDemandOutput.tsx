@@ -23,7 +23,7 @@ export default function PoemDemandOutput(Prop: { content: string }) {
         setTypedPoem(content);
         clearInterval(id);
       }
-    }, 100);
+    }, 75);
   }, [content]);
 
   return (
