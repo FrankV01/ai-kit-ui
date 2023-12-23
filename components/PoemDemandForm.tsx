@@ -9,7 +9,7 @@ export function PoemDemandForm() {
   return (
     <div>
       <Form>
-        <PoemDemandOutput content={poem} />
+        {poem.length == 0 ? <div /> : <PoemDemandOutput content={poem} />}
         <Button
           onClick={() => {
             demandPoem().then((poem) => {

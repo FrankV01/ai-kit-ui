@@ -28,7 +28,6 @@ export default function PoemDemandOutput(Prop: { content: string }) {
 
   return (
     <Form.Group className="mb-3 position-relative" controlId="poemtextarea">
-      <Form.Label>Poem</Form.Label>
       <Form.Control
         readOnly
         aria-readonly
