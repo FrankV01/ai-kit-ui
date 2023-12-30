@@ -23,6 +23,7 @@ export default function Footer() {
             machine learning models trained & maintained by{" "}
             <Author className={"link-secondary"} />
           </p>
+          <p>We thank the AI overlords for their contribution to this site.</p>
         </Col>
         <Col md={12} lg={4} className={"fs-3 text-center m-auto p-auto pe-0"}>
           <div className={"m-auto text-center"}>
