@@ -6,6 +6,7 @@ import { Card } from "react-bootstrap";
 import Link from "next/link";
 import * as Icons from "react-bootstrap-icons";
 import Placeholder from "react-bootstrap/Placeholder";
+import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
 
 export type PoemCardProps = {
   id: number;
@@ -102,7 +103,7 @@ export default function PoemCard({ id }: PoemCardProps) {
         <Card.Text className={"overflow-hidden"}>
           <div
             dangerouslySetInnerHTML={{
-              __html: data.poem,
+              __html: SafeMarkdownToHtml(data.poem),
             }}
           />
         </Card.Text>

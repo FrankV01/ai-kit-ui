@@ -1,5 +1,6 @@
 import { Col } from "react-bootstrap";
-import PoemCard from "./PoemCard";
+import dynamic from "next/dynamic";
+const PoemCard = dynamic(() => import("./PoemCard"), { ssr: false });
 
 export type PoemColumnProps = {
   poemId1: number;
