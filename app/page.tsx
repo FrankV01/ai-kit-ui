@@ -59,11 +59,6 @@ export default async function Home() {
     <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />
   ));
 
-  //Under_dev New design. Inital DB request should get a list of poem IDs (it dictactes the order, page number or
-  //  number and then each component will populate iteself with it's assigned poem (via id) and output.
-
-  // TODO: We should move this to the layout and just leave the div / poemcard display.
-  // That gives us the important parts being reusable.
   return (
     <div className={styles.outline}>
       <div className={"container"}>
