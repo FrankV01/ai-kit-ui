@@ -43,8 +43,8 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const poemData: number[] = await getPoemIdList();
-  const _poemDataMdGrouped = poemData.reduce((acc, curr, i) => {
-    const chunkIndex = Math.floor(i / 3);
+  const _poemDataGrouped = poemData.reduce((acc, curr, i) => {
+    const chunkIndex = Math.floor(i / 3.0);
 
     if (!acc[chunkIndex]) {
       acc[chunkIndex] = [];
@@ -54,11 +54,9 @@ export default async function Home() {
     return acc;
   }, [] as number[][]);
 
-  const rows = _poemDataMdGrouped.map((itm) => {
-    console.log(itm);
-    //return <div>poem {JSON.stringify(itm)} here</div>;
-    return <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />;
-  });
+  const rows = _poemDataGrouped.map((itm) => (
+    <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />
+  ));
 
   //Under_dev New design. Inital DB request should get a list of poem IDs (it dictactes the order, page number or
   //  number and then each component will populate iteself with it's assigned poem (via id) and output.
