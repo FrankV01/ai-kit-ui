@@ -16,22 +16,32 @@ export default function PoemLoading({ id }: { id: number }) {
       <Card.Body>
         <Card.Title>
           <div className={"p-1"}>
-            <Placeholder as={Card.Title} animation="glow">
-              <Placeholder size={"sm"} />
+            <Placeholder animation={"wave"}>
+              <Placeholder xs={2} /> <Placeholder xs={2} />{" "}
+              <Placeholder xs={4} />
             </Placeholder>
+            &nbsp;
           </div>
         </Card.Title>
         <Card.Text>
-          <Placeholder as={Card.Body} animation="glow">
-            <Placeholder size={"lg"} />
+          <Placeholder animation={"glow"}>
+            <Placeholder xs={6} /> <Placeholder xs={4} /> <Placeholder xs={2} />{" "}
+            <Placeholder xs={5} /> <Placeholder xs={6} /> <Placeholder xs={2} />{" "}
+            <Placeholder xs={5} /> <Placeholder xs={4} /> <Placeholder xs={3} />{" "}
+            <Placeholder xs={4} /> <Placeholder xs={4} /> <Placeholder xs={4} />{" "}
           </Placeholder>
         </Card.Text>
-        <Card.Footer className={"bottom small text-muted text-end"}>
-          <Placeholder as={Card.Footer} animation="glow">
-            <Placeholder size={"xs"} />
-          </Placeholder>
-        </Card.Footer>
       </Card.Body>
+      <Card.Footer
+        className={
+          "bottom small text-muted text-end position-sticky bottom-0 top-100"
+        }
+      >
+        <Placeholder animation={"glow"}>
+          <Placeholder xs={2} />
+        </Placeholder>
+        &nbsp;
+      </Card.Footer>
     </Card>
   );
 }

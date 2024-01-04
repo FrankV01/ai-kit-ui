@@ -6,6 +6,7 @@ import React, { Suspense } from "react";
 import Loading from "./loading";
 import PoemRow from "../components/poems/PoemRow";
 import { getPoemIdList } from "../lib/ApiActions";
+import PoemLoading from "../components/poems/PoemLoading";
 
 // Ok, so why does / go to page.tsx and not index.tsx?
 //  It's because it's at the root of app and page.tsx is "index.tsx" in next.js
