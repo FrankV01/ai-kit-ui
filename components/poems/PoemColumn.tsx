@@ -15,28 +15,13 @@ export default function PoemColumn({
 }: PoemColumnProps) {
   return (
     <>
-      <Col
-        key={`PoemCardDisplay-${poemId1}-${poemId2}-${poemId3}`}
-        xs={12}
-        md={4}
-        lg={4}
-      >
+      <Col key={`PoemCardDisplay-${poemId1}-1`} xs={12} md={4} lg={4}>
         <PoemCard id={poemId1} />
       </Col>
-      <Col
-        key={`PoemCardDisplay-${poemId1}-${poemId2}-${poemId3}`}
-        xs={12}
-        md={4}
-        lg={4}
-      >
+      <Col key={`PoemCardDisplay-${poemId2}-2`} xs={12} md={4} lg={4}>
         {poemId2 && <PoemCard id={poemId2} />}
       </Col>
-      <Col
-        key={`PoemCardDisplay-${poemId1}-${poemId2}-${poemId3}`}
-        xs={12}
-        md={4}
-        lg={4}
-      >
+      <Col key={`PoemCardDisplay-${poemId3}-3`} xs={12} md={4} lg={4}>
         {poemId3 && <PoemCard id={poemId3} />}
       </Col>
     </>

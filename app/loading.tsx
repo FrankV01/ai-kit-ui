@@ -1,15 +1,20 @@
 import React from "react";
+import PoemLoading from "../components/poems/PoemLoading";
 
 export default function Loading() {
-  return <div className={"vw-100 bg-primary m-2 p3"}>Loading...</div>;
-  // return (
-  //   <div
-  //     className="d-flex justify-content-center align-items-center"
-  //     style={{ height: "100vh" }}
-  //   >
-  //     <div className="spinner-border text-primary" role="status">
-  //       <span className="visually-hidden">Loading...</span>
-  //     </div>
-  //   </div>
-  // );
+  return (
+    <div>
+      <div className={"row"}>
+        <div className={"col col-4"}>
+          <PoemLoading id={-1} />
+        </div>
+        <div className={"col col-4"}>
+          <PoemLoading id={-2} />
+        </div>
+        <div className={"col col-4"}>
+          <PoemLoading id={-3} />
+        </div>
+      </div>
+    </div>
+  );
 }

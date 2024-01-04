@@ -5,45 +5,12 @@ import PoemResponse from "../../types/PoemResponse";
 import { Card } from "react-bootstrap";
 import Link from "next/link";
 import * as Icons from "react-bootstrap-icons";
-import Placeholder from "react-bootstrap/Placeholder";
+import PoemLoading from "./PoemLoading";
 import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
 
 export type PoemCardProps = {
   id: number;
 };
-
-function PoemLoading({ id }: { id: number }) {
-  return (
-    <Card
-      bg={"light"}
-      text={"dark"}
-      border={"dark"}
-      key={`PoemCardDisplay-PoemLoading-${id}-item`}
-      style={{ height: "400px" }}
-      className={"my-2 my-lg-3 my-md-2 p-0 shadow"}
-    >
-      <Card.Body>
-        <Card.Title>
-          <div className={"p-1"}>
-            <Placeholder as={Card.Title} animation="glow">
-              <Placeholder size={"sm"} />
-            </Placeholder>
-          </div>
-        </Card.Title>
-        <Card.Text>
-          <Placeholder as={Card.Body} animation="glow">
-            <Placeholder size={"lg"} />
-          </Placeholder>
-        </Card.Text>
-        <Card.Footer className={"bottom small text-muted text-end"}>
-          <Placeholder as={Card.Footer} animation="glow">
-            <Placeholder size={"xs"} />
-          </Placeholder>
-        </Card.Footer>
-      </Card.Body>
-    </Card>
-  );
-}
 
 let i = 0;
 export default function PoemCard({ id }: PoemCardProps) {
@@ -80,7 +47,10 @@ export default function PoemCard({ id }: PoemCardProps) {
       style={{ height: "400px" }}
       className={"my-2 my-lg-3 my-md-2 p-0 shadow overflow-hidden"}
     >
-      <Card.Body>
+      <Card.Body
+        style={{ height: "auto" }}
+        className={"overflow-hidden p-0 m-0"}
+      >
         <Card.Title>
           <div className={"p-1"}>
             <Link
@@ -100,19 +70,19 @@ export default function PoemCard({ id }: PoemCardProps) {
           </div>
         </Card.Title>
 
-        <Card.Text className={"overflow-hidden"}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: SafeMarkdownToHtml(data.poem),
-            }}
-          />
-        </Card.Text>
-        <Card.Footer className={"bottom small text-muted text-end"}>
-          <Link className={"link-secondary me-0"} href={`/poem/${data.id}`}>
-            View...
-          </Link>
-        </Card.Footer>
+        <Card.Text
+          as={"div"}
+          className={"overflow-hidden p-1 m-1"}
+          dangerouslySetInnerHTML={{
+            __html: SafeMarkdownToHtml(data.poem),
+          }}
+        />
       </Card.Body>
+      <Card.Footer className={"bottom small text-muted text-end"}>
+        <Link className={"link-secondary me-0"} href={`/poem/${data.id}`}>
+          View...
+        </Link>
+      </Card.Footer>
     </Card>
   );
 }

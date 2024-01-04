@@ -11,10 +11,7 @@ export function PoemRow({ poemIds }: PoemRowProps) {
   const id3 = poemIds[2] ? poemIds[2] : undefined;
 
   return (
-    <Row
-      key={`PoemCardDisplay-${id1}-${id2 ?? "NA"}-${id3 ?? "NA"}`}
-      //className={"d-inline-flex w-100 m-2"}
-    >
+    <Row key={`PoemCardDisplay-${id1}-${id2 ?? "NA"}-${id3 ?? "NA"}`}>
       <PoemColumn poemId1={id1} poemId2={id2} poemId3={id3} />
     </Row>
   );
