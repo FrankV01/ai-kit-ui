@@ -1,12 +1,10 @@
 import styles from "./page.module.css";
-import EvtMgr from "../lib/EnvMgr";
 
 import "bootswatch/dist/litera/bootstrap.min.css";
 import React, { Suspense } from "react";
 import Loading from "./loading";
 import PoemRow from "../components/poems/PoemRow";
 import { getPoemIdList } from "../lib/ApiActions";
-import PoemLoading from "../components/poems/PoemLoading";
 
 // Ok, so why does / go to page.tsx and not index.tsx?
 //  It's because it's at the root of app and page.tsx is "index.tsx" in next.js
@@ -19,28 +17,6 @@ import PoemLoading from "../components/poems/PoemLoading";
  * This is an indicator for Next.js
  */
 export const dynamic = "force-dynamic";
-
-// async function getData(
-//   pageNum: number = 1,
-//   pageSize: number = 100000,
-// ): Promise<number[]> {
-//   const base = (await EvtMgr()).BASE_URL;
-//   //const url = `${base}/poems?pageNum=${pageNum}&pageSize=${pageSize}`;
-//   const url = `${base}/poems/ids?pageNum=${pageNum}&pageSize=${pageSize}`;
-//   if (!url) {
-//     throw new Error("Invalid environment configs");
-//   }
-//   console.log(`Fetching data from ${url}`);
-//   const res = await fetch(url, {
-//     //cache: "no-store",
-//   });
-//   if (!res.ok) {
-//     // This will activate the closest `error.js` Error Boundary
-//     console.log(`Failed to fetch data from ${url}`);
-//     throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
-//   }
-//   return await res.json();
-// }
 
 export default async function Home() {
   //const poemData: number[] = await getPoemIdList();

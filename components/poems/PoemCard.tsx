@@ -1,4 +1,4 @@
-"use client"; // I just added this.
+"use client";
 import React, { useState, useEffect } from "react";
 import { getPoemById, getPoemIdList } from "../../lib/ApiActions";
 import PoemResponse from "../../types/PoemResponse";
@@ -12,7 +12,6 @@ export type PoemCardProps = {
   id: number;
 };
 
-let i = 0;
 export default function PoemCard({ id }: PoemCardProps) {
   const [data, setData] = React.useState<PoemResponse>({} as PoemResponse);
   const [loading, setLoading] = React.useState<boolean>(true);
