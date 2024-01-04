@@ -6,7 +6,7 @@ export function PoemDemandInfo() {
   return (
     <div className={"mb-3"}>
       <h5 className={"text-body-secondary"}>Demand-a-Poem</h5>
-      <p>Let's the Poembot AI write it's own poem while you watch.</p>
+      <p>Let the Poembot AI write it&apos;s own poem while you watch.</p>
     </div>
   );
 }

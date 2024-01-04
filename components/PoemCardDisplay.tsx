@@ -56,7 +56,7 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
     <Container>
       {poemDataMd.map((entry, idx) => {
         return (
-          <Suspense fallback={<Loading />}>
+          <Suspense key={"poemdata-loading-suspense"} fallback={<Loading />}>
             <Row
               key={`PoemCardDisplay-${idx}`}
               // className={"d-inline-flex w-100 m-2"}

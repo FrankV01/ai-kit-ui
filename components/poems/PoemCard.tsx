@@ -29,7 +29,7 @@ export default function PoemCard({ id }: PoemCardProps) {
         console.error(`an error occurred during getPoemById for ${id}`);
         console.error(err);
       });
-  }, []);
+  }, [id]);
 
   if (loading)
     return (
