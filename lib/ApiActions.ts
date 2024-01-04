@@ -11,7 +11,7 @@ export async function demandPoem(): Promise<string> {
 
 export async function getPoemIdList(
   pageNum: number = 1,
-  pageSize: number = 100000,
+  pageSize: number = 10000,
 ): Promise<number[]> {
   const base = (await EvtMgr()).BASE_URL;
   //const url = `${base}/poems?pageNum=${pageNum}&pageSize=${pageSize}`;
