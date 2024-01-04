@@ -43,7 +43,18 @@ export const dynamic = "force-dynamic";
 // }
 
 export default async function Home() {
-  const poemData: number[] = await getPoemIdList();
+  //const poemData: number[] = await getPoemIdList();
+
+  let poemData: number[] = [];
+  try {
+    poemData = await getPoemIdList();
+  } catch (err) {
+    let message = "unknown";
+    if (err instanceof Error) message = err.message;
+    else message = String(err);
+    console.warn("Home:poemData", message);
+  }
+
   const _poemDataGrouped = poemData.reduce((acc, curr, i) => {
     const chunkIndex = Math.floor(i / 3.0);
 
