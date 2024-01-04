@@ -3,9 +3,54 @@ import EvtMgr from "./EnvMgr";
 import { getServerSession } from "next-auth/next";
 import { AdapterUser } from "next-auth/adapters";
 import { User } from "next-auth";
+import PoemResponse from "../types/PoemResponse";
 
 export async function demandPoem(): Promise<string> {
   return Promise.resolve("Demand example; ".repeat(20));
+}
+
+export async function getPoemIdList(
+  pageNum: number = 1,
+  pageSize: number = 100000,
+): Promise<number[]> {
+  const base = (await EvtMgr()).BASE_URL;
+  //const url = `${base}/poems?pageNum=${pageNum}&pageSize=${pageSize}`;
+  const url = `${base}/poems/ids?pageNum=${pageNum}&pageSize=${pageSize}`;
+  if (!url) {
+    throw new Error("Invalid environment configs");
+  }
+  console.log(`Fetching data from ${url}`);
+  const res = await fetch(url, {
+    //cache: "no-store",
+  });
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    console.log(`Failed to fetch data from ${url}`);
+    throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
+  }
+  return await res.json();
+}
+
+export async function getPoemById(
+  id: number,
+  pageNum: number = 1,
+  pageSize: number = 100000,
+): Promise<PoemResponse> {
+  const base = (await EvtMgr()).BASE_URL;
+  const url = `${base}/poem/${id}?pageNum=${pageNum}&pageSize=${pageSize}`;
+  if (!url) {
+    throw new Error("Invalid environment configs");
+  }
+  console.log(`Fetching data from ${url}`);
+  const res = await fetch(url, {
+    //cache: "no-store",
+  });
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    console.log(`Failed to fetch data from ${url}`);
+    throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
+  }
+  return await res.json();
 }
 
 export async function queueRequest(formData: FormData) {

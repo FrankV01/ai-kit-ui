@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Inter } from "next/font/google";
 import "bootswatch/dist/litera/bootstrap.min.css";
 import StyledComponentsRegistry from "../lib/StyledComponentsRegistry";
@@ -6,6 +6,16 @@ import styles from "./page.module.css";
 import { Metadata } from "next";
 import MyAnalytics from "../components/MyAnalytics";
 import { LayoutComponent } from "../components/LayoutComponent";
+import Loading from "./loading";
+
+//
+// TODO: Soon.
+// Move the topic and meta data data-points to the database in a table
+// structured like:
+// key, config_value, desc
+//
+// Add an entry for "DATE_CREATED" and "CREATED_BY", "MANAGED_BY.
+// And of course everything below gets it's key and value.
 
 const inter = Inter({ subsets: ["latin"] });
 const topic = process.env.TOPIC || "unset";
@@ -58,7 +68,9 @@ export default async function RootLayout({
           <MyAnalytics />
           <StyledComponentsRegistry>
             <main style={{ background: "#E0E7EE" }} className={styles.main}>
-              <LayoutComponent>{children}</LayoutComponent>
+              <LayoutComponent>
+                <Suspense fallback={<Loading />}>{children}</Suspense>
+              </LayoutComponent>
             </main>
           </StyledComponentsRegistry>
         </React.StrictMode>
