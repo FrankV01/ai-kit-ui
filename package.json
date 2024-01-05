@@ -1,10 +1,10 @@
 {
   "name": "poems-ui",
-  "version": "1.52.20240103",
+  "version": "1.53.20240103",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --no-mangling --profile",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
