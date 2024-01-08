@@ -3,10 +3,12 @@ import { Inter } from "next/font/google";
 import "bootswatch/dist/litera/bootstrap.min.css";
 import StyledComponentsRegistry from "../lib/StyledComponentsRegistry";
 import styles from "./page.module.css";
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import MyAnalytics from "../components/MyAnalytics";
 import { LayoutComponent } from "../components/LayoutComponent";
 import Loading from "./loading";
+import { getSiteConfigs } from "../lib/ApiActions";
+import { IConfigurationItem } from "../types/IConfigurationItem";
 
 //
 // TODO: Soon.
@@ -20,40 +22,101 @@ import Loading from "./loading";
 const inter = Inter({ subsets: ["latin"] });
 const topic = process.env.TOPIC || "unset";
 
-export const metadata: Metadata = {
-  title: "AI generated Poems for the 'Hack' of it",
-  description: "AI generated Poems for the 'Hack' of it",
-  applicationName: "poems-ui",
-  keywords: [
-    "AI",
-    "poems",
-    "hack",
-    "Portfolio",
-    "GPT-3",
-    "ChatGPT",
-    "AI",
-    "ML",
-    "Frank Villasenor",
-  ],
-  authors: [
-    { name: "Frank Villasenor", url: "http://www.theOpenSourceU.org/" },
-  ],
-  creator: "Frank Villasenor",
-  publisher: "Frank Villasenor",
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-    googleBot: {
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+let siteConfigs: IConfigurationItem[] = [];
+
+function getConfigValue(key: string, strDefault: string): string {
+  const item = siteConfigs.find((item) => item.key === key);
+  if (!item) {
+    console.warn(`Unable to find config item for key: ${key}`);
+    return strDefault;
+  }
+  return item?.configValue ? item.configValue : strDefault;
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  // API call.
+
+  if (!siteConfigs.length) {
+    siteConfigs = await getSiteConfigs();
+  }
+
+  const metadata: Metadata = {
+    title: getConfigValue(
+      "METADATA_TITLE",
+      "AI generated Poems for the 'Hack' of it",
+    ),
+    description: getConfigValue(
+      "METADATA_DESC",
+      "AI generated Poems for the 'Hack' of it",
+    ),
+    applicationName: getConfigValue("METADATA_APP_NAME", "poems-ui"),
+    keywords: getConfigValue(
+      "METADATA_KEYWORDS",
+      "AI,Portfolio,GPT-3,ChatGPT,ML,Frank Villasenor,theOpenSourceU,tOSU",
+    ),
+    authors: [
+      { name: "Frank Villasenor", url: "http://www.theOpenSourceU.org/" },
+    ],
+    creator: getConfigValue("METADATA_CREATOR", "Frank Villasenor"),
+    publisher: getConfigValue("METADATA_PUBLISHER", "Frank Villasenor"),
+    robots: {
       index: true,
       follow: true,
-      noimageindex: false,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+  };
+  return metadata;
+}
+
+// export const metadata: Metadata = {
+//   title: "AI generated Poems for the 'Hack' of it",
+//   description: "AI generated Poems for the 'Hack' of it",
+//   applicationName: "poems-ui",
+//   keywords: [
+//     "AI",
+//     "poems",
+//     "hack",
+//     "Portfolio",
+//     "GPT-3",
+//     "ChatGPT",
+//     "AI",
+//     "ML",
+//     "Frank Villasenor",
+//   ],
+//   authors: [
+//     { name: "Frank Villasenor", url: "http://www.theOpenSourceU.org/" },
+//   ],
+//   creator: "Frank Villasenor",
+//   publisher: "Frank Villasenor",
+//   robots: {
+//     index: true,
+//     follow: true,
+//     nocache: false,
+//     googleBot: {
+//       index: true,
+//       follow: true,
+//       noimageindex: false,
+//       "max-video-preview": -1,
+//       "max-image-preview": "large",
+//       "max-snippet": -1,
+//     },
+//   },
+// };
 
 export default async function RootLayout({
   children,

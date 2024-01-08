@@ -4,6 +4,10 @@ import { getServerSession } from "next-auth/next";
 import { AdapterUser } from "next-auth/adapters";
 import { User } from "next-auth";
 import PoemResponse from "../types/PoemResponse";
+import {
+  IConfigurationItem,
+  IConfigurations,
+} from "../types/IConfigurationItem";
 
 export async function demandPoem(): Promise<string> {
   return Promise.resolve("Demand example; ".repeat(20));
@@ -33,6 +37,23 @@ export async function getPoemIdList(
     throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
   }
   return await res.json();
+}
+
+export async function getSiteConfigs(): Promise<
+  IConfigurations | IConfigurationItem[]
+> {
+  const base = (await EvtMgr()).BASE_URL;
+  const url = `${base}/config`;
+  console.log(`Fetching data from ${url}`);
+  const res = await fetch(url, {
+    //cache: "no-store",
+  });
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    console.log(`Failed to fetch data from ${url}`);
+    throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
+  }
+  return (await res.json()) as IConfigurationItem[];
 }
 
 export async function getPoemById(
