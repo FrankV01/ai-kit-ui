@@ -10,17 +10,8 @@ import Loading from "./loading";
 import { getSiteConfigs } from "../lib/ApiActions";
 import { IConfigurationItem } from "../types/IConfigurationItem";
 
-//
-// TODO: Soon.
-// Move the topic and meta data data-points to the database in a table
-// structured like:
-// key, config_value, desc
-//
-// Add an entry for "DATE_CREATED" and "CREATED_BY", "MANAGED_BY.
-// And of course everything below gets it's key and value.
-
+export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
-const topic = process.env.TOPIC || "unset";
 
 type Props = {
   params: { id: string };

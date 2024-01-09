@@ -3,7 +3,6 @@ import * as Icons from "react-bootstrap-icons";
 import Author from "./Author";
 import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "./Icons";
 import CCLicense from "./CCLicense";
-//import CookieAlert from "./CookieAlert";
 
 export default function Footer() {
   //<CookieAlert />
