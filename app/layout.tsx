@@ -83,41 +83,6 @@ export async function generateMetadata(
   return metadata;
 }
 
-// export const metadata: Metadata = {
-//   title: "AI generated Poems for the 'Hack' of it",
-//   description: "AI generated Poems for the 'Hack' of it",
-//   applicationName: "poems-ui",
-//   keywords: [
-//     "AI",
-//     "poems",
-//     "hack",
-//     "Portfolio",
-//     "GPT-3",
-//     "ChatGPT",
-//     "AI",
-//     "ML",
-//     "Frank Villasenor",
-//   ],
-//   authors: [
-//     { name: "Frank Villasenor", url: "http://www.theOpenSourceU.org/" },
-//   ],
-//   creator: "Frank Villasenor",
-//   publisher: "Frank Villasenor",
-//   robots: {
-//     index: true,
-//     follow: true,
-//     nocache: false,
-//     googleBot: {
-//       index: true,
-//       follow: true,
-//       noimageindex: false,
-//       "max-video-preview": -1,
-//       "max-image-preview": "large",
-//       "max-snippet": -1,
-//     },
-//   },
-// };
-
 export default async function RootLayout({
   children,
 }: {
