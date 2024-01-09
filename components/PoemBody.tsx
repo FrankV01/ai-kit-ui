@@ -45,6 +45,10 @@ const PoemBody = ({ poemData }: PoemBodyPropsType) => {
             <span title={"ID"}>{poemData.id}</span> |{" "}
             <span title={"Created Date"}>
               {new Date(poemData.createdDate).toUTCString()}
+            </span>{" "}
+            |{" "}
+            <span title={"AI Generation"}>
+              AI Generation: <i>{poemData?.aiModelGeneration || "unknown"}</i>
             </span>
           </div>
         </Col>

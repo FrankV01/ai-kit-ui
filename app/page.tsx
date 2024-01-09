@@ -5,13 +5,8 @@ import React, { Suspense } from "react";
 import Loading from "./loading";
 import PoemRow from "../components/poems/PoemRow";
 import { getPoemIdList } from "../lib/ApiActions";
-import PoemCardDisplay from "../components/PoemCardDisplay";
-import PoemResponse from "../types/PoemResponse";
 
 const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http://localhost:3001/poems";
-
-// Ok, so why does / go to page.tsx and not index.tsx?
-//  It's because it's at the root of app and page.tsx is "index.tsx" in next.js
 
 // Everything in /app is a ***react server component***\
 //  If this is the case, where do client components go when

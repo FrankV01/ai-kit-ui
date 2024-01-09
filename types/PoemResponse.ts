@@ -1,4 +1,5 @@
 export interface PoemResponse {
+  //Duplicate of IPoemDto
   title: string;
   poem: string;
   id: number;
@@ -6,5 +7,6 @@ export interface PoemResponse {
   poemRaw: string;
   prompt: string;
   useForTraining: number;
+  aiModelGeneration: string;
 }
 export default PoemResponse;
