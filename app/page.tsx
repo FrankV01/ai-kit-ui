@@ -40,51 +40,40 @@ async function getData(): Promise<PoemResponse[]> {
 
 export default async function Home() {
   const oldVersion = false;
-  if (oldVersion) {
-    const poemData: PoemResponse[] = await getData();
-    return (
-      <div className={styles.outline}>
-        <PoemCardDisplay entries={poemData} />
-      </div>
-    );
-  } else {
-    //New version.
-    console.log("loading new home...");
-    let poemData: number[] = [];
-    try {
-      console.log("getting data...");
-      poemData = await getPoemIdList();
-    } catch (err) {
-      console.log("error while getting data...");
-      let message = "unknown";
-      if (err instanceof Error) message = err.message;
-      else message = String(err);
-      console.warn("Home:poemData", message);
+
+  //New version.
+  let poemData: number[] = [];
+  try {
+    poemData = await getPoemIdList();
+  } catch (err) {
+    console.log("error while getting data...");
+    let message = "unknown";
+    if (err instanceof Error) message = err.message;
+    else message = String(err);
+    console.warn("Home:poemData", message);
+  }
+
+  const _poemDataGrouped = poemData.reduce((acc, curr, i) => {
+    const chunkIndex = Math.floor(i / 3.0);
+
+    if (!acc[chunkIndex]) {
+      acc[chunkIndex] = [];
     }
 
-    console.log("grouping data...");
-    const _poemDataGrouped = poemData.reduce((acc, curr, i) => {
-      const chunkIndex = Math.floor(i / 3.0);
+    acc[chunkIndex].push(curr);
+    return acc;
+  }, [] as number[][]);
 
-      if (!acc[chunkIndex]) {
-        acc[chunkIndex] = [];
-      }
+  console.log("Generating rows...");
+  const rows = _poemDataGrouped.map((itm) => (
+    <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />
+  ));
 
-      acc[chunkIndex].push(curr);
-      return acc;
-    }, [] as number[][]);
-
-    console.log("Generating rows...");
-    const rows = _poemDataGrouped.map((itm) => (
-      <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />
-    ));
-
-    return (
-      <div className={styles.outline}>
-        <div className={"container"}>
-          <Suspense fallback={<Loading />}>{rows}</Suspense>
-        </div>
+  return (
+    <div className={styles.outline}>
+      <div className={"container"}>
+        <Suspense fallback={<Loading />}>{rows}</Suspense>
       </div>
-    );
-  }
+    </div>
+  );
 }
