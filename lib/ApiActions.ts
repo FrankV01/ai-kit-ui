@@ -46,7 +46,7 @@ export async function getSiteConfigs(): Promise<
   const url = `${base}/config`;
   console.log(`Fetching data from ${url}`);
   const res = await fetch(url, {
-    //cache: "no-store",
+    cache: "no-store",
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -69,7 +69,7 @@ export async function getPoemById(
   }
   console.log(`Fetching data from ${url}`);
   const res = await fetch(url, {
-    //cache: "no-store",
+    cache: "no-store",
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary

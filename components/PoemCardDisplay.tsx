@@ -21,6 +21,7 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
       prompt: itm.prompt || "",
       poemRaw: itm.poemRaw || "",
       useForTraining: itm.useForTraining,
+      aiModelGeneration: itm.aiModelGeneration || "unknown",
     }));
 
     const _poemDataMdGrouped = _poemDataMd.reduce((acc, curr, i) => {
