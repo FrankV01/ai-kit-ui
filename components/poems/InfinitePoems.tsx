@@ -18,9 +18,7 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
     setIsLoading(true);
     getPoemIdList(page, 6)
       .then((poemData2) => {
-        console.log("poemData2", poemData2);
-
-        setHasMore(poemData2.length > 0);
+        setHasMore(poemData2.length > 0 || poemData2.length < 6);
         const _poemDataGrouped = poemData2.reduce((acc, curr, i) => {
           const chunkIndex = Math.floor(i / 3.0);
 
@@ -32,7 +30,6 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
           return acc;
         }, [] as number[][]);
 
-        //setPoemData((prevItems) => [...prevItems, ..._poemDataGrouped]);
         const existing = [...poemData];
         existing.push(..._poemDataGrouped);
         setPoemData(existing);
@@ -60,7 +57,7 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
         next={() => {
           setPage((prevPage) => prevPage + 1);
         }}
-        hasMore={true} // TODO: Replace with a condition based on your data source
+        hasMore={hasMore}
         loader={<p>Loading...</p>}
         endMessage={<p>No more data to load.</p>}
       >
