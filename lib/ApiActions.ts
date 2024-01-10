@@ -71,7 +71,7 @@ export async function getPoemById(
 ): Promise<PoemResponse> {
   log("getPoemIdList:getPoemById", id, pageNum, pageSize);
   const base = await getBaseUrl();
-  const url = `${base}/poem/${id}?pageNum=${pageNum}&pageSize=${pageSize}`;
+  const url = `${base}/poem/${id}`;
   if (!url) {
     throw new Error("Invalid environment configs");
   }
