@@ -15,7 +15,6 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    console.log("InfinitePoems:useEffect");
     setIsLoading(true);
     getPoemIdList(page, 6)
       .then((poemData2) => {
