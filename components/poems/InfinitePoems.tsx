@@ -40,7 +40,7 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
         setError("Loading failed");
         setIsLoading(false);
       });
-  }, [page]);
+  }, [page, poemData]);
 
   const rows = useMemo(
     () =>
