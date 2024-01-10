@@ -32,6 +32,7 @@ export default async function Home() {
     console.warn("Home:poemData", message);
   }
 
+  // Should probably be moved.
   const _poemDataGrouped = poemData.reduce((acc, curr, i) => {
     const chunkIndex = Math.floor(i / 3.0);
 
@@ -43,7 +44,6 @@ export default async function Home() {
     return acc;
   }, [] as number[][]);
 
-  console.log("Generating rows...");
   const rows = _poemDataGrouped.map((itm) => (
     <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />
   ));

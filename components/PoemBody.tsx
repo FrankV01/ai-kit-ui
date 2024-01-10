@@ -2,6 +2,7 @@ import PoemResponse from "../types/PoemResponse";
 import { Container, Row, Col } from "react-bootstrap";
 import SafeMarkdownToHtml from "../lib/SafeMarkdownToHtml";
 import BasicPoemBreadcrub from "./BasicPoemBreadcrub";
+import PoemRatingWidget from "./poems/PoemRatingWidget";
 
 type PoemBodyPropsType = {
   poemData: PoemResponse;
@@ -41,6 +42,7 @@ const PoemBody = ({ poemData }: PoemBodyPropsType) => {
           <div title={promptTitle} className={"small text-body-secondary"}>
             <PromptWidget />
           </div>
+          <PoemRatingWidget poemId={poemData.id} poemData={poemData} />
           <div className={"mt-3 small text-secondary float-end"}>
             <span title={"ID"}>{poemData.id}</span> |{" "}
             <span title={"Created Date"}>

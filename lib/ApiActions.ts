@@ -15,14 +15,21 @@ export async function demandPoem(): Promise<string> {
 
 const log = console.log.bind(console);
 
+let baseUrlCache: string = "";
+async function getBaseUrl(): Promise<string> {
+  if (!baseUrlCache) {
+    baseUrlCache = (await EvtMgr()).BASE_URL;
+  }
+  return baseUrlCache;
+}
+
 export async function getPoemIdList(
   pageNum: number = 1,
   pageSize: number = 1000,
 ): Promise<number[]> {
   log("getPoemIdList:paging", pageNum, pageSize);
-  const base = (await EvtMgr()).BASE_URL;
+  const base = await getBaseUrl();
   log("getPoemIdList:base", base);
-  //const url = `${base}/poems?pageNum=${pageNum}&pageSize=${pageSize}`;
   const url = `${base}/poems/ids?pageNum=${pageNum}&pageSize=${pageSize}`;
   if (!url) {
     throw new Error("Invalid environment configs");
@@ -33,7 +40,7 @@ export async function getPoemIdList(
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-    log(`Failed to fetch data from ${url}`);
+    log(`getPoemIdList Failed to fetch data from ${url}`);
     throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
   }
   return await res.json();
@@ -42,7 +49,7 @@ export async function getPoemIdList(
 export async function getSiteConfigs(): Promise<
   IConfigurations | IConfigurationItem[]
 > {
-  const base = (await EvtMgr()).BASE_URL;
+  const base = await getBaseUrl();
   const url = `${base}/config`;
   console.log(`Fetching data from ${url}`);
   const res = await fetch(url, {
@@ -62,21 +69,54 @@ export async function getPoemById(
   pageSize: number = 100000,
 ): Promise<PoemResponse> {
   log("getPoemIdList:getPoemById", id, pageNum, pageSize);
-  const base = (await EvtMgr()).BASE_URL;
+  const base = await getBaseUrl();
   const url = `${base}/poem/${id}?pageNum=${pageNum}&pageSize=${pageSize}`;
   if (!url) {
     throw new Error("Invalid environment configs");
   }
-  console.log(`Fetching data from ${url}`);
+  console.log(`getPoemById Fetching data from ${url}`);
   const res = await fetch(url, {
     cache: "no-store",
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-    console.log(`Failed to fetch data from ${url}`);
+    console.log(`getPoemById Failed to fetch data from ${url}`);
     throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
   }
   return await res.json();
+}
+
+export async function setPoemRating(poemId: number, rating: number) {
+  console.log("setPoemRating");
+  if (!poemId) return;
+  if (rating > -1 && rating < 11) {
+    //Submit
+    const baseUrl = await getBaseUrl();
+    const url = `${baseUrl}/poem/${poemId}/rating`;
+    const body = {
+      id: poemId,
+      rating: rating,
+    };
+    console.log(`setPoemRating: Fetching data from ${url}`);
+
+    //
+    const res = await fetch(url, {
+      method: "PUT", // *GET, POST, PUT, DELETE, etc.
+      mode: "same-origin", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      //credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    console.log("res.ok", res.ok);
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      console.log(`setPoemRating: Failed to fetch data from ${url}`);
+      throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
+    }
+  }
 }
 
 export async function queueRequest(formData: FormData) {
@@ -87,7 +127,7 @@ export async function queueRequest(formData: FormData) {
     return;
   }
 
-  const baseUrl = (await EvtMgr()).BASE_URL; // process.env.API_URL ? `${process.env.API_URL}` : ""; //"http://localhost:3001/poems";
+  const baseUrl = await getBaseUrl(); // process.env.API_URL ? `${process.env.API_URL}` : ""; //"http://localhost:3001/poems";
 
   const url = `${baseUrl}/queue_prompt`;
   console.log("queueRequest", formData);
