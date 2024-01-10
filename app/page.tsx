@@ -18,12 +18,11 @@ const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http:/
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const oldVersion = false;
-
-  //New version.
+  //
+  // Under_Dev: From here to next marker, move to a component.
   let poemData: number[] = [];
   try {
-    poemData = await getPoemIdList();
+    poemData = await getPoemIdList(1, 10);
   } catch (err) {
     console.log("error while getting data...");
     let message = "unknown";
@@ -47,6 +46,7 @@ export default async function Home() {
   const rows = _poemDataGrouped.map((itm) => (
     <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />
   ));
+  // Under_Dev: done.
 
   return (
     <div className={styles.outline}>

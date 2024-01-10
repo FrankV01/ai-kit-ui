@@ -64,12 +64,8 @@ export async function getSiteConfigs(): Promise<
   return (await res.json()) as IConfigurationItem[];
 }
 
-export async function getPoemById(
-  id: number,
-  pageNum: number = 1,
-  pageSize: number = 100000,
-): Promise<PoemResponse> {
-  log("getPoemIdList:getPoemById", id, pageNum, pageSize);
+export async function getPoemById(id: number): Promise<PoemResponse> {
+  log("getPoemIdList:getPoemById", id);
   const base = await getBaseUrl();
   const url = `${base}/poem/${id}`;
   if (!url) {
