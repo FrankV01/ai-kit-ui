@@ -54,7 +54,7 @@ export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
         console.error(er);
         setSaving(false);
       });
-  }, [debouncedCurrentRating]);
+  }, [debouncedCurrentRating, poemId]);
 
   if (!session || !session?.user) return <></>; //hide if not logged in.
   const email = session?.user?.email || "";

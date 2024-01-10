@@ -8,6 +8,7 @@ import {
   IConfigurationItem,
   IConfigurations,
 } from "../types/IConfigurationItem";
+import "server-only";
 
 export async function demandPoem(): Promise<string> {
   return Promise.resolve("Demand example; ".repeat(20));
