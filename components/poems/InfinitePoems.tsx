@@ -1,6 +1,6 @@
 "use client";
 
-import { getPoemIdList } from "../../lib/ApiActions";
+import { getGroupedPoemIds } from "../../lib/ApiActions";
 import PoemRow from "./PoemRow";
 import React, { useEffect, useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -14,49 +14,43 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {
+  const moreData = () => {
     setIsLoading(true);
-    getPoemIdList(page, 6)
-      .then((poemData2) => {
-        setHasMore(poemData2.length > 0 || poemData2.length < 6);
-        const _poemDataGrouped = poemData2.reduce((acc, curr, i) => {
-          const chunkIndex = Math.floor(i / 3.0);
+    console.log("more data", page, hasMore);
+    getGroupedPoemIds(page, 6)
+      .then((data) => {
+        const s = poemData.flat();
 
-          if (!acc[chunkIndex]) {
-            acc[chunkIndex] = [];
-          }
-
-          acc[chunkIndex].push(curr);
-          return acc;
-        }, [] as number[][]);
-
-        const existing = [...poemData];
-        existing.push(..._poemDataGrouped);
-        setPoemData(existing);
+        //setHasMore(data.length === 2);
+        console.log("have new data", data, data.length);
+        setPoemData((prev) => [...prev, ...data]);
         setIsLoading(false);
       })
-      .catch((er) => {
-        console.error(String(er));
-        setError("Loading failed");
+      .catch((err) => {
+        setError("error occurred during retrieval of poem data");
         setIsLoading(false);
       });
-  }, [page, poemData]);
+    setPage((prev) => prev + 1);
+  };
 
+  // Produces the react component.
   const rows = useMemo(
     () =>
       poemData.map((itm) => (
         <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />
       )),
-    [poemData],
+    [poemData, page],
   );
+
+  console.log("poemData", poemData.length, poemData);
+  console.log("rows", rows.length);
+  console.log("hasMore", hasMore);
 
   return (
     <>
       <InfiniteScroll
         dataLength={poemData.length}
-        next={() => {
-          setPage((prevPage) => prevPage + 1);
-        }}
+        next={moreData}
         hasMore={hasMore}
         loader={<p>Loading...</p>}
         endMessage={<p>No more data to load.</p>}

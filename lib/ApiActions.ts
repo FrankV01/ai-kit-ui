@@ -47,6 +47,23 @@ export async function getPoemIdList(
   return await res.json();
 }
 
+export async function getGroupedPoemIds(
+  pageNum: number = 1,
+  pageSize: number = 1000,
+): Promise<number[][]> {
+  log("getGroupedPoemIds:paging", pageNum, pageSize);
+  const dataSet = await getPoemIdList(pageNum, pageSize);
+  const _poemDataGrouped = dataSet.reduce((acc, curr, i) => {
+    const chunkIndex = Math.floor(i / 3.0);
+    if (!acc[chunkIndex]) {
+      acc[chunkIndex] = [];
+    }
+    acc[chunkIndex].push(curr);
+    return acc;
+  }, [] as number[][]);
+  return _poemDataGrouped;
+}
+
 export async function getSiteConfigs(): Promise<
   IConfigurations | IConfigurationItem[]
 > {
@@ -96,7 +113,6 @@ export async function setPoemRating(poemId: number, rating: number) {
     };
     console.log(`setPoemRating: Fetching data from ${url}`);
 
-    //
     const res = await fetch(url, {
       method: "PUT", // *GET, POST, PUT, DELETE, etc.
       mode: "same-origin", // no-cors, *cors, same-origin
@@ -107,11 +123,9 @@ export async function setPoemRating(poemId: number, rating: number) {
       },
       body: JSON.stringify(body),
     });
-    console.log("res.ok", res.ok);
     if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
       console.log(`setPoemRating: Failed to fetch data from ${url}`);
-      throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
+      //throw new Error("Failed to fetch data");
     }
   }
 }
