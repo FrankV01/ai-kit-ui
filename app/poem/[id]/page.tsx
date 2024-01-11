@@ -2,6 +2,8 @@ import styles from "../../page.module.css";
 import { Container } from "react-bootstrap";
 import PoemResponse from "../../../types/PoemResponse";
 import PoemBody from "../../../components/PoemBody";
+import Loading from "../loading";
+import React, { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 const url = process.env.API_URL ? `${process.env.API_URL}/poem` : ""; //"http://localhost:3001/poems";
@@ -45,11 +47,12 @@ export default async function Page({
     );
   }
 
-  // TODO: Consider wrapping this to reduce the whitespace on the right. Center it a bit more for larger screens anyqway
   return (
     <main className={`${styles.main} mt-3`}>
       <Container>
-        <PoemBody poemData={poemData} />
+        <Suspense fallback={<Loading />}>
+          <PoemBody poemData={poemData} />
+        </Suspense>
       </Container>
     </main>
   );
