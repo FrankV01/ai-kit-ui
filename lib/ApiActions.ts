@@ -24,6 +24,14 @@ async function getBaseUrl(): Promise<string> {
   return baseUrlCache;
 }
 
+export async function allowedEmails(): Promise<Set<string>> {
+  return new Set([
+    "jawzx01@gmail.com",
+    "frank.villasenor@gmail.com",
+    "frank@theOpenSourceU.org",
+  ]);
+}
+
 export async function getPoemIdList(
   pageNum: number = 1,
   pageSize: number = 1000,

@@ -4,18 +4,13 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import PoemResponse from "../../types/PoemResponse";
 import { useDebounce } from "usehooks-ts";
-import { setPoemRating } from "../../lib/ApiActions";
+import { allowedEmails, setPoemRating } from "../../lib/ApiActions";
+import * as Icons from "react-bootstrap-icons";
 
 type PoemRowProps = {
   poemId: number;
   poemData?: PoemResponse;
 };
-
-const allowed = new Set([
-  "jawzx01@gmail.com",
-  "frank.villasenor@gmail.com",
-  "frank@theOpenSourceU.org",
-]);
 
 export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
   // Two things.
@@ -28,7 +23,14 @@ export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
   const [currentRating, setCurrentRating] = useState<number>(0);
   const debouncedCurrentRating = useDebounce<number>(currentRating, 1000);
   const [saving, setSaving] = useState<boolean>(false);
+  const [allowed, setAllowed] = useState<boolean>(false);
 
+  useEffect(() => {
+    allowedEmails().then((emails) => {
+      const email = session?.user?.email || "";
+      setAllowed(emails.has(email));
+    });
+  }, [session]);
   useEffect(() => {
     if (poemData) {
       setCurrentRating(poemData.useForTraining * 10);
@@ -36,29 +38,27 @@ export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
   }, [poemData]);
   useEffect(() => {
     if (!debouncedCurrentRating) return;
-
     const normalizedRating = Math.round(debouncedCurrentRating / 10);
     if (poemData?.useForTraining === normalizedRating) return; //Unchanged
     setSaving(true);
 
-    console.log("normalizedRating", poemId, normalizedRating);
     setPoemRating(poemId, normalizedRating)
       .then(() => {
         if (poemData?.useForTraining) {
           poemData.useForTraining = normalizedRating;
         }
-        setSaving(false);
       })
       .catch((er) => {
         console.error("Error during saving");
         console.error(er);
+      })
+      .finally(() => {
         setSaving(false);
       });
   }, [debouncedCurrentRating, poemId]);
 
   if (!session || !session?.user) return <></>; //hide if not logged in.
-  const email = session?.user?.email || "";
-  if (!allowed.has(email))
+  if (!allowed)
     return (
       <div className={"mt-4"}>
         <h5 className={"text-body-secondary"}>Current Rating</h5>
@@ -72,7 +72,12 @@ export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
       <Form.Group controlId="toRate">
         <Form.Label>
           <h5 className={"text-body-secondary"}>
-            Change the Rating {saving && <strong>saving</strong>}
+            Change the Rating{" "}
+            {saving && (
+              <strong>
+                <Icons.SaveFill />
+              </strong>
+            )}
           </h5>
         </Form.Label>
         <Form.Range

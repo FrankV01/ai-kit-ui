@@ -8,6 +8,7 @@ import * as Icons from "react-bootstrap-icons";
 import PoemLoading from "./PoemLoading";
 import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
 import { useInterval } from "usehooks-ts";
+import { useSession } from "next-auth/react";
 
 export type PoemCardProps = {
   id: number;
@@ -16,6 +17,7 @@ export type PoemCardProps = {
 export default function PoemCard({ id }: PoemCardProps) {
   const [data, setData] = React.useState<PoemResponse>({} as PoemResponse);
   const [loading, setLoading] = React.useState<boolean>(true);
+  const { data: session } = useSession();
 
   const refreshData = () => {
     getPoemById(id)
@@ -83,10 +85,15 @@ export default function PoemCard({ id }: PoemCardProps) {
           }}
         />
       </Card.Body>
-      <Card.Footer className={"bottom small text-muted text-end"}>
-        <Link className={"link-secondary me-0"} href={`/poem/${data.id}`}>
-          View...
-        </Link>
+      <Card.Footer className={"bottom small text-muted "}>
+        {session?.user?.email && (
+          <span>Training Rating: {data.useForTraining}</span>
+        )}
+        <span className={"float-end"}>
+          <Link className={"link-secondary me-0 "} href={`/poem/${data.id}`}>
+            View...
+          </Link>
+        </span>
       </Card.Footer>
     </Card>
   );

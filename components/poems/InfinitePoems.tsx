@@ -4,6 +4,7 @@ import { getGroupedPoemIds } from "../../lib/ApiActions";
 import PoemRow from "./PoemRow";
 import React, { useEffect, useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { LoadingColumn } from "./LoadingColumn";
 
 type InfinitePoemsProps = {};
 
@@ -13,27 +14,26 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
   const [error, setError] = useState("");
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  let semaphore = false;
 
   const moreData = () => {
-    setIsLoading(true);
-    console.log("more data", page, hasMore);
+    if (semaphore) return;
+    setIsLoading((semaphore = true));
     getGroupedPoemIds(page, 6)
       .then((data) => {
-        const s = poemData.flat();
-
-        //setHasMore(data.length === 2);
-        console.log("have new data", data, data.length);
+        setHasMore(data.length === 2);
         setPoemData((prev) => [...prev, ...data]);
-        setIsLoading(false);
       })
       .catch((err) => {
         setError("error occurred during retrieval of poem data");
-        setIsLoading(false);
+      })
+      .finally(() => {
+        setPage((prev) => prev + 1);
+        setIsLoading((semaphore = false));
       });
-    setPage((prev) => prev + 1);
   };
 
-  // Produces the react component.
+  // Produces the React components.
   const rows = useMemo(
     () =>
       poemData.map((itm) => (
@@ -42,21 +42,20 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
     [poemData, page],
   );
 
-  // console.log("poemData", poemData.length, poemData);
-  // console.log("rows", rows.length);
-  // console.log("hasMore", hasMore);
-
   return (
     <>
       <InfiniteScroll
         dataLength={poemData.length}
         next={moreData}
         hasMore={hasMore}
-        loader={<p>Loading...</p>}
-        endMessage={<p>No more data to load.</p>}
+        loader={<LoadingColumn />}
+        endMessage={
+          <div className={"m-auto"}>
+            <h4>All poems Displayed</h4>
+          </div>
+        }
       >
-        {rows.length ? rows : <></>}
-        {isLoading && <p>Loading...</p>}
+        {!isLoading && rows.length ? rows : <LoadingColumn />}
         {error && <p>Error: {error}</p>}
       </InfiniteScroll>
     </>
