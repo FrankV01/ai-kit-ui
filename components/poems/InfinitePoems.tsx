@@ -42,9 +42,9 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
     [poemData, page],
   );
 
-  console.log("poemData", poemData.length, poemData);
-  console.log("rows", rows.length);
-  console.log("hasMore", hasMore);
+  // console.log("poemData", poemData.length, poemData);
+  // console.log("rows", rows.length);
+  // console.log("hasMore", hasMore);
 
   return (
     <>

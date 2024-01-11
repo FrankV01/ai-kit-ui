@@ -1,12 +1,13 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { getPoemById, getPoemIdList } from "../../lib/ApiActions";
+import React, { useEffect } from "react";
+import { getPoemById } from "../../lib/ApiActions";
 import PoemResponse from "../../types/PoemResponse";
 import { Card } from "react-bootstrap";
 import Link from "next/link";
 import * as Icons from "react-bootstrap-icons";
 import PoemLoading from "./PoemLoading";
 import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
+import { useInterval } from "usehooks-ts";
 
 export type PoemCardProps = {
   id: number;
@@ -16,7 +17,7 @@ export default function PoemCard({ id }: PoemCardProps) {
   const [data, setData] = React.useState<PoemResponse>({} as PoemResponse);
   const [loading, setLoading] = React.useState<boolean>(true);
 
-  useEffect(() => {
+  const refreshData = () => {
     getPoemById(id)
       .then((poem) => {
         setData(poem);
@@ -28,6 +29,11 @@ export default function PoemCard({ id }: PoemCardProps) {
         console.error(`an error occurred during getPoemById for ${id}`);
         console.error(err);
       });
+  };
+
+  useInterval(refreshData, 5000 * 2);
+  useEffect(() => {
+    refreshData();
   }, [id]);
 
   if (loading)
