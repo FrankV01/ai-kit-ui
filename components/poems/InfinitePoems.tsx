@@ -39,7 +39,7 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
       poemData.map((itm) => (
         <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />
       )),
-    [poemData, page],
+    [poemData],
   );
 
   return (
@@ -55,7 +55,8 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
           </div>
         }
       >
-        {!isLoading && rows.length ? rows : <LoadingColumn />}
+        {rows.length !== 0 ? rows : <LoadingColumn />}
+        {isLoading && <LoadingColumn />}
         {error && <p>Error: {error}</p>}
       </InfiniteScroll>
     </>
