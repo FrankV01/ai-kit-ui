@@ -1,10 +1,7 @@
 import styles from "./page.module.css";
-
-import "bootswatch/dist/litera/bootstrap.min.css";
+//import "bootswatch/dist/litera/bootstrap.min.css";
 import React, { Suspense } from "react";
 import Loading from "./loading";
-import PoemRow from "../components/poems/PoemRow";
-import { getPoemIdList } from "../lib/ApiActions";
 import { InfinitePoems } from "../components/poems/InfinitePoems";
 
 const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http://localhost:3001/poems";
