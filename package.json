@@ -1,6 +1,6 @@
 {
   "name": "poems-ui",
-  "version": "1.62.20240110",
+  "version": "2.0.20240124",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,18 +19,18 @@
     "next-sitemap": "^4.2.3",
     "nextjs-google-analytics": "^2.3.3",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.9.2",
+    "react-bootstrap": "^2.10.0",
     "react-bootstrap-icons": "^1.10.3",
     "react-datetime": "^3.2.0",
     "react-dom": "^18.2.0",
     "react-infinite-scroll-component": "^6.1.0",
-    "styled-components": "^6.1.6",
-    "usehooks-ts": "^2.9.2"
+    "styled-components": "^6.1.8",
+    "usehooks-ts": "^2.9.5"
   },
   "devDependencies": {
     "@types/dompurify": "^3.0.5",
-    "@types/node": "^20.10.6",
-    "@types/react": "^18.2.46",
+    "@types/node": "^20.11.6",
+    "@types/react": "^18.2.48",
     "@types/react-bootstrap": "^0.32.35",
     "@types/react-dom": "^18.2.18",
     "eslint": "^8.56.0",
