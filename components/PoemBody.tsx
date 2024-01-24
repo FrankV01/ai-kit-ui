@@ -1,11 +1,11 @@
-import PoemResponse from "../types/PoemResponse";
+import ISessionlessResponse from "../types/ISessionlessResponse";
 import { Container, Row, Col } from "react-bootstrap";
 import SafeMarkdownToHtml from "../lib/SafeMarkdownToHtml";
 import BasicPoemBreadcrub from "./BasicPoemBreadcrub";
 import PoemRatingWidget from "./poems/PoemRatingWidget";
 
 type PoemBodyPropsType = {
-  poemData: PoemResponse;
+  poemData: ISessionlessResponse;
 };
 
 const promptTitle =
@@ -33,7 +33,7 @@ const PoemBody = ({ poemData }: PoemBodyPropsType) => {
           <div
             className={"body p-2 my-3"}
             dangerouslySetInnerHTML={{
-              __html: SafeMarkdownToHtml(poemData.poem),
+              __html: SafeMarkdownToHtml(poemData.response),
             }}
           />
           <h4 className={"text-body-secondary"} title={promptTitle}>
@@ -42,7 +42,7 @@ const PoemBody = ({ poemData }: PoemBodyPropsType) => {
           <div title={promptTitle} className={"small text-body-secondary"}>
             <PromptWidget />
           </div>
-          <PoemRatingWidget poemId={poemData.id} poemData={poemData} />
+          <PoemRatingWidget poemId={poemData.id!} poemData={poemData} />
           <div className={"mt-3 small text-secondary float-end"}>
             <span title={"ID"}>{poemData.id}</span> |{" "}
             <span title={"Created Date"}>

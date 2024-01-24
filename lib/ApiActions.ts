@@ -3,7 +3,7 @@ import EvtMgr from "./EnvMgr";
 import { getServerSession } from "next-auth/next";
 import { AdapterUser } from "next-auth/adapters";
 import { User } from "next-auth";
-import PoemResponse from "../types/PoemResponse";
+import { ISessionlessResponse } from "../types/ISessionlessResponse";
 import {
   IConfigurationItem,
   IConfigurations,
@@ -39,7 +39,7 @@ export async function getPoemIdList(
   log("getPoemIdList:paging", pageNum, pageSize);
   const base = await getBaseUrl();
   log("getPoemIdList:base", base);
-  const url = `${base}/poems/ids?pageNum=${pageNum}&pageSize=${pageSize}`;
+  const url = `${base}/ai/sessionless/ids?pageNum=${pageNum}&pageSize=${pageSize}`;
   if (!url) {
     throw new Error("Invalid environment configs");
   }
@@ -89,10 +89,10 @@ export async function getSiteConfigs(): Promise<
   return (await res.json()) as IConfigurationItem[];
 }
 
-export async function getPoemById(id: number): Promise<PoemResponse> {
+export async function getPoemById(id: number): Promise<ISessionlessResponse> {
   log("getPoemIdList:getPoemById", id);
   const base = await getBaseUrl();
-  const url = `${base}/poem/${id}`;
+  const url = `${base}/ai/sessionless/id/${id}`;
   if (!url) {
     throw new Error("Invalid environment configs");
   }
@@ -112,9 +112,8 @@ export async function setPoemRating(poemId: number, rating: number) {
   console.log("setPoemRating");
   if (!poemId) return;
   if (rating > -1 && rating < 11) {
-    //Submit
     const baseUrl = await getBaseUrl();
-    const url = `${baseUrl}/poem/${poemId}/rating`;
+    const url = `${baseUrl}/ai/query/${poemId}/rating`;
     const body = {
       id: poemId,
       rating: rating,
@@ -148,11 +147,12 @@ export async function queueRequest(formData: FormData) {
 
   const baseUrl = await getBaseUrl(); // process.env.API_URL ? `${process.env.API_URL}` : ""; //"http://localhost:3001/poems";
 
-  const url = `${baseUrl}/queue_prompt`;
+  const url = `${baseUrl}/promptQ`;
   console.log("queueRequest", formData);
   const rawFormData = {
     source: formData.get("email"),
     prompt: formData.get("prompt"),
+    userId: 0, // UNDER_DEV: session.user.id,
   };
 
   try {

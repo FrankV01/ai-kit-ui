@@ -1,28 +1,31 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Card, Stack, Col, Row, Container } from "react-bootstrap";
+import { Card, Col, Row, Container } from "react-bootstrap";
 import Link from "next/link";
-import PoemResponse from "../types/PoemResponse";
+import ISessionlessResponse from "../types/ISessionlessResponse";
 import SafeMarkdownToHtml from "../lib/SafeMarkdownToHtml";
 import * as Icons from "react-bootstrap-icons";
 
 export interface PoemDisplaySimpleProps {
-  entries: PoemResponse[];
+  entries: ISessionlessResponse[];
 }
 
 const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
-  const [poemDataMd, setPoemDataMd] = useState<PoemResponse[][]>([]);
+  const [poemDataMd, setPoemDataMd] = useState<ISessionlessResponse[][]>([]);
   useEffect(() => {
-    const _poemDataMd: PoemResponse[] = entries.map((itm: PoemResponse) => ({
-      poem: SafeMarkdownToHtml(itm.poem),
-      title: itm.title,
-      id: itm.id,
-      createdDate: itm.createdDate,
-      prompt: itm.prompt || "",
-      poemRaw: itm.poemRaw || "",
-      useForTraining: itm.useForTraining,
-      aiModelGeneration: itm.aiModelGeneration || "unknown",
-    }));
+    const _poemDataMd: ISessionlessResponse[] = entries.map(
+      (itm: ISessionlessResponse) => ({
+        response: SafeMarkdownToHtml(itm.response),
+        title: itm.title,
+        id: itm.id,
+        createdDate: itm.createdDate,
+        hidden: itm.hidden,
+        prompt: itm.prompt || "",
+        responseRaw: itm.responseRaw || "",
+        internalTrainingRating: itm.internalTrainingRating,
+        aiModelGeneration: itm.aiModelGeneration || "unknown",
+      }),
+    );
 
     const _poemDataMdGrouped = _poemDataMd.reduce((acc, curr, i) => {
       const chunkIndex = Math.floor(i / 3);
@@ -33,7 +36,7 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
 
       acc[chunkIndex].push(curr);
       return acc;
-    }, [] as PoemResponse[][]);
+    }, [] as ISessionlessResponse[][]);
 
     setPoemDataMd(_poemDataMdGrouped);
   }, [entries]);
@@ -91,7 +94,7 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
                       <Card.Body className={"overflow-hidden"}>
                         <Card.Text
                           dangerouslySetInnerHTML={{
-                            __html: itm?.poem || "loading",
+                            __html: itm?.response || "loading",
                           }}
                           className={"overflow-hidden"}
                         />

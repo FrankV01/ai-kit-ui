@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { getPoemById } from "../../lib/ApiActions";
-import PoemResponse from "../../types/PoemResponse";
+import { ISessionlessResponse } from "../../types/ISessionlessResponse";
 import { Card } from "react-bootstrap";
 import Link from "next/link";
 import * as Icons from "react-bootstrap-icons";
@@ -15,11 +15,12 @@ export type PoemCardProps = {
 };
 
 export default function PoemCard({ id }: PoemCardProps) {
-  const [data, setData] = React.useState<PoemResponse>({} as PoemResponse);
+  const [data, setData] = React.useState<ISessionlessResponse>(
+    {} as ISessionlessResponse,
+  );
   const [loading, setLoading] = React.useState<boolean>(true);
   const { data: session } = useSession();
-
-  const refreshData = () => {
+  const refreshData = useCallback(() => {
     getPoemById(id)
       .then((poem) => {
         setData(poem);
@@ -31,12 +32,12 @@ export default function PoemCard({ id }: PoemCardProps) {
         console.error(`an error occurred during getPoemById for ${id}`);
         console.error(err);
       });
-  };
+  }, [id]);
 
   useInterval(refreshData, 5000 * 2);
   useEffect(() => {
     refreshData();
-  }, [id]);
+  }, [id, refreshData]);
 
   if (loading)
     return (
@@ -81,13 +82,13 @@ export default function PoemCard({ id }: PoemCardProps) {
           as={"div"}
           className={"overflow-hidden p-1 m-1"}
           dangerouslySetInnerHTML={{
-            __html: SafeMarkdownToHtml(data.poem),
+            __html: SafeMarkdownToHtml(data.response),
           }}
         />
       </Card.Body>
       <Card.Footer className={"bottom small text-muted "}>
         {session?.user?.email && (
-          <span>Training Rating: {data.useForTraining}</span>
+          <span>Training Rating: {data.internalTrainingRating}</span>
         )}
         <span className={"float-end"}>
           <Link className={"link-secondary me-0 "} href={`/poem/${data.id}`}>

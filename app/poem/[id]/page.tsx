@@ -1,14 +1,17 @@
 import styles from "../../page.module.css";
 import { Container } from "react-bootstrap";
-import PoemResponse from "../../../types/PoemResponse";
+import ISessionlessResponse from "../../../types/ISessionlessResponse";
 import PoemBody from "../../../components/PoemBody";
 import Loading from "../loading";
 import React, { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
-const url = process.env.API_URL ? `${process.env.API_URL}/poem` : ""; //"http://localhost:3001/poems";
 
-async function getData(id: number): Promise<PoemResponse> {
+const url = process.env.API_URL
+  ? `${process.env.API_URL}/ai/sessionless/id`
+  : "";
+
+async function getData(id: number): Promise<ISessionlessResponse> {
   if (!id || [-1, -100].includes(id)) {
     throw new Error("Given ID Not found");
   }

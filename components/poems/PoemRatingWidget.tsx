@@ -2,14 +2,14 @@
 import Form from "react-bootstrap/Form";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import PoemResponse from "../../types/PoemResponse";
+import ISessionlessResponse from "../../types/ISessionlessResponse";
 import { useDebounce } from "usehooks-ts";
 import { allowedEmails, setPoemRating } from "../../lib/ApiActions";
 import * as Icons from "react-bootstrap-icons";
 
 type PoemRowProps = {
   poemId: number;
-  poemData?: PoemResponse;
+  poemData?: ISessionlessResponse;
 };
 
 export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
@@ -17,9 +17,9 @@ export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
   //  We need to get the current rating and display one UI.
   // If not rating, display the Range control.
   const { data: session } = useSession();
-  const [poemDetails, setPoemDetails] = useState<PoemResponse | undefined>(
-    poemData,
-  );
+  const [poemDetails, setPoemDetails] = useState<
+    ISessionlessResponse | undefined
+  >(poemData);
   const [currentRating, setCurrentRating] = useState<number>(0);
   const debouncedCurrentRating = useDebounce<number>(currentRating, 1000);
   const [saving, setSaving] = useState<boolean>(false);
@@ -33,19 +33,20 @@ export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
   }, [session]);
   useEffect(() => {
     if (poemData) {
-      setCurrentRating(poemData.useForTraining * 10);
+      setCurrentRating(poemData.internalTrainingRating * 10);
+      setPoemDetails(poemData);
     }
   }, [poemData]);
   useEffect(() => {
     if (!debouncedCurrentRating) return;
     const normalizedRating = Math.round(debouncedCurrentRating / 10);
-    if (poemData?.useForTraining === normalizedRating) return; //Unchanged
+    if (poemData?.internalTrainingRating === normalizedRating) return; //Unchanged
     setSaving(true);
 
     setPoemRating(poemId, normalizedRating)
       .then(() => {
-        if (poemData?.useForTraining) {
-          poemData.useForTraining = normalizedRating;
+        if (poemData?.internalTrainingRating) {
+          poemData.internalTrainingRating = normalizedRating;
         }
       })
       .catch((er) => {
@@ -55,7 +56,7 @@ export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
       .finally(() => {
         setSaving(false);
       });
-  }, [debouncedCurrentRating, poemId]);
+  }, [debouncedCurrentRating, poemId, poemData]);
 
   if (!session || !session?.user) return <></>; //hide if not logged in.
   if (!allowed)
@@ -63,7 +64,7 @@ export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
       <div className={"mt-4"}>
         <h5 className={"text-body-secondary"}>Current Rating</h5>
         <div className={"text-info-emphasis"}>
-          {poemDetails?.useForTraining}
+          {poemDetails?.internalTrainingRating}
         </div>
       </div>
     );
