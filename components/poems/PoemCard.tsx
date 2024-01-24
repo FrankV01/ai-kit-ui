@@ -34,7 +34,7 @@ export default function PoemCard({ id }: PoemCardProps) {
       });
   }, [id]);
 
-  useInterval(refreshData, 5000 * 2);
+  useInterval(refreshData, 60000);
   useEffect(() => {
     refreshData();
   }, [id, refreshData]);
