@@ -22,15 +22,27 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
     getGroupedPoemIds(page, 6)
       .then((data) => {
         setHasMore(data.length === 2);
-        setPoemData((prev) => [...prev, ...data]);
+        // There is a problem with rows being duplicated; it doesn't seem to be page number related.
+        setPoemData((prev) => {
+          const combined = [...prev];
+          for (const datum of data) {
+            if (!combined.some((i) => i[0] === datum[0])) {
+              combined.push(datum);
+            }
+          }
+          return combined;
+          //return [...prev, ...data];
+        });
       })
       .catch((err) => {
         setError("error occurred during retrieval of poem data");
       })
       .finally(() => {
-        setPage((prev) => prev + 1);
         setIsLoading(false);
       });
+
+    // Update the page once the promise is triggered. Don't need to wait for the promise to resolve.
+    setPage((prev) => prev + 1);
   };
 
   useEffectOnce(() => {
