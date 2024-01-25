@@ -152,7 +152,7 @@ export async function queueRequest(formData: FormData) {
   const rawFormData = {
     source: formData.get("email"),
     prompt: formData.get("prompt"),
-    userId: 0, // UNDER_DEV: session.user.id,
+    userId: 1, // UNDER_DEV: session.user.id,
   };
 
   try {

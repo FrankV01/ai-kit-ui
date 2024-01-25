@@ -1,7 +1,7 @@
 import ISessionlessResponse from "../../../../types/ISessionlessResponse";
 import PoemCardDisplay from "../../../../components/PoemCardDisplay";
 
-const url = process.env.API_URL ? `${process.env.API_URL}/poems/tag` : ""; //"http://localhost:3001/poems";
+const url = process.env.API_URL ? `${process.env.API_URL}/ai/query/tag` : ""; //"http://localhost:3001/poems";
 
 async function getData(tag: string): Promise<ISessionlessResponse[]> {
   if (!url) {
