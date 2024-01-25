@@ -5,6 +5,7 @@ import PoemRow from "./PoemRow";
 import React, { useEffect, useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LoadingColumn } from "./LoadingColumn";
+import { useEffectOnce } from "usehooks-ts";
 
 type InfinitePoemsProps = {};
 
@@ -14,11 +15,10 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
   const [error, setError] = useState("");
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  let semaphore = false;
 
   const moreData = () => {
-    if (semaphore) return;
-    setIsLoading((semaphore = true));
+    if (isLoading) return;
+    setIsLoading(true);
     getGroupedPoemIds(page, 6)
       .then((data) => {
         setHasMore(data.length === 2);
@@ -29,9 +29,13 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
       })
       .finally(() => {
         setPage((prev) => prev + 1);
-        setIsLoading((semaphore = false));
+        setIsLoading(false);
       });
   };
+
+  useEffectOnce(() => {
+    moreData();
+  });
 
   // Produces the React components.
   const rows = useMemo(
