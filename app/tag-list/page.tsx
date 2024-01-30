@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
-const url = process.env.API_URL ? `${process.env.API_URL}/tags` : ""; //"http://localhost:3001/poems";
+const url = process.env.API_URL ? `${process.env.API_URL}/tags` : "";
 
 type TagsResponse = { id: number; tag: string };
 
