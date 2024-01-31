@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
-const url = process.env.API_URL ? `${process.env.API_URL}/tags` : "";
+const url = process.env.API_URL ? `${process.env.API_URL}/tags/serverless` : "";
 
 type TagsResponse = { id: number; tag: string };
 
