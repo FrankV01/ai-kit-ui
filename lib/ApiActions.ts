@@ -9,6 +9,7 @@ import {
   IConfigurations,
 } from "../types/IConfigurationItem";
 import "server-only";
+import { TagsResponse } from "./Types";
 
 export async function demandPoem(): Promise<string> {
   return Promise.resolve("Demand example; ".repeat(20));
@@ -195,4 +196,23 @@ export async function RecordLogin(user: User | AdapterUser) {
   } else {
     console.warn(`${RecordLoginMsg}::not ok`, JSON.stringify(result));
   }
+}
+
+export async function getTagListData(): Promise<TagsResponse[]> {
+  const baseUrl = (await EvtMgr()).BASE_URL;
+  const url = baseUrl ? `${baseUrl}/tags/serverless` : "";
+
+  if (!url) {
+    throw new Error("Invalid environment configs");
+  }
+  const res = await fetch(url, {
+    cache: "no-cache",
+  });
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    console.log(`Failed to fetch data from ${url}`);
+    throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
+  }
+  const s1 = (await res.json()) as TagsResponse[];
+  return s1;
 }

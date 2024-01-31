@@ -1,30 +1,12 @@
 import Link from "next/link";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
+import { getTagListData } from "../../lib/ApiActions";
 const url = process.env.API_URL ? `${process.env.API_URL}/tags/serverless` : "";
-
-type TagsResponse = { id: number; tag: string };
 
 export const dynamic = "force-dynamic";
 
-async function getData(): Promise<TagsResponse[]> {
-  if (!url) {
-    throw new Error("Invalid environment configs");
-  }
-  console.log(`Fetching data from ${url}`);
-  const res = await fetch(url, {
-    cache: "no-cache",
-  });
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    console.log(`Failed to fetch data from ${url}`);
-    throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
-  }
-  const s1 = (await res.json()) as TagsResponse[];
-  return s1;
-}
-
 export default async function Page() {
-  const results = await getData();
+  const results = await getTagListData();
   return (
     <div key={`tag-list-div`}>
       <Container>
