@@ -2,26 +2,32 @@ import { Button } from "react-bootstrap";
 import { requestPoem } from "../../lib/ApiActions";
 import { useState } from "react";
 
-export const CreatePoemButton = () => {
-  const [poem, setPoem] = useState<string>("");
+type CreatePoemButtonProps = {
+  onCreatePoem: (poemId: number) => void;
+};
 
+export const CreatePoemButton = ({ onCreatePoem }: CreatePoemButtonProps) => {
+  const [havePoem, setHavePoem] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
   return (
     <>
       <Button
         onClick={() => {
           requestPoem()
             .then((poemData) => {
-              setPoem(poemData.message);
+              onCreatePoem(poemData.id);
+              setHavePoem(true);
             })
             .catch((err) => {
-              setPoem(`Sorry. An error occurred.`);
+              setHavePoem(true);
+              setError("error occurred during poem creation");
             });
         }}
         variant="primary"
       >
         Create Poem
       </Button>
-      <div>{poem && <p>{poem}</p>}</div>
+      <div>{error}</div>
     </>
   );
 };

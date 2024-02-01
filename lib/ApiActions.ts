@@ -9,7 +9,7 @@ import {
   IConfigurations,
 } from "../types/IConfigurationItem";
 import "server-only";
-import { TagsResponse } from "./Types";
+import { SessionlessResponseApiResponseType, TagsResponse } from "./Types";
 
 export async function demandPoem(): Promise<string> {
   return Promise.resolve("Demand example; ".repeat(20));
@@ -217,7 +217,7 @@ export async function getTagListData(): Promise<TagsResponse[]> {
   return s1;
 }
 
-export async function requestPoem() {
+export async function requestPoem(): Promise<SessionlessResponseApiResponseType> {
   const method = "POST";
   const urlEndPoint = "ai/sessionless";
   const body = {
@@ -225,10 +225,7 @@ export async function requestPoem() {
       "Create a poem about the future of computing and how fast it moves forward.",
   };
   const ret = await apiRequest(method, urlEndPoint, body);
-  return ret as {
-    message: string;
-    messages?: string[];
-  };
+  return ret as SessionlessResponseApiResponseType;
 }
 
 export async function apiRequest(

@@ -20,13 +20,21 @@ export enum PoemCardType {
 export type PoemCardProps = {
   id?: number;
   cardType?: PoemCardType;
+  newPoem?: {
+    onCreatePoem: (poemId: number) => void;
+  };
   placeholder?: {
     title: string;
     body: string;
   };
 };
 
-export default function PoemCard({ id, cardType, placeholder }: PoemCardProps) {
+export default function PoemCard({
+  id,
+  cardType,
+  placeholder,
+  newPoem,
+}: PoemCardProps) {
   const [data, setData] = React.useState<ISessionlessResponse>(
     {} as ISessionlessResponse,
   );
@@ -137,7 +145,15 @@ export default function PoemCard({ id, cardType, placeholder }: PoemCardProps) {
                   <div className={"p-1"}>Generate a new Poem</div>
                 </Card.Title>
                 <Card.Text as={"div"} className={"overflow-hidden p-1 m-1"}>
-                  <CreatePoemButton />
+                  <CreatePoemButton
+                    onCreatePoem={(poemId: number) => {
+                      if (!newPoem || !newPoem.onCreatePoem)
+                        throw new Error(
+                          "newPoem.onCreatePoem is required and not provided",
+                        );
+                      newPoem.onCreatePoem(poemId);
+                    }}
+                  />
                 </Card.Text>
               </>
             )}
