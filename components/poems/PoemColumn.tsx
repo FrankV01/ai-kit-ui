@@ -38,18 +38,25 @@ export default function PoemColumn({
     return (
       <>
         <Col key={`PoemCardDisplay-${poemId1}-1`} xs={12} md={4} lg={4}>
-          <PoemCard id={77777777777} cardType={PoemCardType.PlaceholderCard} />
+          <PoemCard
+            cardType={PoemCardType.PlaceholderCard}
+            placeholder={{
+              title: "Welcome",
+              body: "This site has been undergoing major surgery although that has mostly been on the backend. ",
+            }}
+          />
         </Col>
         <Col key={`PoemCardDisplay-${poemId2}-2`} xs={12} md={4} lg={4}>
-          {poemId2 && (
-            <PoemCard
-              id={888888888}
-              cardType={PoemCardType.NewPoemButtonCard}
-            />
-          )}
+          <PoemCard cardType={PoemCardType.NewPoemButtonCard} />
         </Col>
         <Col key={`PoemCardDisplay-${poemId3}-3`} xs={12} md={4} lg={4}>
-          <PoemCard id={99999999} cardType={PoemCardType.PlaceholderCard} />
+          <PoemCard
+            cardType={PoemCardType.PlaceholderCard}
+            placeholder={{
+              title: "Create a poem on demand",
+              body: "See our AI model work in real time.",
+            }}
+          />
         </Col>
       </>
     );

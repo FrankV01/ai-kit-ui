@@ -216,3 +216,42 @@ export async function getTagListData(): Promise<TagsResponse[]> {
   const s1 = (await res.json()) as TagsResponse[];
   return s1;
 }
+
+export async function requestPoem() {
+  const method = "POST";
+  const urlEndPoint = "ai/sessionless";
+  const body = {
+    prompt:
+      "Create a poem about the future of computing and how fast it moves forward.",
+  };
+  const ret = await apiRequest(method, urlEndPoint, body);
+  return ret as {
+    message: string;
+    messages?: string[];
+  };
+}
+
+export async function apiRequest(
+  method: "GET" | "POST" | "PUT" | "DELETE",
+  urlEndPoint: string,
+  body?: any,
+): Promise<any> {
+  const baseUrl = (await EvtMgr()).BASE_URL;
+  const url = baseUrl ? `${baseUrl}/${urlEndPoint}` : "";
+  if (!url) {
+    throw new Error("Invalid environment configs");
+  }
+
+  const bodyStr = body ? JSON.stringify(body) : "";
+  const res = await fetch(url, {
+    method: method,
+    cache: "no-cache",
+    headers: { "Content-Type": "application/json" },
+    body: bodyStr,
+  });
+  if (!res.ok) {
+    console.log(`Failed to fetch data from ${url}`);
+    throw new Error("Failed to fetch data");
+  }
+  return await res.json();
+}

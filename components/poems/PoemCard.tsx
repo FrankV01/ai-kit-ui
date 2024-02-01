@@ -9,6 +9,7 @@ import PoemLoading from "./PoemLoading";
 import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
 import { useInterval } from "usehooks-ts";
 import { useSession } from "next-auth/react";
+import CreatePoemButton from "./CreatePoemButton";
 
 export enum PoemCardType {
   PoemCard,
@@ -17,11 +18,15 @@ export enum PoemCardType {
 }
 
 export type PoemCardProps = {
-  id: number;
+  id?: number;
   cardType?: PoemCardType;
+  placeholder?: {
+    title: string;
+    body: string;
+  };
 };
 
-export default function PoemCard({ id, cardType }: PoemCardProps) {
+export default function PoemCard({ id, cardType, placeholder }: PoemCardProps) {
   const [data, setData] = React.useState<ISessionlessResponse>(
     {} as ISessionlessResponse,
   );
@@ -29,7 +34,12 @@ export default function PoemCard({ id, cardType }: PoemCardProps) {
   const [loading, setLoading] = React.useState<boolean>(true);
   const { data: session } = useSession();
   const refreshData = useCallback(() => {
-    if (cardType !== PoemCardType.PoemCard) return;
+    if (cardType !== PoemCardType.PoemCard) {
+      setLoading(false);
+      return;
+    }
+    if (!id)
+      throw new Error("id is undefined and required for PoemCardType.PoemCard");
     getPoemById(id)
       .then((poem) => {
         setData(poem);
@@ -51,7 +61,7 @@ export default function PoemCard({ id, cardType }: PoemCardProps) {
   if (loading)
     return (
       <div>
-        <PoemLoading id={id} />
+        <PoemLoading id={789} />
       </div>
     );
 
@@ -112,16 +122,25 @@ export default function PoemCard({ id, cardType }: PoemCardProps) {
           </>
         ) : (
           <>
-            isPlaceholder ? <Card.Title>Placeholder</Card.Title> :{" "}
-            <>
-              <Card.Title>
-                <div className={"p-1"}>isNewPoemButton title</div>
-              </Card.Title>
-
-              <Card.Text as={"div"} className={"overflow-hidden p-1 m-1"}>
-                <div>Under Development</div>
-              </Card.Text>
-            </>
+            {isPlaceholder ? (
+              <>
+                <Card.Title>
+                  {placeholder?.title ? placeholder?.title : "-"}
+                </Card.Title>
+                <Card.Text as={"div"} className={"overflow-hidden p-1 m-1"}>
+                  {placeholder?.body ? placeholder?.body : "-"}
+                </Card.Text>
+              </>
+            ) : (
+              <>
+                <Card.Title>
+                  <div className={"p-1"}>Generate a new Poem</div>
+                </Card.Title>
+                <Card.Text as={"div"} className={"overflow-hidden p-1 m-1"}>
+                  <CreatePoemButton />
+                </Card.Text>
+              </>
+            )}
           </>
         )}
       </Card.Body>

@@ -59,12 +59,7 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
 
     rows.unshift(
       <Row key={`PoemCardDisplay-poemCol-987654321`}>
-        <PoemColumn
-          poemId1={987654321}
-          poemId2={987654320}
-          poemId3={987654319}
-          isPoemCol={false}
-        />
+        <PoemColumn poemId1={987654321} isPoemCol={false} />
       </Row>,
     );
 
