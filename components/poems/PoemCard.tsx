@@ -59,7 +59,7 @@ export default function PoemCard({
         console.error(`an error occurred during getPoemById for ${id}`);
         console.error(err);
       });
-  }, [id]);
+  }, [id, cardType]);
 
   useInterval(refreshData, 60000);
   useEffect(() => {
