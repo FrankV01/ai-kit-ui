@@ -46,7 +46,6 @@ export const PoemRowGenerator = ({}: PoemRowGeneratorProps) => {
     if (cardStartingLength === 1) {
       cards.push(<GenCard idx={1} />);
     }
-
     if (cards.length !== 2) {
       console.warn("incorrect number of cards", cards.length, cards);
     }
@@ -75,24 +74,6 @@ export const PoemRowGenerator = ({}: PoemRowGeneratorProps) => {
         />
       </Col>
       {newPoemCards}
-      {/*<Col key={`PoemCardDisplay-placeholder-1`} xs={12} md={4} lg={4}>*/}
-      {/*  <PoemCard*/}
-      {/*    cardType={PoemCardType.PlaceholderCard}*/}
-      {/*    placeholder={{*/}
-      {/*      title: "Welcome",*/}
-      {/*      body: "This site has been undergoing major surgery although that has mostly been on the backend. ",*/}
-      {/*    }}*/}
-      {/*  />*/}
-      {/*</Col>*/}
-      {/*<Col key={`PoemCardDisplay-placeholder-3`} xs={12} md={4} lg={4}>*/}
-      {/*  <PoemCard*/}
-      {/*    cardType={PoemCardType.PlaceholderCard}*/}
-      {/*    placeholder={{*/}
-      {/*      title: "Create a poem on demand",*/}
-      {/*      body: "See our AI model work in real time.",*/}
-      {/*    }}*/}
-      {/*  />*/}
-      {/*</Col>*/}
     </>
   );
 };
