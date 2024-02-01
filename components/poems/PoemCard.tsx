@@ -10,17 +10,26 @@ import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
 import { useInterval } from "usehooks-ts";
 import { useSession } from "next-auth/react";
 
+export enum PoemCardType {
+  PoemCard,
+  NewPoemButtonCard,
+  PlaceholderCard,
+}
+
 export type PoemCardProps = {
   id: number;
+  cardType?: PoemCardType;
 };
 
-export default function PoemCard({ id }: PoemCardProps) {
+export default function PoemCard({ id, cardType }: PoemCardProps) {
   const [data, setData] = React.useState<ISessionlessResponse>(
     {} as ISessionlessResponse,
   );
+  cardType = cardType || PoemCardType.PoemCard;
   const [loading, setLoading] = React.useState<boolean>(true);
   const { data: session } = useSession();
   const refreshData = useCallback(() => {
+    if (cardType !== PoemCardType.PoemCard) return;
     getPoemById(id)
       .then((poem) => {
         setData(poem);
@@ -46,6 +55,19 @@ export default function PoemCard({ id }: PoemCardProps) {
       </div>
     );
 
+  if (cardType === PoemCardType.NewPoemButtonCard) {
+  }
+  if (cardType === PoemCardType.PlaceholderCard) {
+  }
+
+  // Under_Dev I'm not sure what the placeholder should look like yet. Should it just be
+  //  blank or should it have the placeholder text? That could be misleading...
+  //  Oh! It could be a "message card" for a static message. Then I could put the welcome or introduction
+  //  message there.
+  const isPlaceholder = cardType === PoemCardType.PlaceholderCard;
+  const isNewPoemButton = cardType === PoemCardType.NewPoemButtonCard;
+  const isPoemCard = cardType === PoemCardType.PoemCard;
+
   return (
     <Card
       bg={"light"}
@@ -59,43 +81,64 @@ export default function PoemCard({ id }: PoemCardProps) {
         style={{ height: "auto" }}
         className={"overflow-hidden p-0 m-0"}
       >
-        <Card.Title>
-          <div className={"p-1"}>
-            <Link
-              key={`Link-${data.id}-title`}
-              className={"link-dark"}
-              href={`/poem/${data.id}`}
-            >
-              {data?.title || "loading"}
-            </Link>
-            <Link
-              key={`Link-${data.id}-2`}
-              className={"link-secondary float-end pe-2"}
-              href={`/poem/${data.id}`}
-            >
-              <Icons.ArrowRightCircleFill size={"1.1rem"} />
-            </Link>
-          </div>
-        </Card.Title>
+        {isPoemCard ? (
+          <>
+            <Card.Title>
+              <div className={"p-1"}>
+                <Link
+                  key={`Link-${data.id}-title`}
+                  className={"link-dark"}
+                  href={`/poem/${data.id}`}
+                >
+                  {data?.title || "loading"}
+                </Link>
+                <Link
+                  key={`Link-${data.id}-2`}
+                  className={"link-secondary float-end pe-2"}
+                  href={`/poem/${data.id}`}
+                >
+                  <Icons.ArrowRightCircleFill size={"1.1rem"} />
+                </Link>
+              </div>
+            </Card.Title>
 
-        <Card.Text
-          as={"div"}
-          className={"overflow-hidden p-1 m-1"}
-          dangerouslySetInnerHTML={{
-            __html: SafeMarkdownToHtml(data.response),
-          }}
-        />
-      </Card.Body>
-      <Card.Footer className={"bottom small text-muted "}>
-        {session?.user?.email && (
-          <span>Training Rating: {data.internalTrainingRating}</span>
+            <Card.Text
+              as={"div"}
+              className={"overflow-hidden p-1 m-1"}
+              dangerouslySetInnerHTML={{
+                __html: SafeMarkdownToHtml(data.response),
+              }}
+            />
+          </>
+        ) : (
+          <>
+            isPlaceholder ? <Card.Title>Placeholder</Card.Title> :{" "}
+            <>
+              <Card.Title>
+                <div className={"p-1"}>isNewPoemButton title</div>
+              </Card.Title>
+
+              <Card.Text as={"div"} className={"overflow-hidden p-1 m-1"}>
+                <div>Under Development</div>
+              </Card.Text>
+            </>
+          </>
         )}
-        <span className={"float-end"}>
-          <Link className={"link-secondary me-0 "} href={`/poem/${data.id}`}>
-            View...
-          </Link>
-        </span>
-      </Card.Footer>
+      </Card.Body>
+      {isPoemCard ? (
+        <Card.Footer className={"bottom small text-muted "}>
+          {session?.user?.email && (
+            <span>Training Rating: {data.internalTrainingRating}</span>
+          )}
+          <span className={"float-end"}>
+            <Link className={"link-secondary me-0 "} href={`/poem/${data.id}`}>
+              View...
+            </Link>
+          </span>
+        </Card.Footer>
+      ) : (
+        <Card.Footer className={"bottom small text-muted "}> </Card.Footer>
+      )}
     </Card>
   );
 }

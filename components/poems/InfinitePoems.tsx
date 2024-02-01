@@ -6,6 +6,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LoadingColumn } from "./LoadingColumn";
 import { useEffectOnce } from "usehooks-ts";
+import { Row } from "react-bootstrap";
+import PoemColumn from "./PoemColumn";
 
 type InfinitePoemsProps = {};
 
@@ -50,13 +52,24 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
   });
 
   // Produces the React components.
-  const rows = useMemo(
-    () =>
-      poemData.map((itm) => (
-        <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />
-      )),
-    [poemData],
-  );
+  const rows = useMemo(() => {
+    const rows = poemData.map((itm) => (
+      <PoemRow key={`poemRow-${itm[0]}`} poemIds={itm} />
+    ));
+
+    rows.unshift(
+      <Row key={`PoemCardDisplay-poemCol-987654321`}>
+        <PoemColumn
+          poemId1={987654321}
+          poemId2={987654320}
+          poemId3={987654319}
+          isPoemCol={false}
+        />
+      </Row>,
+    );
+
+    return rows;
+  }, [poemData]);
 
   return (
     <>
