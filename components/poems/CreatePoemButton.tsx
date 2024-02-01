@@ -7,25 +7,27 @@ type CreatePoemButtonProps = {
 };
 
 export const CreatePoemButton = ({ onCreatePoem }: CreatePoemButtonProps) => {
-  const [havePoem, setHavePoem] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   return (
     <>
       <Button
         onClick={() => {
+          setLoading(true);
           requestPoem()
             .then((poemData) => {
               onCreatePoem(poemData.id);
-              setHavePoem(true);
+              setLoading(false);
             })
             .catch((err) => {
-              setHavePoem(true);
+              setLoading(false);
               setError("error occurred during poem creation");
             });
         }}
         variant="primary"
+        disabled={loading}
       >
-        Create Poem
+        {loading ? "Creating..." : "Create Poem"}
       </Button>
       <div>{error}</div>
     </>

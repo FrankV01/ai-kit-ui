@@ -40,11 +40,11 @@ export const PoemRowGenerator = ({}: PoemRowGeneratorProps) => {
       </Col>
     );
     if (cardStartingLength === 0) {
-      cards.push(<GenCard idx={0} />);
-      cards.push(<GenCard idx={1} />);
+      cards.push(<GenCard key={`gen-card-0`} idx={0} />);
+      cards.push(<GenCard key={`gen-card-1`} idx={1} />);
     }
     if (cardStartingLength === 1) {
-      cards.push(<GenCard idx={1} />);
+      cards.push(<GenCard idx={1} key={`gen-card-1`} />);
     }
     if (cards.length !== 2) {
       console.warn("incorrect number of cards", cards.length, cards);
