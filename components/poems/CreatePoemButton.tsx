@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "react-bootstrap";
 import { requestPoem } from "../../lib/ApiActions";
 import { useState } from "react";
