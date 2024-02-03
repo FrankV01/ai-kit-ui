@@ -1,5 +1,4 @@
 import styles from "./page.module.css";
-//import "bootswatch/dist/litera/bootstrap.min.css";
 import React, { Suspense } from "react";
 import Loading from "./loading";
 import { InfinitePoems } from "../components/poems/InfinitePoems";
