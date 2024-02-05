@@ -217,13 +217,57 @@ export async function getTagListData(): Promise<TagsResponse[]> {
   return s1;
 }
 
+function getRandomElement(arr: string[]): string {
+  let m: number = arr.length,
+    t: string,
+    i: number;
+
+  // While there remain elements to shuffle…
+  while (m) {
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = arr[m];
+    arr[m] = arr[i];
+    arr[i] = t;
+  }
+  return arr[0]; // Return the first element of the shuffled array
+}
+
 export async function requestPoem(): Promise<SessionlessResponseApiResponseType> {
   const method = "POST";
   const urlEndPoint = "ai/sessionless";
   const body = {
-    prompt:
+    prompt: "",
+    prompts: [
       "Create a poem about the future of computing and how fast it moves forward.",
+      "Create a poem about the past of computing and the path it's taken as it it moved forward.",
+      "Create a poem about how difficult this job market is and how it's distressing.",
+      "Create a poem about how difficult this job market is and how it can lead to innovation.",
+      "Create a poem about about the new Apple Vision Pro - an augmented reality computing platform.",
+      "Craft a poem which celebrates the advancing field of artificial intelligence and its impact.",
+      "Compose a poem depicting the evolution of Internet from its birth till now.",
+      "Compose a poem about the way this challenging economy can encourage creativity and entrepreneurship.",
+      "Compose a poem about the cutting-edge Oculus Quest VR experience and its perception-altering tendencies.",
+      "Compose a poem about the influence and evolution of social media in our lives.",
+      "Create a touching poem in a narrative style about a lovelorn AI chatbot longing for human affection.",
+      "Write a poem about the beauty and complexity of coding languages, their similarities to human languages",
+      "Illustrate a tale of struggle and triumph within the challenging ecosystem of Silicon Valley.",
+      "Pen a poem about how telecommunication has connected hearts across distances.",
+      "Create a poem on the blossoming romance between two AI programs.",
+      "Write a poem about futuristic visions of hologram technology.",
+      "Write a poem exploring the intersection between technology and art.",
+      "Create a poem as an ode to the NASA's space program and the Hubble Space Telescope.",
+      "Compose a poem praising the space observation made possible by the Hubble Space Telescope.",
+      "Create a sonnet for the undiscovered mysteries of the quantum realm.",
+      "Create a poem inspired by science fiction, depicting a world managed by IoT (Internet of Things).",
+      "Compose a heartfelt poem about a programmer's love for the immensity of the digital universe.",
+      "Create a poem as an ode to the NASA and the space program as a whole. Write a remembrance of anything involving NASA and the space program.",
+    ],
   };
+  body.prompt = getRandomElement(body.prompts);
+
   const ret = await apiRequest(method, urlEndPoint, body);
   return ret as SessionlessResponseApiResponseType;
 }
