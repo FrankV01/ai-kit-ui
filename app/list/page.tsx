@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
 import React, { Suspense } from "react";
 import Loading from "./loading";
-import { InfinitePoems } from "../components/poems/InfinitePoems";
+import { InfinitePoems } from "../../components/poems/InfinitePoems";
 
 const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http://localhost:3001/poems";
 
