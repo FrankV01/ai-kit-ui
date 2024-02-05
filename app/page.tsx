@@ -13,15 +13,22 @@ const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http:/
  * This is an indicator for Next.js
  */
 export const dynamic = "force-dynamic";
-
+const useOld = true;
 export default async function Home() {
-  return (
-    <div className={styles.outline}>
-      <div className={"container"}>
-        <Suspense fallback={<Loading />}>
-          <InfinitePoems key={1} />
-        </Suspense>
+  if (useOld) {
+    return (
+      <div className={styles.outline}>
+        <div className={"container"}>
+          <Suspense fallback={<Loading />}>
+            <InfinitePoems key={1} />
+          </Suspense>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    // New page style.
+    <div>
+      <div className={"container"}>New content.</div>
+    </div>;
+  }
 }
