@@ -26,6 +26,8 @@ export const CreatePoemButton = ({ onCreatePoem }: CreatePoemButtonProps) => {
             });
         }}
         variant="primary"
+        size={"lg"}
+        className={"m-auto p-auto btn btn-block"}
         disabled={loading}
       >
         {loading ? "Creating..." : "Create Poem"}

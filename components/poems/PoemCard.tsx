@@ -28,6 +28,16 @@ export type PoemCardProps = {
     body: string;
   };
 };
+const fancyHeader = {
+  textShadow: "1px 1px 1px black",
+  fontFamily: "Arial, sans-serif",
+  fontWeight: "bold",
+  color: "#3a3a3a",
+  fontSize: "1.4em",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
 
 export default function PoemCard({
   id,
@@ -133,7 +143,9 @@ export default function PoemCard({
             {isPlaceholder ? (
               <>
                 <Card.Title>
-                  {placeholder?.title ? placeholder?.title : "-"}
+                  <div className={"p-1 mb-3"} style={fancyHeader}>
+                    {placeholder?.title ? placeholder?.title : "-"}
+                  </div>
                 </Card.Title>
                 <Card.Text as={"div"} className={"overflow-hidden p-1 m-1"}>
                   {placeholder?.body ? placeholder?.body : "-"}
@@ -142,9 +154,19 @@ export default function PoemCard({
             ) : (
               <>
                 <Card.Title>
-                  <div className={"p-1"}>Generate a new Poem</div>
+                  <div className={"p-1 mb-3"} style={fancyHeader}>
+                    Generate a new Poem
+                  </div>
                 </Card.Title>
-                <Card.Text as={"div"} className={"overflow-hidden p-1 m-1"}>
+                <Card.Text
+                  as={"div"}
+                  className={" p-auto m-auto"}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   <CreatePoemButton
                     onCreatePoem={(poemId: number) => {
                       if (!newPoem || !newPoem.onCreatePoem)
@@ -172,7 +194,13 @@ export default function PoemCard({
           </span>
         </Card.Footer>
       ) : (
-        <Card.Footer className={"bottom small text-muted "}> </Card.Footer>
+        <Card.Footer className={"bottom small text-muted "}>
+          <span className={"float-end"}>
+            <span className={"text-secondary me-0 "} aria-disabled={"true"}>
+              View...
+            </span>
+          </span>
+        </Card.Footer>
       )}
     </Card>
   );
