@@ -5,3 +5,5 @@ docker tag poems-ui:dev registry.digitalocean.com/tosu/poems-ui:dev
 docker tag poems-ui:latest registry.digitalocean.com/tosu/poems-ui:latest
 docker tag poems-ui:latest registry.digitalocean.com/tosu/poems-ui:production
 docker push --all-tags registry.digitalocean.com/tosu/poems-ui
+
+## doctl registry login
