@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { Inter } from "next/font/google";
 import "bootswatch/dist/litera/bootstrap.min.css";
+import "react-chat-elements/dist/main.css";
 import StyledComponentsRegistry from "../lib/StyledComponentsRegistry";
 import styles from "./page.module.css";
 import { Metadata, ResolvingMetadata } from "next";

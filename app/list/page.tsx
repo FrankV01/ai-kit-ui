@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 import React, { Suspense } from "react";
 import Loading from "./loading";
 import { InfinitePoems } from "../../components/poems/InfinitePoems";
