@@ -135,7 +135,20 @@ export default function ChatOne({ className }: { className?: string }) {
     <div className={`text-reset text-start ${className || ""}`}>
       <p>
         Contains the elements. Now we have to make it look integrated and on
-        brand.
+        brand. We also must now start to factor in the note overlay idea.
+      </p>
+      <p>
+        Ideas:
+        <ul>
+          <li>
+            https://github.com/ted-piotrowski/react-leaflet-canvas-overlay?tab=readme-ov-file
+          </li>
+          <li>
+            https://medium.com/@martin.crabtree/react-creating-an-interactive-canvas-component-e8e88243baf6
+          </li>
+          <li>https://www.npmjs.com/package/react-sketch-canvas</li>
+          <li>https://www.npmjs.com/package/react-canvas-draw</li>
+        </ul>
       </p>
       <div id={"true_start_of_chat_one"} className="container text-center ">
         <div className="row ">
