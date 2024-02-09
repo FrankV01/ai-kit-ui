@@ -1,7 +1,6 @@
 import styles from "./page.module.css";
 import React from "react";
-import ChatOne from "../components/chat/ChatOne";
-import ChatTwo from "../components/chat/ChatTwo";
+import ChatThree from "../components/chat/ChatThree";
 
 /**
  * This is an indicator for Next.js
@@ -41,7 +40,7 @@ export default async function Home() {
         <div className="row">
           <div className="col">
             <div>
-              <ChatTwo />
+              <ChatThree />
             </div>
           </div>
         </div>
