@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import React from "react";
 import ChatOne from "../components/chat/ChatOne";
+import ChatTwo from "../components/chat/ChatTwo";
 
 /**
  * This is an indicator for Next.js
@@ -11,13 +12,13 @@ export default async function Home() {
   return (
     <div className={styles.outline}>
       <div className="container text-center border">
+        {/*<div className="row border">*/}
+        {/*  <div className="col border">Column 1</div>*/}
+        {/*  <div className="col border">Column 2</div>*/}
+        {/*  <div className="col border">Column 3</div>*/}
+        {/*</div>*/}
         <div className="row border">
-          <div className="col border">Column 1</div>
-          <div className="col border">Column 2</div>
-          <div className="col border">Column 3</div>
-        </div>
-        <div className="row border">
-          <div className="col border">Column 1</div>
+          <div className="col border">&nbsp;</div>
           <div className="col border">
             What do we actually want on this page? Most data should come from
             the database. This does need to be some-what generic.
@@ -40,7 +41,7 @@ export default async function Home() {
         <div className="row">
           <div className="col">
             <div>
-              <ChatOne />
+              <ChatTwo />
             </div>
           </div>
         </div>
