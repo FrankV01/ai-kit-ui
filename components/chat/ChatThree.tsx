@@ -45,7 +45,7 @@ export default function ChatThree({ className }: { className?: string }) {
                   text,
                   user: {
                     id: "10",
-                    name: "Frank (user)",
+                    name: "Frank",
                   },
                 },
               ]);
