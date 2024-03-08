@@ -38,7 +38,8 @@ export async function getPoemIdList(
   pageSize: number = 1000,
 ): Promise<number[]> {
   log("getPoemIdList:paging", pageNum, pageSize);
-  const base = await getBaseUrl();
+  const evtMgr = await EvtMgr();
+  const base = evtMgr.BASE_URL;
   log("getPoemIdList:base", base);
   const url = `${base}/ai/sessionless/ids?pageNum=${pageNum}&pageSize=${pageSize}`;
   if (!url) {
@@ -47,6 +48,7 @@ export async function getPoemIdList(
   log(`Fetching data from ${url}`);
   const res = await fetch(url, {
     cache: "no-store",
+    headers: { appKey: evtMgr.APP_ID, "Content-Type": "application/json" },
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -76,11 +78,16 @@ export async function getGroupedPoemIds(
 export async function getSiteConfigs(): Promise<
   IConfigurations | IConfigurationItem[]
 > {
-  const base = await getBaseUrl();
+  const evtMgr = await EvtMgr();
+  const base = evtMgr.BASE_URL;
   const url = `${base}/config`;
   console.log(`Fetching data from ${url}`);
   const res = await fetch(url, {
     cache: "no-store",
+    headers: {
+      "Content-Type": "application/json",
+      appKey: evtMgr.APP_ID,
+    },
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -92,7 +99,8 @@ export async function getSiteConfigs(): Promise<
 
 export async function getPoemById(id: number): Promise<ISessionlessResponse> {
   log("getPoemIdList:getPoemById", id);
-  const base = await getBaseUrl();
+  const evtMgr = await EvtMgr();
+  const base = evtMgr.BASE_URL;
   const url = `${base}/ai/sessionless/id/${id}`;
   if (!url) {
     throw new Error("Invalid environment configs");
@@ -100,6 +108,10 @@ export async function getPoemById(id: number): Promise<ISessionlessResponse> {
   console.log(`getPoemById Fetching data from ${url}`);
   const res = await fetch(url, {
     cache: "no-store",
+    headers: {
+      "Content-Type": "application/json",
+      appKey: evtMgr.APP_ID,
+    },
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -113,7 +125,8 @@ export async function setPoemRating(poemId: number, rating: number) {
   console.log("setPoemRating");
   if (!poemId) return;
   if (rating > -1 && rating < 11) {
-    const baseUrl = await getBaseUrl();
+    const evtMgr = await EvtMgr();
+    const baseUrl = evtMgr.BASE_URL;
     const url = `${baseUrl}/ai/query/${poemId}/rating`;
     const body = {
       id: poemId,
@@ -128,6 +141,7 @@ export async function setPoemRating(poemId: number, rating: number) {
       //credentials: "same-origin", // include, *same-origin, omit
       headers: {
         "Content-Type": "application/json",
+        appKey: evtMgr.APP_ID,
       },
       body: JSON.stringify(body),
     });
@@ -145,8 +159,8 @@ export async function queueRequest(formData: FormData) {
     console.warn("queueRequest::No session found.");
     return;
   }
-
-  const baseUrl = await getBaseUrl(); // process.env.API_URL ? `${process.env.API_URL}` : ""; //"http://localhost:3001/poems";
+  const evtMgr = await EvtMgr();
+  const baseUrl = evtMgr.BASE_URL;
 
   const url = `${baseUrl}/promptQ`;
   console.log("queueRequest", formData);
@@ -160,7 +174,7 @@ export async function queueRequest(formData: FormData) {
     //Submit the data to the endpoint.
     const resp = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", appKey: evtMgr.APP_ID },
       body: JSON.stringify(rawFormData),
     });
     if (resp.ok) {
@@ -176,8 +190,8 @@ export async function queueRequest(formData: FormData) {
 export async function RecordLogin(user: User | AdapterUser) {
   log("getPoemIdList:RecordLogin");
   const RecordLoginMsg = "RecordLogin::PUT";
-
-  const baseUrl = (await EvtMgr()).BASE_URL;
+  const evtMgr = await EvtMgr();
+  const baseUrl = evtMgr.BASE_URL;
   const data = {
     email: user.email,
     name: user.name,
@@ -187,7 +201,7 @@ export async function RecordLogin(user: User | AdapterUser) {
 
   const result = await fetch(`${baseUrl}/user/create`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", appKey: evtMgr.APP_ID },
     body: JSON.stringify(data),
   });
 
@@ -199,7 +213,8 @@ export async function RecordLogin(user: User | AdapterUser) {
 }
 
 export async function getTagListData(): Promise<TagsResponse[]> {
-  const baseUrl = (await EvtMgr()).BASE_URL;
+  const evtMgr = await EvtMgr();
+  const baseUrl = evtMgr.BASE_URL;
   const url = baseUrl ? `${baseUrl}/tags/serverless` : "";
 
   if (!url) {
@@ -207,6 +222,7 @@ export async function getTagListData(): Promise<TagsResponse[]> {
   }
   const res = await fetch(url, {
     cache: "no-cache",
+    headers: { "Content-Type": "application/json", appKey: evtMgr.APP_ID },
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -272,12 +288,31 @@ export async function requestPoem(): Promise<SessionlessResponseApiResponseType>
   return ret as SessionlessResponseApiResponseType;
 }
 
+export async function getChatSession(clientSessionId: string = "") {
+  const method = "POST";
+  const urlEndPoint = "ai/chat/start-session";
+  const body = clientSessionId ? { sessionId: clientSessionId } : null;
+  const ret = await apiRequest(method, urlEndPoint, body);
+  console.log("getChatSession", ret, JSON.stringify(ret, null, 2));
+  return ret;
+}
+
+export async function getChatSessionConversation(clientSessionId: string) {
+  if (!clientSessionId) throw new Error("Invalid clientSessionId");
+  const method = "GET";
+  const urlEndPoint = `ai/chat/get-conversation/${clientSessionId}`;
+  const ret = await apiRequest(method, urlEndPoint);
+  console.log("getChatSessionConversation", ret, JSON.stringify(ret, null, 2));
+  return ret;
+}
+
 export async function apiRequest(
   method: "GET" | "POST" | "PUT" | "DELETE",
   urlEndPoint: string,
   body?: any,
 ): Promise<any> {
-  const baseUrl = (await EvtMgr()).BASE_URL;
+  const evtMgr = await EvtMgr();
+  const baseUrl = evtMgr.BASE_URL;
   const url = baseUrl ? `${baseUrl}/${urlEndPoint}` : "";
   if (!url) {
     throw new Error("Invalid environment configs");
@@ -287,7 +322,7 @@ export async function apiRequest(
   const res = await fetch(url, {
     method: method,
     cache: "no-cache",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", appKey: evtMgr.APP_ID },
     body: bodyStr,
   });
   if (!res.ok) {
