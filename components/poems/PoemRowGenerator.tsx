@@ -34,7 +34,7 @@ export const PoemRowGenerator = ({}: PoemRowGeneratorProps) => {
             body:
               prop.idx === 0
                 ? "Welcome to the site.  We are glad you are here.  Please feel free to look around and enjoy the poems."
-                : "Thanks for visiting. Revisions consistently coming and although changes sometimes slow down, be assured that work is being done. This isn't a commercial endeavor and is sometimes treated as such. Please bear this in mind as you use & read the site",
+                : "Thanks for visiting. Revisions are consistently coming and although changes sometimes slow down, be assured that things are progressing. This isn't a commercial endeavor and the content may reflect that; please bear this in mind as you use & read the site.",
           }}
         />
       </Col>
