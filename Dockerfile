@@ -1,8 +1,8 @@
 FROM node:lts-slim as development
 
-LABEL name="poems-ui"
-LABEL version="1.49.20240103"
-LABEL description="API for the Poems App"
+LABEL name="ai-kit-ui"
+LABEL version="3.0.20240308"
+LABEL description="AI Kit UI"
 LABEL author="Frank Villasenor"
 
 ENV PORT=3001
@@ -15,7 +15,7 @@ ENV API_URL=http://localhost:3000
 
 ENV NEXT_PUBLIC_GA_MEASUREMENT_ID=g-xxxxxxx
 ENV GOOGLE_CLIENT_ID=887064451860-ss7bdivntgf7vlp1j7pstgqui2f0aup4.apps.googleusercontent.com
-ENV GOOGLE_CLIENT_SECRET=SET--THIS
+ENV GOOGLE_CLIENT_SECRET=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
 ENV NEXTAUTH_SECRET=DEVELOPMENT_SECRET
 
 
@@ -33,9 +33,9 @@ CMD [ "npm", "run", "start" ]
 
 FROM --platform=linux/amd64 node:lts-slim as production
 
-LABEL name="poems-ui"
-LABEL version="1.49.20240103"
-LABEL description="API for the Poems App"
+LABEL name="ai-kit-ui"
+LABEL version="3.0.20240308"
+LABEL description="AI Kit UI"
 LABEL author="Frank Villasenor"
 
 ENV PORT=3001
