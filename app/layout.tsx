@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { Inter } from "next/font/google";
 import "bootswatch/dist/litera/bootstrap.min.css";
-import "react-chat-elements/dist/main.css";
 import StyledComponentsRegistry from "../lib/StyledComponentsRegistry";
 import styles from "./page.module.css";
 import { Metadata, ResolvingMetadata } from "next";
@@ -42,11 +41,11 @@ export async function generateMetadata(
   const metadata: Metadata = {
     title: getConfigValue(
       "METADATA_TITLE",
-      "AI generated Poems for the 'Hack' of it",
+      "ai-kit-ui - A white-labeled UI for AI-kit by Frank V.",
     ),
     description: getConfigValue(
       "METADATA_DESC",
-      "AI generated Poems for the 'Hack' of it",
+      "Fran's AI-Kit UI. Please configure these values in the database.",
     ),
     applicationName: getConfigValue("METADATA_APP_NAME", "ai-kit-ui"),
     keywords: getConfigValue(
