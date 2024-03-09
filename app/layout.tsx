@@ -48,7 +48,7 @@ export async function generateMetadata(
       "METADATA_DESC",
       "AI generated Poems for the 'Hack' of it",
     ),
-    applicationName: getConfigValue("METADATA_APP_NAME", "poems-ui"),
+    applicationName: getConfigValue("METADATA_APP_NAME", "ai-kit-ui"),
     keywords: getConfigValue(
       "METADATA_KEYWORDS",
       "AI,Portfolio,GPT-3,ChatGPT,ML,Frank Villasenor,theOpenSourceU,tOSU",
