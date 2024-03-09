@@ -1,4 +1,4 @@
-# ReadMe - Poems UI -> ai-kit-ui
+# ReadMe - ai-kit-ui
 
 This project is pending a rename. See above. 
 
