@@ -9,7 +9,11 @@ import {
   IConfigurations,
 } from "../types/IConfigurationItem";
 import "server-only";
-import { SessionlessResponseApiResponseType, TagsResponse } from "./Types";
+import {
+  ConfigurationResultType,
+  SessionlessResponseApiResponseType,
+  TagsResponse,
+} from "./Types";
 
 export async function demandPoem(): Promise<string> {
   return Promise.resolve("Demand example; ".repeat(20));
@@ -75,9 +79,7 @@ export async function getGroupedPoemIds(
   return _poemDataGrouped;
 }
 
-export async function getSiteConfigs(): Promise<
-  IConfigurations | IConfigurationItem[]
-> {
+export async function getSiteConfigs(): Promise<ConfigurationResultType[]> {
   const evtMgr = await EvtMgr();
   const base = evtMgr.BASE_URL;
   const url = `${base}/config`;
@@ -94,7 +96,7 @@ export async function getSiteConfigs(): Promise<
     console.log(`Failed to fetch data from ${url}`);
     throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
   }
-  return (await res.json()) as IConfigurationItem[];
+  return (await res.json()) as ConfigurationResultType[];
 }
 
 export async function getPoemById(id: number): Promise<ISessionlessResponse> {

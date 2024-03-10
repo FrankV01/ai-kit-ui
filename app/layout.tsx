@@ -8,7 +8,7 @@ import MyAnalytics from "../components/MyAnalytics";
 import { LayoutComponent } from "../components/LayoutComponent";
 import Loading from "./loading";
 import { getSiteConfigs } from "../lib/ApiActions";
-import { IConfigurationItem } from "../types/IConfigurationItem";
+import { ConfigurationResultType } from "../lib/Types";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
@@ -17,7 +17,7 @@ type Props = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
-let siteConfigs: IConfigurationItem[] = [];
+let siteConfigs: ConfigurationResultType[] = [];
 
 function getConfigValue(key: string, strDefault: string): string {
   const item = siteConfigs.find((item) => item.key === key);
@@ -25,7 +25,7 @@ function getConfigValue(key: string, strDefault: string): string {
     console.warn(`Unable to find config item for key: ${key}`);
     return strDefault;
   }
-  return item?.configValue ? item.configValue : strDefault;
+  return item?.value ? item.value : strDefault;
 }
 
 export async function generateMetadata(

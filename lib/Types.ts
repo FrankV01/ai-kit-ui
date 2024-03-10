@@ -12,3 +12,5 @@ export type SessionlessResponseApiResponseType = {
   internalTrainingRating: number;
   aiModelGeneration: string;
 };
+
+export type ConfigurationResultType = { key: string; value: string };
