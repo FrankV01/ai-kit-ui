@@ -1,16 +1,20 @@
 import ISessionlessResponse from "../../../../types/ISessionlessResponse";
 import PoemCardDisplay from "../../../../components/PoemCardDisplay";
+import EvtMgr from "../../../../lib/EnvMgr";
 
 const url = process.env.API_URL ? `${process.env.API_URL}/ai/query/tag` : ""; //"http://localhost:3001/poems";
 
 async function getData(tag: string): Promise<ISessionlessResponse[]> {
+  const evtMgr = await EvtMgr();
   if (!url) {
     throw new Error("Invalid environment configs");
   }
   const _url = `${url}/${tag}`;
   console.log(`Fetching data from ${_url}`);
+  //const base = evtMgr.BASE_URL;
   const res = await fetch(_url, {
     cache: "no-cache",
+    headers: { "Content-Type": "application/json", appKey: evtMgr.APP_ID },
   });
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary

@@ -4,10 +4,6 @@ import { getServerSession } from "next-auth/next";
 import { AdapterUser } from "next-auth/adapters";
 import { User } from "next-auth";
 import { ISessionlessResponse } from "../types/ISessionlessResponse";
-import {
-  IConfigurationItem,
-  IConfigurations,
-} from "../types/IConfigurationItem";
 import "server-only";
 import {
   ConfigurationResultType,
@@ -222,6 +218,7 @@ export async function getTagListData(): Promise<TagsResponse[]> {
   if (!url) {
     throw new Error("Invalid environment configs");
   }
+
   const res = await fetch(url, {
     cache: "no-cache",
     headers: { "Content-Type": "application/json", appKey: evtMgr.APP_ID },
