@@ -9,6 +9,7 @@ import { LayoutComponent } from "../components/LayoutComponent";
 import Loading from "./loading";
 import { getSiteConfigs } from "../lib/ApiActions";
 import { ConfigurationResultType } from "../lib/Types";
+import StoreProvider from "./StoreProvider";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
@@ -84,14 +85,16 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <React.StrictMode>
-          <MyAnalytics />
-          <StyledComponentsRegistry>
-            <main style={{ background: "#E0E7EE" }} className={styles.main}>
-              <LayoutComponent>
-                <Suspense fallback={<Loading />}>{children}</Suspense>
-              </LayoutComponent>
-            </main>
-          </StyledComponentsRegistry>
+          <StoreProvider>
+            <MyAnalytics />
+            <StyledComponentsRegistry>
+              <main style={{ background: "#E0E7EE" }} className={styles.main}>
+                <LayoutComponent>
+                  <Suspense fallback={<Loading />}>{children}</Suspense>
+                </LayoutComponent>
+              </main>
+            </StyledComponentsRegistry>
+          </StoreProvider>
         </React.StrictMode>
       </body>
     </html>
