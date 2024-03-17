@@ -330,3 +330,41 @@ export async function apiRequest(
   }
   return await res.json();
 }
+
+export async function startSession(): Promise<string> {
+  //TODO: Implement this
+  const result = await apiRequest("POST", "ai/chat/start-session");
+  console.log("startSession:result", result);
+  return result.body.sessionId || result.sessionId; //SessionId
+}
+export async function endSession(sessionId: string) {
+  try {
+    const result = await apiRequest("DELETE", `/end-session/${sessionId}`);
+    console.log("endSession:result", result);
+  } catch (er) {
+    console.warn("endSession", er);
+  }
+}
+
+/**
+ * Gets the conversation. Inherently also validates the session.
+ * @param sessionId
+ */
+export async function getConvo(sessionId: string) {
+  try {
+    const result = await apiRequest("GET", `/get-conversation/${sessionId}`);
+    console.log("getConvo:result", result);
+    return result;
+  } catch (er) {
+    console.warn("getConvo:result", er);
+  }
+}
+export async function submitMessageToConvo(sessionId: string) {
+  try {
+    const result = await apiRequest("POST", `/submit-message/${sessionId}`);
+    console.log("submitMessageToConvo:result", result);
+    return result;
+  } catch (er) {
+    console.warn("submitMessageToConvo", er);
+  }
+}
