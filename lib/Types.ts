@@ -14,3 +14,23 @@ export type SessionlessResponseApiResponseType = {
 };
 
 export type ConfigurationResultType = { key: string; value: string };
+
+export interface IBasicChatMessage {
+  appId: number;
+  assocSessionId: string;
+  senderId: string;
+  message: string;
+  json?: Record<string, unknown>;
+  created: Date;
+  role: "AI" | "User";
+}
+
+/**
+ * Represents a Conversation.
+ * Factory is the ChatPackagingService.
+ */
+export interface IBasicChatConversation {
+  appId: number;
+  sessionId: string;
+  messages?: IBasicChatMessage[];
+}

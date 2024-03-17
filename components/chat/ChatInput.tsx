@@ -4,7 +4,7 @@ type ChatInputFormEventHandler =
   | React.FormEventHandler<HTMLFormElement>
   | undefined;
 export type ChatInputProps = {
-  onSubmit: ChatInputFormEventHandler;
+  onSubmit: (submittedMessage: string) => void;
 };
 
 const ChatInput = ({ onSubmit }: ChatInputProps) => {
@@ -15,7 +15,7 @@ const ChatInput = ({ onSubmit }: ChatInputProps) => {
       return;
     }
     event.preventDefault();
-    onSubmit?.(event);
+    onSubmit?.(inputValue);
   };
 
   return (

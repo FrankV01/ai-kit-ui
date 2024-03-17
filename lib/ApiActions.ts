@@ -317,7 +317,16 @@ export async function apiRequest(
     throw new Error("Invalid environment configs");
   }
 
-  const bodyStr = body ? JSON.stringify(body) : "";
+  const bodyStr = body ? JSON.stringify(body) : undefined;
+  const conf = {
+    method: method,
+    cache: "no-cache",
+    headers: { "Content-Type": "application/json", appKey: evtMgr.APP_ID },
+    body: bodyStr,
+  };
+  if (method === "GET" || method === "DELETE") {
+    delete conf.body;
+  }
   const res = await fetch(url, {
     method: method,
     cache: "no-cache",
@@ -332,14 +341,16 @@ export async function apiRequest(
 }
 
 export async function startSession(): Promise<string> {
-  //TODO: Implement this
   const result = await apiRequest("POST", "ai/chat/start-session");
   console.log("startSession:result", result);
-  return result.body.sessionId || result.sessionId; //SessionId
+  return result?.sessionId;
 }
 export async function endSession(sessionId: string) {
   try {
-    const result = await apiRequest("DELETE", `/end-session/${sessionId}`);
+    const result = await apiRequest(
+      "DELETE",
+      `ai/chat/end-session/${sessionId}`,
+    );
     console.log("endSession:result", result);
   } catch (er) {
     console.warn("endSession", er);
@@ -352,7 +363,10 @@ export async function endSession(sessionId: string) {
  */
 export async function getConvo(sessionId: string) {
   try {
-    const result = await apiRequest("GET", `/get-conversation/${sessionId}`);
+    const result = await apiRequest(
+      "GET",
+      `ai/chat/get-conversation/${sessionId}`,
+    );
     console.log("getConvo:result", result);
     return result;
   } catch (er) {
@@ -361,7 +375,10 @@ export async function getConvo(sessionId: string) {
 }
 export async function submitMessageToConvo(sessionId: string) {
   try {
-    const result = await apiRequest("POST", `/submit-message/${sessionId}`);
+    const result = await apiRequest(
+      "POST",
+      `ai/chat/submit-message/${sessionId}`,
+    );
     console.log("submitMessageToConvo:result", result);
     return result;
   } catch (er) {
