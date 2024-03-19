@@ -373,11 +373,12 @@ export async function getConvo(sessionId: string) {
     console.warn("getConvo:result", er);
   }
 }
-export async function submitMessageToConvo(sessionId: string) {
+export async function submitMessageToConvo(sessionId: string, msg: string) {
   try {
     const result = await apiRequest(
       "POST",
       `ai/chat/submit-message/${sessionId}`,
+      { message: msg },
     );
     console.log("submitMessageToConvo:result", result);
     return result;

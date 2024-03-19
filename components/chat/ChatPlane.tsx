@@ -13,18 +13,21 @@ type ChatPlaneProps = {
  * @constructor
  */
 const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
+  const ourStyle = {
+    margin: "10px",
+    padding: "10px",
+    border: "1px solid black",
+    borderRadius: "10px",
+  };
+  const none = messages.length === 0;
+  if (none) {
+    return <div style={ourStyle}>No messages yet.</div>;
+  }
+
   return (
     <div>
       {messages.map((message, index) => (
-        <div
-          key={index}
-          style={{
-            margin: "10px",
-            padding: "10px",
-            border: "1px solid black",
-            borderRadius: "10px",
-          }}
-        >
+        <div key={index} style={ourStyle}>
           {message}
         </div>
       ))}

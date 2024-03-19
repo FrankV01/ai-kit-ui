@@ -25,10 +25,24 @@ const ChatParticipants: React.FC<ChatPlaneProps> = ({
   user,
 }) => {
   // Under_Dev: Finish this component with it's design and stuff.
+  const { name, role } = user;
+  const cp = chatParticipants.map((p) => {
+    return (
+      <>
+        <span>
+          {p.name} - {p.role}
+        </span>
+      </>
+    );
+  });
   return (
     <div>
-      <div>{JSON.stringify(user)}</div>
-      <div>{JSON.stringify(chatParticipants)}</div>
+      <div>
+        <span>
+          {name} - {role}
+        </span>
+      </div>
+      <div>{cp}</div>
     </div>
   );
 };

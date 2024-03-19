@@ -16,6 +16,7 @@ const ChatInput = ({ onSubmit }: ChatInputProps) => {
     }
     event.preventDefault();
     onSubmit?.(inputValue);
+    setInputValue(""); //clear the message
   };
 
   return (
