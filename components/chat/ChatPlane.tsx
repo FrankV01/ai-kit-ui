@@ -1,7 +1,8 @@
 import React from "react";
+import { ConvoReturnType } from "../../lib/ApiActions";
 
 type ChatPlaneProps = {
-  messages: string[];
+  messages: ConvoReturnType[];
 };
 
 /**
@@ -23,14 +24,23 @@ const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
   if (none) {
     return <div style={ourStyle}>No messages yet.</div>;
   }
+  const addlUserStyles = {
+    backgroundColor: "lightblue",
+    color: "black",
+    textAlign: "right",
+  };
 
   return (
     <div>
-      {messages.map((message, index) => (
-        <div key={index} style={ourStyle}>
-          {message}
-        </div>
-      ))}
+      {messages.map((message, index) => {
+        const isUser = message.role === "user";
+        const styles = isUser ? { ...ourStyle, ...addlUserStyles } : ourStyle;
+        return (
+          <div key={index} style={styles}>
+            <span key={`span-${index}`}>{message.message}</span>
+          </div>
+        );
+      })}
     </div>
   );
 };

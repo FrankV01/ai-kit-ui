@@ -357,20 +357,57 @@ export async function endSession(sessionId: string) {
   }
 }
 
+// TODO: Consider moving.
+export type ConvoReturnType = {
+  appId: number;
+  assocSessionId: string;
+  senderId: string;
+  message: string;
+  created: Date;
+  role: string;
+};
+
 /**
  * Gets the conversation. Inherently also validates the session.
  * @param sessionId
  */
 export async function getConvo(sessionId: string) {
+  const convert = (itm: {
+    appId: any;
+    assocSessionId: any;
+    senderId: any;
+    message: any;
+    created: string | number | Date;
+    role: any;
+  }): ConvoReturnType => ({
+    appId: itm.appId,
+    assocSessionId: itm.assocSessionId,
+    senderId: itm.senderId,
+    message: itm.message,
+    created: new Date(itm.created),
+    role: itm.role,
+  });
+
   try {
     const result = await apiRequest(
       "GET",
       `ai/chat/get-conversation/${sessionId}`,
     );
     console.log("getConvo:result", result);
-    return result;
+    const typedResultArray: ConvoReturnType[] = [];
+    const _sessionId = result.sessionId;
+    if (!_sessionId) throw new Error("unexpectedly missing the sessionId");
+    if (_sessionId !== result.sessionId)
+      throw new Error("unexpected mis-match of the sessionId para vs result");
+
+    for (const msgObj of result.messages) {
+      const typedResult = convert(msgObj);
+      typedResultArray.push(typedResult);
+    }
+    console.log("getConvo:typedResultArray", typedResultArray);
+    return typedResultArray;
   } catch (er) {
-    console.warn("getConvo:result", er);
+    console.warn("getConvo:result:err", er);
   }
 }
 export async function submitMessageToConvo(sessionId: string, msg: string) {
