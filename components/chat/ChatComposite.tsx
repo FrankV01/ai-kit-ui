@@ -42,18 +42,6 @@ const ChatComposite: React.FC<ChatCompositeProps> = () => {
     }
   }, [sessionId]);
 
-  // We need this to be converted but we should look at how the system uses it.
-  // const messages = useMemo(
-  //   () =>
-  //     convo?.messages
-  //       //.filter((i) => i.senderId !== "system")
-  //       ?.filter((i) => ["assistant", "user"].includes(i.role))
-  //       ?.map((i) => {
-  //         console.log("i", i);
-  //         return i.message;
-  //       }) || [],
-  //   [convo],
-  // );
   const messages = useMemo(
     () => convo?.filter((i) => ["assistant", "user"].includes(i.role)) || [],
     [convo],
