@@ -17,16 +17,16 @@ const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
   const ourStyle = {
     margin: "10px",
     padding: "10px",
-    border: "1px solid black",
+    border: "1px solid #BFC8D3", //#4582EC
     borderRadius: "10px",
+    boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
   };
   const none = messages.length === 0;
   if (none) {
     return <div style={ourStyle}>No messages yet.</div>;
   }
   const addlUserStyles = {
-    backgroundColor: "lightblue",
-    color: "black",
+    //backgroundColor: "#BFC8D3", //"#4582EC",
     textAlign: "right",
   };
 
@@ -35,8 +35,9 @@ const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
       {messages.map((message, index) => {
         const isUser = message.role === "user";
         const styles = isUser ? { ...ourStyle, ...addlUserStyles } : ourStyle;
+        const _class = isUser ? "text-primary-emphasis" : "text-primary";
         return (
-          <div key={index} style={styles}>
+          <div className={_class} key={index} style={styles}>
             <span key={`span-${index}`}>{message.message}</span>
           </div>
         );
