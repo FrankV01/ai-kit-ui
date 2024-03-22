@@ -17,7 +17,7 @@ export type ChatPlaneProps = {
 };
 
 const robotIcon = "🤖";
-
+const personIcon = "👤";
 /**
  * The component that displays the users. WIP.
  *
@@ -40,7 +40,9 @@ const ChatParticipants: React.FC<ChatPlaneProps> = ({
   });
   return (
     <div className={className}>
-      <div className={"d-block w-100"}>[💁] {name} </div>
+      <div className={"d-block w-100"}>
+        [{personIcon}] {name}
+      </div>
       <div className={"d-block w-100"}>{cp}</div>
     </div>
   );

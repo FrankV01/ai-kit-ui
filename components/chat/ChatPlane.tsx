@@ -13,6 +13,17 @@ const borders = {
   borderRadius: "10px", // Rounded border
   boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.1)", // Subtle shadow for a modern look
 };
+const ourStyle = {
+  margin: "10px",
+  padding: "10px",
+  //border: "1px solid #BFC8D3", //#4582EC
+  borderRadius: "10px",
+  //boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+};
+const addlUserStyles = {
+  //backgroundColor: "#BFC8D3", //"#4582EC",
+  textAlign: "right",
+};
 
 /**
  * Pretty basic but a starting point. This is the "Chat Plane" and
@@ -23,21 +34,10 @@ const borders = {
  * @constructor
  */
 const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
-  const ourStyle = {
-    margin: "10px",
-    padding: "10px",
-    //border: "1px solid #BFC8D3", //#4582EC
-    borderRadius: "10px",
-    //boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
-  };
   const none = messages.length === 0;
   if (none) {
-    return <div style={ourStyle}>No messages yet.</div>;
+    return <div style={{ ...ourStyle, ...borders }}>No messages yet.</div>;
   }
-  const addlUserStyles = {
-    //backgroundColor: "#BFC8D3", //"#4582EC",
-    textAlign: "right",
-  };
 
   return (
     <div style={borders}>
@@ -45,9 +45,13 @@ const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
         const isUser = message.role === "user";
         const styles = isUser ? { ...ourStyle, ...addlUserStyles } : ourStyle;
         const _class = isUser ? "text-primary-emphasis" : "text-primary";
+        const iconLeft = isUser ? "" : "🤖";
+        const iconRight = isUser ? "👤" : "";
         return (
           <div className={_class} key={index} style={styles}>
-            <span key={`span-${index}`}>{message.message}</span>
+            <span key={`span-${index}`}>
+              {iconLeft} {message.message} {iconRight}
+            </span>
           </div>
         );
       })}
