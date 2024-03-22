@@ -6,8 +6,12 @@ type ChatPlaneProps = {
 };
 
 const borders = {
-  borderRadius: "10px",
-  boxShadow: "inset 0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+  margin: "10px",
+  padding: "10px",
+  backgroundColor: "#DFE7EE",
+  border: "1px solid #F2F5F8", // Lighter shade of #DFE7EE
+  borderRadius: "10px", // Rounded border
+  boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.1)", // Subtle shadow for a modern look
 };
 
 /**
