@@ -11,6 +11,7 @@ import {
   submitMessageToConvo,
 } from "../../lib/ApiActions";
 import ErrorBoundary from "../ErrorBoundry";
+import ChatParticipantsState from "./ChatParticipantsState";
 
 type ChatCompositeProps = {};
 const ChatComposite: React.FC<ChatCompositeProps> = () => {
@@ -53,15 +54,10 @@ const ChatComposite: React.FC<ChatCompositeProps> = () => {
       <ErrorBoundary>
         <ChatPlane messages={messages} />
         <div className={"d-flex p-2"}>
-          <ChatParticipants
-            className={"d-inline-flex w-25"}
-            chatParticipants={[{ name: "Ai", id: "AI", role: "AI" }]}
-            user={{ name: "Me", id: "1", role: "Human" }}
-          />
+          <ChatParticipantsState className={"w-25"} />
           <ChatInput
             className={"mx-auto w-75"}
             onSubmit={(submittedMessage) => {
-              console.log(submittedMessage);
               submitMessageToConvo(sessionId, submittedMessage).then(
                 (response) => {
                   refreshConvo();

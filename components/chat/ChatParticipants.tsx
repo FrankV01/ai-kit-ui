@@ -1,12 +1,12 @@
 import React from "react";
 
-type ChatParticipant = {
+export type ChatParticipant = {
   name: string;
   id: string;
   role: string;
 };
 
-type ChatPlaneProps = {
+export type ChatPlaneProps = {
   // Everyone receiving the messages.
   chatParticipants: ChatParticipant[];
 
@@ -15,6 +15,8 @@ type ChatPlaneProps = {
 
   className: string;
 };
+
+const robotIcon = "🤖";
 
 /**
  * The component that displays the users. WIP.
@@ -32,16 +34,14 @@ const ChatParticipants: React.FC<ChatPlaneProps> = ({
   const cp = chatParticipants.map((p) => {
     return (
       <span key={`span-key-${p.id}-${p.id}-${p.id}-324`}>
-        {p.name} - {p.role}
+        [{robotIcon}] {p.name}
       </span>
     );
   });
   return (
     <div className={className}>
-      <span>
-        {name} - {role}
-      </span>
-      <span>{cp}</span>
+      <div className={"d-block w-100"}>[💁] {name} </div>
+      <div className={"d-block w-100"}>{cp}</div>
     </div>
   );
 };
