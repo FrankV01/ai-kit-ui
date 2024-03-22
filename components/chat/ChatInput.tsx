@@ -5,9 +5,10 @@ type ChatInputFormEventHandler =
   | undefined;
 export type ChatInputProps = {
   onSubmit: (submittedMessage: string) => void;
+  className: string;
 };
 
-const ChatInput = ({ onSubmit }: ChatInputProps) => {
+const ChatInput = ({ onSubmit, className }: ChatInputProps) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
@@ -20,13 +21,24 @@ const ChatInput = ({ onSubmit }: ChatInputProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={inputValue}
+    <form className={className} onSubmit={handleSubmit}>
+      {/*<input*/}
+      {/*  type="text"*/}
+      {/*  value={inputValue}*/}
+      {/*  onChange={(e) => setInputValue(e.target.value)}*/}
+      {/*  className="form-control text-dark"*/}
+      {/*/>*/}
+      <textarea
+        className="form-control"
+        id="exampleTextarea"
         onChange={(e) => setInputValue(e.target.value)}
-      />
-      <button type="submit">Submit</button>
+      >
+        {inputValue}
+      </textarea>
+
+      <button className="btn btn-primary form-control mt-2 w-25" type="submit">
+        Submit
+      </button>
     </form>
   );
 };

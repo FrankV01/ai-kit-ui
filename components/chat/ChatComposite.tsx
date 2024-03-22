@@ -2,7 +2,7 @@
 import ChatParticipants from "./ChatParticipants";
 import ChatPlane from "./ChatPlane";
 import ChatInput from "./ChatInput";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import {
   ConvoReturnType,
@@ -10,7 +10,6 @@ import {
   startSession,
   submitMessageToConvo,
 } from "../../lib/ApiActions";
-import { IBasicChatConversation } from "../../lib/Types";
 import ErrorBoundary from "../ErrorBoundry";
 
 type ChatCompositeProps = {};
@@ -29,18 +28,20 @@ const ChatComposite: React.FC<ChatCompositeProps> = () => {
     });
   }
 
+  const _refreshConvo = useCallback(refreshConvo, [sessionId]);
+
   useEffect(() => {
     // Run once.
     console.log("sessionId", sessionId);
     if (sessionId) {
-      refreshConvo();
+      _refreshConvo();
     } else {
       // We need to create a session.
       startSession().then((sessionId) => {
         setSessionId(sessionId);
       });
     }
-  }, [sessionId]);
+  }, [_refreshConvo, sessionId, setSessionId]);
 
   const messages = useMemo(
     () => convo?.filter((i) => ["assistant", "user"].includes(i.role)) || [],
@@ -50,22 +51,26 @@ const ChatComposite: React.FC<ChatCompositeProps> = () => {
   return (
     <div>
       <ErrorBoundary>
-        <ChatParticipants
-          chatParticipants={[{ name: "Ai", id: "AI", role: "AI" }]}
-          user={{ name: "Me", id: "1", role: "Human" }}
-        />
         <ChatPlane messages={messages} />
-        <ChatInput
-          onSubmit={(submittedMessage) => {
-            console.log(submittedMessage);
-            submitMessageToConvo(sessionId, submittedMessage).then(
-              (response) => {
-                console.log("response", response);
-                refreshConvo();
-              },
-            );
-          }}
-        />
+        <div className={"d-flex p-2"}>
+          <ChatParticipants
+            className={"d-inline-flex w-50"}
+            chatParticipants={[{ name: "Ai", id: "AI", role: "AI" }]}
+            user={{ name: "Me", id: "1", role: "Human" }}
+          />
+          <ChatInput
+            className={"mx-auto w-50"}
+            onSubmit={(submittedMessage) => {
+              console.log(submittedMessage);
+              submitMessageToConvo(sessionId, submittedMessage).then(
+                (response) => {
+                  console.log("response", response);
+                  refreshConvo();
+                },
+              );
+            }}
+          />
+        </div>
       </ErrorBoundary>
     </div>
   );

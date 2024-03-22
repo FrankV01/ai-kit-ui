@@ -12,6 +12,8 @@ type ChatPlaneProps = {
 
   // The user who can submit meesages
   user: ChatParticipant;
+
+  className: string;
 };
 
 /**
@@ -23,26 +25,23 @@ type ChatPlaneProps = {
 const ChatParticipants: React.FC<ChatPlaneProps> = ({
   chatParticipants,
   user,
+  className,
 }) => {
   // Under_Dev: Finish this component with it's design and stuff.
   const { name, role } = user;
   const cp = chatParticipants.map((p) => {
     return (
-      <>
-        <span>
-          {p.name} - {p.role}
-        </span>
-      </>
+      <span key={`span-key-${p.id}-${p.id}-${p.id}-324`}>
+        {p.name} - {p.role}
+      </span>
     );
   });
   return (
-    <div>
-      <div>
-        <span>
-          {name} - {role}
-        </span>
-      </div>
-      <div>{cp}</div>
+    <div className={className}>
+      <span>
+        {name} - {role}
+      </span>
+      <span>{cp}</span>
     </div>
   );
 };

@@ -5,6 +5,11 @@ type ChatPlaneProps = {
   messages: ConvoReturnType[];
 };
 
+const borders = {
+  borderRadius: "10px",
+  boxShadow: "inset 0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+};
+
 /**
  * Pretty basic but a starting point. This is the "Chat Plane" and
  * it will display the chat bubble messages. This has absolutely no
@@ -17,9 +22,9 @@ const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
   const ourStyle = {
     margin: "10px",
     padding: "10px",
-    border: "1px solid #BFC8D3", //#4582EC
+    //border: "1px solid #BFC8D3", //#4582EC
     borderRadius: "10px",
-    boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+    //boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
   };
   const none = messages.length === 0;
   if (none) {
@@ -31,7 +36,7 @@ const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
   };
 
   return (
-    <div>
+    <div style={borders}>
       {messages.map((message, index) => {
         const isUser = message.role === "user";
         const styles = isUser ? { ...ourStyle, ...addlUserStyles } : ourStyle;
