@@ -54,17 +54,16 @@ const ChatComposite: React.FC<ChatCompositeProps> = () => {
         <ChatPlane messages={messages} />
         <div className={"d-flex p-2"}>
           <ChatParticipants
-            className={"d-inline-flex w-50"}
+            className={"d-inline-flex w-25"}
             chatParticipants={[{ name: "Ai", id: "AI", role: "AI" }]}
             user={{ name: "Me", id: "1", role: "Human" }}
           />
           <ChatInput
-            className={"mx-auto w-50"}
+            className={"mx-auto w-75"}
             onSubmit={(submittedMessage) => {
               console.log(submittedMessage);
               submitMessageToConvo(sessionId, submittedMessage).then(
                 (response) => {
-                  console.log("response", response);
                   refreshConvo();
                 },
               );
