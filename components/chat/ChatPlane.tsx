@@ -1,5 +1,6 @@
 import React from "react";
 import { ConvoReturnType } from "../../lib/ApiActions";
+import ChatSystemPrompt from "./ChatSystemPrompt";
 
 type ChatPlaneProps = {
   messages: ConvoReturnType[];
@@ -41,6 +42,8 @@ const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
 
   return (
     <div style={borders}>
+      <ChatSystemPrompt className={"m-2"} />
+
       {messages.map((message, index) => {
         const isUser = message.role === "user";
         const styles = isUser ? { ...ourStyle, ...addlUserStyles } : ourStyle;

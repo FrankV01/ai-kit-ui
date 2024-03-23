@@ -9,6 +9,10 @@ import { LayoutComponent } from "../components/LayoutComponent";
 import Loading from "./loading";
 import { getSiteConfigs } from "../lib/ApiActions";
 import { ConfigurationResultType } from "../lib/Types";
+import {
+  ConfigKeys,
+  getConfigValue as _getConfigValue,
+} from "../lib/Utilities";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
@@ -20,12 +24,7 @@ type Props = {
 let siteConfigs: ConfigurationResultType[] = [];
 
 function getConfigValue(key: string, strDefault: string): string {
-  const item = siteConfigs.find((item) => item.key === key);
-  if (!item) {
-    console.warn(`Unable to find config item for key: ${key}`);
-    return strDefault;
-  }
-  return item?.value ? item.value : strDefault;
+  return _getConfigValue(siteConfigs, key, strDefault);
 }
 
 export async function generateMetadata(
@@ -40,23 +39,26 @@ export async function generateMetadata(
 
   const metadata: Metadata = {
     title: getConfigValue(
-      "METADATA_TITLE",
+      ConfigKeys.metadata.title,
       "ai-kit-ui - A white-labeled UI for AI-kit by Frank V.",
     ),
     description: getConfigValue(
-      "METADATA_DESC",
+      ConfigKeys.metadata.desc,
       "Fran's AI-Kit UI. Please configure these values in the database.",
     ),
     applicationName: getConfigValue("METADATA_APP_NAME", "ai-kit-ui"),
     keywords: getConfigValue(
-      "METADATA_KEYWORDS",
+      ConfigKeys.metadata.keywords,
       "AI,Portfolio,GPT-3,ChatGPT,ML,Frank Villasenor,theOpenSourceU,tOSU",
     ),
     authors: [
       { name: "Frank Villasenor", url: "http://www.theOpenSourceU.org/" },
     ],
-    creator: getConfigValue("METADATA_CREATOR", "Frank Villasenor"),
-    publisher: getConfigValue("METADATA_PUBLISHER", "Frank Villasenor"),
+    creator: getConfigValue(ConfigKeys.metadata.creator, "Frank Villasenor"),
+    publisher: getConfigValue(
+      ConfigKeys.metadata.publisher,
+      "Frank Villasenor",
+    ),
     robots: {
       index: true,
       follow: true,
