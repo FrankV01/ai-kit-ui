@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Inter } from "next/font/google";
 import "bootswatch/dist/litera/bootstrap.min.css";
-import StyledComponentsRegistry from "../lib/StyledComponentsRegistry";
+import StyledComponentsRegistry from "../components/StyledComponentsRegistry";
 import styles from "./page.module.css";
 import { Metadata, ResolvingMetadata } from "next";
 import MyAnalytics from "../components/MyAnalytics";
