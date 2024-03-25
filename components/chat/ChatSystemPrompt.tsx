@@ -1,5 +1,4 @@
-"use server";
-import React from "react";
+import React, { useEffect } from "react";
 import { getSiteConfigs } from "../../lib/ApiActions";
 import { ConfigKeys } from "../../lib/Utilities";
 
@@ -11,23 +10,31 @@ type ChatSystemPromptProps = {
  * This is meant to be a static display of the system message. I think the users
  * might should see it.
  *
- * @param className
  * @constructor
+ * @param props
  */
-const ChatSystemPrompt: React.FC<ChatSystemPromptProps> = async ({
-  className,
-}) => {
-  const config = await getSiteConfigs();
-  const systemMessage = config.find(
-    (c) => c.key === ConfigKeys.newRequestSystemPrompt,
-  );
-  if (!systemMessage || !systemMessage.value) {
+const ChatSystemPrompt: React.FC<ChatSystemPromptProps> = (props) => {
+  const { className } = props;
+  const [systemMessage, setSystemMessage] = React.useState<string>("");
+
+  useEffect(() => {
+    getSiteConfigs().then((c1) => {
+      const systemMessage = c1.find(
+        (c2) => c2.key === ConfigKeys.newRequestSystemPrompt,
+      );
+      if (systemMessage && systemMessage.value) {
+        setSystemMessage(systemMessage.value);
+      }
+    });
+  }, []);
+
+  if (!props) return <div>some how there are no props.</div>;
+  if (!systemMessage) {
     return null;
   }
-  const { value } = systemMessage;
   return (
     <div className={className}>
-      <p>{value}</p>
+      <p>{systemMessage}</p>
     </div>
   );
 };

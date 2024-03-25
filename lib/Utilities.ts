@@ -1,5 +1,3 @@
-"use server"; //I think
-
 import { ConfigurationResultType } from "./Types";
 import InvalidParameterError from "./errors/InvalidParameterError";
 
