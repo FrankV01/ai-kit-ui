@@ -32,9 +32,8 @@ const ChatInput = ({ onSubmit, className }: ChatInputProps) => {
         className="form-control"
         id="exampleTextarea"
         onChange={(e) => setInputValue(e.target.value)}
-      >
-        {inputValue}
-      </textarea>
+        value={inputValue}
+      />
 
       <button className="btn btn-primary form-control mt-2 w-25" type="submit">
         Submit
