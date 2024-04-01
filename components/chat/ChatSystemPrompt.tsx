@@ -33,8 +33,9 @@ const ChatSystemPrompt: React.FC<ChatSystemPromptProps> = (props) => {
     return null;
   }
   return (
-    <div className={className}>
-      <p>{systemMessage}</p>
+    <div className={`${className} p-2`}>
+      <span className={"fw-bolder"}>System Prompt Message: </span>
+      <span className={"fst-italic"}>{systemMessage}</span>
     </div>
   );
 };
