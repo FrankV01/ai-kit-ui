@@ -6,8 +6,6 @@ import LandingBanner from "./LandingBanner";
 import Footer from "./Footer";
 import React from "react";
 import { SessionProvider } from "next-auth/react";
-//import { EvnMgrSync } from "../lib/EnvMgr";
-//const topic = EvnMgrSync().TOPIC;
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
   return (
@@ -24,7 +22,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
           </Col>
         </Row>
         <Row>
-          <Col>{children}</Col>
+          <Col role={"main"}>{children}</Col>
         </Row>
         <Row>
           <Col>
