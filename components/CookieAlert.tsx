@@ -10,7 +10,7 @@ export function CookieAlert() {
     >
       <Modal.Dialog>
         <Modal.Header closeButton>
-          <Modal.Title>Cookie FYI</Modal.Title>
+          <Modal.Title aria-label={"title: Cookie FYI"}>Cookie FYI</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
