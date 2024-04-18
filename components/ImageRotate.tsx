@@ -8,23 +8,6 @@ import {
   useState,
 } from "react";
 
-function shuffleArray(array: string[]): string[] {
-  // Might be overkill.
-  for (let i = 0; i < 100; i++) {
-    let currentIndex = array.length;
-    while (currentIndex !== 0) {
-      const randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // Swap elements
-      const temp = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temp;
-    }
-  }
-  return array;
-}
-
 const currentFav = "/logo_2023-12-08T03-20-43.png";
 
 export default function ImageRotate() {
