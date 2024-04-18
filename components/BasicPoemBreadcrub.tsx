@@ -13,7 +13,7 @@ export default function BasicPoemBreadcrub(props: BasicPoemBreadcrubProps) {
       <Breadcrumb.Item title={"Go to Home Page"} href="/">
         <Icons.ArrowLeftCircleFill /> Home
       </Breadcrumb.Item>
-      <Breadcrumb.Item href="#" title={"Go to Home Page"} active>
+      <Breadcrumb.Item href="#" title={"Poem Title"} active>
         <Icons.EnvelopeOpenHeart />: {poemTitle}
       </Breadcrumb.Item>
     </Breadcrumb>
