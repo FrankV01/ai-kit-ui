@@ -3,13 +3,14 @@ module.exports = {
   rootDir: __dirname,
 
   // The test environment that will be used.
-  testEnvironment: "node",
+  //testEnvironment: "node",
+  testEnvironment: "jsdom",
 
   transform: {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
-        tsconfig: "tsconfig.json",
+        tsconfig: "tsconfig.unit.json",
       },
     ],
   },
