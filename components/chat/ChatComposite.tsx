@@ -57,6 +57,11 @@ const ChatComposite: React.FC<ChatCompositeProps> = () => {
           <ChatParticipantsState className={"w-25"} />
           <ChatInput
             className={"mx-auto w-75"}
+            onNewSession={() => {
+              startSession().then((sessionId) => {
+                setSessionId(sessionId);
+              });
+            }}
             onSubmit={(submittedMessage) => {
               submitMessageToConvo(sessionId, submittedMessage).then(
                 (response) => {
