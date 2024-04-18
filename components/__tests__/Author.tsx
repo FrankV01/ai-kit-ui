@@ -1,11 +1,22 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import { expect, it } from "@jest/globals";
+import { describe, expect, it } from "@jest/globals";
 import Author from "../Author";
 
-it("renders and updates a counter", () => {
-  const { getByText } = render(<Author />);
+describe("Author", () => {
+  it("renders and updates a counter", () => {
+    const { getByText } = render(<Author />);
 
-  // Assert initial state
-  expect(getByText("Frank Villasenor")).toBeInTheDocument();
+    // Assert initial state
+    expect(getByText("Frank Villasenor")).toBeInTheDocument();
+  });
+
+  it("renders with a className", () => {
+    const { getByText } = render(<Author className={"unit-test-01"} />);
+
+    // Assert initial state
+    const elm = getByText("Frank Villasenor");
+    expect(elm).toBeInTheDocument();
+    expect(elm.className).toBe("unit-test-01");
+  });
 });
