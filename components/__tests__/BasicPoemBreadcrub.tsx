@@ -12,10 +12,6 @@ describe("BasicPoemBreadcrub", () => {
 
     const elm = screen.getByText(/unit-test/i);
     expect(elm).toBeInTheDocument();
-    // const breadCrumb = await findByTitle("Poem Title");
-    // expect(breadCrumb).toBeInTheDocument();
-    // expect(breadCrumb).toHaveAttribute("href", "#");
-    // expect(breadCrumb).toHaveTextContent(/unit-test/g);
   });
 
   it("renders with provided poemTitle prop", () => {
