@@ -10,13 +10,14 @@ const sizeOfIcons = "2rem";
 function HeaderMenu({ topic }: { topic: string }) {
   return (
     <Navbar
+      role={"navigation"}
       expand="lg"
       bg={"primary"}
       variant={"light"}
       className={"shadow rounded-bottom"}
     >
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand data-testid={"topic-h3-brand-link"} href="/">
           <h3>
             <div className={"text-capitalize text-secondary"}>{topic}</div>{" "}
             Poems
