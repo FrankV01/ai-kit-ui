@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "test": "jest",
+    "test:watch": "jest --watch",
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
