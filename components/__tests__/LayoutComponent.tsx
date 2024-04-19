@@ -2,8 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { LayoutComponent } from "../LayoutComponent";
 
 jest.mock("next-auth/react", () => ({
-  // @ts-ignore JXS.Element isn't found.
-  SessionProvider: ({ children }) => (
+  SessionProvider: ({ children }: { children: React.ReactNode }) => (
     <div data-testid={"session-provider"}>{children}</div>
   ),
 }));
