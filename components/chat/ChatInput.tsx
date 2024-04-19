@@ -19,7 +19,9 @@ const ChatInput = ({ onSubmit, onNewSession, className }: ChatInputProps) => {
         return;
       }
       event.preventDefault();
-      onSubmit?.(inputValue);
+      if (inputValue.trim()) {
+        onSubmit?.(inputValue);
+      }
       setInputValue(""); //clear the message
     },
     [inputValue, onSubmit],
