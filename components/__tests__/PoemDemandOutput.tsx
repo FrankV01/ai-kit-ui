@@ -18,9 +18,9 @@ describe("PoemDemandOutput", () => {
   });
 
   // Seems ok. Not sure why it doesn't work. Can't find. Problem with "hidden"?
-  it.skip("shows spinner while typing", () => {
+  it("shows spinner while typing", () => {
     render(<PoemDemandOutput content="Test poem" />);
-    expect(screen.getByRole("status")).toBeInTheDocument();
+    expect(screen.getByRole("status", { hidden: true })).toBeInTheDocument();
   });
 
   it("hides spinner after typing", () => {
