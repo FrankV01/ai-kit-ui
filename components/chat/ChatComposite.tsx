@@ -1,9 +1,8 @@
 "use client";
-import ChatParticipants from "./ChatParticipants";
-import ChatPlane from "./ChatPlane";
-import ChatInput from "./ChatInput";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
+import ChatPlane from "./ChatPlane";
+import ChatInput from "./ChatInput";
 import {
   ConvoReturnType,
   getConvo,
@@ -32,8 +31,6 @@ const ChatComposite: React.FC<ChatCompositeProps> = () => {
   const _refreshConvo = useCallback(refreshConvo, [sessionId]);
 
   useEffect(() => {
-    // Run once.
-    console.log("sessionId", sessionId);
     if (sessionId) {
       _refreshConvo();
     } else {
