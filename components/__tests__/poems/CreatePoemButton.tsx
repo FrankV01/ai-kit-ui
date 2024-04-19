@@ -1,4 +1,4 @@
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import { render, fireEvent, waitFor, act } from "@testing-library/react";
 import { CreatePoemButton } from "../../poems/CreatePoemButton";
 import { ConvoReturnType, requestPoem } from "../../../lib/ApiActions";
 
@@ -33,7 +33,9 @@ describe("CreatePoemButton", () => {
     const { getByText } = render(
       <CreatePoemButton onCreatePoem={mockOnCreatePoem} />,
     );
-    fireEvent.click(getByText("Create Poem"));
+    act(() => {
+      fireEvent.click(getByText("Create Poem"));
+    });
     await waitFor(() => expect(mockOnCreatePoem).toHaveBeenCalledWith(1));
   });
 
@@ -41,7 +43,9 @@ describe("CreatePoemButton", () => {
     const { getByText } = render(
       <CreatePoemButton onCreatePoem={mockOnCreatePoem} />,
     );
-    fireEvent.click(getByText("Create Poem"));
+    act(() => {
+      fireEvent.click(getByText("Create Poem"));
+    });
     expect(getByText("Creating...")).toBeInTheDocument();
   });
 
@@ -50,7 +54,9 @@ describe("CreatePoemButton", () => {
     const { getByText } = render(
       <CreatePoemButton onCreatePoem={mockOnCreatePoem} />,
     );
-    fireEvent.click(getByText("Create Poem"));
+    act(() => {
+      fireEvent.click(getByText("Create Poem"));
+    });
     await waitFor(() =>
       expect(
         getByText("error occurred during poem creation"),
