@@ -6,19 +6,19 @@ import React from "react";
 
 const LoadingPoemBody = () => {
   return (
-    <Container>
+    <Container role={"main"}>
       <Row>
         <Col lg={2} md={1} sm={0}></Col>
         <Col lg={8} md={10} sm={12}>
           <h2>
-            <Placeholder animation={"wave"}>
+            <Placeholder role={"status"} animation={"wave"}>
               <Placeholder xs={4} /> <Placeholder xs={2} />{" "}
               <Placeholder xs={4} />
             </Placeholder>{" "}
           </h2>
           <BasicPoemBreadcrub poemTitle={"Loading"} />
           <div className={"body p-2 my-3"}>
-            <Placeholder animation={"glow"}>
+            <Placeholder role={"status"} animation={"glow"}>
               <Placeholder xs={6} /> <Placeholder xs={4} />{" "}
               <Placeholder xs={2} /> <Placeholder xs={5} />{" "}
               <Placeholder xs={6} /> <Placeholder xs={2} />{" "}
