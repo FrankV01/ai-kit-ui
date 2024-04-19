@@ -1,7 +1,3 @@
-import Link from "next/link";
-import * as Icons from "react-bootstrap-icons";
-import { Container, Stack } from "react-bootstrap";
-
 export function PoemDemandInfo() {
   return (
     <div className={"mb-3"}>
