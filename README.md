@@ -6,6 +6,7 @@ This project is pending a rename. See above.
 
 The deployment is done on Digital Ocean. Scripts are at:
 `/Users/frankv/GitHub/k8s-sit/k8s-sit/digital-ocean/poems.AppDocker`
+The above is setup. Above is a reminder.
 
 We use docker containers. So to deploy a new version,
 run `send.sh` which builds and sends the container to the
