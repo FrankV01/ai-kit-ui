@@ -78,7 +78,7 @@ export default function PoemCard({
 
   if (loading)
     return (
-      <div>
+      <div data-testid={"loading-notif"}>
         <PoemLoading id={789} />
       </div>
     );
