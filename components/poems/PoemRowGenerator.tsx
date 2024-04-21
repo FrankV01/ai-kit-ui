@@ -54,7 +54,13 @@ export const PoemRowGenerator = ({}: PoemRowGeneratorProps) => {
 
   return (
     <>
-      <Col key={`PoemCardDisplay-generator-2`} xs={12} md={4} lg={4}>
+      <Col
+        key={`PoemCardDisplay-generator-2`}
+        role={"PoemRowGenerator"}
+        xs={12}
+        md={4}
+        lg={4}
+      >
         <PoemCard
           cardType={PoemCardType.NewPoemButtonCard}
           newPoem={{
