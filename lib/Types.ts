@@ -35,7 +35,6 @@ export interface IBasicChatConversation {
   messages?: IBasicChatMessage[];
 }
 
-// TODO: Consider moving.
 export type ConvoReturnType = {
   appId: number;
   assocSessionId: string;
