@@ -40,9 +40,11 @@ const ChatParticipants: React.FC<ChatPlaneProps> = ({
   });
   return (
     <div className={className}>
-      <div className={"d-block w-100"}>
-        [{personIcon}] {name}
-      </div>
+      {name && (
+        <div className={"d-block w-100"}>
+          [{personIcon}] {name}
+        </div>
+      )}
       <div className={"d-block w-100"}>{cp}</div>
     </div>
   );
