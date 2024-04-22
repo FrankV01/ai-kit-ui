@@ -1,6 +1,7 @@
 import { render, fireEvent, waitFor, act } from "@testing-library/react";
 import { CreatePoemButton } from "../../poems/CreatePoemButton";
-import { ConvoReturnType, requestPoem } from "../../../lib/ApiActions";
+import { requestPoem } from "../../../lib/ApiActions";
+import { ConvoReturnType } from "../../../lib/Types";
 
 jest.mock("../../../lib/ApiActions", () => ({
   startSession: jest.fn().mockResolvedValue("new-session-id"),
