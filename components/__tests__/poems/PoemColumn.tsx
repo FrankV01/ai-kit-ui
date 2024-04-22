@@ -1,5 +1,5 @@
 import { act, render, screen } from "@testing-library/react";
-import PoemColumn from "../../poems/PoemColumn";
+import PoemRowSet from "../../poems/PoemRowSet";
 import { PoemCardType } from "../../poems/PoemCard";
 import { ConvoReturnType } from "../../../lib/ApiActions";
 
@@ -28,19 +28,19 @@ jest.mock(
 
 describe("PoemColumn", () => {
   it("renders three PoemCards when isPoemCol is true", () => {
-    render(<PoemColumn poemId1={1} poemId2={2} poemId3={3} isPoemCol={true} />);
+    render(<PoemRowSet poemId1={1} poemId2={2} poemId3={3} isPoemCol={true} />);
     const poemCards = screen.getAllByText("PoemCard");
     expect(poemCards).toHaveLength(3);
   });
 
   it("renders two PoemCards when isPoemCol is true and poemId3 is not provided", () => {
-    render(<PoemColumn poemId1={1} poemId2={2} isPoemCol={true} />);
+    render(<PoemRowSet poemId1={1} poemId2={2} isPoemCol={true} />);
     const poemCards = screen.getAllByText("PoemCard");
     expect(poemCards).toHaveLength(2);
   });
 
   it("renders PoemRowGenerator when isPoemCol is false", () => {
-    render(<PoemColumn poemId1={1} isPoemCol={false} />);
+    render(<PoemRowSet poemId1={1} isPoemCol={false} />);
 
     act(() => {
       const poemRowGenerator = screen.getAllByRole("PoemRowGenerator");
