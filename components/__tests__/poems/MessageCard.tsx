@@ -27,43 +27,6 @@ jest.mock("next-auth/react", () => ({
     .fn()
     .mockReturnValue({ data: { user: { name: "Test User" } } }),
 }));
-// jest.mock("../../poems/PoemCard", () => {
-//   return ({
-//     rotation,
-//     cardType,
-//     placeholder,
-//   }: Omit<PoemCardProps, "id" | "newPoem">) => (
-//     <div data-testid="mock-poem-card">
-//       <div data-testid="rotation">{rotation}</div>
-//       <div data-testid="cardType">{cardType}</div>
-//       <div data-testid="placeholder">
-//         <h4>{placeholder?.title || "untitled"}</h4>
-//         <div>{placeholder?.body || "nothing"}</div>
-//       </div>
-//     </div>
-//   );
-// });
-
-// jest.mock("../../poems/PoemCard", () => {
-//   return PoemCard;
-//   function PoemCard({
-//     rotation,
-//     cardType,
-//     placeholder,
-//   }: Omit<PoemCardProps, "id" | "newPoem">) {
-//     console.log("PoemCard Mock");
-//     return (
-//       <div data-testid="mock-poem-card">
-//         <div data-testid="rotation">{rotation}</div>
-//         <div data-testid="cardType">{cardType}</div>
-//         <div data-testid="placeholder">
-//           <h4>{placeholder?.title || "untitled"}</h4>
-//           <h4>{placeholder?.body || "nothing"}</h4>
-//         </div>
-//       </div>
-//     );
-//   }
-// });
 
 describe("MessageCard", () => {
   it("renders with messageIndex 0", () => {
