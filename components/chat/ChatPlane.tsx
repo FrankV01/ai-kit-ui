@@ -34,8 +34,7 @@ const addlUserStyles = {
  * @constructor
  */
 const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
-  const none = messages.length === 0;
-  if (none) {
+  if (messages.length === 0) {
     return <div style={{ ...ourStyle, ...borders }}>No messages yet.</div>;
   }
 
