@@ -7,6 +7,7 @@ import { ISessionlessResponse } from "../types/ISessionlessResponse";
 import "server-only";
 import {
   ConfigurationResultType,
+  ConvoReturnType,
   SessionlessResponseApiResponseType,
   TagsResponse,
 } from "./Types";
@@ -356,16 +357,6 @@ export async function endSession(sessionId: string) {
     console.warn("endSession", er);
   }
 }
-
-// TODO: Consider moving.
-export type ConvoReturnType = {
-  appId: number;
-  assocSessionId: string;
-  senderId: string;
-  message: string;
-  created: Date;
-  role: string;
-};
 
 /**
  * Gets the conversation. Inherently also validates the session.

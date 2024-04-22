@@ -4,13 +4,13 @@ import { useLocalStorage } from "usehooks-ts";
 import ChatPlane from "./ChatPlane";
 import ChatInput from "./ChatInput";
 import {
-  ConvoReturnType,
   getConvo,
   startSession,
   submitMessageToConvo,
 } from "../../lib/ApiActions";
 import ErrorBoundary from "../ErrorBoundry";
 import ChatParticipantsState from "./ChatParticipantsState";
+import { ConvoReturnType } from "../../lib/Types";
 
 type ChatCompositeProps = {};
 const ChatComposite: React.FC<ChatCompositeProps> = () => {

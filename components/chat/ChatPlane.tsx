@@ -1,7 +1,6 @@
 import React from "react";
-import { ConvoReturnType } from "../../lib/ApiActions";
 import ChatSystemPrompt from "./ChatSystemPrompt";
-
+import { ConvoReturnType } from "../../lib/Types";
 type ChatPlaneProps = {
   messages: ConvoReturnType[];
 };

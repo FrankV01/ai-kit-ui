@@ -34,3 +34,13 @@ export interface IBasicChatConversation {
   sessionId: string;
   messages?: IBasicChatMessage[];
 }
+
+// TODO: Consider moving.
+export type ConvoReturnType = {
+  appId: number;
+  assocSessionId: string;
+  senderId: string;
+  message: string;
+  created: Date;
+  role: string;
+};
