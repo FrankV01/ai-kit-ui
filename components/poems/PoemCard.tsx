@@ -16,10 +16,16 @@ export enum PoemCardType {
   NewPoemButtonCard,
   PlaceholderCard,
 }
+export enum RotationType {
+  None,
+  Right,
+  Left,
+}
 
 export type PoemCardProps = {
   id?: number;
   cardType?: PoemCardType;
+  rotation?: RotationType;
   newPoem?: {
     onCreatePoem: (poemId: number) => void;
   };
@@ -39,15 +45,26 @@ const fancyHeader = {
   alignItems: "center",
 };
 
+const cardStyle = { height: "400px" };
+const rotateRightStyle = {
+  transform: "rotate(1deg)",
+};
+const rotateLeftStyle = {
+  transform: "rotate(-1deg)",
+};
+
 export default function PoemCard({
   id,
   cardType,
+  rotation,
   placeholder,
   newPoem,
 }: PoemCardProps) {
+  rotation = rotation || RotationType.None;
   const [data, setData] = React.useState<ISessionlessResponse>(
     {} as ISessionlessResponse,
   );
+
   cardType = cardType || PoemCardType.PoemCard;
   const [loading, setLoading] = React.useState<boolean>(true);
   const { data: session } = useSession();
@@ -95,6 +112,12 @@ export default function PoemCard({
   const isPlaceholder = cardType === PoemCardType.PlaceholderCard;
   const isNewPoemButton = cardType === PoemCardType.NewPoemButtonCard;
   const isPoemCard = cardType === PoemCardType.PoemCard;
+  const styles =
+    rotation === RotationType.None
+      ? cardStyle
+      : rotation === RotationType.Right
+        ? { ...cardStyle, ...rotateRightStyle }
+        : { ...cardStyle, ...rotateLeftStyle };
 
   return (
     <Card
@@ -102,7 +125,7 @@ export default function PoemCard({
       text={"dark"}
       border={"dark"}
       key={`PoemCardDisplay-${data.id}-item`}
-      style={{ height: "400px" }}
+      style={styles}
       className={"my-2 my-lg-3 my-md-2 p-0 shadow overflow-hidden"}
     >
       <Card.Body

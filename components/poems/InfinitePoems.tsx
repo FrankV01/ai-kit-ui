@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { LoadingColumn } from "./LoadingColumn";
 import { useEffectOnce } from "usehooks-ts";
 import { Row } from "react-bootstrap";
-import PoemColumn from "./PoemColumn";
+import PoemRowSet from "./PoemRowSet";
 
 type InfinitePoemsProps = {};
 
@@ -59,7 +59,7 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
 
     rows.unshift(
       <Row key={`PoemCardDisplay-poemCol-987654321`}>
-        <PoemColumn poemId1={987654321} isPoemCol={false} />
+        <PoemRowSet poemId1={987654321} isPoemCol={false} />
       </Row>,
     );
 
@@ -69,6 +69,7 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
   return (
     <>
       <InfiniteScroll
+        className={"p-3"}
         dataLength={poemData.length}
         next={moreData}
         hasMore={hasMore}

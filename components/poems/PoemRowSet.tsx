@@ -1,6 +1,6 @@
 import { Col } from "react-bootstrap";
 import dynamic from "next/dynamic";
-import { PoemCardType } from "./PoemCard";
+import { PoemCardType, RotationType } from "./PoemCard";
 import PoemRowGenerator from "./PoemRowGenerator";
 const PoemCard = dynamic(() => import("./PoemCard"), { ssr: false });
 
@@ -11,7 +11,7 @@ export type PoemColumnProps = {
   isPoemCol: boolean;
 };
 
-export default function PoemColumn({
+export default function PoemRowSet({
   poemId1,
   poemId2,
   poemId3,
@@ -21,16 +21,28 @@ export default function PoemColumn({
     return (
       <>
         <Col key={`PoemCardDisplay-${poemId1}-1`} xs={12} md={4} lg={4}>
-          <PoemCard id={poemId1} cardType={PoemCardType.PoemCard} />
+          <PoemCard
+            id={poemId1}
+            rotation={RotationType.Left}
+            cardType={PoemCardType.PoemCard}
+          />
         </Col>
         <Col key={`PoemCardDisplay-${poemId2}-2`} xs={12} md={4} lg={4}>
           {poemId2 && (
-            <PoemCard id={poemId2} cardType={PoemCardType.PoemCard} />
+            <PoemCard
+              id={poemId2}
+              rotation={RotationType.Right}
+              cardType={PoemCardType.PoemCard}
+            />
           )}
         </Col>
         <Col key={`PoemCardDisplay-${poemId3}-3`} xs={12} md={4} lg={4}>
           {poemId3 && (
-            <PoemCard id={poemId3} cardType={PoemCardType.PoemCard} />
+            <PoemCard
+              id={poemId3}
+              rotation={RotationType.Left}
+              cardType={PoemCardType.PoemCard}
+            />
           )}
         </Col>
       </>
