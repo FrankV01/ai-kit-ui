@@ -1,7 +1,8 @@
 import { act, render, screen } from "@testing-library/react";
 import PoemRowSet from "../../poems/PoemRowSet";
 import { PoemCardType } from "../../poems/PoemCard";
-import { ConvoReturnType } from "../../../lib/ApiActions";
+
+import { ConvoReturnType } from "../../../lib/Types";
 
 jest.mock("next/dynamic", () =>
   jest.fn().mockReturnValue(() => <div>PoemCard</div>),

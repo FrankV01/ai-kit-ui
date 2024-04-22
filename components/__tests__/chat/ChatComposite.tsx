@@ -6,12 +6,9 @@ import {
   waitFor,
 } from "@testing-library/react";
 import ChatComposite from "../../chat/ChatComposite";
-import {
-  ConvoReturnType,
-  startSession,
-  submitMessageToConvo,
-} from "../../../lib/ApiActions";
+import { startSession, submitMessageToConvo } from "../../../lib/ApiActions";
 import { SessionProvider } from "next-auth/react";
+import { ConvoReturnType } from "../../../lib/Types";
 
 jest.mock("../../../lib/ApiActions", () => ({
   startSession: jest.fn().mockResolvedValue("new-session-id"),

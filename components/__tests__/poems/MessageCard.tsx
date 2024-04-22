@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MessageCard } from "../../poems/MessageCard";
-import { ConvoReturnType } from "../../../lib/ApiActions";
+
+import { ConvoReturnType } from "../../../lib/Types";
 
 jest.mock(
   "../../../lib/SafeMarkdownToHtml",

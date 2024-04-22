@@ -1,6 +1,7 @@
 import { render, waitFor } from "@testing-library/react";
 import { InfinitePoems } from "../../poems/InfinitePoems";
-import { ConvoReturnType, getGroupedPoemIds } from "../../../lib/ApiActions";
+import { getGroupedPoemIds } from "../../../lib/ApiActions";
+import { ConvoReturnType } from "../../../lib/Types";
 
 jest.mock(
   "../../../lib/SafeMarkdownToHtml",
