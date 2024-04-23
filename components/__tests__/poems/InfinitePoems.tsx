@@ -1,4 +1,4 @@
-import { render, waitFor } from "@testing-library/react";
+import { act, render, waitFor, screen } from "@testing-library/react";
 import { InfinitePoems } from "../../poems/InfinitePoems";
 import { getGroupedPoemIds } from "../../../lib/ApiActions";
 import { ConvoReturnType } from "../../../lib/Types";
@@ -13,6 +13,7 @@ jest.mock("../../../lib/ApiActions", () => ({
   submitMessageToConvo: jest.fn().mockResolvedValue([]),
   getConvo: jest.fn().mockResolvedValue([] as ConvoReturnType[]),
   requestPoem: jest.fn().mockResolvedValue({ id: 1 }),
+  getGroupedPoemIds: jest.fn().mockResolvedValue([[1, 2]]),
 }));
 jest.mock("next-auth/react", () => ({
   SessionProvider: ({ children }: { children: React.ReactNode }) => (
@@ -26,34 +27,51 @@ jest.mock("usehooks-ts", () => ({
   useLocalStorage: jest
     .fn()
     .mockReturnValue(["existing-session-id", jest.fn()]),
+  useEffectOnce: jest.fn(),
+  useInterval: jest.fn(),
 }));
 
-describe.skip("InfinitePoems", () => {
-  beforeEach(() => {
-    (getGroupedPoemIds as jest.Mock).mockResolvedValue([[1, 2]]);
-  });
-
+describe("InfinitePoems", () => {
   it("renders loading state initially", () => {
-    const { getByText } = render(<InfinitePoems />);
-    expect(getByText("Loading...")).toBeInTheDocument();
+    const { getByText, getByRole } = render(<InfinitePoems />);
+    expect(getByRole("PoemRowGenerator")).toBeInTheDocument();
   });
 
-  it("renders error state when poem retrieval fails", async () => {
+  it("renders error state when poem retrieval fails", () => {
     (getGroupedPoemIds as jest.Mock).mockRejectedValue(new Error());
-    const { findByText } = render(<InfinitePoems />);
-    expect(
-      await findByText("error occurred during retrieval of poem data"),
-    ).toBeInTheDocument();
+    act(() => {
+      render(<InfinitePoems />);
+    });
+    waitFor(() => {
+      expect(
+        screen.findByText("error occurred during retrieval of poem data", {
+          exact: false,
+        }),
+      ).toBeInTheDocument();
+    });
   });
 
-  it("renders poems when poem retrieval is successful", async () => {
-    const { findByText } = render(<InfinitePoems />);
-    expect(await findByText("All poems Displayed")).toBeInTheDocument();
+  it("renders poems when poem retrieval is successful", () => {
+    render(<InfinitePoems />);
+    waitFor(() => {
+      expect(
+        screen.findByText("All poems Displayed", {
+          exact: false,
+        }),
+      ).toBeInTheDocument();
+    });
   });
 
-  it("fetches next page of poems when scrolled to bottom", async () => {
-    const { findByText } = render(<InfinitePoems />);
-    await findByText("All poems Displayed");
-    expect(getGroupedPoemIds).toHaveBeenCalledTimes(2);
+  it("fetches next page of poems when scrolled to bottom", () => {
+    render(<InfinitePoems />);
+
+    waitFor(() => {
+      expect(
+        screen.findByText("All poems Displayed", {
+          exact: false,
+        }),
+      ).toBeInTheDocument();
+      expect(getGroupedPoemIds).toHaveBeenCalledTimes(2);
+    });
   });
 });
