@@ -33,7 +33,7 @@ describe("MessageCard", () => {
   it("renders with messageIndex 0", () => {
     render(<MessageCard key={"unit-test"} messageIndex={0} />);
     expect(screen.getByText("Welcome")).toBeInTheDocument();
-    const msg = /Welcome to /gi;
+    const msg = /Welcome to /i;
     expect(screen.getByText(msg)).toBeInTheDocument();
   });
 
