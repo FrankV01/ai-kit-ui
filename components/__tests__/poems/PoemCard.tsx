@@ -61,13 +61,6 @@ describe("PoemCard", () => {
     waitFor(() => {
       expect(screen.getByTestId("loading-notif")).toBeInTheDocument();
     });
-
-    // act(() => {
-    //   const { getByTestId } = render(<PoemCard id={1} />);
-    //   waitFor(() => {
-    //     expect(getByTestId("loading-notif")).toBeInTheDocument();
-    //   });
-    // });
   });
 
   it("renders poem data when loaded", async () => {
