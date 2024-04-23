@@ -1,4 +1,5 @@
 import React, { FormEventHandler, useCallback, useState } from "react";
+import { sanitizeInput } from "../../lib/inputUtils";
 
 type ChatInputFormEventHandler =
   | React.FormEventHandler<HTMLFormElement>
@@ -18,8 +19,9 @@ const ChatInput = ({ onSubmit, onNewSession, className }: ChatInputProps) => {
         return;
       }
       event.preventDefault();
-      if (inputValue.trim()) {
-        onSubmit?.(inputValue);
+      const scrubbedInputValue = sanitizeInput((inputValue || "").trim());
+      if (scrubbedInputValue) {
+        onSubmit?.(scrubbedInputValue);
       }
       setInputValue(""); //clear the message
     },
@@ -28,12 +30,6 @@ const ChatInput = ({ onSubmit, onNewSession, className }: ChatInputProps) => {
 
   return (
     <form className={className} onSubmit={handleSubmit}>
-      {/*<input*/}
-      {/*  type="text"*/}
-      {/*  value={inputValue}*/}
-      {/*  onChange={(e) => setInputValue(e.target.value)}*/}
-      {/*  className="form-control text-dark"*/}
-      {/*/>*/}
       <textarea
         className="form-control"
         id="exampleTextarea"

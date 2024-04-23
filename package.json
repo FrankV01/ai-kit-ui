@@ -27,7 +27,8 @@
     "react-dom": "^18.2.0",
     "react-infinite-scroll-component": "^6.1.0",
     "styled-components": "^6.1.8",
-    "usehooks-ts": "^2.12.1"
+    "usehooks-ts": "^2.12.1",
+    "xss": "^1.0.15"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
