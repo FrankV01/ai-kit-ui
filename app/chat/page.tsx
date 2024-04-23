@@ -3,7 +3,12 @@ import EnvMgr from "../../lib/EnvMgr";
 
 export default async function Page() {
   const envMgr = await EnvMgr();
-  if (!envMgr.DEBUG) return; //Dont work in production for now.
+  if (!envMgr.DEBUG)
+    return (
+      <div>
+        <h1>Feature Disabled</h1>
+      </div>
+    );
   return (
     <div>
       <h1>Chat</h1>

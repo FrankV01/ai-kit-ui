@@ -12,7 +12,6 @@ export type ChatInputProps = {
 const ChatInput = ({ onSubmit, onNewSession, className }: ChatInputProps) => {
   const [inputValue, setInputValue] = useState("");
 
-  // Should this be wrapped in a callback thing?
   const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
     (event) => {
       if (!event) {
