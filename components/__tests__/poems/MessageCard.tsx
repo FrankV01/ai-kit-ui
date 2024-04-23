@@ -48,7 +48,17 @@ describe("MessageCard", () => {
   });
 
   it("throws an error with invalid messageIndex", () => {
+    const consoleSpy = jest.spyOn(console, "error");
+    consoleSpy.mockImplementation(() => {});
+
     // @ts-ignore
     expect(() => render(<MessageCard messageIndex={2} />)).toThrow();
+
+    // Check the first call
+    expect(consoleSpy.mock.calls[0][0].detail.message).toEqual(
+      "Invalid message index",
+    );
+
+    consoleSpy.mockRestore();
   });
 });
