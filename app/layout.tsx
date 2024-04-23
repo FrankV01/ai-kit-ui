@@ -13,6 +13,7 @@ import {
   ConfigKeys,
   getConfigValue as _getConfigValue,
 } from "../lib/Utilities";
+import { headers } from "next/headers";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
@@ -81,14 +82,20 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const nonce: string = (headers().get("x-nonce") as string) || "[missing]";
+
   //#E0E7EE #BBC7D4 #CAD5DF
   return (
     <html lang="en">
       <body className={inter.className}>
         <React.StrictMode>
-          <MyAnalytics />
+          <MyAnalytics nonce={nonce} />
           <StyledComponentsRegistry>
-            <main style={{ background: "#E0E7EE" }} className={styles.main}>
+            <main
+              style={{ background: "#E0E7EE" }}
+              nonce={nonce}
+              className={styles.main}
+            >
               <LayoutComponent>
                 <Suspense fallback={<Loading />}>{children}</Suspense>
               </LayoutComponent>
