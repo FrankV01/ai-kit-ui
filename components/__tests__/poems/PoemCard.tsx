@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import PoemCard, { PoemCardType } from "../../poems/PoemCard";
 import { getPoemById } from "../../../lib/ApiActions";
 import { ConvoReturnType } from "../../../lib/Types";
