@@ -1,17 +1,15 @@
-const hashArray = ["'sha256-Q+8tPsjVtiDsjF/Cv8FMOpg2Yg91oKFKDAJat1PPb2g='"];
-//
-// const styleSource = [
-//   "",
-//   " ",
-//   // "'sha256-Q+8tPsjVtiDsjF/Cv8FMOpg2Yg91oKFKDAJat1PPb2g='",
-//   // "'sha256-WBc5yYsTY9j6NBbhtTB+cssjYFFZIaK52GGi2jDFAZs='",
-//   // // "'sha256-WBc5yYsTY9j6NBbhtTB+cssjYFFZIaK52GGi2jDFAZs='",
-//   // // "'sha256-WBc5yYsTY9j6NBbhtTB+cssjYFFZIaK52GGi2jDFAZs='",
-//   //
-//   // "'sha256-YoiTZbP35ftJSuqcXHIQKR0GkOgvwuSrIESq73qEh+4='",
-//   // "'sha256-kkGuidKZmpfLHMnUk9YsbohrzgU0jeTSFi89bS2wj9A='",
-//   // "'sha256-cx9IcP4FLgfcIWC6umasM7vJD+AVUJIn6EQVeZMO84U='",
-// ].join(" ");
+const cspHeader = `
+    default-src 'self';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' blob: data:;
+    font-src 'self';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    upgrade-insecure-requests;
+`.replace(/\n/g, "");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,13 +18,10 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
-          // TLDR: This is needed for better security but it blocks things on me.
-          //  We have a lot of things inline right now. We can either get this working or move those to a file.
-          //
-          // {
-          //   key: "Content-Security-Policy",
-          //   value: `default-src 'self' https://www.googletagmanager.com; img-src 'self' https://mirrors.creativecommons.org; media-src 'self' https://mirrors.creativecommons.org; script-src 'self' https://mirrors.creativecommons.org unsafe-inline unsafe-eval; style-src 'self' unsafe-inline;`,
-          // },
+          {
+            key: "Content-Security-Policy",
+            value: cspHeader,
+          },
           {
             key: "Strict-Transport-Security",
             value: "max-age=31536000; includeSubDomains; preload",
