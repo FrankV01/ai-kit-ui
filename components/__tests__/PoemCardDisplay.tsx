@@ -36,13 +36,12 @@ describe("PoemCardDisplay", () => {
     expect(screen.getByText("No poems found")).toBeInTheDocument();
   });
 
-  // Not sure whether to save or not.
-  it.skip("groups poems into chunks of three", () => {
+  it("groups poems into chunks of three", () => {
     const largeMockEntries = new Array(10).fill(mockEntries[0]);
     render(<PoemCardDisplay entries={largeMockEntries} />);
-    const poemRows = screen.getAllByRole("row");
-    expect(poemRows).toHaveLength(4);
-    expect(poemRows[0].children).toHaveLength(3);
-    expect(poemRows[3].children).toHaveLength(1);
+    const cards = screen.getAllByRole("card");
+    expect(cards).toHaveLength(10);
+    const cardRow = screen.getAllByRole("card-row");
+    expect(cardRow).toHaveLength(4);
   });
 });

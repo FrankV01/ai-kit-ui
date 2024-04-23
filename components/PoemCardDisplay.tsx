@@ -60,6 +60,7 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
       {poemDataMd.map((entry, idx) => {
         return (
           <Row
+            role={"card-row"}
             key={`PoemCardDisplay-${idx}`}
             // className={"d-inline-flex w-100 m-2"}
           >
@@ -68,6 +69,7 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
                 <Col key={`PoemCardDisplay-${idx}`} xs={12} md={4} lg={4}>
                   {
                     <Card
+                      role={"card"}
                       bg={"light"}
                       text={"dark"}
                       border={"dark"}
