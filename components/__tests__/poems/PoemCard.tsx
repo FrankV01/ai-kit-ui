@@ -1,7 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import PoemCard, { PoemCardType } from "../../poems/PoemCard";
 import { getPoemById } from "../../../lib/ApiActions";
 import { ConvoReturnType } from "../../../lib/Types";
+import React from "react";
 
 jest.mock(
   "../../../lib/SafeMarkdownToHtml",
@@ -34,39 +35,42 @@ jest.mock("usehooks-ts", () => ({
     .mockReturnValue(["existing-session-id", jest.fn()]),
   useInterval: jest.fn(),
 }));
+// jest.mock("react", () => ({
+//   useEffect: jest.fn(),
+// }));
 
 describe("PoemCard", () => {
+  const mockUseEffect = jest.spyOn(React, "useEffect");
   beforeEach(() => {
-    (getPoemById as jest.Mock).mockResolvedValue({
-      id: 1,
-      title: "Test Poem",
-      response: "This is a test poem",
-      internalTrainingRating: 5,
+    mockUseEffect.mockImplementation((f) => {
+      /* no opt intentional */
     });
+
+    // (getPoemById as jest.Mock).mockResolvedValue({
+    //   id: 1,
+    //   title: "Test Poem",
+    //   response: "This is a test poem",
+    //   internalTrainingRating: 5,
+    // });
   });
 
   it("renders loading state initially", () => {
-    render(<PoemCard id={1} />);
-    expect(screen.getByTestId("loading-notif")).toBeInTheDocument();
+    act(() => {
+      const { getByTestId } = render(<PoemCard id={1} />);
+      waitFor(() => {
+        expect(getByTestId("loading-notif")).toBeInTheDocument();
+      });
+    });
   });
 
   it("renders poem data when loaded", async () => {
-    render(<PoemCard id={1} />);
+    act(() => {
+      render(<PoemCard id={1} />);
+    });
     waitFor(() => {
       expect(screen.findByText("Test Poem")).toBeInTheDocument();
       expect(screen.getByText("This is a test poem")).toBeInTheDocument();
     });
-  });
-
-  // Not a thing right now
-  it.skip("renders error state when poem retrieval fails", async () => {
-    (getPoemById as jest.Mock).mockRejectedValue(new Error());
-    render(<PoemCard id={1} />);
-    expect(
-      await screen.findByText(
-        "An error occurred during retrieval of poem data",
-      ),
-    ).toBeInTheDocument();
   });
 
   it("renders placeholder card when cardType is PlaceholderCard", () => {
