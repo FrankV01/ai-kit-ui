@@ -1,12 +1,14 @@
-import { render, fireEvent, waitFor, act } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+} from "@testing-library/react";
 import { CreatePoemButton } from "../../poems/CreatePoemButton";
 import { requestPoem } from "../../../lib/ApiActions";
-import { ConvoReturnType } from "../../../lib/Types";
 
 jest.mock("../../../lib/ApiActions", () => ({
-  startSession: jest.fn().mockResolvedValue("new-session-id"),
-  submitMessageToConvo: jest.fn().mockResolvedValue([]),
-  getConvo: jest.fn().mockResolvedValue([] as ConvoReturnType[]),
   requestPoem: jest.fn().mockResolvedValue({ id: 1 }),
 }));
 jest.mock("next-auth/react", () => ({
@@ -52,15 +54,13 @@ describe("CreatePoemButton", () => {
 
   it("displays error text when poem creation fails", async () => {
     (requestPoem as jest.Mock).mockRejectedValueOnce(new Error());
-    const { getByText } = render(
-      <CreatePoemButton onCreatePoem={mockOnCreatePoem} />,
-    );
+    render(<CreatePoemButton onCreatePoem={mockOnCreatePoem} />);
     act(() => {
-      fireEvent.click(getByText("Create Poem"));
+      fireEvent.click(screen.getByText("Create Poem"));
     });
     await waitFor(() =>
       expect(
-        getByText("error occurred during poem creation"),
+        screen.getByText("error occurred during poem creation"),
       ).toBeInTheDocument(),
     );
   });
