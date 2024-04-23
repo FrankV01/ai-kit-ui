@@ -1,5 +1,5 @@
 import React, { FormEventHandler, useCallback, useState } from "react";
-import { sanitizeInput } from "../../lib/inputUtils";
+import { sanitizeInput } from "../../lib/InputUtils";
 
 type ChatInputFormEventHandler =
   | React.FormEventHandler<HTMLFormElement>
