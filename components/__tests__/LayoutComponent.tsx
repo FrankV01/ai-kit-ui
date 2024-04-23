@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import { LayoutComponent } from "../LayoutComponent";
 
 jest.mock("next-auth/react", () => ({
@@ -27,13 +27,17 @@ jest.mock("../Footer", () => {
 
 describe("LayoutComponent", () => {
   it("renders without crashing", () => {
-    render(
-      <LayoutComponent>
-        <div>unit tests</div>
-      </LayoutComponent>,
-    );
-    const layoutElement = screen.getByRole("main");
-    expect(layoutElement).toBeInTheDocument();
+    act(() => {
+      render(
+        <LayoutComponent>
+          <div>unit tests</div>
+        </LayoutComponent>,
+      );
+      waitFor(() => {
+        const layoutElement = screen.getByRole("main");
+        expect(layoutElement).toBeInTheDocument();
+      });
+    });
   });
 
   it("renders with the mocked HeaderMenu component", () => {
