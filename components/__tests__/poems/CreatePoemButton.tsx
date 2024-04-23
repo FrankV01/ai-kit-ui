@@ -10,6 +10,7 @@ import { requestPoem } from "../../../lib/ApiActions";
 
 jest.mock("../../../lib/ApiActions", () => ({
   requestPoem: jest.fn().mockResolvedValue({ id: 1 }),
+  getPoemById: jest.fn().mockResolvedValue({ id: 1 }),
 }));
 jest.mock("next-auth/react", () => ({
   SessionProvider: ({ children }: { children: React.ReactNode }) => (
@@ -43,13 +44,15 @@ describe("CreatePoemButton", () => {
   });
 
   it("displays loading text while creating poem", () => {
-    const { getByText } = render(
-      <CreatePoemButton onCreatePoem={mockOnCreatePoem} />,
-    );
     act(() => {
-      fireEvent.click(getByText("Create Poem"));
+      const { getByText } = render(
+        <CreatePoemButton onCreatePoem={mockOnCreatePoem} />,
+      );
+      waitFor(() => {
+        fireEvent.click(getByText("Create Poem"));
+        expect(getByText("Creating...")).toBeInTheDocument();
+      });
     });
-    expect(getByText("Creating...")).toBeInTheDocument();
   });
 
   it("displays error text when poem creation fails", async () => {
