@@ -11,8 +11,6 @@ const ChatParticipantsState: React.FC<ChatParticipantsStateProps> = ({
   // We need to know which user this is...So get the user from Next.js.
   const { data: session } = useSession();
   if (session && session.user) {
-    console.log("user from session", session.user);
-
     return (
       <ChatParticipants
         className={`${className}`}
