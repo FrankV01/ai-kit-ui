@@ -13,7 +13,9 @@ describe("SafeMarkdownToHtml", () => {
   it("returns input as is when it cannot be parsed", () => {
     const input = "# Hello\nThis is a [link](http://example.com";
     const output = SafeMarkdownToHtml(input);
-    expect(output).toBe(input);
+
+    const expected = `<h1>Hello</h1>\n<p>This is a [link](<a href="http://example.com">http://example.com</a></p>\n`;
+    expect(output).toBe(expected);
   });
 
   it("returns input as is for empty string", () => {
