@@ -1,4 +1,4 @@
-import { sanitizeInput } from "../../InputUtils";
+import { sanitizeInput } from "../InputUtils";
 import xss from "xss";
 
 describe("InputUtils", () => {

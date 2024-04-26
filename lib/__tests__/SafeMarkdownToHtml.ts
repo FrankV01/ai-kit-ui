@@ -1,4 +1,4 @@
-import { SafeMarkdownToHtml } from "../../SafeMarkdownToHtml";
+import { SafeMarkdownToHtml } from "../SafeMarkdownToHtml";
 import { sanitize } from "isomorphic-dompurify";
 import { marked } from "marked";
 
