@@ -1,8 +1,8 @@
 const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' https://mirrors.creativecommons.org/;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com/;
+    style-src 'self' data: 'unsafe-inline';
+    img-src 'self' data: https://mirrors.creativecommons.org/;
     font-src 'self';
     object-src 'none';
     base-uri 'self';
