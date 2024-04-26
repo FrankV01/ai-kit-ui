@@ -5,7 +5,6 @@ import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "./Icons";
 import CCLicense from "./CCLicense";
 
 export default function Footer() {
-  //<CookieAlert />
   return (
     <Container className={"m-auto p-auto py-5 mx-0"}>
       <Row>
@@ -41,9 +40,7 @@ export default function Footer() {
           <div>
             Made with <Icons.HeartFill /> by Frank Villasenor
           </div>
-          <div>
-            Dedicated with <Icons.HeartPulseFill /> to my Wife, Alina
-          </div>
+
           <div>2023-2024 &copy; Frank Villasenor</div>
           <div>
             <CCLicense />
