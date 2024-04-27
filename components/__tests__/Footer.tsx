@@ -33,7 +33,8 @@ describe("Footer", () => {
     expect(theOpenSourceUorgIcon).toBeInTheDocument();
   });
 
-  it("renders with correct dedication text", () => {
+  // Dedication was removed.
+  it.skip("renders with correct dedication text", () => {
     render(<Footer />);
     const dedicationText = screen.getByText(
       /Dedicated with to my Wife, Alina/i,
