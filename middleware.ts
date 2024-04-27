@@ -10,7 +10,8 @@ const enableNonce: boolean = false;
 /** Our CSP headers WITHOUT the Nonce. */
 const cspHeaderWithOutNonce = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' 'strict-dynamic' https://www.google-analytics.com https://www.googletagmanager.com/;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.google-analytics.com/ https://www.googletagmanager.com/;
+    connect-src 'self' https://www.google-analytics.com/ https://www.googletagmanager.com/;
     style-src 'self' data: 'unsafe-inline';
     img-src 'self'  data: 'unsafe-inline' https://mirrors.creativecommons.org/;
     font-src 'self';
@@ -37,7 +38,8 @@ function genNonceCPS() {
    */
   const cspHeaderWithNonce = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' ='nonce-${nonce}' 'strict-dynamic' https://www.google-analytics.com https://www.googletagmanager.com/;
+    script-src 'self' 'unsafe-eval' 'nonce-${nonce}' 'strict-dynamic' https://www.google-analytics.com https://www.googletagmanager.com/;
+    connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com/;
     style-src 'self' data: 'nonce-${nonce}';
     img-src 'self'  data: 'unsafe-inline' https://mirrors.creativecommons.org/;
     font-src 'self';
@@ -55,8 +57,9 @@ function genNonceCPS() {
 
 const headerCPS = "Content-Security-Policy";
 const maxAgeSeconds = 60 * 60; // 1 hour
-const headerCookie = "Set-Cookie";
-const setting = `SameSite=Lax;Secure;HttpOnly;Max-Age=${maxAgeSeconds}`;
+const headerCookie: string = "Set-Cookie";
+/** Note that this causes an error blocking a cookie for google-analytics. */
+const setting: string = `SameSite=Lax;Secure;HttpOnly;Max-Age=${maxAgeSeconds}`;
 
 export function middleware(request: NextRequest) {
   const contentSecurityPolicyHeaderValue = genNonceCPS();
