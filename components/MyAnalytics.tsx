@@ -9,9 +9,9 @@ type MyAnalyticsProps = {
 export default function MyAnalytics({ nonce }: MyAnalyticsProps) {
   return (
     <GoogleAnalytics
-      debugMode={true}
       nonce={nonce}
       gaMeasurementId={"G-BWCTMTSQR4"}
+      strategy="lazyOnload"
       trackPageViews
     />
   );
