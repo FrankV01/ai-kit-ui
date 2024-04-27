@@ -107,7 +107,6 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
           isValid={validatedPrompt}
           isInvalid={!validatedPrompt}
           onChange={(evt) => {
-            console.log("onChange:evt", evt.currentTarget.value);
             const val = evt.currentTarget.value || "";
             setPromptLength(val.length || 0);
             setValidatedPrompt(val.length >= CHARACTERS_NEEDED);
