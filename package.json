@@ -3,7 +3,7 @@
   "version": "3.2.20240427",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "PORT=3001 next dev",
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "next build",
