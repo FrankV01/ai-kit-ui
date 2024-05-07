@@ -32,6 +32,7 @@ export function getConfigValue(
   key: string,
   strDefault: string,
 ): string {
+  //console.log("key", key);
   if (!siteConfigs || !siteConfigs.length) {
     throw new InvalidParameterError("siteConfigs, siteConfigs is required.");
   }
@@ -40,5 +41,7 @@ export function getConfigValue(
     console.warn(`Unable to find config item for key: ${key}`);
     return strDefault;
   }
-  return item?.value ? item.value : strDefault;
+  const returnValue = item?.value ? item.value : strDefault;
+  //console.log("returnValue", returnValue);
+  return returnValue;
 }
