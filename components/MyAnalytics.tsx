@@ -7,6 +7,7 @@ type MyAnalyticsProps = {
 };
 
 export default function MyAnalytics({ nonce }: MyAnalyticsProps) {
+  // TODO: Need to move the gaMeasurementId to a config.
   return (
     <GoogleAnalytics
       nonce={nonce}
