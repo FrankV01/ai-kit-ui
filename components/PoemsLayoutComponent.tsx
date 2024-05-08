@@ -7,7 +7,11 @@ import PoemFooter from "./PoemFooter";
 import React from "react";
 import { SessionProvider } from "next-auth/react";
 
-export function LayoutComponent({ children }: { children: React.ReactNode }) {
+export function PoemsLayoutComponent({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <SessionProvider>
       <Container>
