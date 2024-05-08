@@ -6,16 +6,22 @@ import Loading from "./loading";
 /**
  * This is an indicator for Next.js
  */
-export const dynamic = "force-dynamic";
+//export const dynamic = "auto";
+
+async function PoemMode() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <InfinitePoems key={1} />
+    </Suspense>
+  );
+}
 
 export default async function Home() {
   if (true) {
     return (
       <div className={styles.outline}>
         <div className={"container"}>
-          <Suspense fallback={<Loading />}>
-            <InfinitePoems key={1} />
-          </Suspense>
+          <PoemMode />
         </div>
       </div>
     );
