@@ -4,7 +4,7 @@ import Author from "./Author";
 import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "./Icons";
 import CCLicense from "./CCLicense";
 
-export default function Footer() {
+export default function PoemFooter() {
   return (
     <Container className={"m-auto p-auto py-5 mx-0"}>
       <Row>
