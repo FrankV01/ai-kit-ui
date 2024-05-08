@@ -5,7 +5,7 @@ import {
   fireEvent,
   waitFor,
 } from "@testing-library/react";
-import ChatComposite from "../../chat/ChatComposite";
+import ChatComposite from "../ChatComposite";
 import { startSession, submitMessageToConvo } from "../../../lib/ApiActions";
 import { SessionProvider } from "next-auth/react";
 import { ConvoReturnType } from "../../../lib/Types";

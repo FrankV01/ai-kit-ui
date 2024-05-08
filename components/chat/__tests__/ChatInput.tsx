@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import ChatInput from "../../chat/ChatInput";
+import ChatInput from "../ChatInput";
 
 type BasicEventHandler = () => void;
 

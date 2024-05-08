@@ -1,5 +1,5 @@
 import { getSiteConfigs } from "../../../lib/ApiActions";
-import ChatSystemPrompt from "../../chat/ChatSystemPrompt";
+import ChatSystemPrompt from "../ChatSystemPrompt";
 import {
   act,
   getByText,

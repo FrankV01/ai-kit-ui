@@ -1,9 +1,9 @@
 import { act, render, screen } from "@testing-library/react";
-import ChatPlane from "../../chat/ChatPlane";
+import ChatPlane from "../ChatPlane";
 
 import { ConvoReturnType } from "../../../lib/Types";
 
-jest.mock("../../chat/ChatSystemPrompt", () => ({
+jest.mock("../ChatSystemPrompt", () => ({
   __esModule: true,
   default: () => <div>ChatSystemPrompt</div>,
 }));

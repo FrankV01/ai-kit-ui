@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ChatParticipants, { ChatParticipant } from "../../chat/ChatParticipants";
+import ChatParticipants, { ChatParticipant } from "../ChatParticipants";
 
 describe("ChatParticipants", () => {
   const mockParticipants: ChatParticipant[] = [

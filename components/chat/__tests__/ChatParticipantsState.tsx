@@ -1,7 +1,7 @@
 import React from "react";
 import { act, render, screen, waitFor } from "@testing-library/react";
 import { useSession } from "next-auth/react";
-import ChatParticipantsState from "../../chat/ChatParticipantsState";
+import ChatParticipantsState from "../ChatParticipantsState";
 
 jest.mock("next-auth/react");
 

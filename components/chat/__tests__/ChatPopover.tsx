@@ -1,8 +1,8 @@
 import React from "react";
 import { render, fireEvent, act } from "@testing-library/react";
-import ChatPopover from "../../chat/ChatPopover";
+import ChatPopover from "../ChatPopover";
 
-jest.mock("../../chat/ChatComposite.tsx", () => {
+jest.mock("../ChatComposite.tsx", () => {
   return jest.fn().mockReturnValue(<div>ChatComposite</div>);
 });
 
