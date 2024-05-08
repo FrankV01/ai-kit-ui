@@ -1,9 +1,10 @@
 import React, { Suspense } from "react";
+import { Metadata, ResolvingMetadata } from "next";
 import { Inter } from "next/font/google";
+import { headers } from "next/headers";
 import "bootswatch/dist/litera/bootstrap.min.css";
 import StyledComponentsRegistry from "../components/StyledComponentsRegistry";
 import styles from "./page.module.css";
-import { Metadata, ResolvingMetadata } from "next";
 import MyAnalytics from "../components/MyAnalytics";
 import { LayoutComponent } from "../components/LayoutComponent";
 import Loading from "./loading";
@@ -13,7 +14,6 @@ import {
   ConfigKeys,
   getConfigValue as _getConfigValue,
 } from "../lib/Utilities";
-import { headers } from "next/headers";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
