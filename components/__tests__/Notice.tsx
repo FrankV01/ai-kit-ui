@@ -1,15 +1,15 @@
 import { render, screen } from "@testing-library/react";
-import Notice from "../Notice";
+import PoemSubmissionNotice from "../poems/PoemSubmissionNotice";
 
 describe("Notice Component", () => {
   it("renders without crashing", () => {
-    render(<Notice />);
+    render(<PoemSubmissionNotice />);
     const noticeElement = screen.getByRole("alert");
     expect(noticeElement).toBeInTheDocument();
   });
 
   it("renders with the correct text", () => {
-    render(<Notice />);
+    render(<PoemSubmissionNotice />);
     const noticeText = screen.getByText(
       /For the time being submitted entries are queued for review. The review is done manually. We appreciate your patience./i,
     );
@@ -17,7 +17,7 @@ describe("Notice Component", () => {
   });
 
   it("renders with the primary variant", () => {
-    render(<Notice />);
+    render(<PoemSubmissionNotice />);
     const noticeElement = screen.getByRole("alert");
     expect(noticeElement).toHaveClass("alert-primary");
   });

@@ -1,7 +1,7 @@
 "use client";
 import { Col, Container, Row } from "react-bootstrap";
 import Placeholder from "react-bootstrap/Placeholder";
-import BasicPoemBreadcrub from "../BasicPoemBreadcrub";
+import BasicPoemBreadcrub from "./BasicPoemBreadcrub";
 import React from "react";
 
 const LoadingPoemBody = () => {

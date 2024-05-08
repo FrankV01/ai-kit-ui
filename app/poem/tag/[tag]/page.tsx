@@ -1,5 +1,5 @@
 import ISessionlessResponse from "../../../../types/ISessionlessResponse";
-import PoemCardDisplay from "../../../../components/PoemCardDisplay";
+import PoemCardDisplay from "../../../../components/poems/PoemCardDisplay";
 import EvtMgr from "../../../../lib/EnvMgr";
 
 const url = process.env.API_URL ? `${process.env.API_URL}/ai/query/tag` : ""; //"http://localhost:3001/poems";

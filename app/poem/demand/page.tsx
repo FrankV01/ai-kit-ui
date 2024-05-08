@@ -1,7 +1,7 @@
 "use server";
 import { Col, Container, Row } from "react-bootstrap";
-import { PoemDemandInfo } from "../../../components/PoemDemandInfo";
-import { PoemDemandForm } from "../../../components/PoemDemandForm";
+import { PoemDemandInfo } from "../../../components/poems/PoemDemandInfo";
+import { PoemDemandForm } from "../../../components/poems/PoemDemandForm";
 
 type IDemandPageParams = { params: {} };
 

@@ -1,7 +1,7 @@
 import styles from "../../page.module.css";
 import { Container } from "react-bootstrap";
 import ISessionlessResponse from "../../../types/ISessionlessResponse";
-import PoemBody from "../../../components/PoemBody";
+import PoemBody from "../../../components/poems/PoemBody";
 import Loading from "../loading";
 import React, { Suspense } from "react";
 

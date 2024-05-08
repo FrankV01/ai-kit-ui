@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import PoemCardDisplay from "../PoemCardDisplay";
+import PoemCardDisplay from "../poems/PoemCardDisplay";
 import ISessionlessResponse from "../../types/ISessionlessResponse";
 
 jest.mock("../../lib/SafeMarkdownToHtml", () => {

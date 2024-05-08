@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import Footer from "../Footer";
+import PoemFooter from "../poems/PoemFooter";
 
 describe("Footer", () => {
   it("renders with correct AI contribution text", () => {
-    render(<Footer />);
+    render(<PoemFooter />);
     const aiContributionText = screen.getByText(
       /We thank the AI overlords for their contribution to this site./i,
     );
@@ -11,7 +11,7 @@ describe("Footer", () => {
   });
 
   it("renders with correct author link", () => {
-    render(<Footer />);
+    render(<PoemFooter />);
     //const authorLink = screen.getByRole("link", { name: /Frank Villasenor/i });
     const authorLink = screen.getAllByRole("link", {
       name: /Frank Villasenor/i,
@@ -22,7 +22,7 @@ describe("Footer", () => {
   });
 
   it("renders with correct social media icons", () => {
-    render(<Footer />);
+    render(<PoemFooter />);
     //const linkedInIcon = screen.getByRole("img", { name: /LinkedIn/i });
     const linkedInIcon = screen.getByTitle("LinkedIn");
     const gitHubIcon = screen.getByTitle(/GitHub/i);
@@ -35,7 +35,7 @@ describe("Footer", () => {
 
   // Dedication was removed.
   it.skip("renders with correct dedication text", () => {
-    render(<Footer />);
+    render(<PoemFooter />);
     const dedicationText = screen.getByText(
       /Dedicated with to my Wife, Alina/i,
     );
@@ -43,13 +43,13 @@ describe("Footer", () => {
   });
 
   it("renders with correct copyright text", () => {
-    render(<Footer />);
+    render(<PoemFooter />);
     const copyrightText = screen.getByText(/2023-2024 © Frank Villasenor/i);
     expect(copyrightText).toBeInTheDocument();
   });
 
   it("renders with correct license component", () => {
-    render(<Footer />);
+    render(<PoemFooter />);
     const licenseComponent = screen.getByText(/is licensed under/i);
     expect(licenseComponent).toBeInTheDocument();
   });

@@ -3,8 +3,8 @@
 type ICreatePageProps = { params: {} };
 
 import { Col, Container, Row } from "react-bootstrap";
-import { PoemPromptInfo } from "../../../components/PoemPromptInfo";
-import Notice from "../../../components/Notice";
+import { PoemPromptInfo } from "../../../components/poems/PoemPromptInfo";
+import PoemSubmissionNotice from "../../../components/poems/PoemSubmissionNotice";
 import PoemPromptForm from "../../../components/stateful/PoemPromptForm";
 
 export default async function Page({ params }: ICreatePageProps) {
@@ -16,7 +16,7 @@ export default async function Page({ params }: ICreatePageProps) {
           <h3>Request a Poem via Prompt</h3>
           <div>
             <PoemPromptInfo />
-            <Notice />
+            <PoemSubmissionNotice />
           </div>
           <div>
             <PoemPromptForm />

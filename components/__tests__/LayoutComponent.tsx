@@ -1,5 +1,5 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
-import { LayoutComponent } from "../LayoutComponent";
+import { PoemsLayoutComponent } from "../poems/PoemsLayoutComponent";
 
 jest.mock("next-auth/react", () => ({
   SessionProvider: ({ children }: { children: React.ReactNode }) => (
@@ -19,7 +19,7 @@ jest.mock("../LandingBanner", () => {
   };
 });
 
-jest.mock("../Footer", () => {
+jest.mock("../poems/PoemFooter", () => {
   return function DummyFooter() {
     return <div data-testid="mockFooter"></div>;
   };
@@ -29,9 +29,9 @@ describe("LayoutComponent", () => {
   it("renders without crashing", () => {
     act(() => {
       render(
-        <LayoutComponent>
+        <PoemsLayoutComponent>
           <div>unit tests</div>
-        </LayoutComponent>,
+        </PoemsLayoutComponent>,
       );
       waitFor(() => {
         const layoutElement = screen.getByRole("main");
@@ -42,9 +42,9 @@ describe("LayoutComponent", () => {
 
   it("renders with the mocked HeaderMenu component", () => {
     render(
-      <LayoutComponent>
+      <PoemsLayoutComponent>
         <div>unit tests</div>
-      </LayoutComponent>,
+      </PoemsLayoutComponent>,
     );
     const headerMenuElement = screen.getByTestId("mockHeaderMenu");
     expect(headerMenuElement).toBeInTheDocument();
@@ -52,9 +52,9 @@ describe("LayoutComponent", () => {
 
   it("renders with the mocked LandingBanner component", () => {
     render(
-      <LayoutComponent>
+      <PoemsLayoutComponent>
         <div>unit tests</div>
-      </LayoutComponent>,
+      </PoemsLayoutComponent>,
     );
     const landingBannerElement = screen.getByTestId("mockLandingBanner");
     expect(landingBannerElement).toBeInTheDocument();
@@ -62,9 +62,9 @@ describe("LayoutComponent", () => {
 
   it("renders with the mocked Footer component", () => {
     render(
-      <LayoutComponent>
+      <PoemsLayoutComponent>
         <div>unit tests</div>
-      </LayoutComponent>,
+      </PoemsLayoutComponent>,
     );
     const footerElement = screen.getByTestId("mockFooter");
     expect(footerElement).toBeInTheDocument();

@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import PoemBody from "../PoemBody";
+import PoemBody from "../poems/PoemBody";
 import ISessionlessResponse from "../../types/ISessionlessResponse";
 
 jest.mock(
-  "../BasicPoemBreadcrub",
+  "../poems/BasicPoemBreadcrub",
   () =>
     function PoemBreadcrumb() {
       return <div data-testid="mockBasicPoemBreadcrub"></div>;

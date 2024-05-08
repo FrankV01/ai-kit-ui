@@ -6,7 +6,7 @@ import "bootswatch/dist/litera/bootstrap.min.css";
 import StyledComponentsRegistry from "../components/StyledComponentsRegistry";
 import styles from "./page.module.css";
 import MyAnalytics from "../components/MyAnalytics";
-import { PoemsLayoutComponent } from "../components/PoemsLayoutComponent";
+import { PoemsLayoutComponent } from "../components/poems/PoemsLayoutComponent";
 import Loading from "./loading";
 import { getSiteConfigs } from "../lib/ApiActions";
 import { ConfigurationResultType } from "../lib/Types";
@@ -97,9 +97,9 @@ export default async function RootLayout({
               nonce={nonce}
               className={styles.main}
             >
-              <LayoutComponent>
+              <PoemsLayoutComponent>
                 <Suspense fallback={<Loading />}>{children}</Suspense>
-              </LayoutComponent>
+              </PoemsLayoutComponent>
             </main>
           </StyledComponentsRegistry>
         </React.StrictMode>

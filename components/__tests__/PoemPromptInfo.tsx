@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { PoemPromptInfo } from "../PoemPromptInfo";
+import { PoemPromptInfo } from "../poems/PoemPromptInfo";
 
 // See the Good to know: https://nextjs.org/docs/app/building-your-application/testing/jest
 //  TLDR: Not supported yet by Jest or Next.js
