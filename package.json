@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "PORT=3001 next dev",
+    "dev:wl": "PORT=3002 APP_ID=2 next dev",
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "next build",
