@@ -17,16 +17,13 @@ async function PoemMode() {
 }
 
 export default async function Home() {
-  if (true) {
-    return (
-      <div className={styles.outline}>
-        <div className={"container"}>
-          <PoemMode />
-        </div>
+  return (
+    <div className={styles.outline}>
+      <div className={"container"}>
+        <PoemMode />
       </div>
-    );
-  }
-
+    </div>
+  );
   // return (
   //   <div className={styles.outline}>
   //     <div className="container text-center border">
