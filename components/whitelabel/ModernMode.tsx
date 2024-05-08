@@ -1,4 +1,3 @@
-import Features from "../Features";
 import React from "react";
 
 export async function ModernMode() {
