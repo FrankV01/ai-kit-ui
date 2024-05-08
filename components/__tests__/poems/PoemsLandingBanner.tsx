@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import LandingBanner from "../LandingBanner";
-import ImageRotate from "../ImageRotate";
+import PoemsLandingBanner from "../../poems/PoemsLandingBanner";
 
-jest.mock("../ImageRotate", () => {
+jest.mock("../../poems/PoemsImageRotate", () => {
   return function DummyImageRotate() {
     return <div data-testid="mockImageRotate"></div>;
   };
@@ -10,13 +9,13 @@ jest.mock("../ImageRotate", () => {
 
 describe("LandingBanner Component", () => {
   it("renders", () => {
-    render(<LandingBanner />);
+    render(<PoemsLandingBanner />);
     const bannerElement = screen.getByRole("heading");
     expect(bannerElement).toBeInTheDocument();
   });
 
   it("renders with the mocked ImageRotate component", () => {
-    render(<LandingBanner />);
+    render(<PoemsLandingBanner />);
     const imageRotateElement = screen.getByTestId("mockImageRotate");
     expect(imageRotateElement).toBeInTheDocument();
   });

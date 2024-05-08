@@ -10,7 +10,7 @@ import {
 
 const currentFav = "/logo_2023-12-08T03-20-43.png";
 
-export default function ImageRotate() {
+export default function PoemsImageRotate() {
   const [currentImage, setCurrentImage] = useState<string>(currentFav);
   //const [imageStack, setImageStack] = useState<string[]>([...refList]);
 

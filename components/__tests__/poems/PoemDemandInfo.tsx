@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { PoemDemandInfo } from "../poems/PoemDemandInfo";
+import { PoemDemandInfo } from "../../poems/PoemDemandInfo";
 
 describe("PoemDemandInfo", () => {
   it("renders Demand-a-Poem title", () => {

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import PoemFooter from "../poems/PoemFooter";
+import PoemFooter from "../../poems/PoemFooter";
 
-describe("Footer", () => {
+describe("PoemFooter", () => {
   it("renders with correct AI contribution text", () => {
     render(<PoemFooter />);
     const aiContributionText = screen.getByText(
@@ -44,7 +44,7 @@ describe("Footer", () => {
 
   it("renders with correct copyright text", () => {
     render(<PoemFooter />);
-    const copyrightText = screen.getByText(/2023-2024 © Frank Villasenor/i);
+    const copyrightText = screen.getByText(/2023-2024 ©/i);
     expect(copyrightText).toBeInTheDocument();
   });
 

@@ -19,7 +19,7 @@ export default function PoemFooter() {
           <p>
             An AI-Science/Art experiment containing <em>Poems</em> created by
             machine learning models trained & maintained by{" "}
-            <Author className={"link-secondary"} />
+            <Author includeEmailLink={true} className={"link-secondary"} />
           </p>
           <p>We thank the AI overlords for their contribution to this site.</p>
         </Col>
@@ -38,10 +38,12 @@ export default function PoemFooter() {
           }
         >
           <div>
-            Made with <Icons.HeartFill /> by Frank Villasenor
+            Made with <Icons.HeartFill /> by <Author includeEmailLink={false} />
           </div>
 
-          <div>2023-2024 &copy; Frank Villasenor</div>
+          <div>
+            2023-2024 &copy; <Author includeEmailLink={false} />
+          </div>
           <div>
             <CCLicense />
           </div>

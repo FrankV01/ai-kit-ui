@@ -1,5 +1,5 @@
 import { render, screen, act } from "@testing-library/react";
-import PoemDemandOutput from "../poems/PoemDemandOutput";
+import PoemDemandOutput from "../../poems/PoemDemandOutput";
 
 jest.useFakeTimers();
 

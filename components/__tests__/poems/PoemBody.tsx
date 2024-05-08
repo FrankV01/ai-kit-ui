@@ -1,22 +1,25 @@
 import { render, screen } from "@testing-library/react";
-import PoemBody from "../poems/PoemBody";
-import ISessionlessResponse from "../../types/ISessionlessResponse";
+import PoemBody from "../../poems/PoemBody";
+import ISessionlessResponse from "../../../types/ISessionlessResponse";
 
 jest.mock(
-  "../poems/BasicPoemBreadcrub",
+  "../../poems/BasicPoemBreadcrub",
   () =>
     function PoemBreadcrumb() {
       return <div data-testid="mockBasicPoemBreadcrub"></div>;
     },
 );
 jest.mock(
-  "../poems/PoemRatingWidget",
+  "../../poems/PoemRatingWidget",
   () =>
     function PoemRatingWidget() {
       return <div data-testid="mockPoemRatingWidget"></div>;
     },
 );
-jest.mock("../../lib/SafeMarkdownToHtml", () => () => "This is a test poem.");
+jest.mock(
+  "../../../lib/SafeMarkdownToHtml",
+  () => () => "This is a test poem.",
+);
 
 describe("PoemBody Component", () => {
   const mockPoemData = {

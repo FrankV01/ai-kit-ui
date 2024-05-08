@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import PoemSubmissionNotice from "../poems/PoemSubmissionNotice";
+import PoemSubmissionNotice from "../../poems/PoemSubmissionNotice";
 
 describe("Notice Component", () => {
   it("renders without crashing", () => {

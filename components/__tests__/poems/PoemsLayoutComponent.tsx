@@ -1,5 +1,5 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
-import { PoemsLayoutComponent } from "../poems/PoemsLayoutComponent";
+import { PoemsLayoutComponent } from "../../poems/PoemsLayoutComponent";
 
 jest.mock("next-auth/react", () => ({
   SessionProvider: ({ children }: { children: React.ReactNode }) => (
@@ -7,19 +7,19 @@ jest.mock("next-auth/react", () => ({
   ),
 }));
 
-jest.mock("../HeaderMenu", () => {
+jest.mock("../../HeaderMenu", () => {
   return function DummyHeaderMenu() {
     return <div data-testid="mockHeaderMenu"></div>;
   };
 });
 
-jest.mock("../LandingBanner", () => {
+jest.mock("../../poems/PoemsLandingBanner", () => {
   return function DummyLandingBanner() {
     return <div data-testid="mockLandingBanner"></div>;
   };
 });
 
-jest.mock("../poems/PoemFooter", () => {
+jest.mock("../../poems/PoemFooter", () => {
   return function DummyFooter() {
     return <div data-testid="mockFooter"></div>;
   };

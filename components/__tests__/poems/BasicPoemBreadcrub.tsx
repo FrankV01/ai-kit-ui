@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import BasicPoemBreadcrub, {
   BasicPoemBreadcrubProps,
-} from "../poems/BasicPoemBreadcrub";
+} from "../../poems/BasicPoemBreadcrub";
 
 describe("BasicPoemBreadcrub", () => {
   it("renders with default title when no poemTitle prop is provided", async () => {

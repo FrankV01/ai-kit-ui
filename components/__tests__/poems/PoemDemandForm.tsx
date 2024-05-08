@@ -1,8 +1,8 @@
 import { render, fireEvent, waitFor } from "@testing-library/react";
-import { PoemDemandForm } from "../poems/PoemDemandForm";
-import { demandPoem } from "../../lib/ApiActions";
+import { PoemDemandForm } from "../../poems/PoemDemandForm";
+import { demandPoem } from "../../../lib/ApiActions";
 
-jest.mock("../../lib/ApiActions", () => ({
+jest.mock("../../../lib/ApiActions", () => ({
   demandPoem: jest.fn(),
 }));
 

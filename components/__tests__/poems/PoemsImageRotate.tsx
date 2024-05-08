@@ -1,22 +1,22 @@
 import { render, screen } from "@testing-library/react";
-import ImageRotate from "../ImageRotate";
+import PoemsImageRotate from "../../poems/PoemsImageRotate";
 
 describe("ImageRotate Component", () => {
   it("renders without crashing", () => {
-    render(<ImageRotate />);
+    render(<PoemsImageRotate />);
     const imageElement = screen.getByRole("img");
     expect(imageElement).toBeInTheDocument();
   });
 
   it("renders with the initial image", () => {
-    render(<ImageRotate />);
+    render(<PoemsImageRotate />);
     const imageElement = screen.getByRole("img");
     expect(imageElement).toBeInTheDocument();
   });
 
   it("renders with an image from the list", async () => {
     Math.random = jest.fn(() => 0.5); // Mock random to always select the middle image
-    render(<ImageRotate />);
+    render(<PoemsImageRotate />);
     const imageElement = screen.getByRole("img");
     expect(imageElement).toBeInTheDocument();
     expect(imageElement).toHaveAttribute(
@@ -27,7 +27,7 @@ describe("ImageRotate Component", () => {
 
   it("renders with the fallback image if random selection fails", async () => {
     Math.random = jest.fn(() => 1); // Mock random to select an index out of range
-    render(<ImageRotate />);
+    render(<PoemsImageRotate />);
     const imageElement = screen.getByRole("img");
     expect(imageElement).toHaveAttribute(
       "src",

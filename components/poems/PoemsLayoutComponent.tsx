@@ -2,7 +2,7 @@
 
 import { Col, Container, Row } from "react-bootstrap";
 import HeaderMenu from "../HeaderMenu";
-import LandingBanner from "../LandingBanner";
+import PoemsLandingBanner from "./PoemsLandingBanner";
 import PoemFooter from "./PoemFooter";
 import React from "react";
 import { SessionProvider } from "next-auth/react";
@@ -22,7 +22,7 @@ export function PoemsLayoutComponent({
         </Row>
         <Row>
           <Col>
-            <LandingBanner />
+            <PoemsLandingBanner />
           </Col>
         </Row>
         <Row>

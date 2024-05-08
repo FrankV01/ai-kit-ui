@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import PoemCardDisplay from "../poems/PoemCardDisplay";
-import ISessionlessResponse from "../../types/ISessionlessResponse";
+import PoemCardDisplay from "../../poems/PoemCardDisplay";
+import ISessionlessResponse from "../../../types/ISessionlessResponse";
 
-jest.mock("../../lib/SafeMarkdownToHtml", () => {
+jest.mock("../../../lib/SafeMarkdownToHtml", () => {
   return jest.fn().mockImplementation((input: string) => input);
 });
 

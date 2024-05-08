@@ -1,9 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
-import Author from "./Author";
-import ImageRotate from "../components/ImageRotate";
+import Author from "../Author";
+import PoemsImageRotate from "./PoemsImageRotate";
 const space: string = " ";
 
-function LandingBanner() {
+function PoemsLandingBanner() {
   return (
     <Container className={"mb-3"}>
       <Row>
@@ -19,15 +19,15 @@ function LandingBanner() {
               An AI-Science/Art experiment containing <em>Poems</em> created by
               machine learning models trained & maintained by
               {space}
-              <Author />!
+              <Author includeEmailLink={true} />!
             </p>
           </div>
         </Col>
         <Col xl={5} lg={5} md={7} className={"me-0 pe-0"}>
-          <ImageRotate />
+          <PoemsImageRotate />
         </Col>
       </Row>
     </Container>
   );
 }
-export default LandingBanner;
+export default PoemsLandingBanner;

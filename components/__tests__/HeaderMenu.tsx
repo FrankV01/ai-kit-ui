@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import HeaderMenu from "../HeaderMenu";
-import { beforeEach } from "@jest/globals";
 
 //Was easier than mocking useSession. Will still need to sort
 // mocking it though.
