@@ -6,14 +6,9 @@ import "bootswatch/dist/litera/bootstrap.min.css";
 import StyledComponentsRegistry from "../components/StyledComponentsRegistry";
 import styles from "./page.module.css";
 import MyAnalytics from "../components/MyAnalytics";
-import { PoemsLayoutComponent } from "../components/poems/PoemsLayoutComponent";
 import Loading from "./loading";
-import { getSiteConfigs } from "../lib/ApiActions";
-import { ConfigurationResultType } from "../lib/Types";
-import {
-  ConfigKeys,
-  getConfigValue as _getConfigValue,
-} from "../lib/Utilities";
+import { ConfigKeys } from "../lib/Utilities";
+import getSiteConfigs from "../lib/api/GetSiteConfigs";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
@@ -22,44 +17,34 @@ type Props = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
-let siteConfigs: ConfigurationResultType[] = [];
-
-function getConfigValue(key: string, strDefault: string): string {
-  return _getConfigValue(siteConfigs, key, strDefault);
-}
 
 export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  // API call.
-
-  if (!siteConfigs.length) {
-    siteConfigs = await getSiteConfigs();
-  }
+  const siteConfigs = await getSiteConfigs();
 
   const metadata: Metadata = {
-    title: getConfigValue(
-      ConfigKeys.metadata.title,
+    title:
+      (siteConfigs[ConfigKeys.metadata.title] as string) ||
       "ai-kit-ui - A white-labeled UI for AI-kit by Frank V.",
-    ),
-    description: getConfigValue(
-      ConfigKeys.metadata.desc,
-      "Fran's AI-Kit UI. Please configure these values in the database.",
-    ),
-    applicationName: getConfigValue("METADATA_APP_NAME", "ai-kit-ui"),
-    keywords: getConfigValue(
-      ConfigKeys.metadata.keywords,
+    description:
+      (siteConfigs[ConfigKeys.metadata.desc] as string) ||
+      "Frank's AI-Kit UI. Please configure these values in the database.",
+    applicationName:
+      (siteConfigs[ConfigKeys.metadata.appName] as string) || "ai-kit-ui",
+    keywords:
+      (siteConfigs[ConfigKeys.metadata.keywords] as string) ||
       "AI,Portfolio,GPT-3,ChatGPT,ML,Frank Villasenor,theOpenSourceU,tOSU",
-    ),
     authors: [
       { name: "Frank Villasenor", url: "http://www.theOpenSourceU.org/" },
     ],
-    creator: getConfigValue(ConfigKeys.metadata.creator, "Frank Villasenor"),
-    publisher: getConfigValue(
-      ConfigKeys.metadata.publisher,
+    creator:
+      (siteConfigs[ConfigKeys.metadata.creator] as string) ||
       "Frank Villasenor",
-    ),
+    publisher:
+      (siteConfigs[ConfigKeys.metadata.publisher] as string) ||
+      "Frank Villasenor",
     robots: {
       index: true,
       follow: true,
@@ -97,9 +82,7 @@ export default async function RootLayout({
               nonce={nonce}
               className={styles.main}
             >
-              <PoemsLayoutComponent>
-                <Suspense fallback={<Loading />}>{children}</Suspense>
-              </PoemsLayoutComponent>
+              <Suspense fallback={<Loading />}>{children}</Suspense>
             </main>
           </StyledComponentsRegistry>
         </React.StrictMode>

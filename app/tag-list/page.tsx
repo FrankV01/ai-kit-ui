@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
-import { getTagListData } from "../../lib/ApiActions";
+import { getTagListData } from "../../lib/api/ApiActions";
 const url = process.env.API_URL ? `${process.env.API_URL}/tags/serverless` : "";
 
 export const dynamic = "force-dynamic";

@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { RecordLogin } from "../../../../lib/ApiActions";
+import { RecordLogin } from "../../../../lib/api/ApiActions";
 // import NextAuth from "next-auth";
 // import GoogleProvider from "next-auth/providers/google";
 //

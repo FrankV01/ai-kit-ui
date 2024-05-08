@@ -1,6 +1,6 @@
 "use client";
 import React, { useCallback, useEffect } from "react";
-import { getPoemById } from "../../lib/ApiActions";
+import { getPoemById } from "../../lib/api/ApiActions";
 import { ISessionlessResponse } from "../../types/ISessionlessResponse";
 import { Card } from "react-bootstrap";
 import Link from "next/link";

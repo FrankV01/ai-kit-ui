@@ -1,4 +1,3 @@
-import { getSiteConfigs } from "../../../lib/ApiActions";
 import ChatSystemPrompt from "../ChatSystemPrompt";
 import {
   act,
@@ -7,8 +6,9 @@ import {
   RenderResult,
   waitFor,
 } from "@testing-library/react";
+import { getSiteConfigs } from "../../../lib/api/GetSiteConfigs";
 
-jest.mock("../../../lib/ApiActions", () => ({
+jest.mock("../../../lib/api/ApiActions", () => ({
   getSiteConfigs: jest.fn(),
 }));
 

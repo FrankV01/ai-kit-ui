@@ -1,3 +1,5 @@
+export type CommonBaseTypes = string | number | boolean | null | undefined;
+
 export type TagsResponse = { id: number; tag: string };
 
 export type SessionlessResponseApiResponseType = {
@@ -14,6 +16,7 @@ export type SessionlessResponseApiResponseType = {
 };
 
 export type ConfigurationResultType = { key: string; value: string };
+export type Configurations = Record<string, CommonBaseTypes>;
 
 export interface IBasicChatMessage {
   appId: number;

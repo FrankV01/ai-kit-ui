@@ -1,6 +1,6 @@
 "use client";
 
-import { getGroupedPoemIds } from "../../lib/ApiActions";
+import { getGroupedPoemIds } from "../../lib/api/ApiActions";
 import PoemRow from "./PoemRow";
 import React, { useEffect, useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";

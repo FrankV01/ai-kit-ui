@@ -1,16 +1,15 @@
 "use server";
 import "server-only";
-import EvtMgr from "./EnvMgr";
+import EvtMgr from "../EnvMgr";
 import { getServerSession } from "next-auth/next";
 import { AdapterUser } from "next-auth/adapters";
 import { User } from "next-auth";
-import { ISessionlessResponse } from "../types/ISessionlessResponse";
+import { ISessionlessResponse } from "../../types/ISessionlessResponse";
 import {
-  ConfigurationResultType,
   ConvoReturnType,
   SessionlessResponseApiResponseType,
   TagsResponse,
-} from "./Types";
+} from "../Types";
 
 export async function demandPoem(): Promise<string> {
   return Promise.resolve("Demand example; ".repeat(20));
@@ -74,26 +73,6 @@ export async function getGroupedPoemIds(
     return acc;
   }, [] as number[][]);
   return _poemDataGrouped;
-}
-
-export async function getSiteConfigs(): Promise<ConfigurationResultType[]> {
-  const evtMgr = await EvtMgr();
-  const base = evtMgr.BASE_URL;
-  const url = `${base}/config`;
-  console.log(`Fetching data from ${url}`);
-  const res = await fetch(url, {
-    cache: "no-store",
-    headers: {
-      "Content-Type": "application/json",
-      appKey: evtMgr.APP_ID,
-    },
-  });
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    console.log(`Failed to fetch data from ${url}`);
-    throw new Error("Failed to fetch data"); //Stupid fucking error boundry.
-  }
-  return (await res.json()) as ConfigurationResultType[];
 }
 
 export async function getPoemById(id: number): Promise<ISessionlessResponse> {

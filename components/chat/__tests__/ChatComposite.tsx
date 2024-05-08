@@ -6,11 +6,14 @@ import {
   waitFor,
 } from "@testing-library/react";
 import ChatComposite from "../ChatComposite";
-import { startSession, submitMessageToConvo } from "../../../lib/ApiActions";
+import {
+  startSession,
+  submitMessageToConvo,
+} from "../../../lib/api/ApiActions";
 import { SessionProvider } from "next-auth/react";
 import { ConvoReturnType } from "../../../lib/Types";
 
-jest.mock("../../../lib/ApiActions", () => ({
+jest.mock("../../../lib/api/ApiActions", () => ({
   startSession: jest.fn().mockResolvedValue("new-session-id"),
   submitMessageToConvo: jest.fn().mockResolvedValue([]),
   getConvo: jest.fn().mockResolvedValue([] as ConvoReturnType[]),

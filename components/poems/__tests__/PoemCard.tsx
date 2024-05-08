@@ -1,6 +1,6 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import PoemCard, { PoemCardType } from "../../poems/PoemCard";
-import { getPoemById } from "../../../lib/ApiActions";
+import { getPoemById } from "../../../lib/api/ApiActions";
 import { ConvoReturnType } from "../../../lib/Types";
 import React from "react";
 
@@ -9,7 +9,7 @@ jest.mock(
   () => () => "This is a test poem.",
 );
 
-jest.mock("../../../lib/ApiActions", () => ({
+jest.mock("../../../lib/api/ApiActions", () => ({
   startSession: jest.fn().mockResolvedValue("new-session-id"),
   submitMessageToConvo: jest.fn().mockResolvedValue([]),
   getConvo: jest.fn().mockResolvedValue([] as ConvoReturnType[]),

@@ -6,9 +6,9 @@ import {
   act,
 } from "@testing-library/react";
 import { CreatePoemButton } from "../../poems/CreatePoemButton";
-import { requestPoem } from "../../../lib/ApiActions";
+import { requestPoem } from "../../../lib/api/ApiActions";
 
-jest.mock("../../../lib/ApiActions", () => ({
+jest.mock("../../../lib/api/ApiActions", () => ({
   requestPoem: jest.fn().mockResolvedValue({ id: 1 }),
   getPoemById: jest.fn().mockResolvedValue({ id: 1 }),
 }));

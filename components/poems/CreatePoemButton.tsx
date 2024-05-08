@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "react-bootstrap";
-import { requestPoem } from "../../lib/ApiActions";
+import { requestPoem } from "../../lib/api/ApiActions";
 import { useState } from "react";
 
 type CreatePoemButtonProps = {

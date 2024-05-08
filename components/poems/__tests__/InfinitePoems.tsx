@@ -1,6 +1,6 @@
 import { act, render, waitFor, screen } from "@testing-library/react";
 import { InfinitePoems } from "../../poems/InfinitePoems";
-import { getGroupedPoemIds } from "../../../lib/ApiActions";
+import { getGroupedPoemIds } from "../../../lib/api/ApiActions";
 import { ConvoReturnType } from "../../../lib/Types";
 
 jest.mock(
@@ -8,7 +8,7 @@ jest.mock(
   () => () => "This is a test poem.",
 );
 
-jest.mock("../../../lib/ApiActions", () => ({
+jest.mock("../../../lib/api/ApiActions", () => ({
   startSession: jest.fn().mockResolvedValue("new-session-id"),
   submitMessageToConvo: jest.fn().mockResolvedValue([]),
   getConvo: jest.fn().mockResolvedValue([] as ConvoReturnType[]),

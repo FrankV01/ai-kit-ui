@@ -7,7 +7,7 @@ import {
   getConvo,
   startSession,
   submitMessageToConvo,
-} from "../../lib/ApiActions";
+} from "../../lib/api/ApiActions";
 import ErrorBoundary from "../ErrorBoundry";
 import ChatParticipantsState from "./ChatParticipantsState";
 import { ConvoReturnType } from "../../lib/Types";

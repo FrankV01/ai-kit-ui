@@ -15,7 +15,7 @@ jest.mock("next-auth/react", () => ({
     .fn()
     .mockReturnValue({ data: { user: { name: "Test User" } } }),
 }));
-jest.mock("../../../lib/ApiActions", () => ({
+jest.mock("../../../lib/api/ApiActions", () => ({
   getGroupedPoemIds: jest.fn().mockResolvedValue([[1, 2, 3]]),
   // startSession: jest.fn().mockResolvedValue("new-session-id"),
   // submitMessageToConvo: jest.fn().mockResolvedValue([]),

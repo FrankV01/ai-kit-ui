@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { getSiteConfigs } from "../../lib/ApiActions";
 import { ConfigKeys } from "../../lib/Utilities";
+import { getSiteConfigs } from "../../lib/api/GetSiteConfigs";
 
 type ChatSystemPromptProps = {
   className: string;

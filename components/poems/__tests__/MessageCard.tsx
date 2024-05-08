@@ -8,7 +8,7 @@ jest.mock(
   () => () => "This is a test poem.",
 );
 
-jest.mock("../../../lib/ApiActions", () => ({
+jest.mock("../../../lib/api/ApiActions", () => ({
   startSession: jest.fn().mockResolvedValue("new-session-id"),
   submitMessageToConvo: jest.fn().mockResolvedValue([]),
   getConvo: jest.fn().mockResolvedValue([] as ConvoReturnType[]),

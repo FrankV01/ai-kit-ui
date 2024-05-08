@@ -1,7 +1,7 @@
 "use client";
 import { Button, Form } from "react-bootstrap";
 import PoemDemandOutput from "./PoemDemandOutput";
-import { demandPoem } from "../../lib/ApiActions";
+import { demandPoem } from "../../lib/api/ApiActions";
 import { useState } from "react";
 
 export function PoemDemandForm() {
