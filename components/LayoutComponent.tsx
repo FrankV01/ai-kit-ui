@@ -3,7 +3,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import HeaderMenu from "./HeaderMenu";
 import LandingBanner from "./LandingBanner";
-import Footer from "./Footer";
+import PoemFooter from "./PoemFooter";
 import React from "react";
 import { SessionProvider } from "next-auth/react";
 
@@ -26,7 +26,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
         </Row>
         <Row>
           <Col>
-            <Footer />
+            <PoemFooter />
           </Col>
         </Row>
       </Container>
