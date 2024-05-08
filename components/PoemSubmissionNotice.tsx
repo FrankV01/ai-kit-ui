@@ -1,6 +1,6 @@
 import { Alert } from "react-bootstrap";
 
-export default function Notice() {
+export default function PoemSubmissionNotice() {
   return (
     <div>
       <Alert variant={"primary"}>
