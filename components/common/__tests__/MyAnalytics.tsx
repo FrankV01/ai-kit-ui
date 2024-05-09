@@ -11,7 +11,7 @@ jest.mock("nextjs-google-analytics", () => {
 
 describe("MyAnalytics Component", () => {
   it("renders without crashing", () => {
-    render(<MyAnalytics nonce={"n"} />);
+    render(<MyAnalytics nonce={"n"} gaMeasurementId={"G-XXX"} />);
     const analyticsElement = screen.getByTestId("mockGoogleAnalytics");
     expect(analyticsElement).toBeInTheDocument();
   });
