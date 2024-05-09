@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 import "bootswatch/dist/litera/bootstrap.min.css";
 import StyledComponentsRegistry from "../components/StyledComponentsRegistry";
 import styles from "./page.module.css";
-import MyAnalytics from "../components/MyAnalytics";
+import MyAnalytics from "../components/common/MyAnalytics";
 import Loading from "./loading";
 import { ConfigKeys } from "../lib/Utilities";
 import getSiteConfigs from "../lib/api/GetSiteConfigs";
@@ -75,7 +75,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <React.StrictMode>
-          <MyAnalytics nonce={nonce} />
+          <MyAnalytics nonce={nonce} gaMeasurementId={"G-BWCTMTSQR4"} />
           <StyledComponentsRegistry>
             <main
               style={{ background: "#E0E7EE" }}
