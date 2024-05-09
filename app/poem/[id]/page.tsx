@@ -1,41 +1,18 @@
-import styles from "../../page.module.css";
+import React, { Suspense } from "react";
 import { Container } from "react-bootstrap";
-import ISessionlessResponse from "../../../types/ISessionlessResponse";
+import styles from "../../page.module.css";
 import PoemBody from "../../../components/poems/PoemBody";
 import Loading from "../loading";
-import React, { Suspense } from "react";
+import GetSessionlessDataForPage from "../../../lib/api/GetSessionlessDataForPage";
 
 export const dynamic = "force-dynamic";
-
-const url = process.env.API_URL
-  ? `${process.env.API_URL}/ai/sessionless/id`
-  : "";
-
-async function getData(id: number): Promise<ISessionlessResponse> {
-  if (!id || [-1, -100].includes(id)) {
-    throw new Error("Given ID Not found");
-  }
-  if (!url) {
-    throw new Error("Invalid environment configs");
-  }
-  console.log(`Fetching data from ${url}/${id}`);
-  const res = await fetch(`${url}/${id}`, {
-    next: { revalidate: 3600 / 2 },
-  });
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    console.log(`Failed to fetch data from ${url}`);
-    throw new Error("Failed to fetch data");
-  }
-  return await res.json();
-}
 
 export default async function Page({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const poemData = await getData(parseInt(id));
+  const poemData = await GetSessionlessDataForPage(parseInt(id));
 
   if (!poemData) {
     // or is loading?
