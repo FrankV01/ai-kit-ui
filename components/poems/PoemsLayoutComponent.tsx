@@ -3,7 +3,7 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { SessionProvider } from "next-auth/react";
-import HeaderMenu from "../HeaderMenu";
+import HeaderMenu from "./HeaderMenu";
 import PoemsLandingBanner from "./PoemsLandingBanner";
 import PoemFooter from "./PoemFooter";
 

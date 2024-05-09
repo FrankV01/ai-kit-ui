@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
-import Author from "../Author";
+import Author from "../common/Author";
 import PoemsImageRotate from "./PoemsImageRotate";
 const space: string = " ";
 

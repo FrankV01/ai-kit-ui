@@ -1,9 +1,13 @@
 import { Container, Row, Col } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
-import Author from "../Author";
-import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "../Icons";
-import CCLicense from "../CCLicense";
-import { AiThankYou } from "../quips/AiThankYou";
+import Author from "../common/Author";
+import {
+  IconGitHub,
+  IconLinkedIn,
+  IconTheOpenSourceUorg,
+} from "../common/Icons";
+import CCLicense from "../common/CCLicense";
+import { AiThankYou } from "../common/quips/AiThankYou";
 
 export default function PoemFooter() {
   return (
