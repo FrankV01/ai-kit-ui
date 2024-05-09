@@ -1,6 +1,5 @@
 import React from "react";
-import { SessionProvider } from "next-auth/react";
-import { AiThankYou } from "../quips/AiThankYou";
+import { AiThankYou } from "../common/quips/AiThankYou";
 
 async function ModernFooter() {
   return (
