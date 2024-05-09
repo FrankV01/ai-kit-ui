@@ -1,20 +1,12 @@
 import ChatSystemPrompt from "../ChatSystemPrompt";
-import {
-  act,
-  getByText,
-  render,
-  RenderResult,
-  waitFor,
-} from "@testing-library/react";
-import { getSiteConfigs } from "../../../lib/api/GetSiteConfigs";
+import { act, render, waitFor } from "@testing-library/react";
+import GetSiteConfigs from "../../../lib/api/GetSiteConfigs";
 
-jest.mock("../../../lib/api/ApiActions", () => ({
-  getSiteConfigs: jest.fn(),
-}));
+jest.mock("../../../lib/api/GetSiteConfigs", () => jest.fn());
 
 describe("ChatSystemPrompt", () => {
   it("renders system message when API returns a message", async () => {
-    (getSiteConfigs as jest.Mock).mockResolvedValue([
+    (GetSiteConfigs as jest.Mock).mockResolvedValue([
       { key: "newRequestSystemPrompt", value: "Test system message" },
     ]);
 
@@ -25,7 +17,7 @@ describe("ChatSystemPrompt", () => {
   });
 
   it("does not render system message when API returns no message", async () => {
-    (getSiteConfigs as jest.Mock).mockResolvedValue([
+    (GetSiteConfigs as jest.Mock).mockResolvedValue([
       { key: "newRequestSystemPrompt", value: "" },
     ]);
 

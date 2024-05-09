@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { ConfigKeys } from "../../lib/Utilities";
-import { getSiteConfigs } from "../../lib/api/GetSiteConfigs";
+//import { getSiteConfigs } from "../../lib/api/GetSiteConfigs";
+import GetSiteConfigs from "../../lib/api/GetSiteConfigs";
 
 type ChatSystemPromptProps = {
   className: string;
@@ -18,12 +19,13 @@ const ChatSystemPrompt: React.FC<ChatSystemPromptProps> = (props) => {
   const [systemMessage, setSystemMessage] = React.useState<string>("");
 
   useEffect(() => {
-    getSiteConfigs().then((c1) => {
-      const systemMessage = c1.find(
-        (c2) => c2.key === ConfigKeys.newRequestSystemPrompt,
-      );
-      if (systemMessage && systemMessage.value) {
-        setSystemMessage(systemMessage.value);
+    GetSiteConfigs().then((c1) => {
+      const systemMessage = c1[ConfigKeys.newRequestSystemPrompt] as string;
+      // const systemMessage = c1.find(
+      //   (c2) => c2.key === ConfigKeys.newRequestSystemPrompt,
+      // );
+      if (systemMessage) {
+        setSystemMessage(systemMessage);
       }
     });
   }, []);
