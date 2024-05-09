@@ -3,6 +3,7 @@ import * as Icons from "react-bootstrap-icons";
 import Author from "../Author";
 import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "../Icons";
 import CCLicense from "../CCLicense";
+import { AiThankYou } from "../quips/AiThankYou";
 
 export default function PoemFooter() {
   return (
@@ -21,7 +22,7 @@ export default function PoemFooter() {
             machine learning models trained & maintained by{" "}
             <Author includeEmailLink={true} className={"link-secondary"} />
           </p>
-          <p>We thank the AI overlords for their contribution to this site.</p>
+          <AiThankYou />
         </Col>
         <Col md={12} lg={4} className={"fs-3 text-center m-auto p-auto pe-0"}>
           <div className={"m-auto text-center"}>
