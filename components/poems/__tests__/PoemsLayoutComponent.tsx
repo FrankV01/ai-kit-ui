@@ -7,7 +7,7 @@ jest.mock("next-auth/react", () => ({
   ),
 }));
 
-jest.mock("../../HeaderMenu", () => {
+jest.mock("../HeaderMenu", () => {
   return function DummyHeaderMenu() {
     return <div data-testid="mockHeaderMenu"></div>;
   };

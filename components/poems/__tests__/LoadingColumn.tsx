@@ -1,5 +1,12 @@
 import { render } from "@testing-library/react";
 import { LoadingColumn } from "../../poems/LoadingColumn";
+import { ReactChildrenType } from "../../../lib/Types";
+
+jest.mock("../../poems/PoemsLayoutComponent", () => ({
+  PoemsLayoutComponent: jest.fn(({ children }: ReactChildrenType) => (
+    <div data-testid={"poems-layout-component"}>{children}</div>
+  )),
+}));
 
 describe("LoadingColumn", () => {
   it("renders three PoemLoading components", () => {
