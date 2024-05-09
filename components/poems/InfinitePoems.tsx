@@ -73,15 +73,15 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
         dataLength={poemData.length}
         next={moreData}
         hasMore={hasMore}
-        loader={<PoemLoadingColumn />}
+        loader={<PoemLoadingColumn includeLayout={false} />}
         endMessage={
           <div className={"m-auto"}>
             <h4>All poems Displayed</h4>
           </div>
         }
       >
-        {rows.length !== 0 ? rows : <PoemLoadingColumn />}
-        {isLoading && <PoemLoadingColumn />}
+        {rows.length !== 0 ? rows : <PoemLoadingColumn includeLayout={false} />}
+        {isLoading && <PoemLoadingColumn includeLayout={false} />}
         {error && <p>Error: {error}</p>}
       </InfiniteScroll>
     </>
