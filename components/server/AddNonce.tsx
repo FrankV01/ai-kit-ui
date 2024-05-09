@@ -1,10 +1,7 @@
 "use server";
 import React, { Attributes } from "react";
 import { headers } from "next/headers";
-
-type AddNonceProps = {
-  children: React.ReactNode;
-};
+import { ReactChildrenType } from "../../lib/Types";
 
 /**
  * The intention is to add the CSP nonce to the children of this component.
@@ -13,7 +10,7 @@ type AddNonceProps = {
  * @param children
  * @constructor
  */
-export default async function AddNonce({ children }: AddNonceProps) {
+export default async function AddNonce({ children }: ReactChildrenType) {
   const nonce: string = (headers().get("x-nonce") as string) || "[missing]";
   return (
     <>

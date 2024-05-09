@@ -1,7 +1,7 @@
 import { act, render, waitFor, screen } from "@testing-library/react";
-import { InfinitePoems } from "../../poems/InfinitePoems";
+import { InfinitePoems } from "../InfinitePoems";
 import { getGroupedPoemIds } from "../../../lib/api/ApiActions";
-import { ConvoReturnType } from "../../../lib/Types";
+import { ConvoReturnType, ReactChildrenType } from "../../../lib/Types";
 
 jest.mock(
   "../../../lib/SafeMarkdownToHtml",
@@ -16,7 +16,7 @@ jest.mock("../../../lib/api/ApiActions", () => ({
   getGroupedPoemIds: jest.fn().mockResolvedValue([[1, 2]]),
 }));
 jest.mock("next-auth/react", () => ({
-  SessionProvider: ({ children }: { children: React.ReactNode }) => (
+  SessionProvider: ({ children }: ReactChildrenType) => (
     <div data-testid={"session-provider"}>{children}</div>
   ),
   useSession: jest

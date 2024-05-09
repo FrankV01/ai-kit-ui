@@ -1,8 +1,9 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import { PoemsLayoutComponent } from "../../poems/PoemsLayoutComponent";
+import { ReactChildrenType } from "../../../lib/Types";
 
 jest.mock("next-auth/react", () => ({
-  SessionProvider: ({ children }: { children: React.ReactNode }) => (
+  SessionProvider: ({ children }: ReactChildrenType) => (
     <div data-testid={"session-provider"}>{children}</div>
   ),
 }));

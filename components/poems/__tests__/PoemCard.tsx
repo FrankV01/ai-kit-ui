@@ -1,7 +1,7 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import PoemCard, { PoemCardType } from "../../poems/PoemCard";
 import { getPoemById } from "../../../lib/api/ApiActions";
-import { ConvoReturnType } from "../../../lib/Types";
+import { ConvoReturnType, ReactChildrenType } from "../../../lib/Types";
 import React from "react";
 
 jest.mock(
@@ -22,7 +22,7 @@ jest.mock("../../../lib/api/ApiActions", () => ({
   }),
 }));
 jest.mock("next-auth/react", () => ({
-  SessionProvider: ({ children }: { children: React.ReactNode }) => (
+  SessionProvider: ({ children }: ReactChildrenType) => (
     <div data-testid={"session-provider"}>{children}</div>
   ),
   useSession: jest

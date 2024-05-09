@@ -9,6 +9,7 @@ import MyAnalytics from "../components/common/MyAnalytics";
 import Loading from "./loading";
 import { ConfigKeys } from "../lib/Utilities";
 import getSiteConfigs from "../lib/api/GetSiteConfigs";
+import { ReactChildrenType } from "../lib/Types";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
@@ -63,11 +64,7 @@ export async function generateMetadata(
 }
 
 const missingNonce = ""; //Use a blank string so it doesn't break the CSP.
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }: ReactChildrenType) {
   const nonce: string = (headers().get("x-nonce") as string) || missingNonce;
 
   //#E0E7EE #BBC7D4 #CAD5DF

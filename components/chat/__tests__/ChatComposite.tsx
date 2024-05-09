@@ -11,7 +11,7 @@ import {
   submitMessageToConvo,
 } from "../../../lib/api/ApiActions";
 import { SessionProvider } from "next-auth/react";
-import { ConvoReturnType } from "../../../lib/Types";
+import { ConvoReturnType, ReactChildrenType } from "../../../lib/Types";
 
 jest.mock("../../../lib/api/ApiActions", () => ({
   startSession: jest.fn().mockResolvedValue("new-session-id"),
@@ -19,7 +19,7 @@ jest.mock("../../../lib/api/ApiActions", () => ({
   getConvo: jest.fn().mockResolvedValue([] as ConvoReturnType[]),
 }));
 jest.mock("next-auth/react", () => ({
-  SessionProvider: ({ children }: { children: React.ReactNode }) => (
+  SessionProvider: ({ children }: ReactChildrenType) => (
     <div data-testid={"session-provider"}>{children}</div>
   ),
   useSession: jest

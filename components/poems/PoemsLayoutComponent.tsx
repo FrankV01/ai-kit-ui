@@ -6,12 +6,9 @@ import { SessionProvider } from "next-auth/react";
 import PoemHeaderMenu from "./PoemHeaderMenu";
 import PoemsLandingBanner from "./PoemsLandingBanner";
 import PoemFooter from "./PoemFooter";
+import { ReactChildrenType } from "../../lib/Types";
 
-export function PoemsLayoutComponent({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function PoemsLayoutComponent({ children }: ReactChildrenType) {
   return (
     <SessionProvider>
       <Container>

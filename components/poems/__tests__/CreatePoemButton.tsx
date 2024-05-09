@@ -5,15 +5,16 @@ import {
   waitFor,
   act,
 } from "@testing-library/react";
-import { CreatePoemButton } from "../../poems/CreatePoemButton";
+import { CreatePoemButton } from "../CreatePoemButton";
 import { requestPoem } from "../../../lib/api/ApiActions";
+import { ReactChildrenType } from "../../../lib/Types";
 
 jest.mock("../../../lib/api/ApiActions", () => ({
   requestPoem: jest.fn().mockResolvedValue({ id: 1 }),
   getPoemById: jest.fn().mockResolvedValue({ id: 1 }),
 }));
 jest.mock("next-auth/react", () => ({
-  SessionProvider: ({ children }: { children: React.ReactNode }) => (
+  SessionProvider: ({ children }: ReactChildrenType) => (
     <div data-testid={"session-provider"}>{children}</div>
   ),
   useSession: jest

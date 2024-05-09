@@ -1,14 +1,13 @@
 import { act, render, screen } from "@testing-library/react";
 import PoemRowSet from "../../poems/PoemRowSet";
-import { PoemCardType } from "../../poems/PoemCard";
 
-import { ConvoReturnType } from "../../../lib/Types";
+import { ConvoReturnType, ReactChildrenType } from "../../../lib/Types";
 
 jest.mock("next/dynamic", () =>
   jest.fn().mockReturnValue(() => <div>PoemCard</div>),
 );
 jest.mock("next-auth/react", () => ({
-  SessionProvider: ({ children }: { children: React.ReactNode }) => (
+  SessionProvider: ({ children }: ReactChildrenType) => (
     <div data-testid={"session-provider"}>{children}</div>
   ),
   useSession: jest

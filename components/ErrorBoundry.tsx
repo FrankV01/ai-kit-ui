@@ -1,12 +1,11 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { ReactChildrenType } from "../lib/Types";
 
 interface ErrorBoundaryState {
   hasError: boolean;
 }
 
-interface ErrorBoundaryProps {
-  children: ReactNode;
-}
+type ErrorBoundaryProps = ReactChildrenType;
 
 class _ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
@@ -34,11 +33,7 @@ class _ErrorBoundary extends React.Component<
   }
 }
 
-interface ErrorBoundaryWrapperProps {
-  children: ReactNode;
-}
-
-const ErrorBoundary: React.FC<ErrorBoundaryWrapperProps> = ({ children }) => {
+const ErrorBoundary: React.FC<ErrorBoundaryProps> = ({ children }) => {
   return <_ErrorBoundary>{children}</_ErrorBoundary>;
 };
 
