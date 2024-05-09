@@ -3,8 +3,12 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import * as Icons from "react-bootstrap-icons";
-import { IconGitHub, IconLinkedIn, IconTheOpenSourceUorg } from "./Icons";
-import LoginButton from "./stateful/LoginButton";
+import {
+  IconGitHub,
+  IconLinkedIn,
+  IconTheOpenSourceUorg,
+} from "../common/Icons";
+import LoginButton from "../stateful/LoginButton";
 
 const sizeOfIcons = "2rem";
 function HeaderMenu({ topic }: { topic: string }) {

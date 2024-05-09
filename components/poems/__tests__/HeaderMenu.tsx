@@ -3,7 +3,7 @@ import HeaderMenu from "../HeaderMenu";
 
 //Was easier than mocking useSession. Will still need to sort
 // mocking it though.
-jest.mock("../stateful/LoginButton", () => {
+jest.mock("../../stateful/LoginButton", () => {
   return function MockLoginButton() {
     return <button>Login</button>;
   };
