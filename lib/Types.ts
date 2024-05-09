@@ -1,5 +1,7 @@
 export type CommonBaseTypes = string | number | boolean | null | undefined;
 
+export type ReactChildrenType = React.ReactNode | React.ReactNode[];
+
 export type TagsResponse = { id: number; tag: string };
 
 export type SessionlessResponseApiResponseType = {
