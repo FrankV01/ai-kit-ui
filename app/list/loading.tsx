@@ -1,6 +1,6 @@
 import React from "react";
-import { LoadingColumn } from "../../components/poems/LoadingColumn";
+import { PoemLoadingColumn } from "../../components/poems/PoemLoadingColumn";
 
 export default function Loading() {
-  return <LoadingColumn />;
+  return <PoemLoadingColumn />;
 }

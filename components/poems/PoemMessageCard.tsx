@@ -7,7 +7,7 @@ type MessageCardProps = {
 
 const validIndexes = [0, 1];
 
-export const MessageCard = ({ messageIndex }: MessageCardProps) => {
+export const PoemMessageCard = ({ messageIndex }: MessageCardProps) => {
   if (!validIndexes.includes(messageIndex)) {
     throw new Error("Invalid message index");
   }
@@ -33,4 +33,4 @@ export const MessageCard = ({ messageIndex }: MessageCardProps) => {
   );
 };
 
-export default MessageCard;
+export default PoemMessageCard;

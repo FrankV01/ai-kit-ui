@@ -4,7 +4,7 @@ import { getGroupedPoemIds } from "../../lib/api/ApiActions";
 import PoemRow from "./PoemRow";
 import React, { useEffect, useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { LoadingColumn } from "./LoadingColumn";
+import { PoemLoadingColumn } from "./PoemLoadingColumn";
 import { useEffectOnce } from "usehooks-ts";
 import { Row } from "react-bootstrap";
 import PoemRowSet from "./PoemRowSet";
@@ -73,15 +73,15 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
         dataLength={poemData.length}
         next={moreData}
         hasMore={hasMore}
-        loader={<LoadingColumn />}
+        loader={<PoemLoadingColumn />}
         endMessage={
           <div className={"m-auto"}>
             <h4>All poems Displayed</h4>
           </div>
         }
       >
-        {rows.length !== 0 ? rows : <LoadingColumn />}
-        {isLoading && <LoadingColumn />}
+        {rows.length !== 0 ? rows : <PoemLoadingColumn />}
+        {isLoading && <PoemLoadingColumn />}
         {error && <p>Error: {error}</p>}
       </InfiniteScroll>
     </>

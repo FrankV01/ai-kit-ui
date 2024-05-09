@@ -1,7 +1,7 @@
 import { Col } from "react-bootstrap";
 import PoemCard, { PoemCardType, RotationType } from "./PoemCard";
 import { useMemo, useState } from "react";
-import MessageCard from "./MessageCard";
+import PoemMessageCard from "./PoemMessageCard";
 
 type PoemRowGeneratorProps = {};
 
@@ -26,11 +26,11 @@ export const PoemRowGenerator = ({}: PoemRowGeneratorProps) => {
     ));
     const cardStartingLength = cards.length;
     if (cardStartingLength === 0) {
-      cards.push(<MessageCard key={`gen-card-0`} messageIndex={0} />);
-      cards.push(<MessageCard key={`gen-card-1`} messageIndex={1} />);
+      cards.push(<PoemMessageCard key={`gen-card-0`} messageIndex={0} />);
+      cards.push(<PoemMessageCard key={`gen-card-1`} messageIndex={1} />);
     }
     if (cardStartingLength === 1) {
-      cards.push(<MessageCard messageIndex={1} key={`gen-card-1`} />);
+      cards.push(<PoemMessageCard messageIndex={1} key={`gen-card-1`} />);
     }
     if (cards.length !== 2) {
       console.warn("incorrect number of cards", cards.length, cards);

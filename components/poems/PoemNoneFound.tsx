@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import React from "react";
 
-export default function NoneFound() {
+export default function PoemNoneFound() {
   return (
     <Container>
       <Row>

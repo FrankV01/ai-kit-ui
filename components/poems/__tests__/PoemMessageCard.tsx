@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { MessageCard } from "../../poems/MessageCard";
+import { PoemMessageCard } from "../PoemMessageCard";
 
 import { ConvoReturnType } from "../../../lib/Types";
 
@@ -31,14 +31,14 @@ jest.mock("next-auth/react", () => ({
 
 describe("MessageCard", () => {
   it("renders with messageIndex 0", () => {
-    render(<MessageCard key={"unit-test"} messageIndex={0} />);
+    render(<PoemMessageCard key={"unit-test"} messageIndex={0} />);
     expect(screen.getByText("Welcome")).toBeInTheDocument();
     const msg = /Welcome to /i;
     expect(screen.getByText(msg)).toBeInTheDocument();
   });
 
   it("renders with messageIndex 1", () => {
-    render(<MessageCard key={"unit-test"} messageIndex={1} />);
+    render(<PoemMessageCard key={"unit-test"} messageIndex={1} />);
     expect(screen.getByText("Glad you are here")).toBeInTheDocument();
     expect(
       screen.getByText(
@@ -52,7 +52,7 @@ describe("MessageCard", () => {
     consoleSpy.mockImplementation(() => {});
 
     // @ts-ignore
-    expect(() => render(<MessageCard messageIndex={2} />)).toThrow();
+    expect(() => render(<PoemMessageCard messageIndex={2} />)).toThrow();
 
     // Check the first call
     expect(consoleSpy.mock.calls[0][0].detail.message).toEqual(

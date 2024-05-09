@@ -11,7 +11,7 @@ import {
 import LoginButton from "../stateful/LoginButton";
 
 const sizeOfIcons = "2rem";
-function HeaderMenu({ topic }: { topic: string }) {
+function PoemHeaderMenu({ topic }: { topic: string }) {
   return (
     <Navbar
       role={"navigation"}
@@ -49,4 +49,4 @@ function HeaderMenu({ topic }: { topic: string }) {
   );
 }
 
-export default HeaderMenu;
+export default PoemHeaderMenu;

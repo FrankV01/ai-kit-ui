@@ -2,7 +2,7 @@ import PoemLoading from "./PoemLoading";
 import React from "react";
 import { PoemsLayoutComponent } from "./PoemsLayoutComponent";
 
-export function LoadingColumn() {
+export function PoemLoadingColumn() {
   return (
     <PoemsLayoutComponent>
       <div>
