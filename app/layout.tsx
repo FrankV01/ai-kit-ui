@@ -10,6 +10,7 @@ import Loading from "./loading";
 import { ConfigKeys } from "../lib/Utilities";
 import getSiteConfigs from "../lib/api/GetSiteConfigs";
 import { ReactChildrenType } from "../lib/Types";
+import "./global.css";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });

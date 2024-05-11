@@ -15,6 +15,14 @@ repo.
 If we get: "unauthorized: authentication required"
 run `doctl registry login`.
 
+## Less 
+
+This project uses less but depends on external compilation. 
+
+Using less with Next.js is a bit tricky as a lot of things are not 
+supported by server components or this or that. This will change
+over time I'm sure but right now, using file watchers is the easiest
+
 ------
 
 ## Stock notes: 
