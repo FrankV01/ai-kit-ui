@@ -82,9 +82,7 @@ export default async function RootLayout({ children }: ReactChildrenType) {
                 nonce={nonce}
                 className={styles.main}
               >
-                <Suspense fallback={<Loading poemsMode={false} />}>
-                  {children}
-                </Suspense>
+                {children}
               </main>
             </AppSessionProvider>
           </StyledComponentsRegistry>

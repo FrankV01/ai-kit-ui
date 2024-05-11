@@ -5,6 +5,8 @@ import { Config } from "@jest/types";
 import { ConfigKeys } from "../lib/Utilities";
 import PoemMode from "./poems/PoemsMode";
 import { ModernMode } from "./whitelabel/ModernMode";
+import { Suspense } from "react";
+import Loading from "../app/loading";
 
 /**
  * Server page to activate the features for this instance.
@@ -17,8 +19,16 @@ export default async function Features() {
 
   // If we're in legacy mode then display that portion. Some elements
   if (poemsLegacyFeatureMode) {
-    return <PoemMode />;
+    return (
+      <Suspense fallback={<Loading poemsMode={true} />}>
+        <PoemMode />
+      </Suspense>
+    );
   } else {
-    return <ModernMode />;
+    return (
+      <Suspense fallback={<Loading poemsMode={false} />}>
+        <ModernMode />
+      </Suspense>
+    );
   }
 }
