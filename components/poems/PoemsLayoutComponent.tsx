@@ -16,27 +16,25 @@ import { ReactChildrenType } from "../../lib/Types";
  */
 export function PoemsLayoutComponent({ children }: ReactChildrenType) {
   return (
-    <SessionProvider>
-      <Container>
-        <Row>
-          <Col>
-            <PoemHeaderMenu topic={"AI Poems"} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <PoemsLandingBanner />
-          </Col>
-        </Row>
-        <Row>
-          <Col role={"main"}>{children}</Col>
-        </Row>
-        <Row>
-          <Col>
-            <PoemFooter />
-          </Col>
-        </Row>
-      </Container>
-    </SessionProvider>
+    <Container>
+      <Row>
+        <Col>
+          <PoemHeaderMenu topic={"AI Poems"} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <PoemsLandingBanner />
+        </Col>
+      </Row>
+      <Row>
+        <Col role={"main"}>{children}</Col>
+      </Row>
+      <Row>
+        <Col>
+          <PoemFooter />
+        </Col>
+      </Row>
+    </Container>
   );
 }

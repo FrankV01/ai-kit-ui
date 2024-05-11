@@ -11,6 +11,7 @@ import { ConfigKeys } from "../lib/Utilities";
 import getSiteConfigs from "../lib/api/GetSiteConfigs";
 import { ReactChildrenType } from "../lib/Types";
 import "./global.css";
+import AppSessionProvider from "../components/common/AppSessionProvider";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
@@ -75,15 +76,17 @@ export default async function RootLayout({ children }: ReactChildrenType) {
         <React.StrictMode>
           <MyAnalytics nonce={nonce} gaMeasurementId={"G-BWCTMTSQR4"} />
           <StyledComponentsRegistry>
-            <main
-              style={{ background: "#E0E7EE" }}
-              nonce={nonce}
-              className={styles.main}
-            >
-              <Suspense fallback={<Loading poemsMode={false} />}>
-                {children}
-              </Suspense>
-            </main>
+            <AppSessionProvider>
+              <main
+                style={{ background: "#E0E7EE" }}
+                nonce={nonce}
+                className={styles.main}
+              >
+                <Suspense fallback={<Loading poemsMode={false} />}>
+                  {children}
+                </Suspense>
+              </main>
+            </AppSessionProvider>
           </StyledComponentsRegistry>
         </React.StrictMode>
       </body>
