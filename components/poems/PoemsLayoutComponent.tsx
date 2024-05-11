@@ -8,6 +8,12 @@ import PoemsLandingBanner from "./PoemsLandingBanner";
 import PoemFooter from "./PoemFooter";
 import { ReactChildrenType } from "../../lib/Types";
 
+/**
+ * Contains the layout for the Poem version of the site (legacy).
+ *
+ * @param children - react children.
+ * @constructor
+ */
 export function PoemsLayoutComponent({ children }: ReactChildrenType) {
   return (
     <SessionProvider>
