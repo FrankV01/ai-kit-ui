@@ -2,16 +2,16 @@ import React, { Suspense } from "react";
 import { Metadata, ResolvingMetadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
-import "bootswatch/dist/litera/bootstrap.min.css";
+import Head from "next/head";
 import StyledComponentsRegistry from "../components/StyledComponentsRegistry";
 import styles from "./page.module.css";
 import MyAnalytics from "../components/common/MyAnalytics";
-import Loading from "./loading";
 import { ConfigKeys } from "../lib/Utilities";
 import getSiteConfigs from "../lib/api/GetSiteConfigs";
 import { ReactChildrenType } from "../lib/Types";
-import "./global.css";
 import AppSessionProvider from "../components/common/AppSessionProvider";
+import "bootswatch/dist/litera/bootstrap.min.css";
+import "./global.css";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
@@ -68,7 +68,6 @@ export async function generateMetadata(
 const missingNonce = ""; //Use a blank string so it doesn't break the CSP.
 export default async function RootLayout({ children }: ReactChildrenType) {
   const nonce: string = (headers().get("x-nonce") as string) || missingNonce;
-
   //#E0E7EE #BBC7D4 #CAD5DF
   return (
     <html lang="en">
