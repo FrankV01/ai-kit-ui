@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 /**
  * This should generate and manage the content component
@@ -25,8 +25,8 @@ export async function SpaContentGeneration() {
             such.
           </div>
           <div className={"text l"}>
-            How about a writing type tool. Mixed with ai for "inspiration" but
-            also just writing.
+            How about a writing type tool. Mixed with ai for {'"'}inspiration
+            {'"'} but also just writing.
           </div>
         </div>
       </div>
