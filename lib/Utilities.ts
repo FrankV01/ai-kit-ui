@@ -35,22 +35,3 @@ export const ConfigKeys = {
     chat: "FEATURE_CHAT", //TODO: Implement flag chat.
   },
 };
-
-export function getConfigValue(
-  siteConfigs: ConfigurationResultType[],
-  key: string,
-  strDefault: string,
-): string {
-  //console.log("key", key);
-  if (!siteConfigs || !siteConfigs.length) {
-    throw new InvalidParameterError("siteConfigs, siteConfigs is required.");
-  }
-  const item = siteConfigs.find((item) => item.key === key);
-  if (!item) {
-    console.warn(`Unable to find config item for key: ${key}`);
-    return strDefault;
-  }
-  const returnValue = item?.value ? item.value : strDefault;
-  //console.log("returnValue", returnValue);
-  return returnValue;
-}
