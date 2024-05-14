@@ -1,7 +1,7 @@
 "use server";
 import "server-only";
-import ISessionlessResponse from "../../types/ISessionlessResponse";
 import { EvnMgrSync } from "../EnvMgr";
+import { ISessionlessResponse } from "../Types";
 
 const evtMgr = EvnMgrSync();
 const base = evtMgr.BASE_URL;

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import PoemBody from "../../poems/PoemBody";
-import ISessionlessResponse from "../../../types/ISessionlessResponse";
+
+import { ISessionlessResponse } from "../../../lib/Types";
 
 jest.mock(
   "../../poems/BasicPoemBreadcrub",

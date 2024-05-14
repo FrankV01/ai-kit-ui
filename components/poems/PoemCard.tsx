@@ -1,7 +1,6 @@
 "use client";
 import React, { useCallback, useEffect } from "react";
 import { getPoemById } from "../../lib/api/ApiActions";
-import { ISessionlessResponse } from "../../types/ISessionlessResponse";
 import { Card } from "react-bootstrap";
 import Link from "next/link";
 import * as Icons from "react-bootstrap-icons";
@@ -10,6 +9,7 @@ import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
 import { useInterval } from "usehooks-ts";
 import { useSession } from "next-auth/react";
 import CreatePoemButton from "./CreatePoemButton";
+import { ISessionlessResponse } from "../../lib/Types";
 
 export enum PoemCardType {
   PoemCard,

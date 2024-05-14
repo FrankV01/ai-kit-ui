@@ -2,10 +2,10 @@
 import Form from "react-bootstrap/Form";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import ISessionlessResponse from "../../types/ISessionlessResponse";
 import { useDebounce } from "usehooks-ts";
 import { allowedEmails, setPoemRating } from "../../lib/api/ApiActions";
 import * as Icons from "react-bootstrap-icons";
+import { ISessionlessResponse } from "../../lib/Types";
 
 type PoemRowProps = {
   poemId: number;

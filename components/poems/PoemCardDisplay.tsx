@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { Card, Col, Row, Container } from "react-bootstrap";
 import Link from "next/link";
-import ISessionlessResponse from "../../types/ISessionlessResponse";
 import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
 import * as Icons from "react-bootstrap-icons";
+import { ISessionlessResponse } from "../../lib/Types";
 
 export interface PoemDisplaySimpleProps {
   entries: ISessionlessResponse[];

@@ -4,9 +4,9 @@ import EvtMgr from "../EnvMgr";
 import { getServerSession } from "next-auth/next";
 import { AdapterUser } from "next-auth/adapters";
 import { User } from "next-auth";
-import { ISessionlessResponse } from "../../types/ISessionlessResponse";
 import {
   ConvoReturnType,
+  ISessionlessResponse,
   SessionlessResponseApiResponseType,
   TagsResponse,
 } from "../Types";

@@ -50,3 +50,22 @@ export type ConvoReturnType = {
   created: Date;
   role: string;
 };
+
+export enum eLoadingState {
+  loading,
+  loaded,
+  loadedWithError,
+}
+
+export interface ISessionlessResponse {
+  id?: number;
+  title: string;
+  response: string;
+  createdDate: Date;
+  updatedDate?: Date;
+  prompt: string;
+  responseRaw: string;
+  hidden: boolean;
+  internalTrainingRating: number;
+  aiModelGeneration: string;
+}

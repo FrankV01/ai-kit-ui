@@ -1,8 +1,8 @@
-import ISessionlessResponse from "../../types/ISessionlessResponse";
 import { Container, Row, Col } from "react-bootstrap";
 import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
 import BasicPoemBreadcrub from "./BasicPoemBreadcrub";
 import PoemRatingWidget from "./PoemRatingWidget";
+import { ISessionlessResponse } from "../../lib/Types";
 
 type PoemBodyPropsType = {
   poemData: ISessionlessResponse;
