@@ -1,5 +1,6 @@
 import React from "react";
 import ChatComposite from "../chat/ChatComposite";
+import { useConfiguration } from "../common/ConfigurationProvider";
 
 /**
  * This should generate and manage the chat component
@@ -8,6 +9,8 @@ import ChatComposite from "../chat/ChatComposite";
  * @constructor
  */
 export async function SpaChat() {
+  const config = useConfiguration();
+
   return (
     <div className={"container"}>
       <ChatComposite />

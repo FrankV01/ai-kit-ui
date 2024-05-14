@@ -7,6 +7,7 @@ import PoemMode from "./poems/PoemsMode";
 import { ModernMode } from "./whitelabel/ModernMode";
 import { Suspense } from "react";
 import Loading from "../app/loading";
+import { ConfigurationProvider } from "./common/ConfigurationProvider";
 
 /**
  * Server page to activate the features for this instance.
@@ -27,7 +28,9 @@ export default async function Features() {
   } else {
     return (
       <Suspense fallback={<Loading poemsMode={false} />}>
-        <ModernMode />
+        <ConfigurationProvider configurations={configs}>
+          <ModernMode />
+        </ConfigurationProvider>
       </Suspense>
     );
   }
