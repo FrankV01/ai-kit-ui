@@ -4,10 +4,15 @@ import React from "react";
  * This should generate and manage the content component
  * in a singe page application style.
  *
+ * Under_Dev: This isn't supported or working yet. It's just a layout.
+ *  I wanted to get the chat element out of the way first. The goal is to launch
+ *  the services.
+ *
+ *  **Conceptual Screen**
+ *
  * @constructor
  */
 export async function SpaContentGeneration() {
-  // This is the general layout concept.
   return (
     <div className={"border bg-gradient container m-2 shadow-sm rounded-3"}>
       <div className={"row border-bottom"}>
