@@ -5,7 +5,7 @@ type ICreatePageProps = { params: {} };
 import { Col, Container, Row } from "react-bootstrap";
 import { PoemPromptInfo } from "../../../components/poems/PoemPromptInfo";
 import PoemSubmissionNotice from "../../../components/poems/PoemSubmissionNotice";
-import PoemPromptForm from "../../../components/stateful/PoemPromptForm";
+import PoemPromptForm from "../../../components/poems/stateful/PoemPromptForm";
 
 export default async function Page({ params }: ICreatePageProps) {
   return (
