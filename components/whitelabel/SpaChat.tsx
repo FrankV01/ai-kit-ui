@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import ChatComposite from "../chat/ChatComposite";
 import { useConfiguration } from "../common/ConfigurationProvider";
@@ -8,7 +10,7 @@ import { useConfiguration } from "../common/ConfigurationProvider";
  *
  * @constructor
  */
-export async function SpaChat() {
+export function SpaChat() {
   const config = useConfiguration();
 
   return (
