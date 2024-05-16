@@ -8,9 +8,6 @@ type ModernModeProps = {};
 
 // Lets create a WhiteLabelBrand component. This will brand the site based on relevant
 //  configs.
-//
-// Lets creates a ConfigurationProvider component. This will provide the configuration
-//  to the rest of the site
 
 /**
  * This should generate and manage the landing page in a singe page application style.
