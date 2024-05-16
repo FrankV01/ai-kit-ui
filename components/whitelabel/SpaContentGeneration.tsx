@@ -1,5 +1,7 @@
 import React from "react";
 
+export type SpaContentGenerationProps = { visible: boolean };
+
 /**
  * This should generate and manage the content component
  * in a singe page application style.
@@ -12,7 +14,12 @@ import React from "react";
  *
  * @constructor
  */
-export async function SpaContentGeneration() {
+export async function SpaContentGeneration({
+  visible,
+}: SpaContentGenerationProps) {
+  if (!visible) {
+    return null;
+  }
   return (
     <div className={"border bg-gradient container m-2 shadow-sm rounded-3"}>
       <div className={"row border-bottom"}>

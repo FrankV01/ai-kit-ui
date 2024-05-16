@@ -1,8 +1,12 @@
+"use client";
 import React from "react";
 import { ModernHeader } from "./ModernHeader";
 import { ModernFooter } from "./ModernFooter";
 import { SpaChat } from "./SpaChat";
 import { SpaContentGeneration } from "./SpaContentGeneration";
+import { Configurations } from "../../lib/Types";
+import { useConfiguration } from "../common/ConfigurationProvider";
+import { ConfigKeys } from "../../lib/Utilities";
 
 type ModernModeProps = {};
 
@@ -14,12 +18,18 @@ type ModernModeProps = {};
  *
  * @constructor
  */
-export async function ModernMode({}: ModernModeProps) {
+export function ModernMode({}: ModernModeProps) {
+  const configs: Configurations = useConfiguration();
+  const features = {
+    chat: configs[ConfigKeys.features.chat] as boolean, // Bool is expected.
+    contentGeneration: false, //Under_Dev: Config exists as legacy version only for now
+  };
+
   return (
     <div className={"container"}>
       <ModernHeader />
-      <SpaChat />
-      <SpaContentGeneration />
+      <SpaChat visible={features.chat} />
+      <SpaContentGeneration visible={features.contentGeneration} />
       <div className={"row"}>
         <div className={`col`}>
           <hr />

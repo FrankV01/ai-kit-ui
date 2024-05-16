@@ -1,27 +1,35 @@
+"use client";
 import React from "react";
+import { useConfiguration } from "../common/ConfigurationProvider";
+import { Configurations } from "../../lib/Types";
+import { ConfigKeys } from "../../lib/Utilities";
 
-async function GetExtraItems() {
-  return (
-    <>
-      <a className="nav-link" href="#">
-        Features
-      </a>
-      <a className="nav-link" href="#">
-        Pricing
-      </a>
-      <a className="nav-link disabled">Disabled</a>
-    </>
-  );
-}
+// function GetExtraItems() {
+//   return (
+//     <>
+//       <a className="nav-link" href="#">
+//         Features
+//       </a>
+//       <a className="nav-link" href="#">
+//         Pricing
+//       </a>
+//       <a className="nav-link disabled">Disabled</a>
+//     </>
+//   );
+// }
 
-export async function ModernHeader() {
+export function ModernHeader() {
+  // Get the configs and fill the shit in.
+  const configs: Configurations = useConfiguration();
+  const title = configs[ConfigKeys.siteName];
+
   return (
     <div className={"row"}>
       <header className={"col"}>
         <nav className="navbar navbar-expand-lg bg-light">
           <div className="container-fluid">
             <a className="navbar-brand" href="#">
-              AI-Kit White Label
+              {title || "AI - Kit White Label"}
             </a>
             <button
               className="navbar-toggler"
@@ -44,6 +52,9 @@ export async function ModernHeader() {
           </div>
         </nav>
       </header>
+      <div>
+        <pre>{JSON.stringify(configs, null, 2)}</pre>
+      </div>
     </div>
   );
 }

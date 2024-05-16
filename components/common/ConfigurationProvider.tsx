@@ -6,8 +6,8 @@ import { Configurations, ReactChildrenType } from "../../lib/Types";
 /**
  * Context that holds the configurations.
  */
-const ConfigurationContext = createContext<Configurations>(
-  [] as unknown as Configurations,
+const ConfigurationContext = createContext<Readonly<Configurations>>(
+  {} as Configurations,
 );
 
 /**

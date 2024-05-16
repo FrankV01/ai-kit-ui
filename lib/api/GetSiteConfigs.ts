@@ -2,13 +2,27 @@
 import "server-only";
 import { ConfigurationResultType, Configurations } from "../Types";
 import EvtMgr from "../EnvMgr";
+import { Inter } from "next/font/google";
 
+/**
+ * Restructures the config data from an array type to
+ * a key value pair of Records. Not sure which is better.
+ * @param data Input Data to convert.
+ */
 function restructureData(
   data: ConfigurationResultType[],
 ): Readonly<Configurations> {
   const result: Configurations = {};
+  const booleanStrs = [true.toString(), false.toString()];
   data.forEach((item) => {
-    result[item.key] = item.value;
+    const { key, value } = item;
+    if (booleanStrs.includes(value.toLowerCase())) {
+      result[key] = value.toLowerCase() === true.toString();
+    } else {
+      result[key] = Number.isSafeInteger(value)
+        ? Number.parseInt(value)
+        : value;
+    }
   });
   return result;
 }
