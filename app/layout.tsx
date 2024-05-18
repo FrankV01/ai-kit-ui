@@ -1,8 +1,7 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Metadata, ResolvingMetadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
-import Head from "next/head";
 import StyledComponentsRegistry from "../components/StyledComponentsRegistry";
 import styles from "./page.module.css";
 import MyAnalytics from "../components/common/MyAnalytics";

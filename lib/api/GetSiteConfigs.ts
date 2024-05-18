@@ -2,7 +2,6 @@
 import "server-only";
 import { ConfigurationResultType, Configurations } from "../Types";
 import EvtMgr from "../EnvMgr";
-import { Inter } from "next/font/google";
 
 /**
  * Restructures the config data from an array type to
