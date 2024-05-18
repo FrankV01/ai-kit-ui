@@ -1,7 +1,6 @@
 "use client";
-import { Button } from "react-bootstrap";
-import { requestPoem } from "../../lib/api/ApiActions";
 import { useState } from "react";
+import { requestPoem } from "../../lib/api/ApiActions";
 
 type CreatePoemButtonProps = {
   onCreatePoem: (poemId: number) => void;
@@ -12,7 +11,7 @@ export const CreatePoemButton = ({ onCreatePoem }: CreatePoemButtonProps) => {
   const [error, setError] = useState<string>("");
   return (
     <>
-      <Button
+      <button
         onClick={() => {
           setLoading(true);
           requestPoem()
@@ -25,13 +24,11 @@ export const CreatePoemButton = ({ onCreatePoem }: CreatePoemButtonProps) => {
               setError("error occurred during poem creation");
             });
         }}
-        variant="primary"
-        size={"lg"}
-        className={"m-auto p-auto btn btn-block"}
+        className={"btn btn-primary btn-lg m-auto p-auto btn-block"}
         disabled={loading}
       >
         {loading ? "Creating..." : "Create Poem"}
-      </Button>
+      </button>
       <div>{error}</div>
     </>
   );

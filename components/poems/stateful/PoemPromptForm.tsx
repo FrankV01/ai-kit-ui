@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
 import { queueRequest } from "../../../lib/api/ApiActions";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -9,7 +8,8 @@ import { eLoadingState } from "../../../lib/Types";
 
 type PoemPromptFormProps = {};
 
-const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const emailValidationRegex =
+  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const CHARACTERS_NEEDED: number = 10;
 export default function PoemPromptForm(props: PoemPromptFormProps) {
   const { data: session } = useSession();
@@ -31,7 +31,7 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
   useEffect(() => {
     setTimeout(() => {
       if (session && session.user) {
-        setValidatedEmail(regex.test(session.user.email!));
+        setValidatedEmail(emailValidationRegex.test(session.user.email!));
         setState(eLoadingState.loaded);
       }
     }, 500);
@@ -50,7 +50,7 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
   if (submissionCompleted) {
     return (
       <div className={"text-center"}>
-        <Alert variant={"success"}>
+        <div className={"alert alert-success"}>
           <p>Thank you for your submission!</p>
           <p>
             It will be reviewed as soon as possible. Once approved, it will be
@@ -58,13 +58,13 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
           </p>
           <Link href={"/"}>More Poems</Link> |{" "}
           <Link href={"/tag-list"}>Explore the tag List</Link>
-        </Alert>
+        </div>
       </div>
     );
   }
 
   return (
-    <Form
+    <form
       action={(fd) => {
         setSubmittingInProcess(true);
         queueRequest(fd).then(() => {
@@ -73,39 +73,40 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
       }}
       noValidate
       className={""}
-      validated={validated}
     >
-      <Form.Group className="mb-3" controlId="email">
-        <Form.Label>Logged in as</Form.Label>
-        <Form.Control
+      <div className="mb-3">
+        <label>Logged in as</label>
+        <input
           type="email"
           required
-          plaintext
           readOnly
           defaultValue={session && session.user && session.user.email!}
           aria-required
           name="email"
-          isValid={validatedEmail}
-          isInvalid={!validatedEmail}
+          className={`form-control ${
+            validatedEmail ? "is-valid" : "is-invalid"
+          }`}
           onChange={(evt) => {
-            setValidatedEmail(regex.test(evt.currentTarget.value));
+            setValidatedEmail(
+              emailValidationRegex.test(evt.currentTarget.value),
+            );
           }}
         />
-        <Form.Control.Feedback type="invalid">
+        <div className="invalid-feedback">
           Please enter a validate email address.
-        </Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="prompt">
-        <Form.Label>Poem Prompt</Form.Label>
-        <Form.Control
-          as="textarea"
+        </div>
+      </div>
+      <div className="mb-3">
+        <label>Poem Prompt</label>
+        <textarea
           name={"prompt"}
           rows={10}
           required
           aria-required
           readOnly={submittingInProcess}
-          isValid={validatedPrompt}
-          isInvalid={!validatedPrompt}
+          className={`form-control ${
+            validatedPrompt ? "is-valid" : "is-invalid"
+          }`}
           onChange={(evt) => {
             const val = evt.currentTarget.value || "";
             setPromptLength(val.length || 0);
@@ -115,23 +116,24 @@ export default function PoemPromptForm(props: PoemPromptFormProps) {
             "Example Prompt: Create a poem in the style of the band 'Blue October'; the topic of the poem is the struggle of life as a musician on the road while missing family."
           }
         />
-        <Form.Control.Feedback type="invalid">
+        <div className="invalid-feedback">
           {!validatedPrompt
             ? `At least ${
                 CHARACTERS_NEEDED - promptLength
               } more characters needed`
             : ""}
-        </Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group className={"text-end"}>
-        <Button
+        </div>
+      </div>
+      <div className={"text-end"}>
+        <button
           type={"submit"}
-          className={""}
-          disabled={!validated || submittingInProcess}
+          className={`btn btn-primary ${
+            !validated || submittingInProcess ? "disabled" : ""
+          }`}
         >
           {submittingInProcess ? "Submitting..." : "Send to Queue"}
-        </Button>
-      </Form.Group>
-    </Form>
+        </button>
+      </div>
+    </form>
   );
 }

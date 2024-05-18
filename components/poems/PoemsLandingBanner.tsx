@@ -1,13 +1,12 @@
-import { Container, Row, Col } from "react-bootstrap";
 import Author from "../common/Author";
 import PoemsImageRotate from "./PoemsImageRotate";
 const space: string = " ";
 
 function PoemsLandingBanner() {
   return (
-    <Container className={"mb-3"}>
-      <Row>
-        <Col xl={7} lg={7} md={5}>
+    <div className={"container mb-3"}>
+      <div className={"row"}>
+        <div className={"col-xl-7 col-lg-7 col-md-5"}>
           <div className={"mt-5 pt-5"}>
             <h1>
               Artificial Intelligence{space}
@@ -22,12 +21,12 @@ function PoemsLandingBanner() {
               <Author includeEmailLink={true} />!
             </p>
           </div>
-        </Col>
-        <Col xl={5} lg={5} md={7} className={"me-0 pe-0"}>
+        </div>
+        <div className={"col-xl-5 col-lg-5 col-md-7 me-0 pe-0"}>
           <PoemsImageRotate />
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 }
 export default PoemsLandingBanner;

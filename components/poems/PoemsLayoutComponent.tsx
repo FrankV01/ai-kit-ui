@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { SessionProvider } from "next-auth/react";
 import PoemHeaderMenu from "./PoemHeaderMenu";
 import PoemsLandingBanner from "./PoemsLandingBanner";
 import PoemFooter from "./PoemFooter";
@@ -16,25 +14,27 @@ import { ReactChildrenType } from "../../lib/Types";
  */
 export function PoemsLayoutComponent({ children }: ReactChildrenType) {
   return (
-    <Container>
-      <Row>
-        <Col>
+    <div className="container">
+      <div className="row">
+        <div className="col">
           <PoemHeaderMenu topic={"AI Poems"} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
           <PoemsLandingBanner />
-        </Col>
-      </Row>
-      <Row>
-        <Col role={"main"}>{children}</Col>
-      </Row>
-      <Row>
-        <Col>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col" role={"main"}>
+          {children}
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
           <PoemFooter />
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 }

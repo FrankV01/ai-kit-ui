@@ -1,4 +1,3 @@
-import { Row } from "react-bootstrap";
 import PoemRowSet from "./PoemRowSet";
 
 type PoemRowProps = {
@@ -11,9 +10,12 @@ export function PoemRow({ poemIds }: PoemRowProps) {
   const id3 = poemIds[2] ? poemIds[2] : undefined;
 
   return (
-    <Row key={`PoemCardDisplay-${id1}-${id2 ?? "NA"}-${id3 ?? "NA"}`}>
+    <div
+      key={`PoemCardDisplay-${id1}-${id2 ?? "NA"}-${id3 ?? "NA"}`}
+      className={"row"}
+    >
       <PoemRowSet poemId1={id1} poemId2={id2} poemId3={id3} isPoemCol={true} />
-    </Row>
+    </div>
   );
 }
 

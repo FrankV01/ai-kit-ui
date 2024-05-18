@@ -1,18 +1,10 @@
 "use client";
-import Image from "react-bootstrap/Image";
-import {
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 
 const currentFav = "/logo_2023-12-08T03-20-43.png";
 
 export default function PoemsImageRotate() {
   const [currentImage, setCurrentImage] = useState<string>(currentFav);
-  //const [imageStack, setImageStack] = useState<string[]>([...refList]);
 
   useEffect(() => {
     const refList = Object.freeze([
@@ -29,13 +21,13 @@ export default function PoemsImageRotate() {
   }, []);
 
   return (
-    <Image
+    <img
       alt={"AI Generated Poems by Frank Villasenor"}
       className={"shadow p-1 pe-0 rounded float-end rounded fluid"}
       src={currentImage}
       width={400}
       height={400}
-      roundedCircle={true}
+      style={{ borderRadius: "50%" }}
     />
   );
 }

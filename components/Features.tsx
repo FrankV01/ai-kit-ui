@@ -16,7 +16,7 @@ import { ConfigurationProvider } from "./common/ConfigurationProvider";
 export default async function Features() {
   // Step one is to get the configs and decide how to respond.
   const configs = await getSiteConfigs();
-  const poemsLegacyFeatureMode = configs[ConfigKeys.features.poems] === "true";
+  const poemsLegacyFeatureMode = configs[ConfigKeys.features.poems] as boolean;
 
   // If we're in legacy mode then display that portion. Some elements
   if (poemsLegacyFeatureMode) {

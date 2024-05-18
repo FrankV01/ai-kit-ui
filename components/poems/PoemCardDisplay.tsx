@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Card, Col, Row, Container } from "react-bootstrap";
 import Link from "next/link";
 import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
 import * as Icons from "react-bootstrap-icons";
@@ -43,41 +42,42 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
 
   if (!entries || entries.length === 0) {
     return (
-      <Container>
-        <Row>
-          <Col md={5} />
-          <Col md={5}>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-5" />
+          <div className="col-md-5">
             <div className={"h3 text-dark"}>No poems found</div>
-          </Col>
-          <Col md={4} />
-        </Row>
-      </Container>
+          </div>
+          <div className="col-md-4" />
+        </div>
+      </div>
     );
   }
 
   return (
-    <Container>
+    <div className="container">
       {poemDataMd.map((entry, idx) => {
         return (
-          <Row
+          <div
             role={"card-row"}
             key={`PoemCardDisplay-${idx}`}
-            // className={"d-inline-flex w-100 m-2"}
+            className={"row"}
           >
             {entry.map((itm, idx) => {
               return (
-                <Col key={`PoemCardDisplay-${idx}`} xs={12} md={4} lg={4}>
+                <div
+                  key={`PoemCardDisplay-${idx}`}
+                  className="col-12 col-md-4 col-lg-4"
+                >
                   {
-                    <Card
+                    <div
                       role={"card"}
-                      bg={"light"}
-                      text={"dark"}
-                      border={"dark"}
-                      key={`PoemCardDisplay-${idx}`}
+                      className={
+                        "card bg-light text-dark border-dark my-2 my-lg-3 my-md-2 p-0 shadow"
+                      }
                       style={{ height: "400px" }}
-                      className={"my-2 my-lg-3 my-md-2 p-0 shadow"}
                     >
-                      <Card.Title>
+                      <div className="card-title">
                         <div className={"p-1"}>
                           <Link
                             className={"link-dark"}
@@ -92,17 +92,19 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
                             <Icons.ArrowRightCircleFill size={"1.1rem"} />
                           </Link>
                         </div>
-                      </Card.Title>
-                      <Card.Body className={"overflow-hidden"}>
-                        <Card.Text
+                      </div>
+                      <div className="card-body overflow-hidden">
+                        <p
                           dangerouslySetInnerHTML={{
                             __html: itm?.response || "loading",
                           }}
-                          className={"overflow-hidden"}
+                          className={"card-text overflow-hidden"}
                         />
-                      </Card.Body>
-                      <Card.Footer
-                        className={"bottom small text-muted text-end"}
+                      </div>
+                      <div
+                        className={
+                          "card-footer bottom small text-muted text-end"
+                        }
                       >
                         <Link
                           className={"link-secondary me-0"}
@@ -110,16 +112,16 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
                         >
                           View...
                         </Link>
-                      </Card.Footer>
-                    </Card>
+                      </div>
+                    </div>
                   }
-                </Col>
+                </div>
               );
             })}
-          </Row>
+          </div>
         );
       })}
-    </Container>
+    </div>
   );
 };
 

@@ -1,5 +1,4 @@
 "use client";
-import Form from "react-bootstrap/Form";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useDebounce } from "usehooks-ts";
@@ -69,9 +68,9 @@ export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
       </div>
     );
   return (
-    <Form className={"mt-4"}>
-      <Form.Group controlId="toRate">
-        <Form.Label>
+    <form className={"mt-4"}>
+      <div className="form-group" id="toRate">
+        <label>
           <h5 className={"text-body-secondary"}>
             Change the Rating{" "}
             {saving && (
@@ -80,16 +79,18 @@ export function PoemRatingWidget({ poemId, poemData }: PoemRowProps) {
               </strong>
             )}
           </h5>
-        </Form.Label>
-        <Form.Range
+        </label>
+        <input
+          type="range"
+          className="form-range"
           value={currentRating}
           onChange={(e) => {
             const rating = parseInt(e.target.value);
             setCurrentRating(rating);
           }}
         />
-      </Form.Group>
-    </Form>
+      </div>
+    </form>
   );
 }
 

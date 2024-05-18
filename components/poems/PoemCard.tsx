@@ -1,7 +1,6 @@
 "use client";
 import React, { useCallback, useEffect } from "react";
 import { getPoemById } from "../../lib/api/ApiActions";
-import { Card } from "react-bootstrap";
 import Link from "next/link";
 import * as Icons from "react-bootstrap-icons";
 import PoemLoading from "./PoemLoading";
@@ -120,21 +119,20 @@ export default function PoemCard({
         : { ...cardStyle, ...rotateLeftStyle };
 
   return (
-    <Card
-      bg={"light"}
-      text={"dark"}
-      border={"dark"}
+    <div
       key={`PoemCardDisplay-${data.id}-item`}
       style={styles}
-      className={"my-2 my-lg-3 my-md-2 p-0 shadow overflow-hidden"}
+      className={
+        "card bg-light text-dark border-dark my-2 my-lg-3 my-md-2 p-0 shadow overflow-hidden"
+      }
     >
-      <Card.Body
+      <div
         style={{ height: "auto" }}
-        className={"overflow-hidden p-0 m-0"}
+        className={"card-body overflow-hidden p-0 m-0"}
       >
         {isPoemCard ? (
           <>
-            <Card.Title>
+            <div className={"card-title"}>
               <div className={"p-1"}>
                 <Link
                   key={`Link-${data.id}-title`}
@@ -151,11 +149,10 @@ export default function PoemCard({
                   <Icons.ArrowRightCircleFill size={"1.1rem"} />
                 </Link>
               </div>
-            </Card.Title>
+            </div>
 
-            <Card.Text
-              as={"div"}
-              className={"overflow-hidden p-1 m-1"}
+            <div
+              className={"card-text overflow-hidden p-1 m-1"}
               dangerouslySetInnerHTML={{
                 __html: SafeMarkdownToHtml(data.response),
               }}
@@ -165,24 +162,23 @@ export default function PoemCard({
           <>
             {isPlaceholder ? (
               <>
-                <Card.Title>
+                <div className={"card-title"}>
                   <div className={"p-1 mb-3"} style={fancyHeader}>
                     {placeholder?.title ? placeholder?.title : "-"}
                   </div>
-                </Card.Title>
-                <Card.Text as={"div"} className={"overflow-hidden p-1 m-1"}>
+                </div>
+                <div className={"card-text overflow-hidden p-1 m-1"}>
                   {placeholder?.body ? placeholder?.body : "-"}
-                </Card.Text>
+                </div>
               </>
             ) : (
               <>
-                <Card.Title>
+                <div className={"card-title"}>
                   <div className={"p-1 mb-3"} style={fancyHeader}>
                     Generate a new Poem
                   </div>
-                </Card.Title>
-                <Card.Text
-                  as={"div"}
+                </div>
+                <div
                   className={" p-auto m-auto"}
                   style={{
                     display: "flex",
@@ -199,14 +195,14 @@ export default function PoemCard({
                       newPoem.onCreatePoem(poemId);
                     }}
                   />
-                </Card.Text>
+                </div>
               </>
             )}
           </>
         )}
-      </Card.Body>
+      </div>
       {isPoemCard ? (
-        <Card.Footer className={"bottom small text-muted "}>
+        <div className={"card-footer bottom small text-muted "}>
           {session?.user?.email && (
             <span>Training Rating: {data.internalTrainingRating}</span>
           )}
@@ -215,16 +211,16 @@ export default function PoemCard({
               View...
             </Link>
           </span>
-        </Card.Footer>
+        </div>
       ) : (
-        <Card.Footer className={"bottom small text-muted "}>
+        <div className={"card-footer bottom small text-muted "}>
           <span className={"float-end"}>
             <span className={"text-secondary me-0 "} aria-disabled={"true"}>
               View...
             </span>
           </span>
-        </Card.Footer>
+        </div>
       )}
-    </Card>
+    </div>
   );
 }

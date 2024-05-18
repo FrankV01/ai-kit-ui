@@ -1,7 +1,6 @@
 "use client"; // Error components must be Client Components
 
 import React, { useEffect } from "react";
-import Placeholder from "react-bootstrap/Placeholder";
 
 export default function Error({
   error,
@@ -27,7 +26,10 @@ export default function Error({
     return displayNow ? (
       <div className={"bold fs-1 text fw-bold"}>Oh god. PANIC now!!</div>
     ) : (
-      <Placeholder xs={6} />
+      <div
+        className="placeholder"
+        style={{ width: "50%", height: "1em" }}
+      ></div>
     );
   };
 

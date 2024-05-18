@@ -20,7 +20,6 @@ export function SpaChat({ visible }: SpaChatProps) {
   if (!visible) {
     return null;
   }
-
   return (
     <div className={"container"}>
       <ChatComposite />

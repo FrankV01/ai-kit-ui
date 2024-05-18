@@ -2,11 +2,10 @@
 
 import { getGroupedPoemIds } from "../../lib/api/ApiActions";
 import PoemRow from "./PoemRow";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { PoemLoadingColumn } from "./PoemLoadingColumn";
 import { useEffectOnce } from "usehooks-ts";
-import { Row } from "react-bootstrap";
 import PoemRowSet from "./PoemRowSet";
 
 type InfinitePoemsProps = {};
@@ -58,9 +57,9 @@ export const InfinitePoems = (prop: InfinitePoemsProps) => {
     ));
 
     rows.unshift(
-      <Row key={`PoemCardDisplay-poemCol-987654321`}>
+      <div className={"row"} key={`PoemCardDisplay-poemCol-987654321`}>
         <PoemRowSet poemId1={987654321} isPoemCol={false} />
-      </Row>,
+      </div>,
     );
 
     return rows;

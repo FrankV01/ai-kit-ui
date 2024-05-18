@@ -9,7 +9,20 @@ import { ConfigKeys } from "../lib/Utilities";
 import getSiteConfigs from "../lib/api/GetSiteConfigs";
 import { ReactChildrenType } from "../lib/Types";
 import AppSessionProvider from "../components/common/AppSessionProvider";
-import "bootswatch/dist/litera/bootstrap.min.css";
+
+//This is setting the theme. We need to make this dynamic
+//  though. Other wise everything will look the same and
+//  that isn't cool
+//import "bootswatch/dist/litera/bootstrap.min.css"; // Maybe we should just use the core for now.
+// The thing with bootswatch is that it doesn't seem to be very dynamic.
+// Atleast, I've not found a viable way to make it dynamic.
+//
+//
+// Our custom styles.
+import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/js/bootstrap.bundle.min.js";
+//import "bootstrap/dist/js/bootstrap.bundle.min.js";
+//import * as bootstrap from "bootstrap/dist/js/bootstrap.min";
 import "./global.css";
 
 export const dynamic = "force-dynamic";
