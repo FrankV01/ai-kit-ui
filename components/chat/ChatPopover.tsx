@@ -14,12 +14,18 @@ type ChatPopoverProps = {};
  */
 const ChatPopover: React.FC<ChatPopoverProps> = () => {
   return (
-    <div className="popover show bs-popover-right">
-      <div className="popover-header">Chat</div>
-      <div className="popover-body">
+    <div role={"dialog"} className="popover show bs-popover-right">
+      <div role={"heading"} className="popover-header">
+        Chat
+      </div>
+      <div role={"main"} className="popover-body">
         <ChatComposite />
       </div>
-      <button className="btn btn-success" data-bs-toggle="popover">
+      <button
+        role={"button"}
+        className="btn btn-success"
+        data-bs-toggle="popover"
+      >
         Chat
       </button>
     </div>
