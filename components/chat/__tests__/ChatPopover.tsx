@@ -27,8 +27,7 @@ describe("ChatPopover component", () => {
   });
 
   it("hides popover on second click", () => {
-    const { getByText, queryByText, getByRole, queryByRole, queryAllByRole } =
-      render(<ChatPopover />);
+    const { getByRole } = render(<ChatPopover />);
 
     act(() => {
       fireEvent.click(getByRole("button"));
