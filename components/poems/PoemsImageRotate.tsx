@@ -23,7 +23,9 @@ export default function PoemsImageRotate() {
   return (
     <img
       alt={"AI Generated Poems by Frank Villasenor"}
-      className={"shadow p-1 pe-0 rounded float-end rounded fluid"}
+      className={
+        "shadow p-1 pe-0 rounded float-end fluid rounded-circle shadow-4-strong"
+      }
       src={currentImage}
       width={400}
       height={400}
