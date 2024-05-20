@@ -1,7 +1,8 @@
 import React from "react";
 import { Metadata, ResolvingMetadata } from "next";
-import { Inter } from "next/font/google";
 import { headers } from "next/headers";
+import Script from "next/script";
+import { Inter } from "next/font/google";
 import StyledComponentsRegistry from "../components/StyledComponentsRegistry";
 import styles from "./page.module.css";
 import MyAnalytics from "../components/common/MyAnalytics";
@@ -24,6 +25,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //import "bootstrap/dist/js/bootstrap.bundle.min.js";
 //import * as bootstrap from "bootstrap/dist/js/bootstrap.min";
 import "./global.css";
+import Head from "next/head";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
@@ -83,6 +85,9 @@ export default async function RootLayout({ children }: ReactChildrenType) {
   //#E0E7EE #BBC7D4 #CAD5DF
   return (
     <html lang="en">
+      <Script src="/js/jquery-3.3.1.slim.min.js"></Script>
+      <Script src="/js/popper.min.js"></Script>
+      <Script src="/js/bootstrap.min.js"></Script>
       <body className={inter.className}>
         <React.StrictMode>
           <MyAnalytics nonce={nonce} gaMeasurementId={"G-BWCTMTSQR4"} />
