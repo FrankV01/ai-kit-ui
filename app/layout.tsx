@@ -12,7 +12,7 @@ import { ReactChildrenType } from "../lib/Types";
 import AppSessionProvider from "../components/common/AppSessionProvider";
 
 //This is setting the theme. We need to make this dynamic
-//  though. Other wise everything will look the same and
+//  though. Otherwise everything will look the same and
 //  that isn't cool
 //import "bootswatch/dist/litera/bootstrap.min.css"; // Maybe we should just use the core for now.
 // The thing with bootswatch is that it doesn't seem to be very dynamic.
@@ -21,11 +21,7 @@ import AppSessionProvider from "../components/common/AppSessionProvider";
 //
 // Our custom styles.
 import "bootstrap/dist/css/bootstrap.min.css";
-//import "bootstrap/dist/js/bootstrap.bundle.min.js";
-//import "bootstrap/dist/js/bootstrap.bundle.min.js";
-//import * as bootstrap from "bootstrap/dist/js/bootstrap.min";
 import "./global.css";
-import Head from "next/head";
 
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
@@ -88,6 +84,7 @@ const ScriptsToLoad = () =>
 
 const missingNonce = ""; //Use a blank string so it doesn't break the CSP.
 export default async function RootLayout({ children }: ReactChildrenType) {
+  const siteConfigs = await getSiteConfigs();
   const nonce: string = (headers().get("x-nonce") as string) || missingNonce;
   return (
     <html lang="en">
@@ -98,7 +95,11 @@ export default async function RootLayout({ children }: ReactChildrenType) {
           <StyledComponentsRegistry>
             <AppSessionProvider>
               <main
-                style={{ background: "#E0E7EE" }}
+                style={{
+                  background:
+                    (siteConfigs[ConfigKeys.styles.background] as string) ||
+                    "#E0E7EE",
+                }}
                 nonce={nonce}
                 className={styles.main}
               >
