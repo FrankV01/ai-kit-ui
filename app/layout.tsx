@@ -79,15 +79,19 @@ export async function generateMetadata(
   return metadata;
 }
 
+const ScriptsToLoad = () =>
+  [
+    "/js/jquery-3.3.1.slim.min.js",
+    "/js/popper.min.js",
+    "/js/bootstrap.min.js",
+  ].map((src) => <Script key={src} src={src}></Script>);
+
 const missingNonce = ""; //Use a blank string so it doesn't break the CSP.
 export default async function RootLayout({ children }: ReactChildrenType) {
   const nonce: string = (headers().get("x-nonce") as string) || missingNonce;
-  //#E0E7EE #BBC7D4 #CAD5DF
   return (
     <html lang="en">
-      <Script src="/js/jquery-3.3.1.slim.min.js"></Script>
-      <Script src="/js/popper.min.js"></Script>
-      <Script src="/js/bootstrap.min.js"></Script>
+      <ScriptsToLoad />
       <body className={inter.className}>
         <React.StrictMode>
           <MyAnalytics nonce={nonce} gaMeasurementId={"G-BWCTMTSQR4"} />
