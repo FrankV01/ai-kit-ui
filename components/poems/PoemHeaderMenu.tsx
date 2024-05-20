@@ -13,7 +13,7 @@ function PoemHeaderMenu({ topic }: { topic: string }) {
     <nav
       role={"navigation"}
       className={
-        "navbar navbar-expand-lg bg-primary text-light shadow rounded-bottom"
+        "navbar navbar-expand-lg bg-primary text-light shadow rounded-bottom "
       }
     >
       <div className={"container"}>
@@ -51,19 +51,16 @@ function PoemHeaderMenu({ topic }: { topic: string }) {
               </a>
             </li>
             <li className="nav-item">
-              <a className={"nav-link"}>
-                <IconLinkedIn size={sizeOfIcons} />
-              </a>
+              <IconLinkedIn className={"nav-link"} size={sizeOfIcons} />
             </li>
             <li className="nav-item">
-              <a className={"nav-link"}>
-                <IconGitHub size={sizeOfIcons} />
-              </a>
+              <IconGitHub className={"nav-link"} size={sizeOfIcons} />
             </li>
             <li className="nav-item">
-              <a className={"nav-link"}>
-                <IconTheOpenSourceUorg size={sizeOfIcons} />
-              </a>
+              <IconTheOpenSourceUorg
+                className={"nav-link"}
+                size={sizeOfIcons}
+              />
             </li>
           </ul>
         </div>
