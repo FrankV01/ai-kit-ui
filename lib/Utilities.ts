@@ -34,4 +34,7 @@ export const ConfigKeys = {
     poems: "FEATURE_POEMS",
     chat: "FEATURE_CHAT", //TODO: Implement flag chat.
   },
+  styles: {
+    background: "STYLES_BACKGROUND",
+  },
 };
