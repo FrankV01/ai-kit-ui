@@ -20,9 +20,8 @@ export default function CCLicense() {
       <Link
         href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1"
         target="_blank"
-        className={`link-secondary ${styles}`}
+        className={`link-secondary ${styles} d-inline-block`}
         rel="license noopener noreferrer"
-        style={{ display: "inline-block" }}
       >
         CC BY-NC 4.0
         <Image
