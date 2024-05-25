@@ -17,19 +17,20 @@ export default function Error({
   const JokeComponent = () => {
     const [displayNow, setDisplayNow] = React.useState<boolean>(false);
     useEffect(() => {
-      const fourSeconds = 4000;
+      const eightSeconds = 8000;
       const timer = setTimeout(() => {
         setDisplayNow(true);
-      }, fourSeconds);
+      }, eightSeconds);
       return () => clearTimeout(timer);
     }, []);
     return displayNow ? (
       <div className={"bold fs-1 text fw-bold"}>Oh god. PANIC now!!</div>
     ) : (
       <div
-        className="placeholder"
-        style={{ width: "50%", height: "1em" }}
-      ></div>
+        className="placeholder w-50 h-auto"
+        data-role="status-placeholder"
+        role={"status"}
+      />
     );
   };
 
