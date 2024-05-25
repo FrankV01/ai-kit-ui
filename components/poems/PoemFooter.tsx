@@ -1,4 +1,3 @@
-import { Container, Row, Col } from "react-bootstrap";
 import * as Icons from "react-bootstrap-icons";
 import Author from "../common/Author";
 import {
@@ -11,12 +10,12 @@ import { AiThankYou } from "../common/quips/AiThankYou";
 
 export default function PoemFooter() {
   return (
-    <Container className={"m-auto p-auto py-5 mx-0"}>
-      <Row>
-        <Col
-          md={12}
-          lg={4}
-          className={"ps-0 m-auto p-auto text-secondary fw-light"}
+    <div className={"container m-auto p-auto py-5 mx-0"}>
+      <div className={"row"}>
+        <div
+          className={
+            "col-md-12 col-lg-4 ps-0 m-auto p-auto text-secondary fw-light"
+          }
         >
           <p>
             Artificial Intelligence (AI) / Machine Learning (ML) created Poems.
@@ -27,19 +26,19 @@ export default function PoemFooter() {
             <Author includeEmailLink={true} className={"link-secondary"} />
           </p>
           <AiThankYou />
-        </Col>
-        <Col md={12} lg={4} className={"fs-3 text-center m-auto p-auto pe-0"}>
+        </div>
+        <div
+          className={"col-md-12 col-lg-4 fs-3 text-center m-auto p-auto pe-0"}
+        >
           <div className={"m-auto text-center"}>
             <IconLinkedIn className={"mx-2"} />
             <IconGitHub className={"mx-2"} />
             <IconTheOpenSourceUorg className={"mx-2"} />
           </div>
-        </Col>
-        <Col
-          md={12}
-          lg={4}
+        </div>
+        <div
           className={
-            "m-auto-md mt-3 p-auto text-secondary small position-relative bottom-0 end-0 text-lg-end"
+            "col-md-12 col-lg-4 m-auto-md mt-3 p-auto text-secondary small position-relative bottom-0 end-0 text-lg-end"
           }
         >
           <div>
@@ -52,8 +51,8 @@ export default function PoemFooter() {
           <div>
             <CCLicense />
           </div>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 }

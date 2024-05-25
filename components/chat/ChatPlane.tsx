@@ -5,25 +5,7 @@ type ChatPlaneProps = {
   messages: ConvoReturnType[];
 };
 
-const borders = {
-  margin: "10px",
-  padding: "10px",
-  backgroundColor: "#DFE7EE",
-  border: "1px solid #F2F5F8", // Lighter shade of #DFE7EE
-  borderRadius: "10px", // Rounded border
-  boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.1)", // Subtle shadow for a modern look
-};
-const ourStyle = {
-  margin: "10px",
-  padding: "10px",
-  //border: "1px solid #BFC8D3", //#4582EC
-  borderRadius: "10px",
-  //boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
-};
-const addlUserStyles = {
-  //backgroundColor: "#BFC8D3", //"#4582EC",
-  textAlign: "right",
-};
+const bordersClass: string = "m-2 p-4 bg-gray-100 border rounded shadow-md";
 
 /**
  * Pretty basic but a starting point. This is the "Chat Plane" and
@@ -35,20 +17,22 @@ const addlUserStyles = {
  */
 const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
   if (messages.length === 0) {
-    return <div style={{ ...ourStyle, ...borders }}>No messages yet.</div>;
+    return <div className={[bordersClass].join(" ")}>No messages yet.</div>;
   }
 
   return (
-    <div style={borders}>
+    <div className={bordersClass}>
       <ChatSystemPrompt className={"m-2"} />
       {messages.map((message, index) => {
         const isUser = message.role === "user";
-        const styles = isUser ? { ...ourStyle, ...addlUserStyles } : ourStyle;
-        const _class = isUser ? "text-primary-emphasis" : "text-primary";
+
+        const _class = isUser
+          ? [bordersClass, "text-primary-emphasis"].join(" ")
+          : ["text-primary"].join(" ");
         const iconLeft = isUser ? "" : "🤖";
         const iconRight = isUser ? "👤" : "";
         return (
-          <div className={_class} key={index} style={styles}>
+          <div className={_class} key={index}>
             <span key={`span-${index}`}>
               {iconLeft} {message.message} {iconRight}
             </span>

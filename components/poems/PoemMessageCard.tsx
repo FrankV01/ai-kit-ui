@@ -1,5 +1,4 @@
 import PoemCard, { PoemCardType, RotationType } from "./PoemCard";
-import { Col } from "react-bootstrap";
 
 type MessageCardProps = {
   messageIndex: 0 | 1;
@@ -12,11 +11,9 @@ export const PoemMessageCard = ({ messageIndex }: MessageCardProps) => {
     throw new Error("Invalid message index");
   }
   return (
-    <Col
+    <div
       key={`PoemCardDisplay-placeholder-${messageIndex}`}
-      xs={12}
-      md={4}
-      lg={4}
+      className={"col-12 col-md-4 col-lg-4"}
     >
       <PoemCard
         rotation={messageIndex === 0 ? RotationType.Left : RotationType.Right}
@@ -29,7 +26,7 @@ export const PoemMessageCard = ({ messageIndex }: MessageCardProps) => {
               : "Thanks for visiting. Revisions are consistently coming and although changes sometimes slow down, be assured that things are progressing. This isn't a commercial endeavor and the content may reflect that; please bear this in mind as you use & read the site.",
         }}
       />
-    </Col>
+    </div>
   );
 };
 

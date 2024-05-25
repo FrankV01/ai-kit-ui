@@ -1,4 +1,3 @@
-import { Container, Row, Col } from "react-bootstrap";
 import SafeMarkdownToHtml from "../../lib/SafeMarkdownToHtml";
 import BasicPoemBreadcrub from "./BasicPoemBreadcrub";
 import PoemRatingWidget from "./PoemRatingWidget";
@@ -24,10 +23,10 @@ const PoemBody = ({ poemData }: PoemBodyPropsType) => {
   };
 
   return (
-    <Container>
-      <Row>
-        <Col lg={2} md={1} sm={0}></Col>
-        <Col lg={8} md={10} sm={12}>
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-2 col-md-1"></div>
+        <div className="col-lg-8 col-md-10 col-sm-12">
           <h2 className={""}>{poemData.title}</h2>
           <BasicPoemBreadcrub poemTitle={poemData.title} />
           <div
@@ -47,16 +46,16 @@ const PoemBody = ({ poemData }: PoemBodyPropsType) => {
             <span title={"ID"}>{poemData.id}</span> |{" "}
             <span title={"Created Date"}>
               {new Date(poemData.createdDate).toUTCString()}
-            </span>{" "}
-            |{" "}
+            </span>
+            {" | "}
             <span title={"AI Generation"}>
               AI Generation: <i>{poemData?.aiModelGeneration || "unknown"}</i>
             </span>
           </div>
-        </Col>
-        <Col lg={2} md={1} sm={0}></Col>
-      </Row>
-    </Container>
+        </div>
+        <div className="col-lg-2 col-md-1"></div>
+      </div>
+    </div>
   );
 };
 

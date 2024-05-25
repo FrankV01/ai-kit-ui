@@ -1,9 +1,5 @@
 "use client";
 import React from "react";
-import { Button, OverlayTrigger, Popover } from "react-bootstrap";
-import ChatParticipants from "./ChatParticipants";
-import ChatPlane from "./ChatPlane";
-import ChatInput from "./ChatInput";
 import ChatComposite from "./ChatComposite";
 
 type ChatPopoverProps = {};
@@ -17,19 +13,22 @@ type ChatPopoverProps = {};
  * @constructor
  */
 const ChatPopover: React.FC<ChatPopoverProps> = () => {
-  const popover = (
-    <Popover id="popover-basic">
-      <Popover.Header as="h3">Chat</Popover.Header>
-      <Popover.Body>
-        <ChatComposite />
-      </Popover.Body>
-    </Popover>
-  );
-
   return (
-    <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-      <Button variant="success">Chat</Button>
-    </OverlayTrigger>
+    <div role={"dialog"} className="popover show bs-popover-right">
+      <div role={"heading"} className="popover-header">
+        Chat
+      </div>
+      <div role={"main"} className="popover-body">
+        <ChatComposite />
+      </div>
+      <button
+        role={"button"}
+        className="btn btn-success"
+        data-bs-toggle="popover"
+      >
+        Chat
+      </button>
+    </div>
   );
 };
 

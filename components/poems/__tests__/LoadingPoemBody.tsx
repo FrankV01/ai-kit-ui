@@ -12,10 +12,12 @@ describe("LoadingPoemBody", () => {
   });
 
   it("renders placeholders with animation glow", () => {
-    const { getAllByRole } = render(<LoadingPoemBody />);
+    const { getAllByRole, getAllByTestId } = render(<LoadingPoemBody />);
     const placeholders = getAllByRole("status");
     placeholders.forEach((placeholder) => {
-      expect(placeholder).toHaveClass(/placeholder/gi);
+      console.log("className", placeholder.className);
+      expect(placeholder).toBeInTheDocument();
+      expect(placeholder).toHaveClass("placeholder", { exact: false });
     });
   });
 

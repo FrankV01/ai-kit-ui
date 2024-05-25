@@ -1,16 +1,3 @@
-const cspHeader = `
-    default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com/;
-    style-src 'self' data: 'unsafe-inline';
-    img-src 'self' data: https://mirrors.creativecommons.org/;
-    font-src 'self';
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    upgrade-insecure-requests;
-`.replace(/\n/g, "");
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async headers() {

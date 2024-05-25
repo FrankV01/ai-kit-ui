@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Container, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import { getTagListData } from "../../lib/api/ApiActions";
 
 export const dynamic = "force-dynamic";
@@ -8,30 +7,31 @@ export default async function Page() {
   const results = await getTagListData();
   return (
     <div key={`tag-list-div`}>
-      <Container>
-        <Row>
-          <Col md={12} className={""}>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
             <h3>Tags List</h3>
-            <ListGroup className={"flex-wrap flex-fill m-0"} horizontal={"lg"}>
+            <div
+              className="list-group d-flex flex-wrap flex-fill m-0"
+              role="group"
+            >
               {results.map((itm) => (
-                <ListGroupItem
+                <div
                   key={`tag-list-div-${itm.id}`}
-                  className={"m-0"}
-                  variant={"primary"}
+                  className="list-group-item m-0 bg-primary"
                 >
                   <Link
                     href={`/poem/tag/${encodeURIComponent(itm.tag)}`}
                     key={`tag-list-${itm.id}`}
-                    className={"m-0"}
                   >
                     {itm.tag}
                   </Link>
-                </ListGroupItem>
+                </div>
               ))}
-            </ListGroup>
-          </Col>
-        </Row>
-      </Container>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

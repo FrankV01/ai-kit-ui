@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import { Container } from "react-bootstrap";
 import styles from "../../page.module.css";
 import PoemBody from "../../../components/poems/PoemBody";
 import Loading from "../loading";
@@ -18,20 +17,20 @@ export default async function Page({
     // or is loading?
     return (
       <main className={styles.main}>
-        <Container>
+        <div className={"container"}>
           <h1>Poem not found...</h1>
-        </Container>
+        </div>
       </main>
     );
   }
 
   return (
     <main className={`${styles.main} mt-3`}>
-      <Container>
+      <div className={"container"}>
         <Suspense fallback={<Loading />}>
           <PoemBody poemData={poemData} />
         </Suspense>
-      </Container>
+      </div>
     </main>
   );
 }

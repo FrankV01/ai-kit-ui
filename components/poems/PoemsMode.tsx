@@ -6,7 +6,7 @@ import { PoemsLayoutComponent } from "./PoemsLayoutComponent";
 export default async function PoemMode() {
   return (
     <PoemsLayoutComponent>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loading poemsMode={true} />}>
         <InfinitePoems key={1} />
       </Suspense>
     </PoemsLayoutComponent>

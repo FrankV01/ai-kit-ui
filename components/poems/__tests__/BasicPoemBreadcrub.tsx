@@ -32,9 +32,12 @@ describe("BasicPoemBreadcrub", () => {
 
   it("renders with active breadcrumb item", () => {
     render(<BasicPoemBreadcrub poemTitle={"unit-test"} />);
-    const breadcrumbItem = screen.getByText(`: unit-test`);
-    expect(breadcrumbItem).toBeInTheDocument();
 
-    expect(breadcrumbItem).toHaveClass("breadcrumb-item active");
+    const breadcrumbItem = screen.getByRole("breadcrumb-item");
+    expect(breadcrumbItem).toBeInTheDocument();
+    const breadcrumbItem2 = screen.getByRole("contentinfo", {
+      name: /unit-test/i,
+    });
+    expect(breadcrumbItem2.parentElement).toHaveClass("breadcrumb-item active");
   });
 });

@@ -1,6 +1,5 @@
 "use client";
 
-import { Form, Spinner } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 export default function PoemDemandOutput(Prop: { content: string }) {
@@ -27,22 +26,23 @@ export default function PoemDemandOutput(Prop: { content: string }) {
   }, [content]);
 
   return (
-    <Form.Group className="mb-3 position-relative" controlId="poemtextarea">
-      <Form.Control
+    <div className="mb-3 position-relative" id="poemtextarea">
+      <textarea
         readOnly
         aria-readonly
-        as="textarea"
+        className="form-control"
         value={typedPoem}
         rows={5}
-      ></Form.Control>
+      ></textarea>
       {isTyping && (
-        <Spinner
+        <div
           role="status"
           aria-hidden="true"
-          variant="primary"
-          className={"position-absolute bottom-0 end-0 mb-1 me-1 z-index-1"}
+          className={
+            "position-absolute bottom-0 end-0 mb-1 me-1 z-index-1 spinner-border text-primary"
+          }
         />
       )}
-    </Form.Group>
+    </div>
   );
 }

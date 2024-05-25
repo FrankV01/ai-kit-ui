@@ -1,7 +1,8 @@
 import React from "react";
 import { Metadata, ResolvingMetadata } from "next";
-import { Inter } from "next/font/google";
 import { headers } from "next/headers";
+import Script from "next/script";
+import { Inter } from "next/font/google";
 import StyledComponentsRegistry from "../components/StyledComponentsRegistry";
 import styles from "./page.module.css";
 import MyAnalytics from "../components/common/MyAnalytics";
@@ -9,7 +10,17 @@ import { ConfigKeys } from "../lib/Utilities";
 import getSiteConfigs from "../lib/api/GetSiteConfigs";
 import { ReactChildrenType } from "../lib/Types";
 import AppSessionProvider from "../components/common/AppSessionProvider";
-import "bootswatch/dist/litera/bootstrap.min.css";
+
+//This is setting the theme. We need to make this dynamic
+//  though. Otherwise everything will look the same and
+//  that isn't cool
+//import "bootswatch/dist/litera/bootstrap.min.css"; // Maybe we should just use the core for now.
+// The thing with bootswatch is that it doesn't seem to be very dynamic.
+// Atleast, I've not found a viable way to make it dynamic.
+//
+//
+// Our custom styles.
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./global.css";
 
 export const dynamic = "force-dynamic";
@@ -64,19 +75,31 @@ export async function generateMetadata(
   return metadata;
 }
 
+const ScriptsToLoad = () =>
+  [
+    "/js/jquery-3.3.1.slim.min.js",
+    "/js/popper.min.js",
+    "/js/bootstrap.min.js",
+  ].map((src) => <Script key={src} src={src}></Script>);
+
 const missingNonce = ""; //Use a blank string so it doesn't break the CSP.
 export default async function RootLayout({ children }: ReactChildrenType) {
+  const siteConfigs = await getSiteConfigs();
   const nonce: string = (headers().get("x-nonce") as string) || missingNonce;
-  //#E0E7EE #BBC7D4 #CAD5DF
   return (
     <html lang="en">
+      <ScriptsToLoad />
       <body className={inter.className}>
         <React.StrictMode>
           <MyAnalytics nonce={nonce} gaMeasurementId={"G-BWCTMTSQR4"} />
           <StyledComponentsRegistry>
             <AppSessionProvider>
               <main
-                style={{ background: "#E0E7EE" }}
+                style={{
+                  background:
+                    (siteConfigs[ConfigKeys.styles.background] as string) ||
+                    "#E0E7EE",
+                }}
                 nonce={nonce}
                 className={styles.main}
               >

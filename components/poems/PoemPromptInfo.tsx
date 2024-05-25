@@ -1,7 +1,6 @@
 "use server";
 import Link from "next/link";
 import * as Icons from "react-bootstrap-icons";
-import { Container, Stack } from "react-bootstrap";
 
 export async function PoemPromptInfo() {
   return (
@@ -27,7 +26,7 @@ export async function PoemPromptInfo() {
         As a suggestion, use Google Docs or MS Word to draft your prompt to help
         avoid data loss. Then use copy-and-paste to move the writing over.
       </p>
-      <Stack>
+      <div>
         <div>
           <Link
             prefetch={false}
@@ -52,7 +51,7 @@ export async function PoemPromptInfo() {
             <Icons.BoxArrowUpRight />
           </Link>
         </div>
-      </Stack>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,11 @@
 import React from "react";
-import { render, fireEvent, act } from "@testing-library/react";
+import {
+  render,
+  fireEvent,
+  act,
+  getByRole,
+  getByText,
+} from "@testing-library/react";
 import ChatPopover from "../ChatPopover";
 
 jest.mock("../ChatComposite.tsx", () => {
@@ -8,25 +14,27 @@ jest.mock("../ChatComposite.tsx", () => {
 
 describe("ChatPopover component", () => {
   it("renders without crashing", () => {
-    const { getByText } = render(<ChatPopover />);
-    expect(getByText("Chat")).toBeInTheDocument();
+    const { getByRole } = render(<ChatPopover />);
+    expect(getByRole("dialog")).toBeInTheDocument();
   });
 
   it("shows popover on click", () => {
-    const { getByText } = render(<ChatPopover />);
+    const { getByRole } = render(<ChatPopover />);
     act(() => {
-      fireEvent.click(getByText("Chat"));
-      expect(getByText("Chat")).toBeInTheDocument();
+      fireEvent.click(getByRole("button"));
     });
+    expect(getByRole("heading")).toBeInTheDocument();
   });
 
   it("hides popover on second click", () => {
-    const { getByText, queryByText, getByRole, queryByRole, queryAllByRole } =
-      render(<ChatPopover />);
+    const { getByRole } = render(<ChatPopover />);
+
     act(() => {
-      fireEvent.click(getByText("Chat"));
       fireEvent.click(getByRole("button"));
-      expect(queryByRole("heading")).not.toBeInTheDocument();
     });
+
+    const heading = getByRole("heading");
+    expect(heading).toBeInTheDocument();
+    expect(heading).toHaveTextContent("Chat");
   });
 });

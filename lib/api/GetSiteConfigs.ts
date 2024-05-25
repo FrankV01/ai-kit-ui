@@ -1,7 +1,7 @@
 "use server";
 import "server-only";
 import { ConfigurationResultType, Configurations } from "../Types";
-import EvtMgr from "../EnvMgr";
+import EvtMgr, { EvnMgrSync } from "../EnvMgr";
 
 /**
  * Restructures the config data from an array type to
@@ -30,8 +30,10 @@ let lazyLoadedSettings: Readonly<Configurations> | false = false;
 export default async function getSiteConfigs(): Promise<
   Readonly<Configurations>
 > {
-  if (lazyLoadedSettings) {
-    return lazyLoadedSettings;
+  if (!EvnMgrSync().DEBUG) {
+    if (lazyLoadedSettings) {
+      return lazyLoadedSettings;
+    }
   }
 
   const evtMgr = await EvtMgr();

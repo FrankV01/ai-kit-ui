@@ -1,47 +1,52 @@
 "use client";
-import { Card } from "react-bootstrap";
-import Placeholder from "react-bootstrap/Placeholder";
 import React from "react";
 
 export default function PoemLoading({ id }: { id: number }) {
   return (
-    <Card
-      bg={"light"}
-      text={"dark"}
-      border={"dark"}
+    <div
       key={`PoemCardDisplay-PoemLoading-${id}-item`}
-      style={{ height: "400px" }}
-      className={"my-2 my-lg-3 my-md-2 p-0 shadow"}
+      className={
+        "card bg-light text-dark border-dark my-2 my-lg-3 my-md-2 p-0 shadow height-400"
+      }
     >
-      <Card.Body>
-        <Card.Title>
+      <div className="card-body">
+        <h5 className="card-title">
           <div className={"p-1"}>
-            <Placeholder animation={"wave"}>
-              <Placeholder xs={2} /> <Placeholder xs={2} />{" "}
-              <Placeholder xs={4} />
-            </Placeholder>
+            <span className="placeholder-wave">
+              <span className="placeholder-xs-2" />{" "}
+              <span className="placeholder-xs-2" />{" "}
+              <span className="placeholder-xs-4" />
+            </span>
             &nbsp;
           </div>
-        </Card.Title>
-        <Card.Text>
-          <Placeholder animation={"glow"}>
-            <Placeholder xs={6} /> <Placeholder xs={4} /> <Placeholder xs={2} />{" "}
-            <Placeholder xs={5} /> <Placeholder xs={6} /> <Placeholder xs={2} />{" "}
-            <Placeholder xs={5} /> <Placeholder xs={4} /> <Placeholder xs={3} />{" "}
-            <Placeholder xs={4} /> <Placeholder xs={4} /> <Placeholder xs={4} />{" "}
-          </Placeholder>
-        </Card.Text>
-      </Card.Body>
-      <Card.Footer
+        </h5>
+        <p className="card-text">
+          <span className="placeholder-glow">
+            <span className="placeholder-xs-6" />{" "}
+            <span className="placeholder-xs-4" />{" "}
+            <span className="placeholder-xs-2" />{" "}
+            <span className="placeholder-xs-5" />{" "}
+            <span className="placeholder-xs-6" />{" "}
+            <span className="placeholder-xs-2" />{" "}
+            <span className="placeholder-xs-5" />{" "}
+            <span className="placeholder-xs-4" />{" "}
+            <span className="placeholder-xs-3" />{" "}
+            <span className="placeholder-xs-4" />{" "}
+            <span className="placeholder-xs-4" />{" "}
+            <span className="placeholder-xs-4" />{" "}
+          </span>
+        </p>
+      </div>
+      <div
         className={
-          "bottom small text-muted text-end position-sticky bottom-0 top-100"
+          "card-footer bottom small text-muted text-end position-sticky bottom-0 top-100"
         }
       >
-        <Placeholder animation={"glow"}>
-          <Placeholder xs={2} />
-        </Placeholder>
+        <span className="placeholder-glow">
+          <span className="placeholder-xs-2" />
+        </span>
         &nbsp;
-      </Card.Footer>
-    </Card>
+      </div>
+    </div>
   );
 }
