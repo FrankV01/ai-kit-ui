@@ -33,24 +33,6 @@ export type PoemCardProps = {
     body: string;
   };
 };
-const fancyHeader = {
-  textShadow: "1px 1px 1px black",
-  fontFamily: "Arial, sans-serif",
-  fontWeight: "bold",
-  color: "#3a3a3a",
-  fontSize: "1.4em",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
-
-const cardStyle = { height: "400px" };
-const rotateRightStyle = {
-  transform: "rotate(1deg)",
-};
-const rotateLeftStyle = {
-  transform: "rotate(-1deg)",
-};
 
 export default function PoemCard({
   id,
@@ -111,28 +93,22 @@ export default function PoemCard({
   const isPlaceholder = cardType === PoemCardType.PlaceholderCard;
   const isNewPoemButton = cardType === PoemCardType.NewPoemButtonCard;
   const isPoemCard = cardType === PoemCardType.PoemCard;
-  const styles =
+  const styles: string =
     rotation === RotationType.None
-      ? cardStyle
+      ? "height-400"
       : rotation === RotationType.Right
-        ? { ...cardStyle, ...rotateRightStyle }
-        : { ...cardStyle, ...rotateLeftStyle };
+        ? "height-400 rotate-right"
+        : "height-400 rotate-left";
 
   return (
     <div
       key={`PoemCardDisplay-${data.id}-item`}
-      style={styles}
-      className={
-        "card bg-light text-dark border-dark my-2 my-lg-3 my-md-2 p-0 shadow overflow-hidden"
-      }
+      className={`card bg-light text-dark border-dark my-2 my-lg-3 my-md-2 p-0 shadow overflow-hidden ${styles}`}
     >
-      <div
-        style={{ height: "auto" }}
-        className={"card-body overflow-hidden p-0 m-0"}
-      >
+      <div className={"card-body overflow-hidden p-0 m-0 h-auto"}>
         {isPoemCard ? (
           <>
-            <div className={"card-title"}>
+            <div className={"card-title h5"}>
               <div className={"p-1"}>
                 <Link
                   key={`Link-${data.id}-title`}
@@ -163,7 +139,7 @@ export default function PoemCard({
             {isPlaceholder ? (
               <>
                 <div className={"card-title"}>
-                  <div className={"p-1 mb-3"} style={fancyHeader}>
+                  <div className={"p-1 mb-3 fancy-header"}>
                     {placeholder?.title ? placeholder?.title : "-"}
                   </div>
                 </div>
@@ -174,18 +150,11 @@ export default function PoemCard({
             ) : (
               <>
                 <div className={"card-title"}>
-                  <div className={"p-1 mb-3"} style={fancyHeader}>
+                  <div className={"p-1 mb-3 fancy-header"}>
                     Generate a new Poem
                   </div>
                 </div>
-                <div
-                  className={" p-auto m-auto"}
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
+                <div className="d-flex justify-content-center align-items-center p-auto m-auto">
                   <CreatePoemButton
                     onCreatePoem={(poemId: number) => {
                       if (!newPoem || !newPoem.onCreatePoem)
@@ -202,7 +171,7 @@ export default function PoemCard({
         )}
       </div>
       {isPoemCard ? (
-        <div className={"card-footer bottom small text-muted "}>
+        <div className={"card-footer bottom small text-muted"}>
           {session?.user?.email && (
             <span>Training Rating: {data.internalTrainingRating}</span>
           )}
