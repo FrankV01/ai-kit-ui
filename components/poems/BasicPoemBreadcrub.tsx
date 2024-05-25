@@ -24,9 +24,9 @@ export default function BasicPoemBreadcrub(props: BasicPoemBreadcrubProps) {
           role={"breadcrumb-item"}
           aria-current="page"
         >
-          <a href="#" role={"link"} title={"Poem Title"}>
+          <span role={"contentinfo"} title={`Poem Title: ${poemTitle}`}>
             <Icons.EnvelopeOpenHeart />: {poemTitle}
-          </a>
+          </span>
         </li>
       </ol>
     </nav>
