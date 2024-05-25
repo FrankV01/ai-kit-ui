@@ -5,9 +5,7 @@ type ChatPlaneProps = {
   messages: ConvoReturnType[];
 };
 
-export const bordersClass: string =
-  "m-2 p-4 bg-gray-100 border rounded shadow-md";
-const ourStyleClass: string = "";
+const bordersClass: string = "m-2 p-4 bg-gray-100 border rounded shadow-md";
 
 /**
  * Pretty basic but a starting point. This is the "Chat Plane" and
@@ -19,11 +17,7 @@ const ourStyleClass: string = "";
  */
 const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
   if (messages.length === 0) {
-    return (
-      <div className={[ourStyleClass, bordersClass].join(" ")}>
-        No messages yet.
-      </div>
-    );
+    return <div className={[bordersClass].join(" ")}>No messages yet.</div>;
   }
 
   return (
@@ -33,8 +27,8 @@ const ChatPlane: React.FC<ChatPlaneProps> = ({ messages }) => {
         const isUser = message.role === "user";
 
         const _class = isUser
-          ? [ourStyleClass, bordersClass, "text-primary-emphasis"].join(" ")
-          : [ourStyleClass, "text-primary"].join(" ");
+          ? [bordersClass, "text-primary-emphasis"].join(" ")
+          : ["text-primary"].join(" ");
         const iconLeft = isUser ? "" : "🤖";
         const iconRight = isUser ? "👤" : "";
         return (
