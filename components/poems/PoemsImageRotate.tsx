@@ -29,7 +29,6 @@ export default function PoemsImageRotate() {
       src={currentImage}
       width={400}
       height={400}
-      style={{ borderRadius: "50%" }}
     />
   );
 }

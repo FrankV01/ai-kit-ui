@@ -73,9 +73,8 @@ const PoemCardDisplay = ({ entries }: PoemDisplaySimpleProps) => {
                     <div
                       role={"card"}
                       className={
-                        "card bg-light text-dark border-dark my-2 my-lg-3 my-md-2 p-0 shadow"
+                        "card bg-light text-dark border-dark my-2 my-lg-3 my-md-2 p-0 shadow height-400"
                       }
-                      style={{ height: "400px" }}
                     >
                       <div className="card-title">
                         <div className={"p-1"}>
