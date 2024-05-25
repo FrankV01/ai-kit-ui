@@ -35,7 +35,9 @@ describe("BasicPoemBreadcrub", () => {
 
     const breadcrumbItem = screen.getByRole("breadcrumb-item");
     expect(breadcrumbItem).toBeInTheDocument();
-    const breadcrumbItem2 = screen.getByRole("link", { name: /unit-test/i });
+    const breadcrumbItem2 = screen.getByRole("contentinfo", {
+      name: /unit-test/i,
+    });
     expect(breadcrumbItem2.parentElement).toHaveClass("breadcrumb-item active");
   });
 });
