@@ -23,6 +23,12 @@ export function ModernHeader() {
   const configs: Configurations = useConfiguration();
   const title = configs[ConfigKeys.siteName];
 
+  const ShowConfigs = () => (
+    <div>
+      <pre>{JSON.stringify(configs, null, 2)}</pre>
+    </div>
+  );
+
   return (
     <div className={"row"}>
       <header className={"col"}>
@@ -52,9 +58,6 @@ export function ModernHeader() {
           </div>
         </nav>
       </header>
-      <div>
-        <pre>{JSON.stringify(configs, null, 2)}</pre>
-      </div>
     </div>
   );
 }
