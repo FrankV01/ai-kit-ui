@@ -25,6 +25,9 @@ export function TagList({ simple, tagData, visible }: TagListProps) {
 
   if (!visible) return <></>;
 
+  //TLDR: The data needs to come from here rather than at the page.
+  // it's really slow to page flip at this time.
+
   if (simple) {
     return (
       <div className="" role="group">
