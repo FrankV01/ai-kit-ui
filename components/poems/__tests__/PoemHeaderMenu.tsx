@@ -26,7 +26,7 @@ describe("HeaderMenu", () => {
   it("renders with correct tag list link", () => {
     render(<PoemHeaderMenu topic="poetry" />);
     const tagListLink = screen.getByRole("link", { name: /Tag List/i });
-    expect(tagListLink).toHaveAttribute("href", "/tag-list");
+    expect(tagListLink).toHaveAttribute("href", "/poem/tag-list");
   });
 
   it("renders with correct LinkedIn icon", () => {
