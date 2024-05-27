@@ -10,7 +10,7 @@ export default async function Page() {
     <div key={`tag-list-div`}>
       <div className="container">
         <h3>Tags List</h3>
-        <TagList tagData={results} />
+        <TagList simple={true} visible={true} tagData={results} />
       </div>
     </div>
   );

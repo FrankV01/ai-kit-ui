@@ -1,7 +1,6 @@
-import React, { Suspense } from "react";
+import React from "react";
 import styles from "../../page.module.css";
 import PoemBody from "../../../components/poems/PoemBody";
-import Loading from "../loading";
 import GetSessionlessDataForPage from "../../../lib/api/GetSessionlessDataForPage";
 
 export const dynamic = "force-dynamic";
@@ -27,9 +26,7 @@ export default async function Page({
   return (
     <main className={`${styles.main} mt-3`}>
       <div className={"container"}>
-        <Suspense fallback={<Loading />}>
-          <PoemBody poemData={poemData} />
-        </Suspense>
+        <PoemBody poemData={poemData} />
       </div>
     </main>
   );
