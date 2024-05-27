@@ -1,6 +1,6 @@
 {
   "name": "ai-kit-ui",
-  "version": "3.2.20240427",
+  "version": "3.2.20240527",
   "private": true,
   "scripts": {
     "dev": "PORT=3001 APP_ID=1 NEXTAUTH_URL=http://localhost:3001 next dev",
