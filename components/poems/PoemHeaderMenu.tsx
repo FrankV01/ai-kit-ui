@@ -49,8 +49,11 @@ function PoemHeaderMenu({ topic }: { topic: string }) {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/tag-list">
-                  <Icons.TagsFill size={sizeOfIcons} title={"Tag List"} />
+                <a className="nav-link" href="/poem/tag-list">
+                  <Icons.TagsFill
+                    size={sizeOfIcons}
+                    title={"Poems' Tag List"}
+                  />
                 </a>
               </li>
               <li className="nav-item">
