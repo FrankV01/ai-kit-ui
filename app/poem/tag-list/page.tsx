@@ -1,16 +1,13 @@
-import { getTagListData } from "../../../lib/api/ApiActions";
-import { TagList } from "../../../components/poems/tag/TagList";
+import { TagListData } from "../../../components/poems/tag/TagListData";
 
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const results = await getTagListData();
-
   return (
     <div key={`tag-list-div`}>
       <div className="container">
         <h3>Tags List</h3>
-        <TagList simple={true} visible={true} tagData={results} />
+        <TagListData />
       </div>
     </div>
   );

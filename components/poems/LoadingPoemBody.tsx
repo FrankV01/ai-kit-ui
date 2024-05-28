@@ -1,36 +1,7 @@
 "use client";
 import BasicPoemBreadcrub from "./BasicPoemBreadcrub";
 import React from "react";
-
-type RandomDynamicPlaceHolderType = {
-  size: "xs" | "sm" | "md";
-};
-type DynamicPlaceHolderType = RandomDynamicPlaceHolderType & {
-  n: number;
-};
-
-const BasicPlaceHolder = ({ n }: Omit<DynamicPlaceHolderType, "size">) => (
-  <>
-    <span
-      data-role="status-placeholder"
-      role={"status"}
-      className={`placeholder col-${n}`}
-    />{" "}
-  </>
-);
-
-const DynamicPlaceHolder = ({ n, size }: DynamicPlaceHolderType) => (
-  <>
-    <span
-      data-role="status-placeholder"
-      role={"status"}
-      className={`placeholder col-${size}-${n}`}
-    />{" "}
-  </>
-);
-const RandomDynamicPlaceHolder = ({ size }: RandomDynamicPlaceHolderType) => (
-  <DynamicPlaceHolder size={size} n={Math.floor(Math.random() * 6) + 1} />
-);
+import BasicPlaceHolder from "../common/BasicPlaceHolder";
 
 const LoadingPoemBody = () => {
   return (

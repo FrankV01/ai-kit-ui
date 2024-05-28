@@ -5,12 +5,7 @@ import { Suspense, useState } from "react";
 import { TagsResponse } from "../../../lib/Types";
 import { AlphaTagList } from "./AlphaTagList";
 import { ShuffledTagList } from "./ShuffledTagList";
-
-/** might want this public and reused */
-const linkStyles: string =
-  " link-offset-1 link-offset-2-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover";
-const tagClasses: string =
-  "d-inline-flex flex-wrap link-secondary m-1 p-2 bg-primary-subtle border border-primary-subtle rounded";
+import { TagContainerCssClass, TagLinkCssClass } from "./styles";
 
 export type TagListProps = {
   simple: boolean;
@@ -25,17 +20,14 @@ export function TagList({ simple, tagData, visible }: TagListProps) {
 
   if (!visible) return <></>;
 
-  //TLDR: The data needs to come from here rather than at the page.
-  // it's really slow to page flip at this time.
-
   if (simple) {
     return (
       <div className="" role="group">
         <AlphaTagList
           tagData={tagData}
           visible={true}
-          linkClassName={linkStyles}
-          containerClassName={tagClasses}
+          linkClassName={TagLinkCssClass}
+          containerClassName={TagContainerCssClass}
         />
       </div>
     );
@@ -45,8 +37,8 @@ export function TagList({ simple, tagData, visible }: TagListProps) {
     return (
       <div className="" role="group">
         <TagActionButton
-          className={tagClasses}
-          linkClassName={linkStyles}
+          className={TagContainerCssClass}
+          linkClassName={TagLinkCssClass}
           disabled={active === false}
           onClick={(evt) => {
             evt.preventDefault();
@@ -56,8 +48,8 @@ export function TagList({ simple, tagData, visible }: TagListProps) {
           buttonType={"alphabetical"}
         />
         <TagActionButton
-          className={tagClasses}
-          linkClassName={linkStyles}
+          className={TagContainerCssClass}
+          linkClassName={TagLinkCssClass}
           disabled={active === true}
           onClick={(evt) => {
             evt.preventDefault();
@@ -69,14 +61,14 @@ export function TagList({ simple, tagData, visible }: TagListProps) {
           <ShuffledTagList
             tagData={tagData}
             visible={active}
-            linkClassName={linkStyles}
-            containerClassName={tagClasses}
+            linkClassName={TagLinkCssClass}
+            containerClassName={TagContainerCssClass}
           />
           <AlphaTagList
             tagData={tagData}
             visible={!active}
-            linkClassName={linkStyles}
-            containerClassName={tagClasses}
+            linkClassName={TagLinkCssClass}
+            containerClassName={TagContainerCssClass}
           />
         </Suspense>
       </div>
