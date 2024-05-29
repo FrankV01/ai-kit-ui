@@ -10,15 +10,15 @@ describe("TagLink", () => {
 
   it("renders with correct class names", () => {
     render(<TagLink {...baseProps} />);
-    const tagDiv = screen.getByTestId(`tag-link-div-${baseProps.tagItem.id}`);
+    const tagDiv = screen.getByTestId(`taglink-div-${baseProps.tagItem.id}`);
     expect(tagDiv).toHaveClass(baseProps.className);
-    const tagLink = screen.getByTestId(`tag-link-link-${baseProps.tagItem.id}`);
+    const tagLink = screen.getByTestId(`taglink-link-${baseProps.tagItem.id}`);
     expect(tagLink).toHaveClass(baseProps.linkClassName);
   });
 
   it("renders with correct link and text", () => {
     render(<TagLink {...baseProps} />);
-    const tagLink = screen.getByTestId(`tag-link-link-${baseProps.tagItem.id}`);
+    const tagLink = screen.getByTestId(`taglink-link-${baseProps.tagItem.id}`);
     expect(tagLink).toHaveAttribute(
       "href",
       `/poem/tag/${encodeURIComponent(baseProps.tagItem.tag)}`,

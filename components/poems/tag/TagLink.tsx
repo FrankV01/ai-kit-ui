@@ -16,15 +16,15 @@ export function TagLink({ className, linkClassName, tagItem }: TagLinkProps) {
 
   return (
     <div
-      key={`tag-list-div-${tagItem.id}`}
-      data-testid={`tag-link-div-${tagItem.id}`}
+      key={`taglink-div-${tagItem.id}`}
+      data-testid={`taglink-div-${tagItem.id}`}
       className={className}
     >
       <Link
         href={`/poem/tag/${encodeURIComponent(tagItem.tag)}`}
-        key={`tag-list-${tagItem.id}`}
+        key={`taglink-${tagItem.id}`}
         className={linkClassName}
-        data-testid={`tag-link-link-${tagItem.id}`}
+        data-testid={`taglink-link-${tagItem.id}`}
       >
         {tagItem.tag}
       </Link>

@@ -2,7 +2,7 @@ import { TagListProps } from "./TagList";
 import { TagLink } from "./TagLink";
 import { useMemo } from "react";
 
-type AlphaTagListProps = Omit<TagListProps, "simple"> & {
+export type AlphaTagListProps = Omit<TagListProps, "simple"> & {
   containerClassName: string;
   linkClassName: string;
 };
