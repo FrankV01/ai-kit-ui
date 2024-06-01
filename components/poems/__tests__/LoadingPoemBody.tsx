@@ -15,7 +15,6 @@ describe("LoadingPoemBody", () => {
     const { getAllByRole, getAllByTestId } = render(<LoadingPoemBody />);
     const placeholders = getAllByRole("status");
     placeholders.forEach((placeholder) => {
-      console.log("className", placeholder.className);
       expect(placeholder).toBeInTheDocument();
       expect(placeholder).toHaveClass("placeholder", { exact: false });
     });
