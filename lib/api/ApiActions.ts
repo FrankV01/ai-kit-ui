@@ -20,7 +20,7 @@ const log = console.log.bind(console);
 let baseUrlCache: string = "";
 async function getBaseUrl(): Promise<string> {
   if (!baseUrlCache) {
-    baseUrlCache = (await EvtMgr()).BASE_URL;
+    baseUrlCache = (await EvtMgr()).BASE_API_URL;
   }
   return baseUrlCache;
 }
@@ -39,7 +39,7 @@ export async function getPoemIdList(
 ): Promise<number[]> {
   log("getPoemIdList:paging", pageNum, pageSize);
   const evtMgr = await EvtMgr();
-  const base = evtMgr.BASE_URL;
+  const base = evtMgr.BASE_API_URL;
   log("getPoemIdList:base", base);
   const url = `${base}/ai/sessionless/ids?pageNum=${pageNum}&pageSize=${pageSize}`;
   if (!url) {
@@ -78,7 +78,7 @@ export async function getGroupedPoemIds(
 export async function getPoemById(id: number): Promise<ISessionlessResponse> {
   log("getPoemIdList:getPoemById", id);
   const evtMgr = await EvtMgr();
-  const base = evtMgr.BASE_URL;
+  const base = evtMgr.BASE_API_URL;
   const url = `${base}/ai/sessionless/id/${id}`;
   if (!url) {
     throw new Error("Invalid environment configs");
@@ -104,7 +104,7 @@ export async function setPoemRating(poemId: number, rating: number) {
   if (!poemId) return;
   if (rating > -1 && rating < 11) {
     const evtMgr = await EvtMgr();
-    const baseUrl = evtMgr.BASE_URL;
+    const baseUrl = evtMgr.BASE_API_URL;
     const url = `${baseUrl}/ai/query/${poemId}/rating`;
     const body = {
       id: poemId,
@@ -138,7 +138,7 @@ export async function queueRequest(formData: FormData) {
     return;
   }
   const evtMgr = await EvtMgr();
-  const baseUrl = evtMgr.BASE_URL;
+  const baseUrl = evtMgr.BASE_API_URL;
 
   const url = `${baseUrl}/promptQ`;
   console.log("queueRequest", formData);
@@ -169,7 +169,7 @@ export async function RecordLogin(user: User | AdapterUser) {
   log("getPoemIdList:RecordLogin");
   const RecordLoginMsg = "RecordLogin::PUT";
   const evtMgr = await EvtMgr();
-  const baseUrl = evtMgr.BASE_URL;
+  const baseUrl = evtMgr.BASE_API_URL;
   const data = {
     email: user.email,
     name: user.name,
@@ -192,7 +192,7 @@ export async function RecordLogin(user: User | AdapterUser) {
 
 export async function getTagListData(): Promise<TagsResponse[]> {
   const evtMgr = await EvtMgr();
-  const baseUrl = evtMgr.BASE_URL;
+  const baseUrl = evtMgr.BASE_API_URL;
   const url = baseUrl ? `${baseUrl}/tags/serverless` : "";
 
   if (!url) {
@@ -291,7 +291,7 @@ export async function apiRequest(
   body?: any,
 ): Promise<any> {
   const evtMgr = await EvtMgr();
-  const baseUrl = evtMgr.BASE_URL;
+  const baseUrl = evtMgr.BASE_API_URL;
   const url = baseUrl ? `${baseUrl}/${urlEndPoint}` : "";
   if (!url) {
     throw new Error("Invalid environment configs");

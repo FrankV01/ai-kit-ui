@@ -5,7 +5,7 @@ import { EvnMgrSync } from "../EnvMgr";
 import { ISessionlessResponse } from "../Types";
 
 const evtMgr = EvnMgrSync();
-const base = evtMgr.BASE_URL;
+const base = evtMgr.BASE_API_URL;
 const url = `${base}/ai/sessionless/id`;
 
 export default async function GetSessionlessDataForPage(

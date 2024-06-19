@@ -3,8 +3,6 @@ import React, { Suspense } from "react";
 import Loading from "./loading";
 import { InfinitePoems } from "../../components/poems/InfinitePoems";
 
-const url = process.env.API_URL ? `${process.env.API_URL}/poems` : ""; //"http://localhost:3001/poems";
-
 // Everything in /app is a ***react server component***\
 //  If this is the case, where do client components go when
 //  creating client side components.

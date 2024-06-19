@@ -4,7 +4,7 @@ import { EvnMgrSync } from "../EnvMgr";
 import { ISessionlessResponse } from "../Types";
 
 const evtMgr = EvnMgrSync();
-const base = evtMgr.BASE_URL;
+const base = evtMgr.BASE_API_URL;
 const url = `${base}/ai/query/tag`;
 const requestConfig: Partial<RequestInit> = {
   cache: "no-cache",

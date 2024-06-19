@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { RecordLogin } from "../../../../lib/api/ApiActions";
+import { EvnMgrSync } from "../../../../lib/EnvMgr";
 // import NextAuth from "next-auth";
 // import GoogleProvider from "next-auth/providers/google";
 //
@@ -25,8 +26,8 @@ import { RecordLogin } from "../../../../lib/api/ApiActions";
 //   },
 //   providers: [
 //     GoogleProvider({
-//       clientId: process.env.GOOGLE_CLIENT_ID || "not-set",
-//       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "not-set",
+// clientId: EvnMgrSync().GOOGLE_CLIENT_ID,
+//   clientSecret: EvnMgrSync().GOOGLE_CLIENT_SECRET,
 //     }),
 //     // ...add more providers here
 //   ],
@@ -80,8 +81,8 @@ const handler = NextAuth({
   },
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "not-set",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "not-set",
+      clientId: EvnMgrSync().GOOGLE_CLIENT_ID,
+      clientSecret: EvnMgrSync().GOOGLE_CLIENT_SECRET,
     }),
   ],
 });

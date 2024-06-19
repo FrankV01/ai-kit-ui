@@ -37,7 +37,7 @@ export default async function getSiteConfigs(): Promise<
   }
 
   const evtMgr = await EvtMgr();
-  const base = evtMgr.BASE_URL;
+  const base = evtMgr.BASE_API_URL;
   const url = `${base}/config`;
   console.log(`Fetching data from ${url}`);
   const res = await fetch(url, {
