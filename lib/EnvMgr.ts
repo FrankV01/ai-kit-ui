@@ -1,5 +1,7 @@
 "use server";
 
+import RequiredEnvironmentVariableError from "./errors/RequiredEnvironmentVariableError";
+
 export type EnvironmentVariableType = {
   NODE_ENV: string;
   BASE_API_URL: string;
@@ -11,9 +13,15 @@ export type EnvironmentVariableType = {
 
 const NOT_SET: string = "not-set";
 
+const throwAnError = () => {
+  throw new RequiredEnvironmentVariableError(
+    "Required environment variable is missing!",
+  );
+};
+
 const envMgr: EnvironmentVariableType = {
-  BASE_API_URL: process.env.API_URL ? `${process.env.API_URL}` : NOT_SET, //"http://localhost:3001/poems";
-  APP_ID: process.env.APP_ID || "1",
+  BASE_API_URL: process.env.API_URL ? `${process.env.API_URL}` : throwAnError(), //"http://localhost:3001/poems";
+  APP_ID: process.env.APP_ID || throwAnError(),
   DEBUG: (process.env.NODE_ENV || "production") === "development",
   NODE_ENV: process.env.NODE_ENV || "development",
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || NOT_SET,
