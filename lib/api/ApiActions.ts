@@ -17,14 +17,6 @@ export async function demandPoem(): Promise<string> {
 
 const log = console.log.bind(console);
 
-let baseUrlCache: string = "";
-async function getBaseUrl(): Promise<string> {
-  if (!baseUrlCache) {
-    baseUrlCache = (await EvtMgr()).BASE_API_URL;
-  }
-  return baseUrlCache;
-}
-
 export async function allowedEmails(): Promise<Set<string>> {
   return new Set([
     "jawzx01@gmail.com",
