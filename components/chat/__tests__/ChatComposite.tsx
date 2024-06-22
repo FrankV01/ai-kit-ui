@@ -13,6 +13,7 @@ import {
 import { SessionProvider } from "next-auth/react";
 import { ConvoReturnType, ReactChildrenType } from "../../../lib/Types";
 
+jest.mock("../../../lib/EnvMgr");
 jest.mock("../../../lib/api/ApiActions", () => ({
   startSession: jest.fn().mockResolvedValue("new-session-id"),
   submitMessageToConvo: jest.fn().mockResolvedValue([]),

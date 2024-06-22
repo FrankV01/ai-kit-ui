@@ -14,8 +14,7 @@ export abstract class BaseAppError extends Error {
     // This line is needed to restore the correct prototype chain.
     Object.setPrototypeOf(this, new.target.prototype);
 
-    // IDK if I will leave this but for now, it should be useful.
-    process.nextTick(this.printError);
+    this.printError();
   }
 
   protected printError() {

@@ -2,6 +2,7 @@
 
 import RequiredEnvironmentVariableError from "./errors/RequiredEnvironmentVariableError";
 
+// TODO: Move this to types.
 export type EnvironmentVariableType = {
   NODE_ENV: string;
   BASE_API_URL: string;

@@ -1,6 +1,8 @@
 import InvalidParameterError from "../../errors/InvalidParameterError";
 import { BaseAppError } from "../BaseError";
 
+jest.mock("../../EnvMgr");
+
 describe("InvalidParameterError", () => {
   it("should correctly set the error message", () => {
     const errorMessage = "Invalid parameter";
