@@ -1,4 +1,9 @@
-import { EvnMgrSync } from "../EnvMgr";
+//
+// Under_Dev: We can't use EvnMgr or EvnMgrSync because
+//  it creates a circular reference given that
+//  RequiredEnvironmentVariableError is derived
+//  from BaseAppError.
+//
 
 export abstract class BaseAppError extends Error {
   protected debugMode: boolean;
@@ -6,7 +11,12 @@ export abstract class BaseAppError extends Error {
   public constructor(message?: string) {
     super(message); // Pass the message to the parent class
 
-    this.debugMode = EvnMgrSync().DEBUG; //Set from environment variable.
+    try {
+      // Set from environment variable.
+      this.debugMode = process.env?.DEBUG?.toLowerCase() === "true";
+    } catch (err) {
+      this.debugMode = true;
+    }
 
     // Set the name of the error
     this.name = "BaseAppError"; //Expect to be overridden by child classes.

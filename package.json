@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "PORT=3001 APP_ID=1 NEXTAUTH_URL=http://localhost:3001 next dev",
     "dev:wl": "PORT=3002 APP_ID=2 NEXTAUTH_URL=http://localhost:3002 next dev",
+    "dev:3": "PORT=3003 APP_ID=3 NEXTAUTH_URL=http://localhost:3003 next dev",
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "next build",

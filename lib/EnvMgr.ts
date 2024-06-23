@@ -28,6 +28,9 @@ const envMgr: EnvironmentVariableType = {
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || NOT_SET,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || NOT_SET,
 };
+
+console.log("envMgr", JSON.stringify(envMgr));
+
 const EnvMgr = async (): Promise<EnvironmentVariableType> => envMgr;
 const EvnMgrSync = (): EnvironmentVariableType => envMgr;
 
