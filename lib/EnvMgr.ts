@@ -14,22 +14,26 @@ export type EnvironmentVariableType = {
 
 const NOT_SET: string = "not-set";
 
-const throwAnError = () => {
+const throwAnError = (whichOne: string) => {
   throw new RequiredEnvironmentVariableError(
-    "Required environment variable is missing!",
+    `Required environment (${whichOne}) variable is missing!`,
   );
 };
 
 const envMgr: EnvironmentVariableType = {
-  BASE_API_URL: process.env.API_URL ? `${process.env.API_URL}` : throwAnError(), //"http://localhost:3001/poems";
-  APP_ID: process.env.APP_ID || throwAnError(),
+  BASE_API_URL: process.env.API_URL
+    ? `${process.env.API_URL}`
+    : throwAnError("API_URL"), //"http://localhost:3001/poems";
+  APP_ID: process.env.APP_ID || throwAnError("APP_ID"),
   DEBUG: (process.env.NODE_ENV || "production") === "development",
   NODE_ENV: process.env.NODE_ENV || "development",
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || NOT_SET,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || NOT_SET,
 };
 
-console.log("envMgr", JSON.stringify(envMgr));
+if (envMgr.DEBUG) {
+  console.log("envMgr", JSON.stringify(envMgr));
+}
 
 const EnvMgr = async (): Promise<EnvironmentVariableType> => envMgr;
 const EvnMgrSync = (): EnvironmentVariableType => envMgr;
